@@ -13,12 +13,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class DriveTrain extends Subsystem {
 
-	private TalonSRX frontLeft = new TalonSRX(RobotMap.FRONT_LEFT);
-	private TalonSRX frontRight = new TalonSRX(RobotMap.FRONT_RIGHT);
-	private TalonSRX centerLeft = new TalonSRX(RobotMap.CENTER_LEFT);
-	private TalonSRX centerRight = new TalonSRX(RobotMap.CENTER_RIGHT);
-	private TalonSRX backLeft = new TalonSRX(RobotMap.BACK_LEFT);
-	private TalonSRX backRight = new TalonSRX(RobotMap.BACK_RIGHT);
+	private TalonSRX frontLeft = new TalonSRX(RobotMap.DT_FRONT_LEFT);
+	private TalonSRX frontRight = new TalonSRX(RobotMap.DT_FRONT_RIGHT);
+	private TalonSRX centerLeft = new TalonSRX(RobotMap.DT_CENTER_LEFT);
+	private TalonSRX centerRight = new TalonSRX(RobotMap.DT_CENTER_RIGHT);
+	private TalonSRX backLeft = new TalonSRX(RobotMap.DT_BACK_LEFT);
+	private TalonSRX backRight = new TalonSRX(RobotMap.DT_BACK_RIGHT);
 
 	public DriveTrain() {
 		centerLeft.follow(frontLeft);
