@@ -12,21 +12,21 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class DriveTrain extends Subsystem {
-	
-	public TalonSRX frontLeft = new TalonSRX(RobotMap.FRONT_LEFT);
-	public TalonSRX frontRight = new TalonSRX(RobotMap.FRONT_RIGHT);
-	public TalonSRX centerLeft = new TalonSRX(RobotMap.CENTER_LEFT);
-	public TalonSRX centerRight = new TalonSRX(RobotMap.CENTER_RIGHT);
-	public TalonSRX backLeft = new TalonSRX(RobotMap.BACK_LEFT);
-	public TalonSRX backRight = new TalonSRX(RobotMap.BACK_RIGHT);
-	
+
+	private TalonSRX frontLeft = new TalonSRX(RobotMap.FRONT_LEFT);
+	private TalonSRX frontRight = new TalonSRX(RobotMap.FRONT_RIGHT);
+	private TalonSRX centerLeft = new TalonSRX(RobotMap.CENTER_LEFT);
+	private TalonSRX centerRight = new TalonSRX(RobotMap.CENTER_RIGHT);
+	private TalonSRX backLeft = new TalonSRX(RobotMap.BACK_LEFT);
+	private TalonSRX backRight = new TalonSRX(RobotMap.BACK_RIGHT);
+
 	public DriveTrain() {
 		centerLeft.follow(frontLeft);
 		centerRight.follow(frontRight);
 		backLeft.follow(frontLeft);
 		backRight.follow(frontRight);
 	}
-	
+
 	public void arcadeDrive(double moveValue, double rotateValue, boolean squaredInputs) {
 		double leftMotorSpeed;
 		double rightMotorSpeed;
@@ -71,16 +71,15 @@ public class DriveTrain extends Subsystem {
 		frontLeft.set(ControlMode.PercentOutput, leftMotorSpeed);
 		frontRight.set(ControlMode.PercentOutput, rightMotorSpeed);
 	}
-	
 	protected double limit(double value) {
-	    if (value > 1.0) {
-	      return 1.0;
-	    }
-	    if (value < -1.0) {
-	      return -1.0;
-	    }
-	    return value;
-	  }
+		if (value > 1.0) {
+			return 1.0;
+		}
+		if (value < -1.0) {
+			return -1.0;
+		}
+		return value;
+	}
 
 	public void initDefaultCommand() {
 		// setDefaultCommand(new ArcadeDrive());
