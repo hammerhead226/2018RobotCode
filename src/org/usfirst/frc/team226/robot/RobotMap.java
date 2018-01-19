@@ -14,5 +14,12 @@ package org.usfirst.frc.team226.robot;
  * floating around.
  */
 public class RobotMap {
-	
+
+	public static final int FRONT_LEFT = 0;
+	public static final int FRONT_RIGHT = 0;
+	public static final int CENTER_LEFT = 0;
+	public static final int CENTER_RIGHT = 0;
+	public static final int BACK_LEFT = 0;
+	public static final int BACK_RIGHT = 0;
+
 }
