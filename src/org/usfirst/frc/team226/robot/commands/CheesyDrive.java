@@ -4,9 +4,6 @@ import org.usfirst.frc.team226.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
 public class CheesyDrive extends Command {
 
     public CheesyDrive() {
@@ -20,7 +17,6 @@ public class CheesyDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.arcadeDrive(Robot.m_oi.getLeftYAxis(), Robot.m_oi.getRightXAxis(), true);
     }
 
     // Make this return true when this Command no longer needs to run execute()
