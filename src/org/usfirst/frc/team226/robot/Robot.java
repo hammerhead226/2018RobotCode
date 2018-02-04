@@ -25,7 +25,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends TimedRobot {
 	public static OI m_oi;
-	public static DriveTrain driveTrain = new DriveTrain();
+	public static DriveTrain driveTrain;
 	public VisionRun vision = new VisionRun();
 
 	Command m_autonomousCommand;
@@ -34,6 +34,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		m_oi = new OI();
+		driveTrain = new DriveTrain();
 		// m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
@@ -42,7 +43,6 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void disabledInit() {
-
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class Robot extends TimedRobot {
 			m_autonomousCommand.cancel();
 		}
 	}
-
+	
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();

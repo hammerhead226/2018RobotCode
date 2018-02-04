@@ -17,37 +17,46 @@ public class DriveTrain extends Subsystem {
 	private TalonSRX frontRight = new TalonSRX(RobotMap.DT_FRONT_RIGHT);
 	private TalonSRX centerLeft = new TalonSRX(RobotMap.DT_CENTER_LEFT);
 	private TalonSRX centerRight = new TalonSRX(RobotMap.DT_CENTER_RIGHT);
-	private TalonSRX backLeft = new TalonSRX(RobotMap.DT_BACK_LEFT);
-	private TalonSRX backRight = new TalonSRX(RobotMap.DT_BACK_RIGHT);
-
+	private TalonSRX rearLeft = new TalonSRX(RobotMap.DT_REAR_LEFT);
+	private TalonSRX rearRight = new TalonSRX(RobotMap.DT_REAR_RIGHT);
+	
 	public DriveTrain() {
+		frontLeft.setInverted(true);
+		centerLeft.setInverted(false);
+		rearLeft.setInverted(true);
+
+		frontRight.setInverted(false);
+		centerRight.setInverted(false);
+		rearRight.setInverted(true);
+
 		centerLeft.follow(frontLeft);
 		centerRight.follow(frontRight);
-		backLeft.follow(frontLeft);
-		backRight.follow(frontRight);
+		rearLeft.follow(frontLeft);
+		rearRight.follow(frontRight);
+		
 	}
 
-	public void arcadeDrive(double moveValue, double rotateValue, boolean squaredInputs) {
+	public void initDefaultCommand() {
+		setDefaultCommand(new CheesyDrive());
+	}
+
+	public void arcadeDrive(double moveValue, double rotateValue) {
 		double leftMotorSpeed;
 		double rightMotorSpeed;
 
 		rotateValue = limit(rotateValue);
 		moveValue = limit(moveValue);
 
-		if (squaredInputs) {
-			// square the inputs (while preserving the sign) to increase fine
-			// control
-			// while permitting full power
-			if (rotateValue >= 0.0) {
-				rotateValue = rotateValue * rotateValue;
-			} else {
-				rotateValue = -(rotateValue * rotateValue);
-			}
-			if (moveValue >= 0.0) {
-				moveValue = moveValue * moveValue;
-			} else {
-				moveValue = -(moveValue * moveValue);
-			}
+		// Square inputs
+		if (rotateValue >= 0.0) {
+			rotateValue = rotateValue * rotateValue;
+		} else {
+			rotateValue = -(rotateValue * rotateValue);
+		}
+		if (moveValue >= 0.0) {
+			moveValue = moveValue * moveValue;
+		} else {
+			moveValue = -(moveValue * moveValue);
 		}
 
 		if (rotateValue > 0.0) {
@@ -71,6 +80,7 @@ public class DriveTrain extends Subsystem {
 		frontLeft.set(ControlMode.PercentOutput, leftMotorSpeed);
 		frontRight.set(ControlMode.PercentOutput, rightMotorSpeed);
 	}
+
 	protected double limit(double value) {
 		if (value > 1.0) {
 			return 1.0;
@@ -79,12 +89,6 @@ public class DriveTrain extends Subsystem {
 			return -1.0;
 		}
 		return value;
-	}
-
-	public void initDefaultCommand() {
-		// setDefaultCommand(new ArcadeDrive());
-		// Set the default command for a subsystem here.
-		setDefaultCommand(new CheesyDrive());
 	}
 
 }
