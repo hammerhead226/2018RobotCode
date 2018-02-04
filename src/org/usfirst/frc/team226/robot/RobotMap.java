@@ -15,11 +15,11 @@ package org.usfirst.frc.team226.robot;
  */
 public class RobotMap {
 
-	public static final int DT_FRONT_LEFT = 0;
-	public static final int DT_FRONT_RIGHT = 0;
-	public static final int DT_CENTER_LEFT = 0;
-	public static final int DT_CENTER_RIGHT = 0;
-	public static final int DT_BACK_LEFT = 0;
-	public static final int DT_BACK_RIGHT = 0;
+	public static final int DT_FRONT_LEFT = 12;
+	public static final int DT_FRONT_RIGHT = 16;
+	public static final int DT_CENTER_LEFT = 11;
+	public static final int DT_CENTER_RIGHT = 15;
+	public static final int DT_REAR_LEFT = 13;
+	public static final int DT_REAR_RIGHT = 17;
 
 }
