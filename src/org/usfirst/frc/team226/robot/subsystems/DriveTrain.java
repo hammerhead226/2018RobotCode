@@ -27,27 +27,23 @@ public class DriveTrain extends Subsystem {
 		backRight.follow(frontRight);
 	}
 
-	public void arcadeDrive(double moveValue, double rotateValue, boolean squaredInputs) {
+	public void arcadeDrive(double moveValue, double rotateValue) {
 		double leftMotorSpeed;
 		double rightMotorSpeed;
 
 		rotateValue = limit(rotateValue);
 		moveValue = limit(moveValue);
 
-		if (squaredInputs) {
-			// square the inputs (while preserving the sign) to increase fine
-			// control
-			// while permitting full power
-			if (rotateValue >= 0.0) {
-				rotateValue = rotateValue * rotateValue;
-			} else {
-				rotateValue = -(rotateValue * rotateValue);
-			}
-			if (moveValue >= 0.0) {
-				moveValue = moveValue * moveValue;
-			} else {
-				moveValue = -(moveValue * moveValue);
-			}
+		// Square inputs
+		if (rotateValue >= 0.0) {
+			rotateValue = rotateValue * rotateValue;
+		} else {
+			rotateValue = -(rotateValue * rotateValue);
+		}
+		if (moveValue >= 0.0) {
+			moveValue = moveValue * moveValue;
+		} else {
+			moveValue = -(moveValue * moveValue);
 		}
 
 		if (rotateValue > 0.0) {
@@ -71,6 +67,7 @@ public class DriveTrain extends Subsystem {
 		frontLeft.set(ControlMode.PercentOutput, leftMotorSpeed);
 		frontRight.set(ControlMode.PercentOutput, rightMotorSpeed);
 	}
+
 	protected double limit(double value) {
 		if (value > 1.0) {
 			return 1.0;
