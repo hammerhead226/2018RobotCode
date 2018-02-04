@@ -17,9 +17,9 @@ public class DriveTrain extends Subsystem {
 	private TalonSRX frontRight = new TalonSRX(RobotMap.DT_FRONT_RIGHT);
 	private TalonSRX centerLeft = new TalonSRX(RobotMap.DT_CENTER_LEFT);
 	private TalonSRX centerRight = new TalonSRX(RobotMap.DT_CENTER_RIGHT);
-	private TalonSRX backLeft = new TalonSRX(RobotMap.DT_BACK_LEFT);
-	private TalonSRX backRight = new TalonSRX(RobotMap.DT_BACK_RIGHT);
-
+	private TalonSRX rearLeft = new TalonSRX(RobotMap.DT_REAR_LEFT);
+	private TalonSRX rearRight = new TalonSRX(RobotMap.DT_REAR_RIGHT);
+	
 	public DriveTrain() {
 		centerLeft.follow(frontLeft);
 		centerRight.follow(frontRight);
