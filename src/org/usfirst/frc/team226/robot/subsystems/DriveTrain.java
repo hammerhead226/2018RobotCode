@@ -21,10 +21,23 @@ public class DriveTrain extends Subsystem {
 	private TalonSRX rearRight = new TalonSRX(RobotMap.DT_REAR_RIGHT);
 	
 	public DriveTrain() {
+		frontLeft.setInverted(true);
+		centerLeft.setInverted(false);
+		rearLeft.setInverted(true);
+
+		frontRight.setInverted(false);
+		centerRight.setInverted(false);
+		rearRight.setInverted(true);
+
 		centerLeft.follow(frontLeft);
 		centerRight.follow(frontRight);
-		backLeft.follow(frontLeft);
-		backRight.follow(frontRight);
+		rearLeft.follow(frontLeft);
+		rearRight.follow(frontRight);
+		
+	}
+
+	public void initDefaultCommand() {
+		setDefaultCommand(new CheesyDrive());
 	}
 
 	public void arcadeDrive(double moveValue, double rotateValue) {
@@ -76,12 +89,6 @@ public class DriveTrain extends Subsystem {
 			return -1.0;
 		}
 		return value;
-	}
-
-	public void initDefaultCommand() {
-		// setDefaultCommand(new ArcadeDrive());
-		// Set the default command for a subsystem here.
-		setDefaultCommand(new CheesyDrive());
 	}
 
 }
