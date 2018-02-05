@@ -1,6 +1,22 @@
 # 2018RobotCode
 Code for team 226's Power Up robot.
 
+## Dependencies
+#### SharkMacro
+1. Download latest release of SharkMacro from [here](https://github.com/hammerhead226/SharkMacro/releases).
+2. Copy the downloaded .jar file to `C:\Users\<YourUser>\wpilib\user\java\lib`.
+3. Right click on 2018RobotCode in Eclipse > Build Path > Add External Archives...
+4. Select the jar file you copied to the userlib directory.
+5. Download Apache Commons Lang from [here](http://apache.spinellicreations.com//commons/lang/binaries/commons-lang3-3.7-bin.zip).
+5. Download OpenCSV from [here](https://sourceforge.net/projects/opencsv/files/latest/download).
+6. Repeat steps 2-4 with `commons-lang3-3.7.jar` and `opencsv-4.1.jar`
+
+#### HammerheadLib
+1. Download latest release of HammerheadLib from [here](https://github.com/minchingtonak/HammerheadLib/releases).
+2. Copy the downloaded .jar file to `C:\Users\<YourUser>\wpilib\user\java\lib`.
+3. Right click on 2018RobotCode in Eclipse > Build Path > Add External Archives...
+4. Select the Hammerhead jar file you copied to the userlib directory.
+
 ## Developtment Software
 #### JDK and Eclipse
 1. Install the latest [Java SE Development Kit (Windows x64)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
