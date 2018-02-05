@@ -6,7 +6,7 @@ Code for team 226's Power Up robot.
 1. Download latest release of SharkMacro from [here](https://github.com/hammerhead226/SharkMacro/releases).
 2. Copy the downloaded .jar file to `C:\Users\<YourUser>\wpilib\user\java\lib`.
 3. Right click on 2018RobotCode in Eclipse > Build Path > Add External Archives...
-4. Select the SharkMacro jar file you copied to the userlib directory.
+4. Select the jar file you copied to the userlib directory.
 5. Download Apache Commons Lang from [here](http://apache.spinellicreations.com//commons/lang/binaries/commons-lang3-3.7-bin.zip).
 5. Download OpenCSV from [here](https://sourceforge.net/projects/opencsv/files/latest/download).
 6. Repeat steps 2-4 with `commons-lang3-3.7.jar` and `opencsv-4.1.jar`
