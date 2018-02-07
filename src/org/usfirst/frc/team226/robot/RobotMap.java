@@ -21,5 +21,10 @@ public class RobotMap {
 	public static final int DT_CENTER_RIGHT = 15;
 	public static final int DT_REAR_LEFT = 13;
 	public static final int DT_REAR_RIGHT = 17;
+	
+	public static final int EL_FRONT_LEFT = 0;
+	public static final int EL_REAR_LEFT = 0;
+	public static final int EL_FRONT_RIGHT = 0;
+	public static final int EL_REAR_RIGHT = 0;
 
 }
