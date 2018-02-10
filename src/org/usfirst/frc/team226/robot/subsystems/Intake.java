@@ -1,5 +1,6 @@
 package org.usfirst.frc.team226.robot.subsystems;
 
+import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -23,10 +24,10 @@ public class Intake extends Subsystem {
     	
     	right.setInverted(true);
     	
-    	left.configVoltageCompSaturation(11.5, 0);
-    	right.configVoltageCompSaturation(11.5, 0);
-    	left.enableVoltageCompensation(true);
-    	right.enableVoltageCompensation(true);
+    	left.configContinuousCurrentLimit(Constants.IN_CURRENT_LIMIT, Constants.STARTUP_WAIT);
+    	right.configContinuousCurrentLimit(Constants.IN_CURRENT_LIMIT, Constants.STARTUP_WAIT);
+    	left.enableCurrentLimit(Constants.IN_CURRENT_LIMIT_ENABLED);
+    	right.enableCurrentLimit(Constants.IN_CURRENT_LIMIT_ENABLED);
     	
     }
     public void initDefaultCommand() {
@@ -39,10 +40,10 @@ public class Intake extends Subsystem {
     	this.right.set(ControlMode.PercentOutput, right);
     }
     
-    public void moveOutake(boolean move) {
+    public void moveOuttake(boolean move) {
     	if (move) {
-    		left.set(ControlMode.PercentOutput, 0);
-    		right.set(ControlMode.PercentOutput, 0);
+    		left.set(ControlMode.PercentOutput, Constants.IN_OUTTAKE_SPEED);
+    		right.set(ControlMode.PercentOutput, Constants.IN_OUTTAKE_SPEED);
     	}
     }
 }
