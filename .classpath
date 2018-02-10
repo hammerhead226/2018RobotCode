@@ -7,11 +7,9 @@
 	<classpathentry kind="var" path="cscore" sourcepath="cscore.sources"/>
 	<classpathentry kind="var" path="wpiutil" sourcepath="wpiutil.sources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="var" path="USERLIBS_DIR/commons-lang3-3.7.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/CTRE_Phoenix-sources.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/CTRE_Phoenix.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/navx_frc.jar"/>
-	<classpathentry kind="var" path="USERLIBS_DIR/opencsv-4.1.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/SharkMacro-v1.0.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/HammerheadLib-v1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
