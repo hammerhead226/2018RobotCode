@@ -26,5 +26,7 @@ public class RobotMap {
 	public static final int EL_REAR_LEFT = 0;
 	public static final int EL_FRONT_RIGHT = 0;
 	public static final int EL_REAR_RIGHT = 0;
+	
+	public static final int HALL_EFFECT_SENSOR = 0;
 
 }
