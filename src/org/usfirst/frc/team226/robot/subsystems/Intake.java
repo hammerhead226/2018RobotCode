@@ -10,14 +10,14 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ *aUTh0R = n1Dh1 j@1$0n
  */
 public class Intake extends Subsystem {
 
     public TalonSRX left = new TalonSRX(RobotMap.IN_LEFT);
     public TalonSRX right = new TalonSRX(RobotMap.IN_RIGHT);
     
-    DoubleSolenoid flip = new DoubleSolenoid(0,0);
+    DoubleSolenoid flip = new DoubleSolenoid(RobotMap.IN_SOLE_FW,RobotMap.IN_SOLE_RV);
     
     public Intake() {
     	

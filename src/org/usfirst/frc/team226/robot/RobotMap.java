@@ -24,5 +24,7 @@ public class RobotMap {
 	
 	public static final int IN_LEFT = 0;
 	public static final int IN_RIGHT = 0;
+	public static final int IN_SOLE_FW = 0;
+	public static final int IN_SOLE_RV = 0;
 
 }
