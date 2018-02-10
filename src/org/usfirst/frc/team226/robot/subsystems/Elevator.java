@@ -1,5 +1,6 @@
 package org.usfirst.frc.team226.robot.subsystems;
 
+import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -23,10 +24,6 @@ public class Elevator extends Subsystem {
 
 	DigitalInput hallEffect = new DigitalInput(RobotMap.HALL_EFFECT_SENSOR);
 
-	double intakeHeight;
-	double switchHeight;
-	double powHeight;
-	double scaleHeight;
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -39,15 +36,15 @@ public class Elevator extends Subsystem {
 	public Elevator() {
 		frontLeft.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 
-		frontLeft.configVoltageCompSaturation(11, 0);
-		frontRight.configVoltageCompSaturation(11, 0);
-		rearLeft.configVoltageCompSaturation(11, 0);
-		rearRight.configVoltageCompSaturation(11, 0);
+		frontLeft.configVoltageCompSaturation(Constants.EL_VOLTAGE_LIMIT, 0);
+		frontRight.configVoltageCompSaturation(Constants.EL_VOLTAGE_LIMIT, 0);
+		rearLeft.configVoltageCompSaturation(Constants.EL_VOLTAGE_LIMIT, 0);
+		rearRight.configVoltageCompSaturation(Constants.EL_VOLTAGE_LIMIT, 0);
 
-		frontLeft.enableVoltageCompensation(true);
-		frontRight.enableVoltageCompensation(true);
-		rearLeft.enableVoltageCompensation(true);
-		rearRight.enableVoltageCompensation(true);
+		frontLeft.enableVoltageCompensation(Constants.EL_VOLTAGE_LIMIT_ENABLED);
+		frontRight.enableVoltageCompensation(Constants.EL_VOLTAGE_LIMIT_ENABLED);
+		rearLeft.enableVoltageCompensation(Constants.EL_VOLTAGE_LIMIT_ENABLED);
+		rearRight.enableVoltageCompensation(Constants.EL_VOLTAGE_LIMIT_ENABLED);
 
 		rearLeft.setInverted(true);
 		rearRight.setInverted(true);
@@ -60,16 +57,16 @@ public class Elevator extends Subsystem {
 	public void setElevator(int height) {
 		switch (height) {
 		case 0:
-			frontLeft.set(ControlMode.MotionMagic, intakeHeight);
+			frontLeft.set(ControlMode.MotionMagic, Constants.INTAKE_HEIGHT);
 			break;
 		case 1:
-			frontLeft.set(ControlMode.MotionMagic, switchHeight);
+			frontLeft.set(ControlMode.MotionMagic, Constants.SWITCH_HEIGHT);
 			break;
 		case 2:
-			frontLeft.set(ControlMode.MotionMagic, powHeight);
+			frontLeft.set(ControlMode.MotionMagic, Constants.POW_HEIGHT);
 			break;
 		case 3:
-			frontLeft.set(ControlMode.MotionMagic, scaleHeight);
+			frontLeft.set(ControlMode.MotionMagic, Constants.SCALE_HEIGHT);
 			break;
 		}
 
