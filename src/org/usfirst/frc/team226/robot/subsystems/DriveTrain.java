@@ -1,5 +1,6 @@
 package org.usfirst.frc.team226.robot.subsystems;
 
+import org.hammerhead226.sharkmacro.Constants;
 import org.usfirst.frc.team226.robot.RobotMap;
 import org.usfirst.frc.team226.robot.commands.CheesyDrive;
 
@@ -19,13 +20,13 @@ public class DriveTrain extends Subsystem {
 	private TalonSRX centerRight = new TalonSRX(RobotMap.DT_CENTER_RIGHT);
 	private TalonSRX rearLeft = new TalonSRX(RobotMap.DT_REAR_LEFT);
 	private TalonSRX rearRight = new TalonSRX(RobotMap.DT_REAR_RIGHT);
-	
+
 	public DriveTrain() {
 		frontLeft.setInverted(true);
 		centerLeft.setInverted(false);
 		rearLeft.setInverted(true);
 
-		frontRight.setInverted(false);
+		frontRight.setInverted(true);
 		centerRight.setInverted(false);
 		rearRight.setInverted(true);
 
@@ -33,7 +34,34 @@ public class DriveTrain extends Subsystem {
 		centerRight.follow(frontRight);
 		rearLeft.follow(frontLeft);
 		rearRight.follow(frontRight);
-		
+
+		frontLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.STARTUP_WAIT);
+		centerLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.STARTUP_WAIT);
+		rearLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.STARTUP_WAIT);
+		frontRight.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.STARTUP_WAIT);
+		centerRight.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.STARTUP_WAIT);
+		rearRight.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.STARTUP_WAIT);
+
+		frontLeft.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
+		centerLeft.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
+		rearLeft.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
+		frontRight.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
+		centerRight.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
+		rearRight.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
+
+		frontLeft.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.STARTUP_WAIT);
+		centerLeft.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.STARTUP_WAIT);
+		rearLeft.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.STARTUP_WAIT);
+		frontRight.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.STARTUP_WAIT);
+		centerRight.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.STARTUP_WAIT);
+		rearRight.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.STARTUP_WAIT);
+
+		frontLeft.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
+		centerLeft.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
+		rearLeft.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
+		frontRight.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
+		centerRight.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
+		rearRight.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
 	}
 
 	public void initDefaultCommand() {
@@ -81,7 +109,12 @@ public class DriveTrain extends Subsystem {
 		frontRight.set(ControlMode.PercentOutput, rightMotorSpeed);
 	}
 
-	protected double limit(double value) {
+	public void tankDrive(double left, double right) {
+		frontLeft.set(ControlMode.PercentOutput, -limit(left));
+		frontRight.set(ControlMode.PercentOutput, limit(right));
+	}
+
+	private double limit(double value) {
 		if (value > 1.0) {
 			return 1.0;
 		}
