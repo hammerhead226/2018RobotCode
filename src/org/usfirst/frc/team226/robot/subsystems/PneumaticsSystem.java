@@ -1,5 +1,7 @@
 package org.usfirst.frc.team226.robot.subsystems;
 
+import org.usfirst.frc.team226.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -9,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class PneumaticsSystem extends Subsystem {
 
-	public Compressor compressor = new Compressor(12);
+	public Compressor compressor = new Compressor(RobotMap.COMPRESSOR_PORT);
 
 	public PneumaticsSystem() {
 		compressor.start();
@@ -18,8 +20,8 @@ public class PneumaticsSystem extends Subsystem {
 	public void initDefaultCommand() {
 	}
 
-	private DoubleSolenoid leftShifter = new DoubleSolenoid(12, 4, 5);
-	private DoubleSolenoid rightShifter = new DoubleSolenoid(12, 6, 7);
+	private DoubleSolenoid leftShifter = new DoubleSolenoid(RobotMap.LEFT_SHIFTER_PCM, RobotMap.LEFT_SHIFTER_1, RobotMap.LEFT_SHIFTER_2);
+	private DoubleSolenoid rightShifter = new DoubleSolenoid(RobotMap.RIGHT_SHIFTER_PCM, RobotMap.RIGHT_SHIFTER_1, RobotMap.RIGHT_SHIFTER_2);
 
 	private DoubleSolenoid.Value leftVal = DoubleSolenoid.Value.kOff;
 
