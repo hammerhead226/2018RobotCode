@@ -14,15 +14,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 
-// aUTh0R = vAruN rAj35h
+
 public class Elevator extends Subsystem {
 
-	TalonSRX frontLeft = new TalonSRX(RobotMap.EL_FRONT_LEFT);
-	TalonSRX frontRight = new TalonSRX(RobotMap.EL_FRONT_RIGHT);
-	TalonSRX rearLeft = new TalonSRX(RobotMap.EL_REAR_LEFT);
-	TalonSRX rearRight = new TalonSRX(RobotMap.EL_REAR_RIGHT);
+	TalonSRX frontLeft = new TalonSRX(RobotMap.ELEVATOR_FRONT_LEFT);
+	TalonSRX frontRight = new TalonSRX(RobotMap.ELEVATOR_FRONT_RIGHT);
+	TalonSRX rearLeft = new TalonSRX(RobotMap.ELEVATOR_REAR_LEFT);
+	TalonSRX rearRight = new TalonSRX(RobotMap.ELEVATOR_REAR_RIGHT);
 
-	DigitalInput hallEffect = new DigitalInput(RobotMap.HALL_EFFECT_SENSOR);
+	DigitalInput hallEffect = new DigitalInput(RobotMap.ELEVATOR_HALL_EFFECT_SENSOR);
 
 
 	// Put methods for controlling this subsystem
@@ -36,15 +36,15 @@ public class Elevator extends Subsystem {
 	public Elevator() {
 		frontLeft.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 
-		frontLeft.configVoltageCompSaturation(Constants.EL_VOLTAGE_LIMIT, 0);
-		frontRight.configVoltageCompSaturation(Constants.EL_VOLTAGE_LIMIT, 0);
-		rearLeft.configVoltageCompSaturation(Constants.EL_VOLTAGE_LIMIT, 0);
-		rearRight.configVoltageCompSaturation(Constants.EL_VOLTAGE_LIMIT, 0);
+		frontLeft.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
+		frontRight.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
+		rearLeft.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
+		rearRight.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
 
-		frontLeft.enableVoltageCompensation(Constants.EL_VOLTAGE_LIMIT_ENABLED);
-		frontRight.enableVoltageCompensation(Constants.EL_VOLTAGE_LIMIT_ENABLED);
-		rearLeft.enableVoltageCompensation(Constants.EL_VOLTAGE_LIMIT_ENABLED);
-		rearRight.enableVoltageCompensation(Constants.EL_VOLTAGE_LIMIT_ENABLED);
+		frontLeft.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
+		frontRight.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
+		rearLeft.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
+		rearRight.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
 
 		rearLeft.setInverted(true);
 		rearRight.setInverted(true);

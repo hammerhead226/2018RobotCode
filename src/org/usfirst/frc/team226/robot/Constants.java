@@ -10,12 +10,12 @@ public class Constants {
 	public static final boolean DT_VOLTAGE_LIMIT_ENABLED = true;
 	public static final boolean DT_CURRENT_LIMIT_ENABLED = true;
 	
-	public static final boolean EL_VOLTAGE_LIMIT_ENABLED = true;
+	public static final boolean ELEVATOR_VOLTAGE_LIMIT_ENABLED = true;
 	
 	public static final double INTAKE_HEIGHT = 0;
 	public static final double SWITCH_HEIGHT = 0;
 	public static final double POW_HEIGHT = 0;
 	public static final double SCALE_HEIGHT = 0;
 
-	public static final double EL_VOLTAGE_LIMIT = 11;
+	public static final double ELEVATOR_VOLTAGE_LIMIT = 11;
 }
