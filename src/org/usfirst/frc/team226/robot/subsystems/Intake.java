@@ -45,11 +45,9 @@ public class Intake extends Subsystem {
     	this.right.set(ControlMode.PercentOutput, right);
     }
     
-    public void moveOuttake(boolean move) {
-    	if (move) {
+    public void moveOuttake() {
     		left.set(ControlMode.PercentOutput, Constants.INTAKE_OUTTAKE_SPEED);
     		right.set(ControlMode.PercentOutput, Constants.INTAKE_OUTTAKE_SPEED);
-    	}
     }
 }
 
