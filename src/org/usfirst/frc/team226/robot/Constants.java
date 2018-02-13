@@ -10,5 +10,5 @@ public class Constants {
 	public static final boolean DT_VOLTAGE_LIMIT_ENABLED = true;
 	public static final boolean DT_CURRENT_LIMIT_ENABLED = true;
 	
-	public static final double CR_SPEED = 0;
+	public static final double CARRIAGE_OUTTAKE_SPEED = 0;
 }
