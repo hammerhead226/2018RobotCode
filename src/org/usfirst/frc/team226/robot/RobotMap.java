@@ -15,9 +15,9 @@ package org.usfirst.frc.team226.robot;
  */
 public class RobotMap {
 
-	public static final int IN_LEFT = 0;
-	public static final int IN_RIGHT = 0;
-	public static final int IN_SOLE_FW = 0;
-	public static final int IN_SOLE_RV = 0;
+	public static final int INTAKE_LEFT = 0;
+	public static final int INTAKE_RIGHT = 0;
+	public static final int INTAKE_SOLE_FW = 0;
+	public static final int INTAKE_SOLE_RV = 0;
 	
 }
