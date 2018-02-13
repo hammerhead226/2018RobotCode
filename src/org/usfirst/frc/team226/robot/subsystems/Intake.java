@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *aUTh0R = n1Dh1 j@1$0n
+ *
  */
 public class Intake extends Subsystem {
 
@@ -33,6 +33,11 @@ public class Intake extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    }
+    
+    public void moveIntake(double speed) {
+    	left.set(ControlMode.PercentOutput, speed);
+    	right.set(ControlMode.PercentOutput, speed);
     }
     
     public void moveIntake(double left, double right) {
