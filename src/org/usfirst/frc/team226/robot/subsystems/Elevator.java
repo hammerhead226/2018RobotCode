@@ -57,16 +57,16 @@ public class Elevator extends Subsystem {
 	public void setElevator(int height) {
 		switch (height) {
 		case 0:
-			frontLeft.set(ControlMode.MotionMagic, Constants.INTAKE_HEIGHT);
+			frontLeft.set(ControlMode.MotionMagic, Constants.ELEVATOR_INTAKE_HEIGHT);
 			break;
 		case 1:
-			frontLeft.set(ControlMode.MotionMagic, Constants.SWITCH_HEIGHT);
+			frontLeft.set(ControlMode.MotionMagic, Constants.ELEVATOR_SWITCH_HEIGHT);
 			break;
 		case 2:
-			frontLeft.set(ControlMode.MotionMagic, Constants.POW_HEIGHT);
+			frontLeft.set(ControlMode.MotionMagic, Constants.ELEVATOR_POW_HEIGHT);
 			break;
 		case 3:
-			frontLeft.set(ControlMode.MotionMagic, Constants.SCALE_HEIGHT);
+			frontLeft.set(ControlMode.MotionMagic, Constants.ELEVATOR_SCALE_HEIGHT);
 			break;
 		}
 
