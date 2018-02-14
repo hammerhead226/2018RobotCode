@@ -1,6 +1,6 @@
 package org.usfirst.frc.team226.robot.subsystems;
 
-import org.hammerhead226.sharkmacro.Constants;
+import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.RobotMap;
 import org.usfirst.frc.team226.robot.commands.CheesyDrive;
 

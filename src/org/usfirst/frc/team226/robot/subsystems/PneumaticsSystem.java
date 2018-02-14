@@ -20,8 +20,8 @@ public class PneumaticsSystem extends Subsystem {
 	public void initDefaultCommand() {
 	}
 
-	private DoubleSolenoid leftShifter = new DoubleSolenoid(RobotMap.LEFT_SHIFTER_PCM, RobotMap.LEFT_SHIFTER_1, RobotMap.LEFT_SHIFTER_2);
-	private DoubleSolenoid rightShifter = new DoubleSolenoid(RobotMap.RIGHT_SHIFTER_PCM, RobotMap.RIGHT_SHIFTER_1, RobotMap.RIGHT_SHIFTER_2);
+	private DoubleSolenoid leftShifter = new DoubleSolenoid(RobotMap.DT_LEFT_SHIFTER_PCM, RobotMap.DT_LEFT_SHIFTER_1, RobotMap.DT_LEFT_SHIFTER_2);
+	private DoubleSolenoid rightShifter = new DoubleSolenoid(RobotMap.DT_RIGHT_SHIFTER_PCM, RobotMap.DT_RIGHT_SHIFTER_1, RobotMap.DT_RIGHT_SHIFTER_2);
 
 	private DoubleSolenoid.Value leftVal = DoubleSolenoid.Value.kOff;
 
