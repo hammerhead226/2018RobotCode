@@ -22,11 +22,17 @@ public class RobotMap {
 	public static final int DT_REAR_LEFT = 13;
 	public static final int DT_REAR_RIGHT = 17;
 	
-	public static final int CR_RIGHT = 0;
-	public static final int CR_LEFT = 0;
+
+
+	public static final int CARRIAGE_RIGHT = 0;
+	public static final int CARRIAGE_LEFT = 0;
 	
 	public static final int COMPRESSOR_A = 11;
 	public static final int COMPRESSOR_B = 12;
+
+	public static final int PCM_A = 11;
+	public static final int PCM_B = 12;
+
 	
 	public static final int COMPRESSOR_PORT = COMPRESSOR_B;
 	
