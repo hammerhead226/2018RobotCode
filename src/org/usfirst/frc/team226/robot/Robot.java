@@ -26,7 +26,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends TimedRobot {
 	public static OI m_oi;
-	
+	public static DriveTrain driveTrain;
 	public static PneumaticsSystem pneumaticsSystem;
 	public VisionRun vision = new VisionRun();
 	public Elevator elevator;
@@ -37,7 +37,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		m_oi = new OI();
-		
+		driveTrain = new DriveTrain();
 		elevator = new Elevator();
 		pneumaticsSystem = new PneumaticsSystem();
 		// m_chooser.addDefault("Default Auto", new ExampleCommand());
