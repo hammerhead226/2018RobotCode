@@ -14,8 +14,5 @@
 	<classpathentry kind="var" path="USERLIBS_DIR/opencsv-4.1.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/SharkMacro-v1.0.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/HammerheadLib-v1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/nidhi/wpilib/user/java/lib/HammerheadLib-v1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Gayathri/wpilib/user/java/lib/commons-lang3-3.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Gayathri/wpilib/user/java/lib/opencsv-4.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
