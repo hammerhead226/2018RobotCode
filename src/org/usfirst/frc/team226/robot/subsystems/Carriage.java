@@ -26,6 +26,11 @@ public class Carriage extends Subsystem {
     	right.set(ControlMode.PercentOutput, Constants.CARRIAGE_OUTTAKE_SPEED);
     	left.set(ControlMode.PercentOutput, Constants.CARRIAGE_OUTTAKE_SPEED);
     }
+    
+    public void pullIn() {
+    	right.set(ControlMode.PercentOutput, Constants.CARRIAGE_INTAKE_SPEED);
+    	left.set(ControlMode.PercentOutput, Constants.CARRIAGE_INTAKE_SPEED);
+    }
 
     public void initDefaultCommand() {
     }
