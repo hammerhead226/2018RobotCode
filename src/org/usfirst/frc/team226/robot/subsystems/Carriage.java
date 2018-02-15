@@ -19,7 +19,8 @@ public class Carriage extends Subsystem {
     
     
     public Carriage() {
-    	right.setInverted(true);
+    	left.setInverted(Constants.CARRIAGE_INVERT_LEFT);
+    	right.setInverted(Constants.CARRIAGE_INVERT_RIGHT);
     }
     
     public void pushOut() {

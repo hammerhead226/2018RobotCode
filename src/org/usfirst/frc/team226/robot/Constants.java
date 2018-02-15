@@ -12,4 +12,6 @@ public class Constants {
 	
 	public static final double CARRIAGE_OUTTAKE_SPEED = 0;
 	public static final double CARRIAGE_INTAKE_SPEED = 0;
+	public static final boolean CARRIAGE_INVERT_RIGHT = true;
+	public static final boolean CARRIAGE_INVERT_LEFT = false;
 }
