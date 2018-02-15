@@ -36,7 +36,5 @@ public class RobotMap {
 	
 	public static final int INTAKE_LEFT = 0;
 	public static final int INTAKE_RIGHT = 0;
-	public static final int INTAKE_SOLE_FW = 0;
-	public static final int INTAKE_SOLE_RV = 0;
 	
 }

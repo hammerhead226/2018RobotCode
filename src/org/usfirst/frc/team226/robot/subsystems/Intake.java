@@ -6,8 +6,6 @@ import org.usfirst.frc.team226.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -18,7 +16,6 @@ public class Intake extends Subsystem {
     public TalonSRX left = new TalonSRX(RobotMap.INTAKE_LEFT);
     public TalonSRX right = new TalonSRX(RobotMap.INTAKE_RIGHT);
     
-    DoubleSolenoid flip = new DoubleSolenoid(RobotMap.INTAKE_SOLE_FW,RobotMap.INTAKE_SOLE_RV);
     
     public Intake() {
     	
@@ -45,9 +42,8 @@ public class Intake extends Subsystem {
     	this.right.set(ControlMode.PercentOutput, right);
     }
     
-    public void moveOuttake() {
+    public void outtake() {
     		left.set(ControlMode.PercentOutput, Constants.INTAKE_OUTTAKE_SPEED);
     		right.set(ControlMode.PercentOutput, Constants.INTAKE_OUTTAKE_SPEED);
     }
 }
-
