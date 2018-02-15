@@ -46,8 +46,10 @@ public class Elevator extends Subsystem {
 		rearLeft.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
 		rearRight.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
 
-		rearLeft.setInverted(true);
-		rearRight.setInverted(true);
+		rearLeft.setInverted(Constants.ELEVATOR_INVERT_RL);
+		frontLeft.setInverted(Constants.ELEVATOR_INVERT_FL);
+		rearRight.setInverted(Constants.ELEVATOR_INVERT_RR);
+		frontRight.setInverted(Constants.ELEVATOR_INVERT_FR);
 
 		frontRight.follow(frontLeft);
 		rearLeft.follow(frontLeft);
