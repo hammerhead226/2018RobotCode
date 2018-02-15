@@ -15,29 +15,9 @@ package org.usfirst.frc.team226.robot;
  */
 public class RobotMap {
 
-	public static final int DT_FRONT_LEFT = 12;
-	public static final int DT_FRONT_RIGHT = 16;
-	public static final int DT_CENTER_LEFT = 11;
-	public static final int DT_CENTER_RIGHT = 15;
-	public static final int DT_REAR_LEFT = 13;
-	public static final int DT_REAR_RIGHT = 17;
-	
 	public static final int ELEVATOR_FRONT_LEFT = 0;
 	public static final int ELEVATOR_REAR_LEFT = 0;
 	public static final int ELEVATOR_FRONT_RIGHT = 0;
 	public static final int ELEVATOR_REAR_RIGHT = 0;
 	public static final int ELEVATOR_HALL_EFFECT_SENSOR = 0;
-	
-	public static final int PCM_A = 11;
-	public static final int PCM_B = 12;
-	
-	public static final int COMPRESSOR_PORT = PCM_B;
-	
-	public static final int DT_LEFT_SHIFTER_PCM = PCM_B;
-	public static final int DT_LEFT_SHIFTER_1 = 4;
-	public static final int DT_LEFT_SHIFTER_2 = 5;
-	public static final int DT_RIGHT_SHIFTER_PCM = PCM_B;
-	public static final int DT_RIGHT_SHIFTER_1 = 6;
-	public static final int DT_RIGHT_SHIFTER_2 = 7;
-
 }
