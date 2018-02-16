@@ -56,6 +56,22 @@ public class Elevator extends Subsystem {
 		rearLeft.follow(frontLeft);
 		rearRight.follow(frontLeft);
 	}
+	
+	public void moveElevatorToIntake() {
+		height = 0;
+	}
+	
+	public void moveElevatorToPower() {
+		height = 1;
+	}
+	
+	public void moveElevatorToSwitch() {
+		height = 2;
+	}
+	
+	public void moveElevatorToScale() {
+		height = 3;
+	}
 
 	public void moveElevatorUp() {
 		if (height == 3) {
