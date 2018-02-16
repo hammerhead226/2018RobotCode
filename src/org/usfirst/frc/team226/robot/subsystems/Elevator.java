@@ -39,7 +39,18 @@ public class Elevator extends Subsystem {
 	public Elevator() {
 
 		frontLeft.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
-
+		
+		frontLeft.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, 0);
+		frontRight.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, 0);
+		rearLeft.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, 0);
+		rearRight.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, 0);
+		
+		frontLeft.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
+		rearLeft.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
+		frontRight.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
+		rearRight.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
+		
+		
 		frontLeft.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
 		frontRight.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
 		rearLeft.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
