@@ -22,6 +22,10 @@ public class PneumaticsSystem extends Subsystem {
 
 	private DoubleSolenoid leftShifter = new DoubleSolenoid(RobotMap.DT_LEFT_SHIFTER_PCM, RobotMap.DT_LEFT_SHIFTER_1, RobotMap.DT_LEFT_SHIFTER_2);
 	private DoubleSolenoid rightShifter = new DoubleSolenoid(RobotMap.DT_RIGHT_SHIFTER_PCM, RobotMap.DT_RIGHT_SHIFTER_1, RobotMap.DT_RIGHT_SHIFTER_2);
+	
+	private DoubleSolenoid leftIntake = new DoubleSolenoid(RobotMap.INTAKE_LEFT_PCM, RobotMap.INTAKE_LEFT_1, RobotMap.INTAKE_LEFT_2);
+	private DoubleSolenoid rightIntake = new DoubleSolenoid(RobotMap.INTAKE_RIGHT_PCM, RobotMap.INTAKE_RIGHT_1, RobotMap.INTAKE_RIGHT_2);
+
 
 	private DoubleSolenoid.Value leftVal = DoubleSolenoid.Value.kOff;
 
@@ -53,5 +57,22 @@ public class PneumaticsSystem extends Subsystem {
 	public void shiftDriveTrainNeutral() {
 		leftShifter.set(DoubleSolenoid.Value.kOff);
 		rightShifter.set(DoubleSolenoid.Value.kOff);
+	}
+	
+	private DoubleSolenoid.Value flipVal = DoubleSolenoid.Value.kOff;
+	
+	public void flipIntake() {
+		if(flipVal == DoubleSolenoid.Value.kForward) {
+			flipVal = DoubleSolenoid.Value.kReverse;
+		} else {
+			flipVal = DoubleSolenoid.Value.kForward;
+		}
+		leftIntake.set(flipVal);
+		rightIntake.set(flipVal);
+	}
+	
+	public void flipIntakeNeutral() {
+		leftIntake.set(DoubleSolenoid.Value.kOff);
+		rightIntake.set(DoubleSolenoid.Value.kOff);
 	}
 }

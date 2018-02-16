@@ -37,4 +37,10 @@ public class RobotMap {
 	public static final int INTAKE_LEFT = 0;
 	public static final int INTAKE_RIGHT = 0;
 	
+	public static final int INTAKE_LEFT_PCM = PCM_B;
+	public static final int INTAKE_LEFT_1 = 0;
+	public static final int INTAKE_LEFT_2 = 0;
+	public static final int INTAKE_RIGHT_PCM = PCM_B;
+	public static final int INTAKE_RIGHT_1 = 0;
+	public static final int INTAKE_RIGHT_2 = 0;
 }
