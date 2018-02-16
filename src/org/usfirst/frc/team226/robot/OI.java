@@ -16,5 +16,6 @@ import util.Controller;
 public class OI {
 
 	public Controller driver = new Controller(0);
+	public Controller manip = new Controller(1);
 	
 }

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team226.robot.subsystems;
 
 import org.usfirst.frc.team226.robot.Constants;
+import org.usfirst.frc.team226.robot.Robot;
 import org.usfirst.frc.team226.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -14,7 +15,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 
-
 public class Elevator extends Subsystem {
 
 	TalonSRX frontLeft = new TalonSRX(RobotMap.ELEVATOR_FRONT_LEFT);
@@ -23,7 +23,6 @@ public class Elevator extends Subsystem {
 	TalonSRX rearRight = new TalonSRX(RobotMap.ELEVATOR_REAR_RIGHT);
 
 	DigitalInput hallEffect = new DigitalInput(RobotMap.ELEVATOR_HALL_EFFECT_SENSOR);
-
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -56,7 +55,42 @@ public class Elevator extends Subsystem {
 		rearRight.follow(frontLeft);
 	}
 
+	public void setElevator() {
+		int height = 0;
+
+		if (Robot.m_oi.manip.getLBButtonPressed()) {
+			if (height == 0) {
+				height = 0;
+			} else {
+				height = height - 1;
+			}
+		} else if (Robot.m_oi.manip.getRBButtonPressed()) {
+			if (height == 3) {
+				height = 3;
+			} else {
+				height = height + 1;
+			}
+		}
+		
+		switch (height) {
+		case 0:
+			frontLeft.set(ControlMode.MotionMagic, Constants.ELEVATOR_INTAKE_HEIGHT);
+			break;
+		case 1:
+			frontLeft.set(ControlMode.MotionMagic, Constants.ELEVATOR_SWITCH_HEIGHT);
+			break;
+		case 2:
+			frontLeft.set(ControlMode.MotionMagic, Constants.ELEVATOR_POW_HEIGHT);
+			break;
+		case 3:
+			frontLeft.set(ControlMode.MotionMagic, Constants.ELEVATOR_SCALE_HEIGHT);
+			break;
+		}
+
+	}
+
 	public void setElevator(int height) {
+
 		switch (height) {
 		case 0:
 			frontLeft.set(ControlMode.MotionMagic, Constants.ELEVATOR_INTAKE_HEIGHT);
