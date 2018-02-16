@@ -22,4 +22,5 @@ public class Constants {
 	public static final boolean ELEVATOR_INVERT_FR = true;
 	public static final int ELEVATOR_PID_IDX = 0;
 	public static final int ELEVATOR_TIMEOUT_MS = 0;
+	public static final double ELEVATOR_FINE_TUNE = 0;
 }

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team226.robot.subsystems;
 
 import org.usfirst.frc.team226.robot.Constants;
+import org.usfirst.frc.team226.robot.Robot;
 import org.usfirst.frc.team226.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -108,5 +109,9 @@ public class Elevator extends Subsystem {
 	
 	public void hardZero() {
 		frontLeft.setSelectedSensorPosition(0, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
+	}
+	
+	public void fineMovement() {
+		frontLeft.set(ControlMode.PercentOutput, Constants.ELEVATOR_FINE_TUNE * Robot.m_oi.manip.getLeftJoystick_Y());
 	}
 }
