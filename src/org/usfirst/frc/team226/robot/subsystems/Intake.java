@@ -22,8 +22,8 @@ public class Intake extends Subsystem {
     	left.setInverted(Constants.INTAKE_INVERT_LEFT);
     	right.setInverted(Constants.INTAKE_INVERT_RIGHT);
     	
-    	left.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.STARTUP_WAIT);
-    	right.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.STARTUP_WAIT);
+    	left.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, 0);
+    	right.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, 0);
     	left.enableCurrentLimit(Constants.INTAKE_CURRENT_LIMIT_ENABLED);
     	right.enableCurrentLimit(Constants.INTAKE_CURRENT_LIMIT_ENABLED);
     	
