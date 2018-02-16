@@ -54,5 +54,4 @@ public class PneumaticsSystem extends Subsystem {
 		leftShifter.set(DoubleSolenoid.Value.kOff);
 		rightShifter.set(DoubleSolenoid.Value.kOff);
 	}
-	
 }
