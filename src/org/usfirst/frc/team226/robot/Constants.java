@@ -12,5 +12,7 @@ public class Constants {
 
 	public static final int INTAKE_CURRENT_LIMIT = 30;
 	public static final boolean INTAKE_CURRENT_LIMIT_ENABLED = true;
-	public static final double INTAKE_OUTTAKE_SPEED = 0.5;
+	public static final double INTAKE_OUTTAKE_SPEED = 0.5;	
+	public static final boolean INTAKE_INVERT_RIGHT = true;
+	public static final boolean INTAKE_INVERT_LEFT = false;
 }
