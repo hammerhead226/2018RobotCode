@@ -28,7 +28,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends TimedRobot {
 	public static OI m_oi;
 	public static DriveTrain driveTrain;
-	public Carriage carriage;
+	public static Carriage carriage;
 	public static PneumaticsSystem pneumaticsSystem;
 	public VisionRun vision = new VisionRun();
 
