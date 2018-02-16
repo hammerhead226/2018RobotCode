@@ -59,18 +59,22 @@ public class Elevator extends Subsystem {
 	
 	public void moveElevatorToIntake() {
 		height = 0;
+		setElevator();
 	}
 	
 	public void moveElevatorToPower() {
 		height = 1;
+		setElevator();
 	}
 	
 	public void moveElevatorToSwitch() {
 		height = 2;
+		setElevator();
 	}
 	
 	public void moveElevatorToScale() {
 		height = 3;
+		setElevator();
 	}
 
 	public void moveElevatorUp() {
