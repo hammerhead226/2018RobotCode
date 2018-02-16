@@ -24,15 +24,17 @@ public class Elevator extends Subsystem {
 
 	DigitalInput hallEffect = new DigitalInput(RobotMap.ELEVATOR_HALL_EFFECT_SENSOR);
 
+	public int height = 0;
+
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+		
 	}
 
 	public Elevator() {
+
 		frontLeft.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 
 		frontLeft.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
@@ -55,41 +57,32 @@ public class Elevator extends Subsystem {
 		rearRight.follow(frontLeft);
 	}
 
-	public void setElevator() {
-		int height = 0;
-
-		if (Robot.m_oi.manip.getLBButtonPressed()) {
-			if (height == 0) {
-				height = 0;
-			} else {
-				height = height - 1;
-			}
-		} else if (Robot.m_oi.manip.getRBButtonPressed()) {
-			if (height == 3) {
-				height = 3;
-			} else {
-				height = height + 1;
-			}
+	public void moveElevatorUp() {
+		if (height == 3) {
+			height = 3;
+		} else {
+			height++;
 		}
 		
-		switch (height) {
-		case 0:
-			frontLeft.set(ControlMode.MotionMagic, Constants.ELEVATOR_INTAKE_HEIGHT);
-			break;
-		case 1:
-			frontLeft.set(ControlMode.MotionMagic, Constants.ELEVATOR_SWITCH_HEIGHT);
-			break;
-		case 2:
-			frontLeft.set(ControlMode.MotionMagic, Constants.ELEVATOR_POW_HEIGHT);
-			break;
-		case 3:
-			frontLeft.set(ControlMode.MotionMagic, Constants.ELEVATOR_SCALE_HEIGHT);
-			break;
-		}
-
+		setElevator();
+		
+		zero();
 	}
 
-	public void setElevator(int height) {
+	public void moveElevatorDown() {
+		if (height == 0) {
+			height = 0;
+		} else {
+			height--;
+		}
+		
+		setElevator();
+		
+		zero();
+		
+	}
+
+	public void setElevator() {
 
 		switch (height) {
 		case 0:
@@ -110,7 +103,11 @@ public class Elevator extends Subsystem {
 
 	public void zero() {
 		if (hallEffect.get()) {
-			frontLeft.setSelectedSensorPosition(0, 0, 0);
+			frontLeft.setSelectedSensorPosition(0, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
 		}
+	}
+	
+	public void hardZero() {
+		frontLeft.setSelectedSensorPosition(0, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
 	}
 }

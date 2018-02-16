@@ -7,6 +7,10 @@
 
 package org.usfirst.frc.team226.robot;
 
+import org.usfirst.frc.team226.robot.commands.HardZeroElevator;
+import org.usfirst.frc.team226.robot.commands.MoveElevatorDown;
+import org.usfirst.frc.team226.robot.commands.MoveElevatorUp;
+
 import util.Controller;
 
 /**
@@ -17,5 +21,11 @@ public class OI {
 
 	public Controller driver = new Controller(0);
 	public Controller manip = new Controller(1);
+	
+	public OI(){
+		manip.getRBButton().whenPressed(new MoveElevatorUp());
+		manip.getLBButton().whenPressed(new MoveElevatorDown());
+		manip.getAButton().whenPressed(new HardZeroElevator());
+	}
 	
 }
