@@ -11,7 +11,6 @@ public class Constants {
 	public static final boolean DT_CURRENT_LIMIT_ENABLED = true;
 	
 	public static final boolean ELEVATOR_VOLTAGE_LIMIT_ENABLED = true;
-	
 	public static final double ELEVATOR_INTAKE_HEIGHT = 0;
 	public static final double ELEVATOR_SWITCH_HEIGHT = 0;
 	public static final double ELEVATOR_POW_HEIGHT = 0;
