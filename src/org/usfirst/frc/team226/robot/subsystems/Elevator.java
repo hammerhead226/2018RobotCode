@@ -3,6 +3,7 @@ package org.usfirst.frc.team226.robot.subsystems;
 import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.Robot;
 import org.usfirst.frc.team226.robot.RobotMap;
+import org.usfirst.frc.team226.robot.commands.ElevatorManualMovement;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -30,7 +31,7 @@ public class Elevator extends Subsystem {
 	// here. Call these from Commands.
 
 	public void initDefaultCommand() {
-		
+		setDefaultCommand(new ElevatorManualMovement());
 	}
 
 	public Elevator() {
@@ -56,26 +57,32 @@ public class Elevator extends Subsystem {
 		rearLeft.follow(frontLeft);
 		rearRight.follow(frontLeft);
 	}
-	
+
 	public void moveElevatorToIntake() {
 		height = 0;
 		setElevator();
 		zero();
+
 	}
-	
+
 	public void moveElevatorToPower() {
+
 		height = 1;
 		setElevator();
 		zero();
+
 	}
-	
+
 	public void moveElevatorToSwitch() {
+
 		height = 2;
 		setElevator();
 		zero();
+
 	}
-	
+
 	public void moveElevatorToScale() {
+
 		height = 3;
 		setElevator();
 		zero();
@@ -105,11 +112,11 @@ public class Elevator extends Subsystem {
 			frontLeft.setSelectedSensorPosition(0, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
 		}
 	}
-	
+
 	public void hardZero() {
 		frontLeft.setSelectedSensorPosition(0, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
 	}
-	
+
 	public void fineMovement() {
 		frontLeft.set(ControlMode.PercentOutput, Constants.ELEVATOR_FINE_TUNE * Robot.m_oi.manip.getLeftJoystick_Y());
 	}
