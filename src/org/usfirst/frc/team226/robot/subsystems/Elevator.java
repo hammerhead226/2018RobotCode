@@ -25,8 +25,6 @@ public class Elevator extends Subsystem {
 
 	DigitalInput hallEffect = new DigitalInput(RobotMap.ELEVATOR_HALL_EFFECT_SENSOR);
 
-	public int height = 0;
-
 	enum elevatorHeight {
 		INTAKE, SWITCH, POWER, SCALE
 	}
@@ -63,31 +61,22 @@ public class Elevator extends Subsystem {
 	}
 
 	public void moveElevatorToIntake() {
-
 		setElevator(elevatorHeight.INTAKE);
-
 	}
 
 	public void moveElevatorToPower() {
-
 		setElevator(elevatorHeight.POWER);
-
 	}
 
 	public void moveElevatorToSwitch() {
-
 		setElevator(elevatorHeight.SWITCH);
-
 	}
 
 	public void moveElevatorToScale() {
-
 		setElevator(elevatorHeight.SCALE);
-
 	}
 
 	public void setElevator(elevatorHeight height) {
-
 		switch (height) {
 		case INTAKE:
 			frontLeft.set(ControlMode.MotionMagic, Constants.ELEVATOR_INTAKE_HEIGHT);

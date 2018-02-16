@@ -28,7 +28,7 @@ public class ElevatorToIntake extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 
-		if (Robot.elevator.getElevatorError() < 5) {
+		if (Math.abs(Robot.elevator.getElevatorError()) < Constants.ELEVATOR_ERROR_MARGIN) {
 			return true;
 		} else {
 			if ((System.currentTimeMillis() - timeout) < Constants.ELEVATOR_INTAKE_TIMEOUT_MS) {
