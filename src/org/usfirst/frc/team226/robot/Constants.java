@@ -27,4 +27,7 @@ public class Constants {
 	public static final double ELEVATOR_FINE_TUNE = 0;
 
 	public static final long ELEVATOR_INTAKE_TIMEOUT_MS = 0;
+	public static final long ELEVATOR_SWITCH_TIMEOUT_MS = 0;
+	public static final long ELEVATOR_POWER_TIMEOUT_MS = 0;
+	public static final long ELEVATOR_SCALE_TIMEOUT_MS = 0;
 }

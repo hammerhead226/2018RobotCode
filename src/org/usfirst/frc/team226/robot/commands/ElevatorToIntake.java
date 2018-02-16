@@ -9,38 +9,44 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class ElevatorToIntake extends Command {
-	
+
 	long timeout = System.currentTimeMillis();
-		
-    public ElevatorToIntake() {
-        requires(Robot.elevator);
-    }
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    }
+	public ElevatorToIntake() {
+		requires(Robot.elevator);
+	}
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	Robot.elevator.moveElevatorToIntake();
-    }
+	// Called just before this Command runs the first time
+	protected void initialize() {
+	}
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        if((System.currentTimeMillis() - timeout) < Constants.ELEVATOR_INTAKE_TIMEOUT_MS){
-        	return false;
-        }else {
-        return true;
-        }
-    }
+	// Called repeatedly when this Command is scheduled to run
+	protected void execute() {
+		Robot.elevator.moveElevatorToIntake();
+	}
 
-    // Called once after isFinished returns true
-    protected void end() {
-    	Robot.elevator.zero();
-    }
+	// Make this return true when this Command no longer needs to run execute()
+	protected boolean isFinished() {
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    }
+		if (Robot.elevator.getElevatorError() < 5) {
+			return true;
+		} else {
+			if ((System.currentTimeMillis() - timeout) < Constants.ELEVATOR_INTAKE_TIMEOUT_MS) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+	}
+
+	// Called once after isFinished returns true
+	protected void end() {
+		Robot.elevator.zero();
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted() {
+	}
 }

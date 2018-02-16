@@ -118,4 +118,8 @@ public class Elevator extends Subsystem {
 	public void fineMovement() {
 		frontLeft.set(ControlMode.PercentOutput, Constants.ELEVATOR_FINE_TUNE * Robot.m_oi.manip.getLeftJoystick_Y());
 	}
+	
+	public int getElevatorError() {
+		return frontLeft.getClosedLoopError(Constants.ELEVATOR_PID_IDX);
+	}
 }
