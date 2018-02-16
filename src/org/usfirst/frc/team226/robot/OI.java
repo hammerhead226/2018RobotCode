@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team226.robot;
 
+import org.usfirst.frc.team226.robot.commands.RunOuttake;
+
 import util.Controller;
 
 /**
@@ -14,6 +16,10 @@ import util.Controller;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+	
+	public OI() {
+		driver.getAButton().whileHeld(new RunOuttake());
+	}
 
 	public Controller driver = new Controller(0);
 	
