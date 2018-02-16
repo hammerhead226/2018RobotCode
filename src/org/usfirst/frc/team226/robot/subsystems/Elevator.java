@@ -105,13 +105,13 @@ public class Elevator extends Subsystem {
 
 	}
 
-	public void zero() {
+	public void zeroEncoder() {
 		if (hallEffect.get()) {
 			frontLeft.setSelectedSensorPosition(0, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
 		}
 	}
 
-	public void hardZero() {
+	public void hardZeroEncoder() {
 		frontLeft.setSelectedSensorPosition(0, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
 	}
 

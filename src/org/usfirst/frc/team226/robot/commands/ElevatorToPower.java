@@ -40,7 +40,7 @@ public class ElevatorToPower extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.elevator.zero();
+		Robot.elevator.zeroEncoder();
 	}
 
 	// Called when another command which requires one or more of the same
