@@ -2,6 +2,8 @@ package org.usfirst.frc.team226.robot;
 
 public class Constants {
 	
+	public static final double MANIP_DEADBAND = 0;
+	
 	public static final int STARTUP_WAIT = 10;
 
 	public static final double DT_VOLTAGE_LIMIT = 11;

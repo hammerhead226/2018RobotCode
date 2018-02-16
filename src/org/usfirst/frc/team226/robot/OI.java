@@ -20,7 +20,7 @@ import util.Controller;
 public class OI {
 
 	public Controller driver = new Controller(0);
-	public Controller manip = new Controller(1);
+	public Controller manip = new Controller(1, Constants.MANIP_DEADBAND);
 	
 	public OI(){
 		manip.getRBButton().whenPressed(new MoveElevatorUp());
