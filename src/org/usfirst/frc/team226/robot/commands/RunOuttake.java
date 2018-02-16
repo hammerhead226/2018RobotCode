@@ -11,7 +11,7 @@ public class RunOuttake extends Command {
 
     public RunOuttake() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        requires(Robot.intake);
     }
 
     // Called just before this Command runs the first time

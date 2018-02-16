@@ -12,7 +12,7 @@ public class IntakeShift extends InstantCommand {
     public IntakeShift() {
         super();
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.intake);
+        requires(Robot.pneumaticsSystem);
     }
 
     // Called once when the command executes
