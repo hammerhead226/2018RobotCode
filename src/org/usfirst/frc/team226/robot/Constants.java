@@ -25,4 +25,6 @@ public class Constants {
 	public static final int ELEVATOR_PID_IDX = 0;
 	public static final int ELEVATOR_TIMEOUT_MS = 0;
 	public static final double ELEVATOR_FINE_TUNE = 0;
+
+	public static final long ELEVATOR_INTAKE_TIMEOUT_MS = 0;
 }

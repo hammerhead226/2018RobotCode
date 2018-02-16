@@ -1,5 +1,6 @@
 package org.usfirst.frc.team226.robot.commands;
 
+import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,7 +9,9 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class ElevatorToIntake extends Command {
-
+	
+	long timeout = System.currentTimeMillis();
+		
     public ElevatorToIntake() {
         requires(Robot.elevator);
     }
@@ -24,11 +27,16 @@ public class ElevatorToIntake extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        if((System.currentTimeMillis() - timeout) < Constants.ELEVATOR_INTAKE_TIMEOUT_MS){
+        	return false;
+        }else {
+        return true;
+        }
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.elevator.zero();
     }
 
     // Called when another command which requires one or more of the same
