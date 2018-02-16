@@ -40,7 +40,7 @@ public class Elevator extends Subsystem {
 
 	public Elevator() {
 
-		frontLeft.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
+		frontLeft.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
 
 		frontLeft.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
 		frontRight.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
