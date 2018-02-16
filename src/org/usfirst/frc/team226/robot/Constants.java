@@ -15,4 +15,5 @@ public class Constants {
 	public static final double INTAKE_OUTTAKE_SPEED = 0.5;	
 	public static final boolean INTAKE_INVERT_RIGHT = true;
 	public static final boolean INTAKE_INVERT_LEFT = false;
+	public static final double INTAKE_INTAKE_SPEED = 0;
 }

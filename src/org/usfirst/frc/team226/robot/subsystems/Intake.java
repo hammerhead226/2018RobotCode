@@ -33,9 +33,9 @@ public class Intake extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
-    public void moveIntake(double speed) {
-    	left.set(ControlMode.PercentOutput, speed);
-    	right.set(ControlMode.PercentOutput, speed);
+    public void moveIntake() {
+    	left.set(ControlMode.PercentOutput, Constants.INTAKE_INTAKE_SPEED);
+    	right.set(ControlMode.PercentOutput, Constants.INTAKE_INTAKE_SPEED);
     }
     
     public void moveIntake(double left, double right) {
@@ -43,7 +43,7 @@ public class Intake extends Subsystem {
     	this.right.set(ControlMode.PercentOutput, right);
     }
     
-    public void outtake() {
+    public void moveOuttake() {
     		left.set(ControlMode.PercentOutput, Constants.INTAKE_OUTTAKE_SPEED);
     		right.set(ControlMode.PercentOutput, Constants.INTAKE_OUTTAKE_SPEED);
     }
