@@ -2,7 +2,7 @@ package org.usfirst.frc.team226.robot;
 
 public class Constants {
 	
-	public static final double MANIP_DEADBAND = 0;
+	public static final double MANIP_DEADBAND = 0.2;
 	
 	public static final int STARTUP_WAIT = 10;
 
@@ -24,7 +24,7 @@ public class Constants {
 	public static final boolean ELEVATOR_INVERT_FR = true;
 	public static final int ELEVATOR_PID_IDX = 0;
 	public static final int ELEVATOR_TIMEOUT_MS = 0;
-	public static final double ELEVATOR_FINE_TUNE = 0;
+	public static final double ELEVATOR_FINE_TUNE = 0.5;
 	public static final long ELEVATOR_INTAKE_TIMEOUT_MS = 0;
 	public static final long ELEVATOR_SWITCH_TIMEOUT_MS = 0;
 	public static final long ELEVATOR_POWER_TIMEOUT_MS = 0;
