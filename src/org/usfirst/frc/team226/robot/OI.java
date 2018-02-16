@@ -22,7 +22,7 @@ import util.Controller;
 public class OI {
 
 	public Controller driver = new Controller(0);
-	public Controller manip = new Controller(RobotMap.MANIP, Constants.MANIP_DEADBAND);
+	public Controller manip = new Controller(RobotMap.MANIP_CONTROLLER, Constants.MANIP_DEADBAND);
 	
 	public OI(){
 		manip.getYButton().whenPressed(new ElevatorToSwitch());

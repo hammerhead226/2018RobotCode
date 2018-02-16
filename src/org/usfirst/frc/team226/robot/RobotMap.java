@@ -40,6 +40,6 @@ public class RobotMap {
 	public static final int ELEVATOR_REAR_RIGHT = 0;
 	public static final int ELEVATOR_HALL_EFFECT_SENSOR = 0;
 	
-	public static final int MANIP = 0;
+	public static final int MANIP_CONTROLLER = 0;
 
 }
