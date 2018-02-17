@@ -7,7 +7,9 @@
 
 package org.usfirst.frc.team226.robot;
 
+import org.usfirst.frc.team226.robot.subsystems.Carriage;
 import org.usfirst.frc.team226.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team226.robot.subsystems.Elevator;
 import org.usfirst.frc.team226.robot.subsystems.PneumaticsSystem;
 import org.usfirst.frc.team226.robot.subsystems.Intake;
 import org.usfirst.frc.team226.robot.vision.VisionRun;
@@ -28,9 +30,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends TimedRobot {
 	public static OI m_oi;
 	public static DriveTrain driveTrain;
+	public static Carriage carriage;
 	public static PneumaticsSystem pneumaticsSystem;
 	public VisionRun vision = new VisionRun();
 	public static Intake intake;
+	public static Elevator elevator;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -39,8 +43,10 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		m_oi = new OI();
 		driveTrain = new DriveTrain();
+		carriage = new Carriage();
 		pneumaticsSystem = new PneumaticsSystem();
 		intake = new Intake();
+		elevator = new Elevator();
 		// m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);

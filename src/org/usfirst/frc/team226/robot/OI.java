@@ -7,6 +7,12 @@
 
 package org.usfirst.frc.team226.robot;
 
+import org.usfirst.frc.team226.robot.commands.ElevatorToIntake;
+import org.usfirst.frc.team226.robot.commands.ElevatorToPower;
+import org.usfirst.frc.team226.robot.commands.ElevatorToScale;
+import org.usfirst.frc.team226.robot.commands.ElevatorToSwitch;
+import org.usfirst.frc.team226.robot.commands.HardZeroElevator;
+
 import util.Controller;
 
 /**
@@ -14,7 +20,16 @@ import util.Controller;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+
+	public Controller driver = new Controller(RobotMap.DRIVER_CONTROLLER, Constants.DRIVER_DEADBAND);
+	public Controller manip = new Controller(RobotMap.MANIP_CONTROLLER, Constants.MANIP_DEADBAND);
 	
-	public Controller driver = new Controller(0);
+	public OI(){
+		manip.getYButton().whenPressed(new ElevatorToSwitch());
+		manip.getXButton().whenPressed(new ElevatorToScale());
+		manip.getBButton().whenPressed(new ElevatorToPower());
+		manip.getAButton().whenPressed(new ElevatorToIntake());
+		manip.getRBButton().whenPressed(new HardZeroElevator());
+	}
 	
 }

@@ -22,6 +22,9 @@ public class RobotMap {
 	public static final int DT_REAR_LEFT = 13;
 	public static final int DT_REAR_RIGHT = 17;
 	
+	public static final int CARRIAGE_RIGHT = 0;
+	public static final int CARRIAGE_LEFT = 0;
+	
 	public static final int PCM_A = 11;
 	public static final int PCM_B = 12;
 	
@@ -48,4 +51,16 @@ public class RobotMap {
 	public static final int INTAKE_RIGHT_FLIP_2 = 0;
 	public static final int INTAKE_RIGHT_OPEN_1 = 0;
 	public static final int INTAKE_RIGHT_OPEN_2 = 0;
+
+	public static final int ELEVATOR_PHOTO_EYE = 0;
+
+	public static final int ELEVATOR_FRONT_LEFT = 0;
+	public static final int ELEVATOR_REAR_LEFT = 0;
+	public static final int ELEVATOR_FRONT_RIGHT = 0;
+	public static final int ELEVATOR_REAR_RIGHT = 0;
+	public static final int ELEVATOR_HALL_EFFECT_SENSOR = 0;
+	
+	public static final int MANIP_CONTROLLER = 0;
+	public static final int DRIVER_CONTROLLER = 1;
+
 }
