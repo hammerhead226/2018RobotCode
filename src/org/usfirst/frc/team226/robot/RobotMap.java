@@ -36,5 +36,6 @@ public class RobotMap {
 	public static final int DT_RIGHT_SHIFTER_PCM = PCM_B;
 	public static final int DT_RIGHT_SHIFTER_1 = 6;
 	public static final int DT_RIGHT_SHIFTER_2 = 7;
+	public static final int ELEVATOR_PHOTO_EYE = 0;
 
 }
