@@ -36,6 +36,22 @@ public class RobotMap {
 	public static final int DT_RIGHT_SHIFTER_PCM = PCM_B;
 	public static final int DT_RIGHT_SHIFTER_1 = 6;
 	public static final int DT_RIGHT_SHIFTER_2 = 7;
+	
+	public static final int INTAKE_LEFT = 0;
+	public static final int INTAKE_RIGHT = 0;
+	
+	public static final int INTAKE_LEFT_PCM = PCM_B;
+	public static final int INTAKE_LEFT_FLIP_1 = 0;
+	public static final int INTAKE_LEFT_FLIP_2 = 0;
+	public static final int INTAKE_LEFT_OPEN_1 = 0;
+	public static final int INTAKE_LEFT_OPEN_2 = 0;
+	
+	public static final int INTAKE_RIGHT_PCM = PCM_B;
+	public static final int INTAKE_RIGHT_FLIP_1 = 0;
+	public static final int INTAKE_RIGHT_FLIP_2 = 0;
+	public static final int INTAKE_RIGHT_OPEN_1 = 0;
+	public static final int INTAKE_RIGHT_OPEN_2 = 0;
+
 	public static final int ELEVATOR_PHOTO_EYE = 0;
 
 	public static final int ELEVATOR_FRONT_LEFT = 0;
