@@ -39,7 +39,7 @@ public class Carriage extends Subsystem {
 	}
 
 	public void intakeAndCarriageIn(double speed) {
-		if (photoEye.getCovered()) {
+		if (!photoEye.getCovered()) {
 			left.set(ControlMode.PercentOutput, speed);
 		} else {
 			left.set(ControlMode.PercentOutput, 0);
