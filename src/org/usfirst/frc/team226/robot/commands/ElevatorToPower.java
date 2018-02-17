@@ -30,7 +30,7 @@ public class ElevatorToPower extends Command {
 		if (Robot.elevator.getElevatorError() < Constants.ELEVATOR_ERROR_MARGIN) {
 			return true;
 		} else {
-			if ((System.currentTimeMillis() - timeout) < Constants.ELEVATOR_POWER_TIMEOUT_MS) {
+			if ((System.currentTimeMillis() - timeout) < Constants.ELEVATOR_ON_TARGET_MS) {
 				return false;
 			} else {
 				return true;
