@@ -38,7 +38,7 @@ public class Carriage extends Subsystem {
 		left.set(ControlMode.PercentOutput, speed);
 	}
 
-	public void neutral() {
+	public void setCarriageNeutral() {
 		left.set(ControlMode.PercentOutput, 0);
 
 	}
