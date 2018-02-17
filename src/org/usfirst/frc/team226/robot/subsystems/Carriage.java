@@ -7,8 +7,8 @@ import org.usfirst.frc.team226.robot.commands.CarriageControl;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import util.Photoeye;
 
 /**
  *
@@ -17,7 +17,7 @@ public class Carriage extends Subsystem {
 
 	private TalonSRX right = new TalonSRX(RobotMap.CARRIAGE_RIGHT);
 	private TalonSRX left = new TalonSRX(RobotMap.CARRIAGE_LEFT);
-	private AnalogInput photoEye = new AnalogInput(RobotMap.ELEVATOR_PHOTO_EYE);
+	private Photoeye photoEye = new Photoeye(RobotMap.ELEVATOR_PHOTO_EYE, Constants.ELEVATOR_PHOTO_EYE_MIN_VOLTAGE);
 
 	public Carriage() {
 		left.setInverted(Constants.CARRIAGE_INVERT_LEFT);
@@ -39,7 +39,7 @@ public class Carriage extends Subsystem {
 	}
 
 	public void intakeAndCarriageIn(double speed) {
-		if (photoEye.getVoltage() < Constants.CARRIAGE_PHOTOEYE_THRESHHOLD) {
+		if (photoEye.getCovered()) {
 			left.set(ControlMode.PercentOutput, speed);
 		} else {
 			left.set(ControlMode.PercentOutput, 0);

@@ -42,5 +42,6 @@ public class Constants {
 	public static final int ELEVATOR_ERROR_MARGIN = 0;
 	public static final int ELEVATOR_CURRENT_LIMIT = 0;
 	public static final boolean ELEVATOR_CURRENT_LIMIT_ENABLED = true;
+	public static final double ELEVATOR_PHOTO_EYE_MIN_VOLTAGE = 0;
 	
 }
