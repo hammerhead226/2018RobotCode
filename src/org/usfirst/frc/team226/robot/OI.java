@@ -32,4 +32,8 @@ public class OI {
 		manip.getRBButton().whenPressed(new HardZeroElevator());
 	}
 	
+	public OI() {
+		
+	}
+	
 }
