@@ -28,9 +28,9 @@ public class ElevatorPID extends Command {
 			} else if (Robot.m_oi.manip.getBButtonPressed()) {
 				Robot.elevator.setElevator(Constants.ELEVATOR_SWITCH_HEIGHT);
 			} else if (Robot.m_oi.manip.getBButtonPressed()) {
-				Robot.elevator.setElevator(Constants.ELEVATOR_SWITCH_HEIGHT);
+				Robot.elevator.setElevator(Constants.ELEVATOR_POW_HEIGHT);
 			} else if (Robot.m_oi.manip.getBButtonPressed()) {
-				Robot.elevator.setElevator(Constants.ELEVATOR_SWITCH_HEIGHT);
+				Robot.elevator.setElevator(Constants.ELEVATOR_SCALE_HEIGHT);
 			} else {
 				Robot.elevator.setElevator(Robot.elevator.getElevatorSetpoint());
 			}
