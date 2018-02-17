@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ManipCarriageControl extends Command {
+public class CarriageControl extends Command {
 
-	public ManipCarriageControl() {
+	public CarriageControl() {
 		requires(Robot.carriage);
 	}
 

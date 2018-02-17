@@ -2,6 +2,7 @@ package org.usfirst.frc.team226.robot.subsystems;
 
 import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.RobotMap;
+import org.usfirst.frc.team226.robot.commands.CarriageControl;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -50,5 +51,6 @@ public class Carriage extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
+		setDefaultCommand(new CarriageControl());
 	}
 }
