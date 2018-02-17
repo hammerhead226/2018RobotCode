@@ -25,7 +25,7 @@ public class RunOuttakeCarriageOut extends CommandGroup {
     	requires(Robot.intake);
 
     	addParallel(new RunOuttake());
-    	Robot.carriage.pushOut();
+    	addParallel(new CarriagePushOut());
     	
         // A command group will require all of the subsystems that each member
         // would require.

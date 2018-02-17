@@ -25,7 +25,7 @@ public class RunIntakeCarriageIn extends CommandGroup {
     	requires(Robot.intake);
     	
     	addParallel(new RunIntake());
-    	Robot.carriage.pullIn();
+    	addParallel(new CarriagePullIn());
 
         // A command group will require all of the subsystems that each member
         // would require.
