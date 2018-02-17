@@ -1,5 +1,6 @@
 package org.usfirst.frc.team226.robot.commands;
 
+import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -7,11 +8,13 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RunIntake extends Command {
+public class CarriagePushOut extends Command {
 
-    public RunIntake() {
+    public CarriagePushOut() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.intake);
+        // eg. requires(chassis);
+    	
+    	requires(Robot.carriage);
     }
 
     // Called just before this Command runs the first time
@@ -20,7 +23,7 @@ public class RunIntake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.intake(Robot.m_oi.driver.getRightTrigger());
+    	Robot.carriage.inOrOut(Constants.CARRIAGE_OUTTAKE_SPEED);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -30,6 +33,7 @@ public class RunIntake extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.carriage.setCarriageNeutral();
     }
 
     // Called when another command which requires one or more of the same

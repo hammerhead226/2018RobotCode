@@ -38,6 +38,11 @@ public class Carriage extends Subsystem {
 		left.set(ControlMode.PercentOutput, speed);
 	}
 
+	public void setCarriageNeutral() {
+		left.set(ControlMode.PercentOutput, 0);
+
+	}
+
 	public void intakeAndCarriageIn(double speed) {
 		if (photoEye.getVoltage() < Constants.CARRIAGE_PHOTOEYE_THRESHHOLD) {
 			left.set(ControlMode.PercentOutput, speed);
