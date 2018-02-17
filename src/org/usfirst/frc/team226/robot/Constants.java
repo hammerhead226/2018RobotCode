@@ -18,10 +18,8 @@ public class Constants {
 	public static final double ELEVATOR_POW_HEIGHT = 0;
 	public static final double ELEVATOR_SCALE_HEIGHT = 0;
 	public static final double ELEVATOR_VOLTAGE_LIMIT = 11;
-	public static final boolean ELEVATOR_INVERT_RL = false;
-	public static final boolean ELEVATOR_INVERT_FL = false;
-	public static final boolean ELEVATOR_INVERT_RR = true;
-	public static final boolean ELEVATOR_INVERT_FR = true;
+	public static final boolean ELEVATOR_INVERT_L = false;
+	public static final boolean ELEVATOR_INVERT_R = true;
 	public static final int ELEVATOR_PID_IDX = 0;
 	public static final int ELEVATOR_TIMEOUT_MS = 0;
 	public static final double ELEVATOR_FINE_TUNE = 0.5;

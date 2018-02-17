@@ -18,14 +18,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Elevator extends Subsystem {
 
-	TalonSRX frontLeft = new TalonSRX(RobotMap.ELEVATOR_FRONT_LEFT);
-	TalonSRX frontRight = new TalonSRX(RobotMap.ELEVATOR_FRONT_RIGHT);
-	TalonSRX rearLeft = new TalonSRX(RobotMap.ELEVATOR_REAR_LEFT);
-	TalonSRX rearRight = new TalonSRX(RobotMap.ELEVATOR_REAR_RIGHT);
+	TalonSRX left = new TalonSRX(RobotMap.ELEVATOR_FRONT_LEFT);
+	TalonSRX right = new TalonSRX(RobotMap.ELEVATOR_FRONT_RIGHT);
 
 	DigitalInput hallEffect = new DigitalInput(RobotMap.ELEVATOR_HALL_EFFECT_SENSOR);
 
-	enum elevatorHeight {
+	enum ElevatorHeight {
 		INTAKE, SWITCH, POWER, SCALE
 	}
 
@@ -38,68 +36,55 @@ public class Elevator extends Subsystem {
 
 	public Elevator() {
 
-		frontLeft.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
+		left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
 		
-		frontLeft.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, 0);
-		frontRight.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, 0);
-		rearLeft.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, 0);
-		rearRight.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, 0);
+		left.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, 0);
+		right.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, 0);
 		
-		frontLeft.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
-		rearLeft.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
-		frontRight.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
-		rearRight.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
+		left.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);	
+		right.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);			
 		
-		
-		frontLeft.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
-		frontRight.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
-		rearLeft.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
-		rearRight.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
+		left.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
+		right.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
 
-		frontLeft.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
-		frontRight.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
-		rearLeft.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
-		rearRight.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
+		left.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
+		right.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
 
-		rearLeft.setInverted(Constants.ELEVATOR_INVERT_RL);
-		frontLeft.setInverted(Constants.ELEVATOR_INVERT_FL);
-		rearRight.setInverted(Constants.ELEVATOR_INVERT_RR);
-		frontRight.setInverted(Constants.ELEVATOR_INVERT_FR);
+		left.setInverted(Constants.ELEVATOR_INVERT_L);
+		right.setInverted(Constants.ELEVATOR_INVERT_R);
 
-		frontRight.follow(frontLeft);
-		rearLeft.follow(frontLeft);
-		rearRight.follow(frontLeft);
+		right.follow(left);
 	}
 
 	public void moveElevatorToIntake() {
-		setElevator(elevatorHeight.INTAKE);
+		setElevator(ElevatorHeight.INTAKE);
 	}
 
 	public void moveElevatorToPower() {
-		setElevator(elevatorHeight.POWER);
+		setElevator(ElevatorHeight.POWER);
 	}
 
 	public void moveElevatorToSwitch() {
-		setElevator(elevatorHeight.SWITCH);
+		setElevator(ElevatorHeight.SWITCH);
 	}
 
 	public void moveElevatorToScale() {
-		setElevator(elevatorHeight.SCALE);
+		setElevator(ElevatorHeight.SCALE);
 	}
 
-	public void setElevator(elevatorHeight height) {
+	public void setElevator(ElevatorHeight height) {
 		switch (height) {
 		case INTAKE:
-			frontLeft.set(ControlMode.MotionMagic, Constants.ELEVATOR_INTAKE_HEIGHT);
+			left.set(ControlMode.MotionMagic, Constants.ELEVATOR_INTAKE_HEIGHT);
 			break;
 		case SWITCH:
-			frontLeft.set(ControlMode.MotionMagic, Constants.ELEVATOR_SWITCH_HEIGHT);
+			left.set(ControlMode.MotionMagic, Constants.ELEVATOR_SWITCH_HEIGHT);
 			break;
 		case POWER:
-			frontLeft.set(ControlMode.MotionMagic, Constants.ELEVATOR_POW_HEIGHT);
+			left.set(ControlMode.MotionMagic, Constants.ELEVATOR_POW_HEIGHT);
 			break;
 		case SCALE:
-			frontLeft.set(ControlMode.MotionMagic, Constants.ELEVATOR_SCALE_HEIGHT);
+			left.set(ControlMode.MotionMagic, Constants.ELEVATOR_SCALE_HEIGHT);
 			break;
 		}
 
@@ -107,19 +92,19 @@ public class Elevator extends Subsystem {
 
 	public void zeroEncoder() {
 		if (hallEffect.get()) {
-			frontLeft.setSelectedSensorPosition(0, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
+			left.setSelectedSensorPosition(0, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
 		}
 	}
 
 	public void hardZeroEncoder() {
-		frontLeft.setSelectedSensorPosition(0, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
+		left.setSelectedSensorPosition(0, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
 	}
 
 	public void fineMovement() {
-		frontLeft.set(ControlMode.PercentOutput, Constants.ELEVATOR_FINE_TUNE * Robot.m_oi.manip.getLeftJoystick_Y());
+		left.set(ControlMode.PercentOutput, Constants.ELEVATOR_FINE_TUNE * Robot.m_oi.manip.getLeftJoystick_Y());
 	}
 	
 	public int getElevatorError() {
-		return frontLeft.getClosedLoopError(Constants.ELEVATOR_PID_IDX);
+		return left.getClosedLoopError(Constants.ELEVATOR_PID_IDX);
 	}
 }
