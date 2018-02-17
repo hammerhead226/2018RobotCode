@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class PullIn extends Command {
+public class IntakeAndCarriageIn extends Command {
 
-    public PullIn() {
+    public IntakeAndCarriageIn() {
         requires(Robot.carriage);
     }
 
@@ -19,7 +19,7 @@ public class PullIn extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.carriage.pullIn();
+		Robot.carriage.intakeAndCarriageIn(Robot.m_oi.driver.getLeftTrigger());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -29,7 +29,6 @@ public class PullIn extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.carriage.inAndOut(0);
     }
 
     // Called when another command which requires one or more of the same
