@@ -12,7 +12,7 @@ import org.usfirst.frc.team226.robot.commands.ElevatorToPower;
 import org.usfirst.frc.team226.robot.commands.ElevatorToScale;
 import org.usfirst.frc.team226.robot.commands.ElevatorToSwitch;
 import org.usfirst.frc.team226.robot.commands.HardZeroElevator;
-import org.usfirst.frc.team226.robot.commands.RunOuttake;
+import org.usfirst.frc.team226.robot.commands.RunIntakeReverse;
 
 import util.Controller;
 
@@ -26,7 +26,7 @@ public class OI {
 	public Controller manip = new Controller(RobotMap.MANIP_CONTROLLER, Constants.MANIP_DEADBAND);
 	
 	public OI(){
-		driver.getXButton().whileHeld(new RunOuttake());
+		driver.getXButton().whileHeld(new RunIntakeReverse());
 		
 		manip.getYButton().whenPressed(new ElevatorToSwitch());
 		manip.getXButton().whenPressed(new ElevatorToScale());

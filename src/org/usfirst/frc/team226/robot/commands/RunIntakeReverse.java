@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RunOuttake extends Command {
+public class RunIntakeReverse extends Command {
 
-    public RunOuttake() {
+    public RunIntakeReverse() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.intake);
     }
