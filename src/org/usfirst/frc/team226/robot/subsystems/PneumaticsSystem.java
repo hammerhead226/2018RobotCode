@@ -25,8 +25,6 @@ public class PneumaticsSystem extends Subsystem {
 	
 	private DoubleSolenoid leftFlipIntake = new DoubleSolenoid(RobotMap.INTAKE_LEFT_PCM, RobotMap.INTAKE_LEFT_FLIP_1, RobotMap.INTAKE_LEFT_FLIP_2);
 	private DoubleSolenoid rightFlipIntake = new DoubleSolenoid(RobotMap.INTAKE_RIGHT_PCM, RobotMap.INTAKE_RIGHT_FLIP_1, RobotMap.INTAKE_RIGHT_FLIP_2);
-	private DoubleSolenoid leftOpenIntake = new DoubleSolenoid(RobotMap.INTAKE_LEFT_PCM, RobotMap.INTAKE_LEFT_FLIP_1, RobotMap.INTAKE_LEFT_FLIP_2);
-	private DoubleSolenoid rightOpenIntake = new DoubleSolenoid(RobotMap.INTAKE_RIGHT_PCM, RobotMap.INTAKE_RIGHT_FLIP_1, RobotMap.INTAKE_RIGHT_FLIP_2);
 
 
 	private DoubleSolenoid.Value leftVal = DoubleSolenoid.Value.kOff;
@@ -78,20 +76,4 @@ public class PneumaticsSystem extends Subsystem {
 		rightFlipIntake.set(DoubleSolenoid.Value.kOff);
 	}
 	
-	private DoubleSolenoid.Value openVal = DoubleSolenoid.Value.kOff;
-	
-	public void openIntake() {
-		if(openVal == DoubleSolenoid.Value.kForward) {
-			openVal = DoubleSolenoid.Value.kReverse;
-		} else {
-			openVal = DoubleSolenoid.Value.kForward;
-		}
-		leftOpenIntake.set(openVal);
-		rightOpenIntake.set(openVal);
-	}
-	
-	public void openIntakeNeutral() {
-		leftOpenIntake.set(DoubleSolenoid.Value.kOff);
-		rightOpenIntake.set(DoubleSolenoid.Value.kOff);
-	}
 }
