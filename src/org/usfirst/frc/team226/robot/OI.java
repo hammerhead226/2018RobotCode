@@ -21,7 +21,7 @@ import util.Controller;
  */
 public class OI {
 
-	public Controller driver = new Controller(0);
+	public Controller driver = new Controller(RobotMap.DRIVER_CONTROLLER, Constants.DRIVER_DEADBAND);
 	public Controller manip = new Controller(RobotMap.MANIP_CONTROLLER, Constants.MANIP_DEADBAND);
 	
 	public OI(){

@@ -3,6 +3,7 @@ package org.usfirst.frc.team226.robot;
 public class Constants {
 	
 	public static final double MANIP_DEADBAND = 0.2;
+	public static final double DRIVER_DEADBAND = 0.2;
 	
 	public static final int STARTUP_WAIT = 10;
 
@@ -30,4 +31,6 @@ public class Constants {
 	public static final int ELEVATOR_ERROR_MARGIN = 0;
 	public static final int ELEVATOR_CURRENT_LIMIT = 0;
 	public static final boolean ELEVATOR_CURRENT_LIMIT_ENABLED = true;
+
+	
 }
