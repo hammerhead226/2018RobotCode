@@ -28,7 +28,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
-	public static OI m_oi;
+	public static OI oi;
 	public static DriveTrain driveTrain;
 	public static Carriage carriage;
 	public static PneumaticsSystem pneumaticsSystem;
@@ -36,20 +36,20 @@ public class Robot extends TimedRobot {
 	public static Intake intake;
 	public static Elevator elevator;
 
-	Command m_autonomousCommand;
-	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	Command autonomousCommand;
+	SendableChooser<Command> chooser = new SendableChooser<>();
 
 	@Override
 	public void robotInit() {
-		m_oi = new OI();
+		oi = new OI();
 		driveTrain = new DriveTrain();
 		carriage = new Carriage();
 		pneumaticsSystem = new PneumaticsSystem();
 		intake = new Intake();
 		elevator = new Elevator();
-		// m_chooser.addDefault("Default Auto", new ExampleCommand());
+		// chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", m_chooser);
+		SmartDashboard.putData("Auto mode", chooser);
 		vision.start();
 	}
 
@@ -64,7 +64,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
-		m_autonomousCommand = m_chooser.getSelected();
+		autonomousCommand = chooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
@@ -74,8 +74,8 @@ public class Robot extends TimedRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.start();
+		if (autonomousCommand != null) {
+			autonomousCommand.start();
 		}
 	}
 
@@ -86,8 +86,8 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.cancel();
+		if (autonomousCommand != null) {
+			autonomousCommand.cancel();
 		}
 	}
 	
