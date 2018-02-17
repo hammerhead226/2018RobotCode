@@ -27,17 +27,8 @@ public class ElevatorToIntake extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-
-		if (Math.abs(Robot.elevator.getElevatorError()) < Constants.ELEVATOR_ERROR_MARGIN) {
-			return true;
-		} else {
-			if ((System.currentTimeMillis() - timeout) < Constants.ELEVATOR_ON_TARGET_MS) {
-				return false;
-			} else {
-				return true;
-			}
-		}
-
+			
+		return Robot.elevator.isFinished();
 	}
 
 	// Called once after isFinished returns true

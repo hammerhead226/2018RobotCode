@@ -19,7 +19,7 @@ public class ElevatorManualMovement extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.elevator.fineMovement();
+    	Robot.elevator.fineMovement(Robot.m_oi.manip.getLeftJoystick_Y());
     }
 
     // Make this return true when this Command no longer needs to run execute()

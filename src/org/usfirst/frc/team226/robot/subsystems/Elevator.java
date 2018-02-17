@@ -3,7 +3,7 @@ package org.usfirst.frc.team226.robot.subsystems;
 import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.Robot;
 import org.usfirst.frc.team226.robot.RobotMap;
-import org.usfirst.frc.team226.robot.commands.ElevatorManualMovement;
+import org.usfirst.frc.team226.robot.commands.ElevatorPID;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -31,19 +31,20 @@ public class Elevator extends Subsystem {
 	// here. Call these from Commands.
 
 	public void initDefaultCommand() {
-		setDefaultCommand(new ElevatorManualMovement());
+		setDefaultCommand(new ElevatorPID());
 	}
 
 	public Elevator() {
 
-		left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
-		
+		left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ELEVATOR_PID_IDX,
+				Constants.ELEVATOR_TIMEOUT_MS);
+
 		left.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, 0);
 		right.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, 0);
-		
-		left.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);	
-		right.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);			
-		
+
+		left.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
+		right.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
+
 		left.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
 		right.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
 
@@ -90,6 +91,15 @@ public class Elevator extends Subsystem {
 
 	}
 
+	public void setElevator(double height) {
+		
+		left.set(ControlMode.MotionMagic, height);
+		
+		while (holdElevatorPIDOpen()) {
+			left.set(ControlMode.MotionMagic, height);
+		}
+	}
+
 	public void zeroEncoder() {
 		if (hallEffect.get()) {
 			left.setSelectedSensorPosition(0, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
@@ -100,11 +110,44 @@ public class Elevator extends Subsystem {
 		left.setSelectedSensorPosition(0, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
 	}
 
-	public void fineMovement() {
-		left.set(ControlMode.PercentOutput, Constants.ELEVATOR_FINE_TUNE * Robot.m_oi.manip.getLeftJoystick_Y());
+	public void fineMovement(double speed) {
+		left.set(ControlMode.PercentOutput, Constants.ELEVATOR_FINE_TUNE * speed);
 	}
-	
+
 	public int getElevatorError() {
 		return left.getClosedLoopError(Constants.ELEVATOR_PID_IDX);
+	}
+
+	public double getElevatorSetpoint() {
+		return left.getSelectedSensorPosition(Constants.ELEVATOR_PID_IDX);
+	}
+
+	public boolean holdElevatorPIDOpen() {
+
+		long timeout = System.currentTimeMillis();
+
+		if (Math.abs(Robot.elevator.getElevatorError()) < Constants.ELEVATOR_ERROR_MARGIN) {
+			return false;
+		} else {
+			if ((System.currentTimeMillis() - timeout) < Constants.ELEVATOR_ON_TARGET_MS) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
+	
+	public boolean isFinished() {
+		long timeout = System.currentTimeMillis();
+
+		if (Math.abs(Robot.elevator.getElevatorError()) < Constants.ELEVATOR_ERROR_MARGIN) {
+			return true;
+		} else {
+			if ((System.currentTimeMillis() - timeout) < Constants.ELEVATOR_ON_TARGET_MS) {
+				return false;
+			} else {
+				return true;
+			}
+		}
 	}
 }
