@@ -17,4 +17,8 @@ public class OI {
 
 	public Controller driver = new Controller(0);
 	
+	public OI() {
+		
+	}
+	
 }
