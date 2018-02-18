@@ -126,10 +126,6 @@ public class Elevator extends Subsystem {
 		}
 	}
 
-	public double getCurrentPosition() {
-		return left.getSelectedSensorPosition(Constants.ELEVATOR_PID_IDX);
-	}
-
 	public void teleopElevator() {
 		if (Math.abs(Robot.m_oi.manip.getLeftJoystick_Y()) > 0) {
 			Robot.elevator.fineMovement(Robot.m_oi.manip.getLeftJoystick_Y());
