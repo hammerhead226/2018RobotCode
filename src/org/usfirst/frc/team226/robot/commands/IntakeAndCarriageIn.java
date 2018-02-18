@@ -24,7 +24,7 @@ public class IntakeAndCarriageIn extends Command {
 	protected void execute() {
 		if (Robot.elevator.getElevatorHeight() < Constants.ELEVATOR_INTAKE_TOLERANCE && Robot.carriage.photoEyeOpen()) {
 			Robot.intake.intake(Robot.m_oi.driver.getLeftTrigger(), Robot.m_oi.driver.getRightTrigger());
-			Robot.carriage.inOrOut((Robot.m_oi.driver.getLeftTrigger() + Robot.m_oi.driver.getRightTrigger()) / 2);
+			Robot.carriage.setCarriageSpeed((Robot.m_oi.driver.getLeftTrigger() + Robot.m_oi.driver.getRightTrigger()) / 2);
 		}
 
 	}

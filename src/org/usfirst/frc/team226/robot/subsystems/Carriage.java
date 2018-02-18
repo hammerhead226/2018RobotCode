@@ -34,7 +34,7 @@ public class Carriage extends Subsystem {
 		left.set(ControlMode.PercentOutput, Constants.CARRIAGE_INTAKE_SPEED);
 	}
 
-	public void inOrOut(double speed) {
+	public void setCarriageSpeed(double speed) {
 		left.set(ControlMode.PercentOutput, speed);
 	}
 	
