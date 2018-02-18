@@ -20,21 +20,7 @@ public class ElevatorPID extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (Math.abs(Robot.m_oi.manip.getLeftJoystick_Y()) > 0) {
-			Robot.elevator.fineMovement(Robot.m_oi.manip.getLeftJoystick_Y());
-		} else {
-			if (Robot.m_oi.manip.getAButtonPressed()) {
-				Robot.elevator.setElevator(Constants.ELEVATOR_INTAKE_HEIGHT);
-			} else if (Robot.m_oi.manip.getBButtonPressed()) {
-				Robot.elevator.setElevator(Constants.ELEVATOR_SWITCH_HEIGHT);
-			} else if (Robot.m_oi.manip.getXButtonPressed()) {
-				Robot.elevator.setElevator(Constants.ELEVATOR_POW_HEIGHT);
-			} else if (Robot.m_oi.manip.getYButtonPressed()) {
-				Robot.elevator.setElevator(Constants.ELEVATOR_SCALE_HEIGHT);
-			} else {
-				Robot.elevator.setElevator(Robot.elevator.getElevatorSetpoint());
-			}
-		}
+		Robot.elevator.teleopElevator();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

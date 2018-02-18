@@ -92,12 +92,7 @@ public class Elevator extends Subsystem {
 	}
 
 	public void setElevator(double height) {
-		
 		left.set(ControlMode.MotionMagic, height);
-		
-		while (holdElevatorPIDOpen()) {
-			left.set(ControlMode.MotionMagic, height);
-		}
 	}
 
 	public void zeroEncoder() {
@@ -119,22 +114,7 @@ public class Elevator extends Subsystem {
 	}
 
 	public double getElevatorSetpoint() {
-		return left.getSelectedSensorPosition(Constants.ELEVATOR_PID_IDX);
-	}
-
-	public boolean holdElevatorPIDOpen() {
-
-		long timeout = System.currentTimeMillis();
-
-		if (Math.abs(Robot.elevator.getElevatorError()) < Constants.ELEVATOR_ERROR_MARGIN) {
-			return false;
-		} else {
-			if ((System.currentTimeMillis() - timeout) < Constants.ELEVATOR_ON_TARGET_MS) {
-				return true;
-			} else {
-				return false;
-			}
-		}
+		return left.getActiveTrajectoryPosition();
 	}
 	
 	public boolean isFinished() {
@@ -147,6 +127,29 @@ public class Elevator extends Subsystem {
 				return false;
 			} else {
 				return true;
+			}
+		}
+	}
+	
+	public double getCurrentPosition() {
+		return left.getSelectedSensorPosition(Constants.ELEVATOR_PID_IDX);
+	}
+	
+	public void teleopElevator() {
+		if (Math.abs(Robot.m_oi.manip.getLeftJoystick_Y()) > 0) {
+			Robot.elevator.fineMovement(Robot.m_oi.manip.getLeftJoystick_Y());
+			Robot.elevator.setElevator(Robot.elevator.getCurrentPosition());
+		} else {
+			if (Robot.m_oi.manip.getAButtonPressed()) {
+				Robot.elevator.setElevator(Constants.ELEVATOR_INTAKE_HEIGHT);
+			} else if (Robot.m_oi.manip.getBButtonPressed()) {
+				Robot.elevator.setElevator(Constants.ELEVATOR_SWITCH_HEIGHT);
+			} else if (Robot.m_oi.manip.getXButtonPressed()) {
+				Robot.elevator.setElevator(Constants.ELEVATOR_POW_HEIGHT);
+			} else if (Robot.m_oi.manip.getYButtonPressed()) {
+				Robot.elevator.setElevator(Constants.ELEVATOR_SCALE_HEIGHT);
+			} else {
+				Robot.elevator.setElevator(Robot.elevator.getElevatorSetpoint());
 			}
 		}
 	}
