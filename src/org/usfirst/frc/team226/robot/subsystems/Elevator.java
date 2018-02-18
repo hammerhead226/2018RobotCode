@@ -141,13 +141,13 @@ public class Elevator extends Subsystem {
 			Robot.elevator.setElevator(Robot.elevator.getCurrentPosition());
 		} else {
 			if (Robot.m_oi.manip.getAButtonPressed()) {
-				Robot.elevator.setElevator(Constants.ELEVATOR_INTAKE_HEIGHT);
+				Robot.elevator.setElevator(ElevatorHeight.INTAKE);
 			} else if (Robot.m_oi.manip.getBButtonPressed()) {
-				Robot.elevator.setElevator(Constants.ELEVATOR_SWITCH_HEIGHT);
+				Robot.elevator.setElevator(ElevatorHeight.SWITCH);
 			} else if (Robot.m_oi.manip.getXButtonPressed()) {
-				Robot.elevator.setElevator(Constants.ELEVATOR_POW_HEIGHT);
+				Robot.elevator.setElevator(ElevatorHeight.POWER);
 			} else if (Robot.m_oi.manip.getYButtonPressed()) {
-				Robot.elevator.setElevator(Constants.ELEVATOR_SCALE_HEIGHT);
+				Robot.elevator.setElevator(ElevatorHeight.SCALE);
 			} else {
 				Robot.elevator.setElevator(Robot.elevator.getElevatorSetpoint());
 			}
