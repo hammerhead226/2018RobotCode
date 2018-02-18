@@ -37,19 +37,14 @@ public class Carriage extends Subsystem {
 	public void inOrOut(double speed) {
 		left.set(ControlMode.PercentOutput, speed);
 	}
-
-	public void intakeAndCarriageIn(double speed) {
-		if (!photoEye.getCovered()) {
-			left.set(ControlMode.PercentOutput, speed);
+	
+	public boolean photoEyeOpen() {
+		if(photoEye.getCovered()) {
+			return false;
 		} else {
-			left.set(ControlMode.PercentOutput, 0);
+			return true;
 		}
 	}
-
-	public void intakeAndCarriageOut() {
-		left.set(ControlMode.PercentOutput, Constants.CARRIAGE_OUTTAKE_SPEED);
-	}
-
 	public void initDefaultCommand() {
 		setDefaultCommand(new CarriageControl());
 	}
