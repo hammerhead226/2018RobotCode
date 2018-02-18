@@ -22,7 +22,7 @@ public class Elevator extends Subsystem {
 	TalonSRX right = new TalonSRX(RobotMap.ELEVATOR_FRONT_RIGHT);
 
 	DigitalInput hallEffect = new DigitalInput(RobotMap.ELEVATOR_HALL_EFFECT_SENSOR);
-
+	
 	enum ElevatorHeight {
 		INTAKE, SWITCH, POWER, SCALE
 	}
@@ -106,7 +106,7 @@ public class Elevator extends Subsystem {
 	}
 
 	public void fineMovement(double speed) {
-		left.set(ControlMode.PercentOutput, Constants.ELEVATOR_FINE_TUNE * speed);
+		left.set(ControlMode.MotionMagic, getElevatorSetpoint() + speed * Constants.ELEVATOR_FINE_TUNE);
 	}
 
 	public int getElevatorError() {
@@ -116,29 +116,23 @@ public class Elevator extends Subsystem {
 	public double getElevatorSetpoint() {
 		return left.getActiveTrajectoryPosition();
 	}
-	
+
 	public boolean isFinished() {
-		long timeout = System.currentTimeMillis();
 
 		if (Math.abs(Robot.elevator.getElevatorError()) < Constants.ELEVATOR_ERROR_MARGIN) {
 			return true;
 		} else {
-			if ((System.currentTimeMillis() - timeout) < Constants.ELEVATOR_ON_TARGET_MS) {
-				return false;
-			} else {
-				return true;
-			}
+			return false;
 		}
 	}
-	
+
 	public double getCurrentPosition() {
 		return left.getSelectedSensorPosition(Constants.ELEVATOR_PID_IDX);
 	}
-	
+
 	public void teleopElevator() {
 		if (Math.abs(Robot.m_oi.manip.getLeftJoystick_Y()) > 0) {
 			Robot.elevator.fineMovement(Robot.m_oi.manip.getLeftJoystick_Y());
-			Robot.elevator.setElevator(Robot.elevator.getCurrentPosition());
 		} else {
 			if (Robot.m_oi.manip.getAButtonPressed()) {
 				Robot.elevator.setElevator(ElevatorHeight.INTAKE);
