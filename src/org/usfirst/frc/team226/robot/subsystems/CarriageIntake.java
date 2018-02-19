@@ -60,16 +60,12 @@ public class CarriageIntake extends Subsystem {
 		setDefaultCommand(new GrpCarriageIntakeDualControl());
 	}
 
-	public void intake() {
+	public void driveIntake() {
 		leftIntake.set(ControlMode.PercentOutput, Constants.INTAKE_INTAKE_SPEED);
 	}
 
-	public void intake(double speed) {
+	public void driveIntake(double speed) {
 		leftIntake.set(ControlMode.PercentOutput, speed);
-	}
-
-	public void intake(double left, double right) {
-		leftIntake.set(ControlMode.PercentOutput, left);
 	}
 
 	public void outtake() {
@@ -92,7 +88,7 @@ public class CarriageIntake extends Subsystem {
 			} else {
 				if (photoEyeOpen()) {
 					pullInCarriage();
-					intake(Robot.oi.driver.getTriggers());
+					driveIntake(Robot.oi.driver.getTriggers());
 				} else {
 					intakeNeutral();
 					carriageNeutral();
