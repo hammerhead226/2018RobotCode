@@ -14,6 +14,7 @@ import util.Photoeye;
 /**
  *
  */
+
 public class CarriageIntake extends Subsystem {
 
 	private TalonSRX leftCarriage = new TalonSRX(RobotMap.CARRIAGE_LEFT);
@@ -82,7 +83,7 @@ public class CarriageIntake extends Subsystem {
 
 	public void runCarriageAndIntake(double height) {
 		if (height < Constants.ELEVATOR_INTAKE_TOLERANCE) {
-			if (Robot.oi.driver.getAButtonPressed()) {
+			if (Robot.oi.driver.getTriggers() < 0) {
 				pushOutCarriage();
 				outtake();
 			} else {
