@@ -12,6 +12,8 @@ import org.usfirst.frc.team226.robot.commands.ElevatorToPower;
 import org.usfirst.frc.team226.robot.commands.ElevatorToScale;
 import org.usfirst.frc.team226.robot.commands.ElevatorToSwitch;
 import org.usfirst.frc.team226.robot.commands.HardZeroElevator;
+import org.usfirst.frc.team226.robot.commands.UnJamIntakeClockwise;
+import org.usfirst.frc.team226.robot.commands.UnJamIntakeCounterClockwise;
 
 import util.Controller;
 
@@ -30,6 +32,10 @@ public class OI {
 		manip.getBButton().whenPressed(new ElevatorToPower());
 		manip.getAButton().whenPressed(new ElevatorToIntake());
 		manip.getRBButton().whenPressed(new HardZeroElevator());
+		
+		driver.getBButton().whileHeld(new UnJamIntakeClockwise());
+		driver.getXButton().whileHeld(new UnJamIntakeCounterClockwise());
+		
 	}
 	
 }

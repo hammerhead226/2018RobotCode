@@ -80,6 +80,21 @@ public class CarriageIntake extends Subsystem {
 	public void carriageNeutral() {
 		leftCarriage.neutralOutput();
 	}
+	
+	public void unJamClockwise() {
+		rightIntake.setInverted(!Constants.INTAKE_INVERT_RIGHT);
+		leftIntake.set(ControlMode.PercentOutput, Constants.INTAKE_UN_JAM_SPEED);
+	}
+	
+	public void unJamCounterClockwise() {
+		rightIntake.setInverted(!Constants.INTAKE_INVERT_RIGHT);
+		leftIntake.set(ControlMode.PercentOutput, -Constants.INTAKE_UN_JAM_SPEED);
+	}
+	
+	public void unInvert() {
+		rightIntake.setInverted(Constants.INTAKE_INVERT_RIGHT);
+		leftIntake.setInverted(Constants.INTAKE_INVERT_LEFT);
+	}
 
 	public void runCarriageAndIntake(double height) {
 		if (height < Constants.ELEVATOR_INTAKE_TOLERANCE) {

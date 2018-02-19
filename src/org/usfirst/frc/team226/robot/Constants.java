@@ -20,6 +20,7 @@ public class Constants {
 	public static final boolean INTAKE_INVERT_LEFT = false;
 	public static final double INTAKE_INTAKE_SPEED = 0;
 	public static final int INTAKE_TIMEOUT = 0;
+	public static final double INTAKE_UN_JAM_SPEED = 0;
 
 	public static final double CARRIAGE_OUTTAKE_SPEED = 0;
 	public static final double CARRIAGE_INTAKE_SPEED = 0;
@@ -45,6 +46,5 @@ public class Constants {
 	public static final boolean ELEVATOR_CURRENT_LIMIT_ENABLED = true;
 	public static final double ELEVATOR_INTAKE_TOLERANCE = 0;
 	public static final double ELEVATOR_PHOTO_EYE_THRESHOLD = 0;
-	
-	
+		
 }
