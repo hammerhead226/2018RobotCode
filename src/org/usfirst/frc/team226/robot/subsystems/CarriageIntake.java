@@ -53,11 +53,7 @@ public class CarriageIntake extends Subsystem {
 	}
 
 	public boolean photoEyeOpen() {
-		if (photoEye.getCovered()) {
-			return false;
-		} else {
-			return true;
-		}
+		return !photoEye.getCovered();
 	}
 
 	public void initDefaultCommand() {
