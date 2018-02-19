@@ -7,11 +7,13 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RunIntakeReverse extends Command {
-
-    public RunIntakeReverse() {
-        // Use requires() here to declare subsystem dependencies
-        requires(Robot.intake);
+public class CarriageIntakeControl extends Command {
+	
+	double h;
+	
+    public CarriageIntakeControl(double height) {
+        requires(Robot.carriageIntake);
+        h = height;
     }
 
     // Called just before this Command runs the first time
@@ -20,7 +22,7 @@ public class RunIntakeReverse extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.outtake();
+    	Robot.carriageIntake.runCarriageAndIntake(h);
     }
 
     // Make this return true when this Command no longer needs to run execute()
