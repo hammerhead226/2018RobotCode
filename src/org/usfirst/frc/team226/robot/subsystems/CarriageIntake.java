@@ -48,7 +48,7 @@ public class CarriageIntake extends Subsystem {
 		leftCarriage.set(ControlMode.PercentOutput, Constants.CARRIAGE_INTAKE_SPEED);
 	}
 
-	public void setCarriageSpeed(double speed) {
+	public void driveCarriage(double speed) {
 		leftCarriage.set(ControlMode.PercentOutput, speed);
 	}
 
@@ -103,7 +103,7 @@ public class CarriageIntake extends Subsystem {
 				}
 			}
 		} else {
-			setCarriageSpeed(Robot.oi.manip.getLeftJoystick_Y());
+			driveCarriage(Robot.oi.manip.getLeftJoystick_Y());
 		}
 	}
 
