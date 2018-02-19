@@ -57,6 +57,8 @@ public class Elevator extends Subsystem {
 		right.setInverted(Constants.ELEVATOR_INVERT_R);
 
 		right.follow(left);
+		
+		left.setSensorPhase(true);
 	}
 
 	public void moveElevatorToIntake() {
@@ -105,6 +107,7 @@ public class Elevator extends Subsystem {
 
 	public void hardZeroEncoder() {
 		left.setSelectedSensorPosition(0, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
+		left.set(ControlMode.MotionMagic, 0);
 	}
 
 	public void fineMovement(double speed) {
@@ -123,8 +126,8 @@ public class Elevator extends Subsystem {
 		return left.getSelectedSensorPosition(Constants.ELEVATOR_PID_IDX);
 	}
 
-	public boolean isFinished() {
-		if (Math.abs(Robot.elevator.getElevatorError()) < Constants.ELEVATOR_ERROR_MARGIN) {
+	public boolean isFinished(double setpoint) {
+		if (Math.abs(getElevatorPosition() - setpoint) < Constants.ELEVATOR_ERROR_MARGIN) {
 			return true;
 		} else {
 		return false;
@@ -140,7 +143,7 @@ public class Elevator extends Subsystem {
 			Robot.elevator.fineMovement(Robot.m_oi.manip.getLeftJoystick_Y());
 			updateCurrentPosition();
 		} else {
-			setElevator(currentHeight);
+			left.neutralOutput();
 		}
 	}
 }

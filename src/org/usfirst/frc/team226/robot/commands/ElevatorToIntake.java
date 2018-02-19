@@ -26,12 +26,12 @@ public class ElevatorToIntake extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {	
-		return Robot.elevator.isFinished() || isTimedOut();
+		return Robot.elevator.isFinished(Constants.ELEVATOR_INTAKE_HEIGHT) || isTimedOut();
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.elevator.zeroEncoder();
+		
 	}
 
 	// Called when another command which requires one or more of the same

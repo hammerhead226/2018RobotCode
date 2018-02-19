@@ -28,7 +28,7 @@ public class ElevatorToPower extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return Robot.elevator.isFinished() || isTimedOut();
+		return Robot.elevator.isFinished(Constants.ELEVATOR_POW_HEIGHT) || isTimedOut();
 	}
 
 	// Called once after isFinished returns true
