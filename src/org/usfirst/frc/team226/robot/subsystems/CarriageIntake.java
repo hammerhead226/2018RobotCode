@@ -73,11 +73,11 @@ public class CarriageIntake extends Subsystem {
 	}
 
 	public void intakeNeutral() {
-		leftIntake.set(ControlMode.PercentOutput, 0);
+		leftIntake.neutralOutput();
 	}
 
 	public void carriageNeutral() {
-		leftCarriage.set(ControlMode.PercentOutput, 0);
+		leftCarriage.neutralOutput();
 	}
 
 	public void runCarriageAndIntake(double height) {
