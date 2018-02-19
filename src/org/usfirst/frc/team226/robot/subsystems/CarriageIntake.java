@@ -29,6 +29,7 @@ public class CarriageIntake extends Subsystem {
 		rightCarriage.setInverted(Constants.CARRIAGE_INVERT_RIGHT);
 
 		rightCarriage.follow(leftCarriage);
+		rightIntake.follow(leftIntake);
 		
 		leftIntake.setInverted(Constants.INTAKE_INVERT_LEFT);
 		rightIntake.setInverted(Constants.INTAKE_INVERT_RIGHT);
@@ -65,27 +66,22 @@ public class CarriageIntake extends Subsystem {
 
 	public void intake() {
 		leftIntake.set(ControlMode.PercentOutput, Constants.INTAKE_INTAKE_SPEED);
-		rightIntake.set(ControlMode.PercentOutput, Constants.INTAKE_INTAKE_SPEED);
 	}
 
 	public void intake(double speed) {
 		leftIntake.set(ControlMode.PercentOutput, speed);
-		rightIntake.set(ControlMode.PercentOutput, speed);
 	}
 
 	public void intake(double left, double right) {
-		this.leftIntake.set(ControlMode.PercentOutput, left);
-		this.rightIntake.set(ControlMode.PercentOutput, right);
+		leftIntake.set(ControlMode.PercentOutput, left);
 	}
 
 	public void outtake() {
 		leftIntake.set(ControlMode.PercentOutput, Constants.INTAKE_OUTTAKE_SPEED);
-		rightIntake.set(ControlMode.PercentOutput, Constants.INTAKE_OUTTAKE_SPEED);
 	}
 
 	public void intakeNeutral() {
 		leftIntake.set(ControlMode.PercentOutput, 0);
-		rightIntake.set(ControlMode.PercentOutput, 0);
 	}
 
 	public void carriageNeutral() {
