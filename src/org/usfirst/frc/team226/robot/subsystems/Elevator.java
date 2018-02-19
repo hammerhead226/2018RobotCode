@@ -3,7 +3,7 @@ package org.usfirst.frc.team226.robot.subsystems;
 import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.Robot;
 import org.usfirst.frc.team226.robot.RobotMap;
-import org.usfirst.frc.team226.robot.commands.ElevatorPID;
+import org.usfirst.frc.team226.robot.commands.ElevatorManualMovement;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -23,6 +23,8 @@ public class Elevator extends Subsystem {
 
 	DigitalInput hallEffect = new DigitalInput(RobotMap.ELEVATOR_HALL_EFFECT_SENSOR);
 	
+	public double currentHeight;
+
 	enum ElevatorHeight {
 		INTAKE, SWITCH, POWER, SCALE
 	}
@@ -31,7 +33,7 @@ public class Elevator extends Subsystem {
 	// here. Call these from Commands.
 
 	public void initDefaultCommand() {
-		setDefaultCommand(new ElevatorPID());
+		setDefaultCommand(new ElevatorManualMovement());
 	}
 
 	public Elevator() {
@@ -106,7 +108,7 @@ public class Elevator extends Subsystem {
 	}
 
 	public void fineMovement(double speed) {
-		left.set(ControlMode.MotionMagic, getElevatorSetpoint() + speed * Constants.ELEVATOR_FINE_TUNE);
+		left.set(ControlMode.PercentOutput, Constants.ELEVATOR_FINE_TUNE * speed);
 	}
 
 	public int getElevatorError() {
@@ -117,30 +119,28 @@ public class Elevator extends Subsystem {
 		return left.getActiveTrajectoryPosition();
 	}
 
-	public boolean isFinished() {
+	public double getElevatorPosition() {
+		return left.getSelectedSensorPosition(Constants.ELEVATOR_PID_IDX);
+	}
 
+	public boolean isFinished() {
 		if (Math.abs(Robot.elevator.getElevatorError()) < Constants.ELEVATOR_ERROR_MARGIN) {
 			return true;
 		} else {
 			return false;
 		}
 	}
+	
+	public void updateCurrentPosition() {
+		currentHeight = getElevatorPosition();
+	}
 
 	public void teleopElevator() {
 		if (Math.abs(Robot.m_oi.manip.getLeftJoystick_Y()) > 0) {
 			Robot.elevator.fineMovement(Robot.m_oi.manip.getLeftJoystick_Y());
+			updateCurrentPosition();
 		} else {
-			if (Robot.m_oi.manip.getAButtonPressed()) {
-				Robot.elevator.setElevator(ElevatorHeight.INTAKE);
-			} else if (Robot.m_oi.manip.getBButtonPressed()) {
-				Robot.elevator.setElevator(ElevatorHeight.SWITCH);
-			} else if (Robot.m_oi.manip.getXButtonPressed()) {
-				Robot.elevator.setElevator(ElevatorHeight.POWER);
-			} else if (Robot.m_oi.manip.getYButtonPressed()) {
-				Robot.elevator.setElevator(ElevatorHeight.SCALE);
-			} else {
-				Robot.elevator.setElevator(Robot.elevator.getElevatorSetpoint());
-			}
+			setElevator(currentHeight);
 		}
 	}
 }

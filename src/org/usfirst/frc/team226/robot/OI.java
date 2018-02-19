@@ -7,6 +7,10 @@
 
 package org.usfirst.frc.team226.robot;
 
+import org.usfirst.frc.team226.robot.commands.ElevatorToIntake;
+import org.usfirst.frc.team226.robot.commands.ElevatorToPower;
+import org.usfirst.frc.team226.robot.commands.ElevatorToScale;
+import org.usfirst.frc.team226.robot.commands.ElevatorToSwitch;
 import org.usfirst.frc.team226.robot.commands.HardZeroElevator;
 
 import util.Controller;
@@ -21,6 +25,10 @@ public class OI {
 	public Controller manip = new Controller(RobotMap.MANIP_CONTROLLER, Constants.MANIP_DEADBAND);
 	
 	public OI(){
+		manip.getAButton().whenPressed(new ElevatorToIntake());
+		manip.getBButton().whenPressed(new ElevatorToPower());
+		manip.getXButton().whenPressed(new ElevatorToSwitch());
+		manip.getYButton().whenPressed(new ElevatorToScale());
 		manip.getRBButton().whenPressed(new HardZeroElevator());
 	}
 	

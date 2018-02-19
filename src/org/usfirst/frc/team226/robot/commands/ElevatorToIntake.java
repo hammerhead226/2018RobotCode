@@ -1,6 +1,5 @@
 package org.usfirst.frc.team226.robot.commands;
 
-import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -9,8 +8,6 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class ElevatorToIntake extends Command {
-
-	long timeout = System.currentTimeMillis();
 
 	public ElevatorToIntake() {
 		requires(Robot.elevator);
@@ -39,5 +36,6 @@ public class ElevatorToIntake extends Command {
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
+		
 	}
 }
