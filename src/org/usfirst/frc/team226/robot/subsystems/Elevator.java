@@ -127,7 +127,7 @@ public class Elevator extends Subsystem {
 		if (Math.abs(Robot.elevator.getElevatorError()) < Constants.ELEVATOR_ERROR_MARGIN) {
 			return true;
 		} else {
-			return false;
+		return false;
 		}
 	}
 	
