@@ -16,8 +16,8 @@ import util.Photoeye;
  */
 public class CarriageIntake extends Subsystem {
 
-	private TalonSRX rightCarriage = new TalonSRX(RobotMap.CARRIAGE_RIGHT);
 	private TalonSRX leftCarriage = new TalonSRX(RobotMap.CARRIAGE_LEFT);
+	private TalonSRX rightCarriage = new TalonSRX(RobotMap.CARRIAGE_RIGHT);
 
 	private TalonSRX leftIntake = new TalonSRX(RobotMap.INTAKE_LEFT);
 	private TalonSRX rightIntake = new TalonSRX(RobotMap.INTAKE_RIGHT);
@@ -29,7 +29,7 @@ public class CarriageIntake extends Subsystem {
 		rightCarriage.setInverted(Constants.CARRIAGE_INVERT_RIGHT);
 
 		rightCarriage.follow(leftCarriage);
-
+		
 		leftIntake.setInverted(Constants.INTAKE_INVERT_LEFT);
 		rightIntake.setInverted(Constants.INTAKE_INVERT_RIGHT);
 
@@ -100,7 +100,7 @@ public class CarriageIntake extends Subsystem {
 			} else {
 				if (photoEyeOpen()) {
 					pullInCarriage();
-					intake(Robot.oi.driver.getLeftTrigger(), Robot.oi.driver.getRightTrigger());
+					intake(Robot.oi.driver.getTriggers());
 				} else {
 					intakeNeutral();
 					carriageNeutral();
