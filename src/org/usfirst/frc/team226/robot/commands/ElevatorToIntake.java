@@ -1,5 +1,6 @@
 package org.usfirst.frc.team226.robot.commands;
 
+import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -20,12 +21,12 @@ public class ElevatorToIntake extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		Robot.elevator.moveElevatorToIntake();
+		setTimeout(Constants.ELEVATOR_ON_TARGET_S);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
-	protected boolean isFinished() {
-			
-		return Robot.elevator.isFinished();
+	protected boolean isFinished() {	
+		return Robot.elevator.isFinished() || isTimedOut();
 	}
 
 	// Called once after isFinished returns true

@@ -38,7 +38,7 @@ public class Constants {
 	public static final int ELEVATOR_PID_IDX = 0;
 	public static final int ELEVATOR_TIMEOUT_MS = 0;
 	public static final double ELEVATOR_FINE_TUNE = 0.5;
-	public static final long ELEVATOR_ON_TARGET_MS = 0;
+	public static final long ELEVATOR_ON_TARGET_S = 0;
 	public static final int ELEVATOR_ERROR_MARGIN = 0;
 	public static final int ELEVATOR_CURRENT_LIMIT = 0;
 	public static final boolean ELEVATOR_CURRENT_LIMIT_ENABLED = true;

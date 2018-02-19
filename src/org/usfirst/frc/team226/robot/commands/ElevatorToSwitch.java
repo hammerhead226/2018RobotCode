@@ -14,6 +14,7 @@ public class ElevatorToSwitch extends Command {
 
 	public ElevatorToSwitch() {
 		requires(Robot.elevator);
+		setTimeout(Constants.ELEVATOR_ON_TARGET_S);
 	}
 
 	// Called just before this Command runs the first time
@@ -27,11 +28,12 @@ public class ElevatorToSwitch extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return Robot.elevator.isFinished();
+		return Robot.elevator.isFinished() || isTimedOut();
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
+		
 	}
 
 	// Called when another command which requires one or more of the same
