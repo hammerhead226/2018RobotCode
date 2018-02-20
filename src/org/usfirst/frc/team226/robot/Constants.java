@@ -5,7 +5,7 @@ public class Constants {
 	public static final double MANIP_DEADBAND = 0.2;
 	public static final double DRIVER_DEADBAND = 0.2;
 	
-	/*public static final int STARTUP_WAIT = 10;
+	public static final int STARTUP_WAIT = 10;
 	
 	public static final double DT_VOLTAGE_LIMIT = 11;
 	public static final int DT_CURRENT_LIMIT = 30;
@@ -24,7 +24,7 @@ public class Constants {
 	public static final double CARRIAGE_INTAKE_SPEED = 0;
 	public static final boolean CARRIAGE_INVERT_RIGHT = true;
 	public static final boolean CARRIAGE_INVERT_LEFT = false;
-	public static final double CARRIAGE_PHOTOEYE_THRESHHOLD = 0;*/
+	public static final double CARRIAGE_PHOTOEYE_THRESHHOLD = 0;
 
 	public static final boolean ELEVATOR_VOLTAGE_LIMIT_ENABLED = false;
 	
