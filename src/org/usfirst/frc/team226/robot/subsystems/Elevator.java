@@ -136,14 +136,19 @@ public class Elevator extends Subsystem {
 		}
 	}
 	
-	public void limitingHeight() {
-		
+	public double limitingHeight(double joystick) {
+		if(getElevatorPosition() > Constants.ELEVATOR_TOP_THRESHOLD && joystick > 0) {
+			return 0.0;
+		} else if(getElevatorPosition() < Constants.ELEVATOR_BOTTOM_THRESHOLD && joystick < 0) {
+			return 0.0;
+		} else {
+			return joystick;
+		}
 	}
 
 	public void teleopElevator() {
 		if (Math.abs(Robot.oi.manip.getLeftJoystick_Y()) > 0) {
-			Robot.elevator.fineMovement(Robot.oi.manip.getLeftJoystick_Y());
-			updateCurrentPosition();
+			Robot.elevator.fineMovement(limitingHeight(Robot.oi.manip.getLeftJoystick_Y()));
 		} else {
 			left.neutralOutput();
 			setElevator(getElevatorPosition());
