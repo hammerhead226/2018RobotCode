@@ -100,10 +100,10 @@ public class CarriageIntake extends Subsystem {
 		return !photoEye.getCovered();
 	}
 
-	public void runCarriageAndIntake(double height) {
+	public void runCarriageAndIntake() {
 		
 		//Checks if elevator height is suitable for carriage + intake or just carriage
-		if (height < Constants.ELEVATOR_INTAKE_TOLERANCE) {
+		if (Robot.elevatorHeight < Constants.ELEVATOR_INTAKE_TOLERANCE) {
 			//In pull in  mode
 			if(Robot.oi.driver.getTriggers() <  0) {
 				//Photoeye
