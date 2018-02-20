@@ -144,6 +144,7 @@ public class Elevator extends Subsystem {
 			updateCurrentPosition();
 		} else {
 			left.neutralOutput();
+			setElevator(currentHeight);
 		}
 	}
 }
