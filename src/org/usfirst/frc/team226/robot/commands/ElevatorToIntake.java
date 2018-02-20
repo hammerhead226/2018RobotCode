@@ -16,12 +16,12 @@ public class ElevatorToIntake extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		setTimeout(Constants.ELEVATOR_ON_TARGET_S);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		Robot.elevator.moveElevatorToIntake();
-		setTimeout(Constants.ELEVATOR_ON_TARGET_S);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

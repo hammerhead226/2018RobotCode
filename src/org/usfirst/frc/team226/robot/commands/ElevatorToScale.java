@@ -12,11 +12,11 @@ public class ElevatorToScale extends Command {
 
 	public ElevatorToScale() {
 		requires(Robot.elevator);
-		setTimeout(Constants.ELEVATOR_ON_TARGET_S);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		setTimeout(Constants.ELEVATOR_ON_TARGET_S);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
