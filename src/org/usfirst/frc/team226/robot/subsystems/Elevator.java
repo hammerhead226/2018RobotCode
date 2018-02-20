@@ -128,7 +128,7 @@ public class Elevator extends Subsystem {
 		return left.getSelectedSensorPosition(Constants.ELEVATOR_PID_IDX);
 	}
 
-	public boolean isFinished(double setpoint) {
+	public boolean onTarget(double setpoint) {
 		if (Math.abs(getElevatorPosition() - setpoint) < Constants.ELEVATOR_ERROR_MARGIN) {
 			return true;
 		} else {

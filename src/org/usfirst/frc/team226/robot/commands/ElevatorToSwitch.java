@@ -26,7 +26,7 @@ public class ElevatorToSwitch extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return Robot.elevator.isFinished(Constants.ELEVATOR_SWITCH_HEIGHT) || isTimedOut();
+		return Robot.elevator.onTarget(Constants.ELEVATOR_SWITCH_HEIGHT) || isTimedOut();
 	}
 
 	// Called once after isFinished returns true
