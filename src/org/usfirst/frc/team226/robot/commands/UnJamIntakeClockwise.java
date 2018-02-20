@@ -7,11 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RunIntake extends Command {
+public class UnJamIntakeClockwise extends Command {
 
-    public RunIntake() {
-        // Use requires() here to declare subsystem dependencies
-        requires(Robot.intake);
+    public UnJamIntakeClockwise() {
+        requires(Robot.carriageIntake);
     }
 
     // Called just before this Command runs the first time
@@ -20,7 +19,8 @@ public class RunIntake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.intake(Robot.oi.driver.getLeftTrigger(), Robot.oi.driver.getRightTrigger());
+    	Robot.carriageIntake.unJamClockwise();
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -30,6 +30,7 @@ public class RunIntake extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.carriageIntake.unInvert();
     }
 
     // Called when another command which requires one or more of the same
