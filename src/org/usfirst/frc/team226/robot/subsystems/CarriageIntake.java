@@ -53,10 +53,6 @@ public class CarriageIntake extends Subsystem {
 		leftCarriage.set(ControlMode.PercentOutput, speed);
 	}
 
-	/*
-	 * public boolean photoEyeOpen() { return !photoEye.getCovered(); }
-	 */
-
 	public void initDefaultCommand() {
 		setDefaultCommand(new CarriageIntakeControl());
 	}
