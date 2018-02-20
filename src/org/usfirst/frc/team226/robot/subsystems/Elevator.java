@@ -137,9 +137,9 @@ public class Elevator extends Subsystem {
 	}
 	
 	public double limitingHeight(double joystick) {
-		if(getElevatorPosition() > Constants.ELEVATOR_TOP_THRESHOLD && joystick > 0) {
+		if(getElevatorPosition() >= Constants.ELEVATOR_TOP_THRESHOLD && joystick > 0) {
 			return 0.0;
-		} else if(getElevatorPosition() < Constants.ELEVATOR_BOTTOM_THRESHOLD && joystick < 0) {
+		} else if(getElevatorPosition() <= Constants.ELEVATOR_BOTTOM_THRESHOLD && joystick < 0) {
 			return 0.0;
 		} else {
 			return joystick;
