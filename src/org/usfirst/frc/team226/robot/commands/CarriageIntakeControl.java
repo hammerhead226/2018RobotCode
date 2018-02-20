@@ -14,10 +14,13 @@ public class CarriageIntakeControl extends Command {
     public CarriageIntakeControl(double height) {
         requires(Robot.carriageIntake);
         h = height;
+        
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.carriageIntake.intakeNeutral();
+    	Robot.carriageIntake.carriageNeutral();
     }
 
     // Called repeatedly when this Command is scheduled to run

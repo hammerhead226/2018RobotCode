@@ -23,7 +23,7 @@ public class CarriageIntake extends Subsystem {
 	private TalonSRX leftIntake = new TalonSRX(RobotMap.INTAKE_LEFT);
 	private TalonSRX rightIntake = new TalonSRX(RobotMap.INTAKE_RIGHT);
 
-	private Photoeye photoEye = new Photoeye(RobotMap.ELEVATOR_PHOTO_EYE, Constants.ELEVATOR_PHOTO_EYE_THRESHOLD);
+	private Photoeye photoEye = new Photoeye(RobotMap.ELEVATOR_PHOTO_EYE,Constants.ELEVATOR_PHOTO_EYE_THRESHOLD);
 
 	public CarriageIntake() {
 		leftCarriage.setInverted(Constants.CARRIAGE_INVERT_LEFT);
@@ -31,7 +31,7 @@ public class CarriageIntake extends Subsystem {
 
 		rightCarriage.follow(leftCarriage);
 		rightIntake.follow(leftIntake);
-		
+
 		leftIntake.setInverted(Constants.INTAKE_INVERT_LEFT);
 		rightIntake.setInverted(Constants.INTAKE_INVERT_RIGHT);
 
@@ -53,9 +53,9 @@ public class CarriageIntake extends Subsystem {
 		leftCarriage.set(ControlMode.PercentOutput, speed);
 	}
 
-	public boolean photoEyeOpen() {
-		return !photoEye.getCovered();
-	}
+	/*
+	 * public boolean photoEyeOpen() { return !photoEye.getCovered(); }
+	 */
 
 	public void initDefaultCommand() {
 		setDefaultCommand(new GrpCarriageIntakeDualControl());
@@ -80,38 +80,57 @@ public class CarriageIntake extends Subsystem {
 	public void carriageNeutral() {
 		leftCarriage.neutralOutput();
 	}
-	
+
 	public void unJamClockwise() {
 		rightIntake.setInverted(!Constants.INTAKE_INVERT_RIGHT);
 		leftIntake.set(ControlMode.PercentOutput, Constants.INTAKE_UN_JAM_SPEED);
 	}
-	
+
 	public void unJamCounterClockwise() {
 		rightIntake.setInverted(!Constants.INTAKE_INVERT_RIGHT);
 		leftIntake.set(ControlMode.PercentOutput, -Constants.INTAKE_UN_JAM_SPEED);
 	}
-	
+
 	public void unInvert() {
 		rightIntake.setInverted(Constants.INTAKE_INVERT_RIGHT);
 		leftIntake.setInverted(Constants.INTAKE_INVERT_LEFT);
 	}
+	
+	public boolean isPhotoeyeOpen() {
+		return !photoEye.getCovered();
+	}
 
 	public void runCarriageAndIntake(double height) {
+		
+		//Checks if elevator height is suitable for carriage + intake or just carriage
 		if (height < Constants.ELEVATOR_INTAKE_TOLERANCE) {
-			if (Robot.oi.driver.getTriggers() < 0) {
-				pushOutCarriage();
-				outtake();
-			} else {
-				if (photoEyeOpen()) {
+			//In pull in  mode
+			if(Robot.oi.driver.getTriggers() <  0) {
+				//Photoeye
+				if(isPhotoeyeOpen()) {
+					System.out.println("intake");
 					pullInCarriage();
-					driveIntake(Robot.oi.driver.getTriggers());
+					driveIntake(Robot.oi.driver.getRightTrigger());
 				} else {
-					intakeNeutral();
+					System.out.println("neutral");
 					carriageNeutral();
+					intakeNeutral();
 				}
+			} else if(Robot.oi.driver.getTriggers() == 0){
+				System.out.println("neutral");
+				carriageNeutral();
+				intakeNeutral();
+			} else {
+				System.out.println("outtake");
+				outtake();
+				pushOutCarriage();	
 			}
+			
 		} else {
-			driveCarriage(Robot.oi.manip.getLeftJoystick_Y());
+			System.out.println("manip carriage");
+			driveCarriage(Robot.oi.driver.getLeftJoystick_Y());
+			System.out.println(Robot.oi.driver.getLeftJoystick_Y())
+			;
 		}
 	}
 

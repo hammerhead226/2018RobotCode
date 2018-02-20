@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class GrpCarriageIntakeDualControl extends CommandGroup {
 
     public GrpCarriageIntakeDualControl() {
-    	requires(Robot.elevator);
     	requires(Robot.carriageIntake);
+    	requires(Robot.elevator);
     	
-    	addParallel(new CarriageIntakeControl(Robot.elevator.getElevatorPosition()));
+    	addSequential(new CarriageIntakeControl(Robot.elevator.getElevatorPosition()));
     }
 }
