@@ -13,7 +13,7 @@ public class Constants {
 	public static final int DT_RIGHT_PIDSLOT_IDX = 0;
 	
 	public static final boolean DT_VOLTAGE_LIMIT_ENABLED = true;
-	public static final boolean DT_CURRENT_LIMIT_ENABLED = true;
+	public static final boolean DT_CURRENT_LIMIT_ENABLED = false;
 
 	public static final int INTAKE_CURRENT_LIMIT = 30;
 	public static final boolean INTAKE_CURRENT_LIMIT_ENABLED = true;
