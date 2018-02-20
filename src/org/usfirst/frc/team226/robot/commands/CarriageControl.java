@@ -11,6 +11,7 @@ public class CarriageControl extends Command {
 
 	public CarriageControl() {
 		requires(Robot.carriage);
+		
 	}
 
 	// Called just before this Command runs the first time
