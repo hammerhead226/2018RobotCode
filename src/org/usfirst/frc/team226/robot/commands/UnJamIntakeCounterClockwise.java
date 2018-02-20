@@ -1,5 +1,6 @@
 package org.usfirst.frc.team226.robot.commands;
 
+import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -15,6 +16,7 @@ public class UnJamIntakeCounterClockwise extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	setTimeout(Constants.INTAKE_UN_JAM_TIMEOUT);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -25,7 +27,7 @@ public class UnJamIntakeCounterClockwise extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true

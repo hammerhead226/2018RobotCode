@@ -33,8 +33,8 @@ public class OI {
 		manip.getAButton().whenPressed(new ElevatorToIntake());
 		manip.getRBButton().whenPressed(new HardZeroElevator());
 		
-		driver.getBButton().whileHeld(new UnJamIntakeClockwise());
-		driver.getXButton().whileHeld(new UnJamIntakeCounterClockwise());
+		driver.getBButton().whenPressed(new UnJamIntakeClockwise());
+		driver.getXButton().whenPressed(new UnJamIntakeCounterClockwise());
 		
 	}
 	

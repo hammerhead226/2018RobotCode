@@ -23,6 +23,7 @@ public class Constants {
 	public static final double INTAKE_INTAKE_SPEED = 0.5;
 	public static final int INTAKE_TIMEOUT = 0;
 	public static final double INTAKE_UN_JAM_SPEED = 0.5;
+	public static final double INTAKE_UN_JAM_TIMEOUT = 0.5;
 
 	public static final double CARRIAGE_OUTTAKE_SPEED = 0.5;
 	public static final double CARRIAGE_INTAKE_SPEED = -0.5;
@@ -53,4 +54,5 @@ public class Constants {
 	public static final boolean ELEVATOR_ENABLE_TOP_THRESHOLD = true;
 	public static final int ELEVATOR_TOP_THRESHOLD = 50000;
 	public static final int ELEVATOR_BOTTOM_THRESHOLD = 0;
+	
 }
