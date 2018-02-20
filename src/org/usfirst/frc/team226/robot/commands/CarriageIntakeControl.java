@@ -9,11 +9,11 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class CarriageIntakeControl extends Command {
 	
-	double h;
+	double height;
 	
     public CarriageIntakeControl(double height) {
         requires(Robot.carriageIntake);
-        h = height;
+        this.height = height;
         
     }
 
@@ -25,7 +25,7 @@ public class CarriageIntakeControl extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.carriageIntake.runCarriageAndIntake(h);
+    	Robot.carriageIntake.runCarriageAndIntake(height);
     }
 
     // Make this return true when this Command no longer needs to run execute()
