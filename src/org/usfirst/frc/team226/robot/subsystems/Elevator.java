@@ -28,6 +28,8 @@ public class Elevator extends Subsystem {
 	enum ElevatorHeight {
 		INTAKE, SWITCH, POWER, SCALE
 	}
+	
+	
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -37,7 +39,12 @@ public class Elevator extends Subsystem {
 	}
 
 	public Elevator() {
-
+		
+		left.configForwardSoftLimitEnable(Constants.ELEVATOR_ENABLE_TOP_THRESHOLD, Constants.ELEVATOR_TIMEOUT_MS);
+		left.configReverseSoftLimitEnable(Constants.ELEVATOR_ENABLE_BOTTOM_THRESHOLD, Constants.ELEVATOR_TIMEOUT_MS);
+		left.configForwardSoftLimitThreshold(Constants.ELEVATOR_TOP_THRESHOLD, Constants.ELEVATOR_TIMEOUT_MS);
+		left.configReverseSoftLimitThreshold(Constants.ELEVATOR_BOTTOM_THRESHOLD, Constants.ELEVATOR_TIMEOUT_MS);
+		
 		left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ELEVATOR_PID_IDX,
 				Constants.ELEVATOR_TIMEOUT_MS);
 
@@ -107,7 +114,7 @@ public class Elevator extends Subsystem {
 
 	public void hardZeroEncoder() {
 		left.setSelectedSensorPosition(0, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
-		left.set(ControlMode.MotionMagic, 0);
+		setElevator(0);
 	}
 
 	public void fineMovement(double speed) {
@@ -117,12 +124,8 @@ public class Elevator extends Subsystem {
 	public int getElevatorError() {
 		return left.getClosedLoopError(Constants.ELEVATOR_PID_IDX);
 	}
-  
-	public double getElevatorSetpoint() {
-		return left.getActiveTrajectoryPosition();
-	}
 
-	public double getElevatorPosition() {
+	public int getElevatorPosition() {
 		return left.getSelectedSensorPosition(Constants.ELEVATOR_PID_IDX);
 	}
 
@@ -136,6 +139,10 @@ public class Elevator extends Subsystem {
 	
 	public void updateCurrentPosition() {
 		currentHeight = getElevatorPosition();
+	}
+	
+	public void limitingHeight() {
+		
 	}
 
 	public void teleopElevator() {
