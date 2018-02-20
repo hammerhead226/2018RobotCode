@@ -12,8 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ExecuteSavedActionList extends Command {
 
 	private String name;
-	private ActionList al;
-	private boolean noName = false;
+	private ActionList actionListToExecute;
 
 	public ExecuteSavedActionList(String name) {
 		// Use requires() here to declare subsystem dependencies
@@ -22,16 +21,15 @@ public class ExecuteSavedActionList extends Command {
 	}
 
 	public ExecuteSavedActionList() {
-		noName = true;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		ActionListParser alParser;
-		name = noName ? ActionListParser.getNewestFilename() : name;
+		name = (name == null) ? ActionListParser.getNewestFilename() : name;
 		alParser = new ActionListParser(name);
-		al = alParser.toObject();
-		al.execute();
+		actionListToExecute = alParser.toObject();
+		actionListToExecute.execute();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -40,7 +38,7 @@ public class ExecuteSavedActionList extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return al.isFinished();
+		return actionListToExecute.isFinished();
 	}
 
 	// Called once after isFinished returns true

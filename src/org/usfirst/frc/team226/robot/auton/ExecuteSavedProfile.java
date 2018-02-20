@@ -15,8 +15,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ExecuteSavedProfile extends Command {
 
 	private String name = "";
-	private Profile p;
-	private boolean noName = false;
+	private Profile profileToExecute;
 	
 	private TalonSRX[] talons = Robot.driveTrain.getMotionProfileTalons();
 
@@ -28,18 +27,17 @@ public class ExecuteSavedProfile extends Command {
 	}
 
 	public ExecuteSavedProfile() {
-		noName = true;
 		requires(Robot.driveTrain);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		ProfileParser pParser;
-		name = noName ? ProfileParser.getNewestFilename() : name;
+		name = (name == null) ? ProfileParser.getNewestFilename() : name;
 		pParser = new ProfileParser(name);
 		System.out.println("Executing profile... " + name);
-		p = pParser.toObject(talons[0], talons[1]);
-		p.execute(Constants.DT_LEFT_PIDSLOT_IDX, Constants.DT_RIGHT_PIDSLOT_IDX);
+		profileToExecute = pParser.toObject(talons[0], talons[1]);
+		profileToExecute.execute(Constants.DT_LEFT_PIDSLOT_IDX, Constants.DT_RIGHT_PIDSLOT_IDX);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -48,7 +46,7 @@ public class ExecuteSavedProfile extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return p.isFinished();
+		return profileToExecute.isFinished();
 	}
 
 	// Called once after isFinished returns true
@@ -58,6 +56,6 @@ public class ExecuteSavedProfile extends Command {
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
-		p.onInterrupt();
+		profileToExecute.onInterrupt();
 	}
 }
