@@ -31,7 +31,6 @@ public class ElevatorToIntake extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.elevator.updateCurrentPosition();
 		Robot.elevator.zeroEncoder();
 	}
 

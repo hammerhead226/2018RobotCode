@@ -23,8 +23,6 @@ public class Elevator extends Subsystem {
 
 	DigitalInput hallEffect = new DigitalInput(RobotMap.ELEVATOR_HALL_EFFECT_SENSOR);
 	
-	public double currentHeight;
-
 	enum ElevatorHeight {
 		INTAKE, SWITCH, POWER, SCALE
 	}
@@ -138,10 +136,6 @@ public class Elevator extends Subsystem {
 		}
 	}
 	
-	public void updateCurrentPosition() {
-		currentHeight = getElevatorPosition();
-	}
-	
 	public void limitingHeight() {
 		
 	}
@@ -152,7 +146,7 @@ public class Elevator extends Subsystem {
 			updateCurrentPosition();
 		} else {
 			left.neutralOutput();
-			setElevator(currentHeight);
+			setElevator(getElevatorPosition());
 		}
 	}
 }
