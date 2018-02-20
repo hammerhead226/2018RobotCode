@@ -10,14 +10,13 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ElevatorToScale extends Command {
 
-	long timeout = System.currentTimeMillis();
-
 	public ElevatorToScale() {
 		requires(Robot.elevator);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		setTimeout(Constants.ELEVATOR_ON_TARGET_S);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -27,16 +26,7 @@ public class ElevatorToScale extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (Robot.elevator.getElevatorError() < Constants.ELEVATOR_ERROR_MARGIN) {
-			return true;
-		} else {
-			if ((System.currentTimeMillis() - timeout) < Constants.ELEVATOR_ON_TARGET_MS) {
-				return false;
-			} else {
-				return true;
-			}
-		}
-
+		return Robot.elevator.onTarget(Constants.ELEVATOR_SCALE_HEIGHT) || isTimedOut();
 	}
 
 	// Called once after isFinished returns true

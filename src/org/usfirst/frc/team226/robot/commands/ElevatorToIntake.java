@@ -10,14 +10,13 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ElevatorToIntake extends Command {
 
-	long timeout = System.currentTimeMillis();
-
 	public ElevatorToIntake() {
 		requires(Robot.elevator);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		setTimeout(Constants.ELEVATOR_ON_TARGET_S);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -26,18 +25,8 @@ public class ElevatorToIntake extends Command {
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
-	protected boolean isFinished() {
-
-		if (Math.abs(Robot.elevator.getElevatorError()) < Constants.ELEVATOR_ERROR_MARGIN) {
-			return true;
-		} else {
-			if ((System.currentTimeMillis() - timeout) < Constants.ELEVATOR_ON_TARGET_MS) {
-				return false;
-			} else {
-				return true;
-			}
-		}
-
+	protected boolean isFinished() {	
+		return Robot.elevator.onTarget(Constants.ELEVATOR_INTAKE_HEIGHT) || isTimedOut();
 	}
 
 	// Called once after isFinished returns true
@@ -48,5 +37,6 @@ public class ElevatorToIntake extends Command {
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
+		
 	}
 }

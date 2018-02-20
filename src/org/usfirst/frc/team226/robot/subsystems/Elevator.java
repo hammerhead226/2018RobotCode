@@ -22,10 +22,12 @@ public class Elevator extends Subsystem {
 	TalonSRX right = new TalonSRX(RobotMap.ELEVATOR_FRONT_RIGHT);
 
 	DigitalInput hallEffect = new DigitalInput(RobotMap.ELEVATOR_HALL_EFFECT_SENSOR);
-
+	
 	enum ElevatorHeight {
 		INTAKE, SWITCH, POWER, SCALE
 	}
+	
+	
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -35,17 +37,23 @@ public class Elevator extends Subsystem {
 	}
 
 	public Elevator() {
+		
+		left.configForwardSoftLimitEnable(Constants.ELEVATOR_ENABLE_TOP_THRESHOLD, Constants.ELEVATOR_TIMEOUT_MS);
+		left.configReverseSoftLimitEnable(Constants.ELEVATOR_ENABLE_BOTTOM_THRESHOLD, Constants.ELEVATOR_TIMEOUT_MS);
+		left.configForwardSoftLimitThreshold(Constants.ELEVATOR_TOP_THRESHOLD, Constants.ELEVATOR_TIMEOUT_MS);
+		left.configReverseSoftLimitThreshold(Constants.ELEVATOR_BOTTOM_THRESHOLD, Constants.ELEVATOR_TIMEOUT_MS);
+		
+		left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ELEVATOR_PID_IDX,
+				Constants.ELEVATOR_TIMEOUT_MS);
 
-		left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
-		
-		left.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, 0);
-		right.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, 0);
-		
-		left.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);	
-		right.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);			
-		
-		left.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
-		right.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
+		left.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, Constants.ELEVATOR_TIMEOUT_MS);
+		right.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, Constants.ELEVATOR_TIMEOUT_MS);
+
+		left.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
+		right.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
+
+		left.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT_MS);
+		right.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT_MS);
 
 		left.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
 		right.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
@@ -54,6 +62,8 @@ public class Elevator extends Subsystem {
 		right.setInverted(Constants.ELEVATOR_INVERT_R);
 
 		right.follow(left);
+		
+		left.setSensorPhase(true);
 	}
 
 	public void moveElevatorToIntake() {
@@ -90,21 +100,58 @@ public class Elevator extends Subsystem {
 
 	}
 
+	public void setElevator(double height) {
+		left.set(ControlMode.MotionMagic, height);
+	}
+
 	public void zeroEncoder() {
 		if (hallEffect.get()) {
 			left.setSelectedSensorPosition(0, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
+			setElevator(0);
 		}
 	}
 
 	public void hardZeroEncoder() {
 		left.setSelectedSensorPosition(0, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
+		setElevator(0);
 	}
 
-	public void fineMovement() {
-		left.set(ControlMode.PercentOutput, Constants.ELEVATOR_FINE_TUNE * Robot.oi.manip.getLeftJoystick_Y());
+	public void fineMovement(double speed) {
+		left.set(ControlMode.PercentOutput, Constants.ELEVATOR_FINE_TUNE * speed);
 	}
-	
+
 	public int getElevatorError() {
 		return left.getClosedLoopError(Constants.ELEVATOR_PID_IDX);
+	}
+
+	public int getElevatorPosition() {
+		return left.getSelectedSensorPosition(Constants.ELEVATOR_PID_IDX);
+	}
+
+	public boolean onTarget(double setpoint) {
+		if (Math.abs(getElevatorPosition() - setpoint) < Constants.ELEVATOR_ERROR_MARGIN) {
+			return true;
+		} else {
+		return false;
+		}
+	}
+	
+	public double limitingHeight(double joystick) {
+		if(getElevatorPosition() >= Constants.ELEVATOR_TOP_THRESHOLD && joystick > 0) {
+			return 0.0;
+		} else if(getElevatorPosition() <= Constants.ELEVATOR_BOTTOM_THRESHOLD && joystick < 0) {
+			return 0.0;
+		} else {
+			return joystick;
+		}
+	}
+
+	public void teleopElevator() {
+		if (Math.abs(Robot.oi.manip.getLeftJoystick_Y()) > 0) {
+			Robot.elevator.fineMovement(limitingHeight(Robot.oi.manip.getLeftJoystick_Y()));
+		} else {
+			left.neutralOutput();
+			setElevator(getElevatorPosition());
+		}
 	}
 }

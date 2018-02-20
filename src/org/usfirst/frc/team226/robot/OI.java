@@ -12,7 +12,8 @@ import org.usfirst.frc.team226.robot.commands.ElevatorToPower;
 import org.usfirst.frc.team226.robot.commands.ElevatorToScale;
 import org.usfirst.frc.team226.robot.commands.ElevatorToSwitch;
 import org.usfirst.frc.team226.robot.commands.HardZeroElevator;
-import org.usfirst.frc.team226.robot.commands.RunIntakeReverse;
+import org.usfirst.frc.team226.robot.commands.UnJamIntakeClockwise;
+import org.usfirst.frc.team226.robot.commands.UnJamIntakeCounterClockwise;
 
 import util.Controller;
 
@@ -25,14 +26,16 @@ public class OI {
 	public Controller driver = new Controller(RobotMap.DRIVER_CONTROLLER, Constants.DRIVER_DEADBAND);
 	public Controller manip = new Controller(RobotMap.MANIP_CONTROLLER, Constants.MANIP_DEADBAND);
 	
-	public OI(){
-		driver.getXButton().whileHeld(new RunIntakeReverse());
-		
+	public OI() {
 		manip.getYButton().whenPressed(new ElevatorToSwitch());
 		manip.getXButton().whenPressed(new ElevatorToScale());
 		manip.getBButton().whenPressed(new ElevatorToPower());
 		manip.getAButton().whenPressed(new ElevatorToIntake());
 		manip.getRBButton().whenPressed(new HardZeroElevator());
+		
+		driver.getBButton().whenPressed(new UnJamIntakeClockwise());
+		driver.getXButton().whenPressed(new UnJamIntakeCounterClockwise());
+		
 	}
 	
 }
