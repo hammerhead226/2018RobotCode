@@ -12,6 +12,7 @@ import org.usfirst.frc.team226.robot.commands.CheesyDrive;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -29,9 +30,9 @@ public class DriveTrain extends Subsystem {
 	private ProfileRecorder recorder = new ProfileRecorder(frontLeft, frontRight, RecordingType.VOLTAGE);
 
 	public DriveTrain() {
-		frontLeft.setInverted(true);
-		centerLeft.setInverted(false);
-		rearLeft.setInverted(true);
+		frontLeft.setInverted(!true);
+		centerLeft.setInverted(!false);
+		rearLeft.setInverted(!true);
 
 		frontRight.setInverted(true);
 		centerRight.setInverted(false);
@@ -41,6 +42,9 @@ public class DriveTrain extends Subsystem {
 		centerRight.follow(frontRight);
 		rearLeft.follow(frontLeft);
 		rearRight.follow(frontRight);
+		
+		frontLeft.setSensorPhase(true);
+		frontRight.setSensorPhase(true);
 
 		frontLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.STARTUP_WAIT);
 		centerLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.STARTUP_WAIT);
@@ -124,7 +128,7 @@ public class DriveTrain extends Subsystem {
 				rightMotorSpeed = -Math.max(-rotateValue, -moveValue);
 			}
 		}
-		frontLeft.set(ControlMode.PercentOutput, leftMotorSpeed);
+		frontLeft.set(ControlMode.PercentOutput, -leftMotorSpeed);
 		frontRight.set(ControlMode.PercentOutput, rightMotorSpeed);
 	}
 
@@ -140,6 +144,7 @@ public class DriveTrain extends Subsystem {
 	private void zeroEncoders() {
 		frontLeft.setSelectedSensorPosition(0, 0, 0);
 		frontRight.setSelectedSensorPosition(0, 0, 0);
+		Timer.delay(0.2);
 		System.out.println("Drivetrain encoders zeroed.");
 	}
 
