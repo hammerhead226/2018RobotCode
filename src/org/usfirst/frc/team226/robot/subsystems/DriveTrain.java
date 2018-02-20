@@ -1,5 +1,10 @@
 package org.usfirst.frc.team226.robot.subsystems;
 
+import org.hammerhead226.sharkmacro.actions.ActionListParser;
+import org.hammerhead226.sharkmacro.actions.ActionRecorder;
+import org.hammerhead226.sharkmacro.motionprofiles.ProfileParser;
+import org.hammerhead226.sharkmacro.motionprofiles.ProfileRecorder;
+import org.hammerhead226.sharkmacro.motionprofiles.ProfileRecorder.RecordingType;
 import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.RobotMap;
 import org.usfirst.frc.team226.robot.commands.CheesyDrive;
@@ -20,6 +25,8 @@ public class DriveTrain extends Subsystem {
 	private TalonSRX centerRight = new TalonSRX(RobotMap.DT_CENTER_RIGHT);
 	private TalonSRX rearLeft = new TalonSRX(RobotMap.DT_REAR_LEFT);
 	private TalonSRX rearRight = new TalonSRX(RobotMap.DT_REAR_RIGHT);
+	
+	private ProfileRecorder recorder = new ProfileRecorder(frontLeft, frontRight, RecordingType.VOLTAGE);
 
 	public DriveTrain() {
 		frontLeft.setInverted(true);
@@ -62,6 +69,30 @@ public class DriveTrain extends Subsystem {
 		frontRight.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
 		centerRight.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
 		rearRight.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
+
+	}
+	
+	public void toggleProfileRecording() {
+		if (recorder.isRecording()) {
+			ProfileParser p = new ProfileParser(ProfileParser.getNewFilename());
+			p.writeToFile(recorder.stop().toProfile());
+			System.out.println("Profile saved.");
+		} else {
+			zeroEncoders();
+			System.out.println("Profile recording started.");
+			recorder.start();
+		}
+	}
+	
+	public void toggleActionListRecording() {
+		if (ActionRecorder.isRecording()) {
+			ActionListParser al = new ActionListParser(ActionListParser.getNewFilename());
+			al.writeToFile(ActionRecorder.stop());
+			System.out.println("ActionList saved.");
+		} else {
+			ActionRecorder.start();
+			System.out.println("ActionList recording started.");
+		}
 	}
 
 	public void initDefaultCommand() {
@@ -72,20 +103,9 @@ public class DriveTrain extends Subsystem {
 		double leftMotorSpeed;
 		double rightMotorSpeed;
 
-		rotateValue = limit(rotateValue);
-		moveValue = limit(moveValue);
-
 		// Square inputs
-		if (rotateValue >= 0.0) {
-			rotateValue = rotateValue * rotateValue;
-		} else {
-			rotateValue = -(rotateValue * rotateValue);
-		}
-		if (moveValue >= 0.0) {
-			moveValue = moveValue * moveValue;
-		} else {
-			moveValue = -(moveValue * moveValue);
-		}
+		moveValue = Math.copySign(moveValue * moveValue, moveValue);
+		rotateValue = Math.copySign(rotateValue * rotateValue, rotateValue);
 
 		if (rotateValue > 0.0) {
 			if (moveValue > 0.0) {
@@ -104,24 +124,23 @@ public class DriveTrain extends Subsystem {
 				rightMotorSpeed = -Math.max(-rotateValue, -moveValue);
 			}
 		}
-
 		frontLeft.set(ControlMode.PercentOutput, leftMotorSpeed);
 		frontRight.set(ControlMode.PercentOutput, rightMotorSpeed);
 	}
 
 	public void tankDrive(double left, double right) {
-		frontLeft.set(ControlMode.PercentOutput, -limit(left));
-		frontRight.set(ControlMode.PercentOutput, limit(right));
+		frontLeft.set(ControlMode.PercentOutput, left);
+		frontRight.set(ControlMode.PercentOutput, right);
 	}
 
-	private double limit(double value) {
-		if (value > 1.0) {
-			return 1.0;
-		}
-		if (value < -1.0) {
-			return -1.0;
-		}
-		return value;
+	public TalonSRX[] getMotionProfileTalons() {
+		return new TalonSRX[] { frontLeft, frontRight };
+	}
+	
+	private void zeroEncoders() {
+		frontLeft.setSelectedSensorPosition(0, 0, 0);
+		frontRight.setSelectedSensorPosition(0, 0, 0);
+		System.out.println("Drivetrain encoders zeroed.");
 	}
 
 }

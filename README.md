@@ -17,7 +17,7 @@ Code for team 226's Power Up robot.
 3. Right click on 2018RobotCode in Eclipse > Build Path > Add External Archives...
 4. Select the Hammerhead jar file you copied to the userlib directory.
 
-## Developtment Software
+## Development Software
 #### JDK and Eclipse
 1. Install the latest [Java SE Development Kit (Windows x64)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
 2. Install the latest [Eclipse IDE for Java Develoeprs (64 bit)](https://www.eclipse.org/downloads/eclipse-packages/).
