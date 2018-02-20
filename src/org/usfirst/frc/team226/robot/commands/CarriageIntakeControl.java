@@ -7,19 +7,21 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CarriageControl extends Command {
+public class CarriageIntakeControl extends Command {
 
-	public CarriageControl() {
-		requires(Robot.carriage);
-	}
+	public CarriageIntakeControl() {
+		requires(Robot.carriageIntake);
+}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		Robot.carriageIntake.intakeNeutral();
+		Robot.carriageIntake.carriageNeutral();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.carriage.inOrOut(Robot.oi.manip.getRightJoystick_Y());
+		Robot.carriageIntake.runCarriageAndIntake(Robot.elevatorHeight);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
