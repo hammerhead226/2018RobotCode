@@ -48,5 +48,5 @@ public class Constants {
 	public static final boolean ELEVATOR_CURRENT_LIMIT_ENABLED = true;
 	public static final double ELEVATOR_INTAKE_TOLERANCE = 0;
 	public static final double ELEVATOR_PHOTO_EYE_THRESHOLD = 0;
-		
+	public static final double ELEVATOR_ON_TARGET_S = 5;
 }
