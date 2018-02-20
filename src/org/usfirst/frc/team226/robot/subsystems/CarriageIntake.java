@@ -129,8 +129,7 @@ public class CarriageIntake extends Subsystem {
 		} else {
 			System.out.println("manip carriage");
 			driveCarriage(Robot.oi.driver.getLeftJoystick_Y());
-			System.out.println(Robot.oi.driver.getLeftJoystick_Y())
-			;
+			System.out.println(Robot.oi.driver.getLeftJoystick_Y());
 		}
 	}
 
