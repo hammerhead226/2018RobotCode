@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ExecuteSavedProfile extends Command {
 
-	private String name = "";
+	private String name;
 	private Profile profileToExecute;
 	
 	private TalonSRX[] talons = Robot.driveTrain.getMotionProfileTalons();
@@ -38,6 +38,7 @@ public class ExecuteSavedProfile extends Command {
 		System.out.println("Executing profile... " + name);
 		profileToExecute = pParser.toObject(talons[0], talons[1]);
 		profileToExecute.execute(Constants.DT_LEFT_PIDSLOT_IDX, Constants.DT_RIGHT_PIDSLOT_IDX);
+		name = null;
 	}
 
 	// Called repeatedly when this Command is scheduled to run

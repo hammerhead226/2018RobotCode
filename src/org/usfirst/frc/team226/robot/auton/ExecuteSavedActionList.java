@@ -30,6 +30,7 @@ public class ExecuteSavedActionList extends Command {
 		alParser = new ActionListParser(name);
 		actionListToExecute = alParser.toObject();
 		actionListToExecute.execute();
+		name = null;
 	}
 
 	// Called repeatedly when this Command is scheduled to run
