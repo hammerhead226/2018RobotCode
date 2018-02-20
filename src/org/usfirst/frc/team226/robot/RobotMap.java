@@ -30,12 +30,12 @@ public class RobotMap {
 	
 	public static final int COMPRESSOR_PORT = PCM_B;
 	
-	public static final int DT_LEFT_SHIFTER_PCM = PCM_B;
-	public static final int DT_LEFT_SHIFTER_1 = 4;
-	public static final int DT_LEFT_SHIFTER_2 = 5;
-	public static final int DT_RIGHT_SHIFTER_PCM = PCM_B;
-	public static final int DT_RIGHT_SHIFTER_1 = 6;
-	public static final int DT_RIGHT_SHIFTER_2 = 7;
+	public static final int DT_LEFT_SHIFTER_PCM = PCM_A;
+	public static final int DT_LEFT_SHIFTER_1 = 2;
+	public static final int DT_LEFT_SHIFTER_2 = 3;
+	public static final int DT_RIGHT_SHIFTER_PCM = PCM_A;
+	public static final int DT_RIGHT_SHIFTER_1 = 0;
+	public static final int DT_RIGHT_SHIFTER_2 = 1;
 	
 	public static final int INTAKE_LEFT = 0;
 	public static final int INTAKE_RIGHT = 0;
