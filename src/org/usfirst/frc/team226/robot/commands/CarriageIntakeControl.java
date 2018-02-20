@@ -8,37 +8,33 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class CarriageIntakeControl extends Command {
-	
-	double height;
-	
-    public CarriageIntakeControl(double height) {
-        requires(Robot.carriageIntake);
-        this.height = height;
-        
-    }
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    	Robot.carriageIntake.intakeNeutral();
-    	Robot.carriageIntake.carriageNeutral();
-    }
+	public CarriageIntakeControl() {
+		requires(Robot.carriageIntake);
+}
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	Robot.carriageIntake.runCarriageAndIntake(height);
-    }
+	// Called just before this Command runs the first time
+	protected void initialize() {
+		Robot.carriageIntake.intakeNeutral();
+		Robot.carriageIntake.carriageNeutral();
+	}
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return false;
-    }
+	// Called repeatedly when this Command is scheduled to run
+	protected void execute() {
+		Robot.carriageIntake.runCarriageAndIntake(Robot.elevatorHeight);
+	}
 
-    // Called once after isFinished returns true
-    protected void end() {
-    }
+	// Make this return true when this Command no longer needs to run execute()
+	protected boolean isFinished() {
+		return false;
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    }
+	// Called once after isFinished returns true
+	protected void end() {
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted() {
+	}
 }

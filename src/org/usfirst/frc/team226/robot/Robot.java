@@ -34,6 +34,8 @@ public class Robot extends TimedRobot {
 	public static Elevator elevator;
 	public static CarriageIntake carriageIntake;
 	
+	public static int elevatorHeight;
+	
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -92,6 +94,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		elevatorHeight = Robot.elevator.getElevatorPosition();
 	}
 
 }

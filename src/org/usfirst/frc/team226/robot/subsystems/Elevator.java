@@ -108,7 +108,7 @@ public class Elevator extends Subsystem {
 		return left.getClosedLoopError(Constants.ELEVATOR_PID_IDX);
 	}
 	
-	public double getElevatorPosition() {
+	public int getElevatorPosition() {
 		return left.getSelectedSensorPosition(Constants.ELEVATOR_PID_IDX);
 	}
 	
