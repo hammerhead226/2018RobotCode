@@ -43,20 +43,22 @@ public class RobotMap {
 	public static final int INTAKE_LEFT_PCM = PCM_B;
 	public static final int INTAKE_LEFT_FLIP_1 = 0;
 	public static final int INTAKE_LEFT_FLIP_2 = 0;
+	public static final int INTAKE_LEFT_OPEN_1 = 0;
+	public static final int INTAKE_LEFT_OPEN_2 = 0;
 	
 	public static final int INTAKE_RIGHT_PCM = PCM_B;
 	public static final int INTAKE_RIGHT_FLIP_1 = 0;
 	public static final int INTAKE_RIGHT_FLIP_2 = 0;
+	public static final int INTAKE_RIGHT_OPEN_1 = 0;
+	public static final int INTAKE_RIGHT_OPEN_2 = 0;
 
 	public static final int ELEVATOR_PHOTO_EYE = 0;
 
-	public static final int ELEVATOR_FRONT_LEFT = 0;
-	public static final int ELEVATOR_REAR_LEFT = 0;
-	public static final int ELEVATOR_FRONT_RIGHT = 0;
-	public static final int ELEVATOR_REAR_RIGHT = 0;
+	public static final int ELEVATOR_FRONT_LEFT = 8;
+	public static final int ELEVATOR_FRONT_RIGHT = 9;
 	public static final int ELEVATOR_HALL_EFFECT_SENSOR = 0;
 	
-	public static final int MANIP_CONTROLLER = 0;
-	public static final int DRIVER_CONTROLLER = 1;
+	public static final int MANIP_CONTROLLER = 1;
+	public static final int DRIVER_CONTROLLER = 0;
 
 }

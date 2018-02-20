@@ -28,21 +28,21 @@ public class Constants {
 	public static final boolean CARRIAGE_INVERT_LEFT = false;
 	public static final double CARRIAGE_PHOTOEYE_THRESHHOLD = 0;
 
-	public static final boolean ELEVATOR_VOLTAGE_LIMIT_ENABLED = true;
+	public static final boolean ELEVATOR_VOLTAGE_LIMIT_ENABLED = false;
 	
-	public static final double ELEVATOR_INTAKE_HEIGHT = 0;
-	public static final double ELEVATOR_SWITCH_HEIGHT = 0;
-	public static final double ELEVATOR_POW_HEIGHT = 0;
-	public static final double ELEVATOR_SCALE_HEIGHT = 0;
+	public static final double ELEVATOR_INTAKE_HEIGHT = 5000;
+	public static final double ELEVATOR_POW_HEIGHT = 10000;
+	public static final double ELEVATOR_SWITCH_HEIGHT = 15000;
+	public static final double ELEVATOR_SCALE_HEIGHT = 20000;
 	public static final double ELEVATOR_VOLTAGE_LIMIT = 11;
-	public static final boolean ELEVATOR_INVERT_L = false;
+	public static final boolean ELEVATOR_INVERT_L = true;
 	public static final boolean ELEVATOR_INVERT_R = true;
 	public static final int ELEVATOR_PID_IDX = 0;
 	public static final int ELEVATOR_TIMEOUT_MS = 0;
 	public static final double ELEVATOR_FINE_TUNE = 0.5;
-	public static final long ELEVATOR_ON_TARGET_MS = 0;
-	public static final int ELEVATOR_ERROR_MARGIN = 0;
+	public static final long ELEVATOR_ON_TARGET_S = 10;
+	public static final int ELEVATOR_ERROR_MARGIN = 100;
 	public static final int ELEVATOR_CURRENT_LIMIT = 0;
-	public static final boolean ELEVATOR_CURRENT_LIMIT_ENABLED = true;
+	public static final boolean ELEVATOR_CURRENT_LIMIT_ENABLED = false;
 	
 }
