@@ -21,7 +21,7 @@ public class Constants {
 	public static final boolean INTAKE_INVERT_RIGHT = true;
 	public static final boolean INTAKE_INVERT_LEFT = false;
 	public static final double INTAKE_INTAKE_SPEED = 0.5;
-	public static final int INTAKE_TIMEOUT = 0;
+	public static final int INTAKE_TIMEOUT_MS = 0;
 	public static final double INTAKE_UN_JAM_SPEED = 0.5;
 	public static final double INTAKE_UN_JAM_TIMEOUT = 0.5;
 
