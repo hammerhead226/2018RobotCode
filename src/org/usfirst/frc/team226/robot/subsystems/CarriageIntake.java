@@ -95,10 +95,6 @@ public class CarriageIntake extends Subsystem {
 		rightIntake.setInverted(Constants.INTAKE_INVERT_RIGHT);
 		leftIntake.setInverted(Constants.INTAKE_INVERT_LEFT);
 	}
-	
-	public boolean isPhotoeyeOpen() {
-		return !photoEye.getCovered();
-	}
 
 	public void runCarriageAndIntake() {
 		
@@ -107,7 +103,7 @@ public class CarriageIntake extends Subsystem {
 			//In pull in  mode
 			if(Robot.oi.driver.getTriggers() <  0) {
 				//Photoeye
-				if(isPhotoeyeOpen()) {
+				if(!photoEye.getCovered()) {
 					System.out.println("intake");
 					pullInCarriage();
 					driveIntake(Robot.oi.driver.getRightTrigger());
