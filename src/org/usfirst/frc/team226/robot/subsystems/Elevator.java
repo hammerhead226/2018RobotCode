@@ -149,7 +149,7 @@ public class Elevator extends Subsystem {
 
 	public void teleopElevator() {
 		if (Math.abs(Robot.oi.manip.getLeftJoystick_Y()) > 0) {
-			Robot.elevator.fineMovement(limitingHeight(Robot.oi.manip.getLeftJoystick_Y()));
+			fineMovement(limitingHeight(Robot.oi.manip.getLeftJoystick_Y()));
 		} else {
 			left.neutralOutput();
 			setElevator(getElevatorPosition());
