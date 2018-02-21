@@ -38,7 +38,7 @@ public class Constants {
 	public static final boolean ELEVATOR_INVERT_L1 = false;
 	public static final boolean ELEVATOR_INVERT_L2 = false;
 	public static final boolean ELEVATOR_INVERT_R1 = true;
-	public static final boolean Elevator_INVERT_R2 = false;
+	public static final boolean ELEVATOR_INVERT_R2 = false;
 	public static final boolean INTAKE_INVERT_RIGHT = true;
 	public static final boolean INTAKE_INVERT_LEFT = false;
 	public static final boolean CARRIAGE_INVERT_RIGHT = false;
@@ -79,5 +79,5 @@ public class Constants {
 	public static final double ELEVATOR_FINE_TUNE = 0.5;
 	public static final int ELEVATOR_ERROR_MARGIN = 100;
 	public static final double ELEVATOR_INTAKE_TOLERANCE = 1000;
-	public static final double ELEVATOR_PHOTO_EYE_THRESHOLD = 0;	
+	public static final double ELEVATOR_PHOTO_EYE_THRESHOLD = 0;
 }

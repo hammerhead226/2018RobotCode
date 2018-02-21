@@ -63,7 +63,7 @@ public class Elevator extends Subsystem {
 		left1.setInverted(Constants.ELEVATOR_INVERT_L1);
 		left2.setInverted(Constants.ELEVATOR_INVERT_L2);
 		right1.setInverted(Constants.ELEVATOR_INVERT_R1);
-		right2.setInverted(Constants.Elevator_INVERT_R2);
+		right2.setInverted(Constants.ELEVATOR_INVERT_R2);
 
 		left2.follow(left1);
 		right1.follow(left1);
