@@ -17,7 +17,7 @@ public class HardZeroElevator extends InstantCommand {
     // Called once when the command executes
     protected void initialize() {
     	Robot.elevator.hardZeroEncoder();
-    	Robot.elevator.setElevator(Robot.elevator.getElevatorPosition());
+    	Robot.elevator.setElevator(0);
     }
 
 }

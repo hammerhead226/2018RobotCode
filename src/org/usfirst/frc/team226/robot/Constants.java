@@ -21,7 +21,7 @@ public class Constants {
 	public static final boolean INTAKE_INVERT_RIGHT = true;
 	public static final boolean INTAKE_INVERT_LEFT = false;
 	public static final double INTAKE_INTAKE_SPEED = 0.5;
-	public static final int INTAKE_TIMEOUT = 0;
+	public static final int INTAKE_TIMEOUT_MS = 0;
 	public static final double INTAKE_UN_JAM_SPEED = 0.5;
 	public static final double INTAKE_UN_JAM_TIMEOUT = 0.5;
 
@@ -32,14 +32,16 @@ public class Constants {
 	public static final double CARRIAGE_PHOTOEYE_THRESHHOLD = 0;
 
 	public static final boolean ELEVATOR_VOLTAGE_LIMIT_ENABLED = false;
+	public static final double ELEVATOR_VOLTAGE_LIMIT = 11;
 	
 	public static final double ELEVATOR_INTAKE_HEIGHT = 0;
 	public static final double ELEVATOR_SWITCH_HEIGHT = 10000;
 	public static final double ELEVATOR_POW_HEIGHT = 20000;
 	public static final double ELEVATOR_SCALE_HEIGHT = 30000;
-	public static final double ELEVATOR_VOLTAGE_LIMIT = 11;
-	public static final boolean ELEVATOR_INVERT_L = false;
-	public static final boolean ELEVATOR_INVERT_R = true;
+	public static final boolean ELEVATOR_INVERT_L1 = false;
+	public static final boolean ELEVATOR_INVERT_L2 = false;
+	public static final boolean ELEVATOR_INVERT_R1 = true;
+	public static final boolean Elevator_INVERT_R2 = false;
 	public static final int ELEVATOR_PID_IDX = 0;
 	public static final int ELEVATOR_TIMEOUT_MS = 0;
 	public static final double ELEVATOR_FINE_TUNE = 0.5;

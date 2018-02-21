@@ -35,8 +35,8 @@ public class CarriageIntake extends Subsystem {
 		leftIntake.setInverted(Constants.INTAKE_INVERT_LEFT);
 		rightIntake.setInverted(Constants.INTAKE_INVERT_RIGHT);
 
-		leftIntake.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_TIMEOUT);
-		rightIntake.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_TIMEOUT);
+		leftIntake.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_TIMEOUT_MS);
+		rightIntake.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_TIMEOUT_MS);
 		leftIntake.enableCurrentLimit(Constants.INTAKE_CURRENT_LIMIT_ENABLED);
 		rightIntake.enableCurrentLimit(Constants.INTAKE_CURRENT_LIMIT_ENABLED);
 	}
@@ -65,8 +65,12 @@ public class CarriageIntake extends Subsystem {
 		leftIntake.set(ControlMode.PercentOutput, speed);
 	}
 
-	public void outtake() {
+	public void driveIntakeReverse() {
 		leftIntake.set(ControlMode.PercentOutput, Constants.INTAKE_OUTTAKE_SPEED);
+	}
+	
+	public void driveIntakeReverse(double speed) {
+		leftIntake.set(ControlMode.PercentOutput, speed);
 	}
 
 	public void intakeNeutral() {
@@ -91,38 +95,37 @@ public class CarriageIntake extends Subsystem {
 		rightIntake.setInverted(Constants.INTAKE_INVERT_RIGHT);
 		leftIntake.setInverted(Constants.INTAKE_INVERT_LEFT);
 	}
-	
-	public boolean isPhotoeyeOpen() {
-		return !photoEye.getCovered();
-	}
 
 	public void runCarriageAndIntake() {
-		
 		//Checks if elevator height is suitable for carriage + intake or just carriage
 		if (Robot.elevatorHeight < Constants.ELEVATOR_INTAKE_TOLERANCE) {
-			//In pull in  mode
+			//If right driver trigger is pressed, then proceed to check Photoeye.
 			if(Robot.oi.driver.getTriggers() <  0) {
-				//Photoeye
-				if(isPhotoeyeOpen()) {
+				//If Photoeye is not covered, then proceed to run intake + carriage
+				if(!photoEye.getCovered()) {
 					System.out.println("intake");
 					pullInCarriage();
 					driveIntake(Robot.oi.driver.getRightTrigger());
-				} else {
+				} else { 
+					// If Photoeye is covered don't allow driver to run both
 					System.out.println("neutral");
 					carriageNeutral();
 					intakeNeutral();
 				}
 			} else if(Robot.oi.driver.getTriggers() == 0){
+				// If driver triggers are not pressed then set carriage and intake to neutral
 				System.out.println("neutral");
 				carriageNeutral();
 				intakeNeutral();
 			} else {
+				//If left driver trigger is pressed, then run intake + carriage motors in reverse
 				System.out.println("outtake");
-				outtake();
+				driveIntakeReverse();
 				pushOutCarriage();	
 			}
 			
 		} else {
+			//If elevator is above intake height, then only carriage control to manip
 			System.out.println("manip carriage");
 			driveCarriage(Robot.oi.driver.getLeftJoystick_Y());
 			System.out.println(Robot.oi.driver.getLeftJoystick_Y());

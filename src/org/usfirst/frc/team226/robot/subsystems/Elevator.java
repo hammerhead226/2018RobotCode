@@ -18,8 +18,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Elevator extends Subsystem {
 
-	TalonSRX left = new TalonSRX(RobotMap.ELEVATOR_FRONT_LEFT);
-	TalonSRX right = new TalonSRX(RobotMap.ELEVATOR_FRONT_RIGHT);
+	TalonSRX left1 = new TalonSRX(RobotMap.ELEVATOR_FRONT_LEFT_1);
+	TalonSRX left2 = new TalonSRX(RobotMap.ELEVATOR_FRONT_LEFT_2);
+	TalonSRX right1 = new TalonSRX(RobotMap.ELEVATOR_FRONT_RIGHT_1);
+	TalonSRX right2 = new TalonSRX(RobotMap.ELEVATOR_FRONT_RIGHT_2);
 
 	DigitalInput hallEffect = new DigitalInput(RobotMap.ELEVATOR_HALL_EFFECT_SENSOR);
 	
@@ -38,32 +40,36 @@ public class Elevator extends Subsystem {
 
 	public Elevator() {
 		
-		left.configForwardSoftLimitEnable(Constants.ELEVATOR_ENABLE_TOP_THRESHOLD, Constants.ELEVATOR_TIMEOUT_MS);
-		left.configReverseSoftLimitEnable(Constants.ELEVATOR_ENABLE_BOTTOM_THRESHOLD, Constants.ELEVATOR_TIMEOUT_MS);
-		left.configForwardSoftLimitThreshold(Constants.ELEVATOR_TOP_THRESHOLD, Constants.ELEVATOR_TIMEOUT_MS);
-		left.configReverseSoftLimitThreshold(Constants.ELEVATOR_BOTTOM_THRESHOLD, Constants.ELEVATOR_TIMEOUT_MS);
+		left1.configForwardSoftLimitEnable(Constants.ELEVATOR_ENABLE_TOP_THRESHOLD, Constants.ELEVATOR_TIMEOUT_MS);
+		left1.configReverseSoftLimitEnable(Constants.ELEVATOR_ENABLE_BOTTOM_THRESHOLD, Constants.ELEVATOR_TIMEOUT_MS);
+		left1.configForwardSoftLimitThreshold(Constants.ELEVATOR_TOP_THRESHOLD, Constants.ELEVATOR_TIMEOUT_MS);
+		left1.configReverseSoftLimitThreshold(Constants.ELEVATOR_BOTTOM_THRESHOLD, Constants.ELEVATOR_TIMEOUT_MS);
 		
-		left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ELEVATOR_PID_IDX,
+		left1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ELEVATOR_PID_IDX,
 				Constants.ELEVATOR_TIMEOUT_MS);
 
-		left.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, Constants.ELEVATOR_TIMEOUT_MS);
-		right.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, Constants.ELEVATOR_TIMEOUT_MS);
+		left1.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, Constants.ELEVATOR_TIMEOUT_MS);
+		right1.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, Constants.ELEVATOR_TIMEOUT_MS);
 
-		left.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
-		right.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
+		left1.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
+		right1.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
 
-		left.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT_MS);
-		right.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT_MS);
+		left1.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT_MS);
+		right1.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT_MS);
 
-		left.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
-		right.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
+		left1.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
+		right1.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
 
-		left.setInverted(Constants.ELEVATOR_INVERT_L);
-		right.setInverted(Constants.ELEVATOR_INVERT_R);
+		left1.setInverted(Constants.ELEVATOR_INVERT_L1);
+		left2.setInverted(Constants.ELEVATOR_INVERT_L2);
+		right1.setInverted(Constants.ELEVATOR_INVERT_R1);
+		right2.setInverted(Constants.Elevator_INVERT_R2);
 
-		right.follow(left);
+		left2.follow(left1);
+		right1.follow(left1);
+		right2.follow(left1);
 		
-		left.setSensorPhase(true);
+		left1.setSensorPhase(true);
 	}
 
 	public void moveElevatorToIntake() {
@@ -85,47 +91,47 @@ public class Elevator extends Subsystem {
 	public void setElevator(ElevatorHeight height) {
 		switch (height) {
 		case INTAKE:
-			left.set(ControlMode.MotionMagic, Constants.ELEVATOR_INTAKE_HEIGHT);
+			left1.set(ControlMode.MotionMagic, Constants.ELEVATOR_INTAKE_HEIGHT);
 			break;
 		case SWITCH:
-			left.set(ControlMode.MotionMagic, Constants.ELEVATOR_SWITCH_HEIGHT);
+			left1.set(ControlMode.MotionMagic, Constants.ELEVATOR_SWITCH_HEIGHT);
 			break;
 		case POWER:
-			left.set(ControlMode.MotionMagic, Constants.ELEVATOR_POW_HEIGHT);
+			left1.set(ControlMode.MotionMagic, Constants.ELEVATOR_POW_HEIGHT);
 			break;
 		case SCALE:
-			left.set(ControlMode.MotionMagic, Constants.ELEVATOR_SCALE_HEIGHT);
+			left1.set(ControlMode.MotionMagic, Constants.ELEVATOR_SCALE_HEIGHT);
 			break;
 		}
 
 	}
 
 	public void setElevator(double height) {
-		left.set(ControlMode.MotionMagic, height);
+		left1.set(ControlMode.MotionMagic, height);
 	}
 
-	public void zeroEncoder() {
+	public void zeroEncoderGround() {
 		if (hallEffect.get()) {
-			left.setSelectedSensorPosition(0, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
+			left1.setSelectedSensorPosition(0, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
 			setElevator(0);
 		}
 	}
 
 	public void hardZeroEncoder() {
-		left.setSelectedSensorPosition(0, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
+		left1.setSelectedSensorPosition(0, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
 		setElevator(getElevatorPosition());
 	}
 
 	public void fineMovement(double speed) {
-		left.set(ControlMode.PercentOutput, Constants.ELEVATOR_FINE_TUNE * speed);
+		left1.set(ControlMode.PercentOutput, Constants.ELEVATOR_FINE_TUNE * speed);
 	}
 
 	public int getElevatorError() {
-		return left.getClosedLoopError(Constants.ELEVATOR_PID_IDX);
+		return left1.getClosedLoopError(Constants.ELEVATOR_PID_IDX);
 	}
 
 	public int getElevatorPosition() {
-		return left.getSelectedSensorPosition(Constants.ELEVATOR_PID_IDX);
+		return left1.getSelectedSensorPosition(Constants.ELEVATOR_PID_IDX);
 	}
 
 	public boolean onTarget(double setpoint) {
@@ -148,16 +154,16 @@ public class Elevator extends Subsystem {
 
 	public void teleopElevator() {
 		if (Math.abs(Robot.oi.manip.getLeftJoystick_Y()) > 0) {
-			Robot.elevator.fineMovement(limitingHeight(Robot.oi.manip.getLeftJoystick_Y()));
+			fineMovement(limitingHeight(Robot.oi.manip.getLeftJoystick_Y()));
 		} else {
-			left.neutralOutput();
+			left1.neutralOutput();
 			setElevator(getElevatorPosition());
 		}
 	}
 	
 	public void JoystickElevator() {
-		left.set(ControlMode.PercentOutput, Robot.oi.manip.getLeftJoystick_Y());
-		right.set(ControlMode.PercentOutput, Robot.oi.manip.getLeftJoystick_Y());
+		left1.set(ControlMode.PercentOutput, Robot.oi.manip.getLeftJoystick_Y());
+		right1.set(ControlMode.PercentOutput, Robot.oi.manip.getLeftJoystick_Y());
 		
 	}
 }
