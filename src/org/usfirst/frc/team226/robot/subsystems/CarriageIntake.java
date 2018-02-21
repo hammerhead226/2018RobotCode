@@ -65,7 +65,7 @@ public class CarriageIntake extends Subsystem {
 		leftIntake.set(ControlMode.PercentOutput, speed);
 	}
 
-	public void outtake() {
+	public void driveIntakeReverse() {
 		leftIntake.set(ControlMode.PercentOutput, Constants.INTAKE_OUTTAKE_SPEED);
 	}
 
@@ -118,7 +118,7 @@ public class CarriageIntake extends Subsystem {
 				intakeNeutral();
 			} else {
 				System.out.println("outtake");
-				outtake();
+				driveIntakeReverse();
 				pushOutCarriage();	
 			}
 			
