@@ -105,7 +105,7 @@ public class Elevator extends Subsystem {
 		left.set(ControlMode.MotionMagic, height);
 	}
 
-	public void zeroEncoder() {
+	public void zeroEncoderGround() {
 		if (hallEffect.get()) {
 			left.setSelectedSensorPosition(0, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
 			setElevator(0);
