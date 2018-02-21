@@ -49,12 +49,13 @@ public class RobotMap {
 
 	public static final int ELEVATOR_PHOTO_EYE = 0;
 
-	public static final int ELEVATOR_FRONT_LEFT = 14;
-	public static final int ELEVATOR_FRONT_RIGHT = 18;
+	public static final int ELEVATOR_FRONT_LEFT_1 = 14;
+	public static final int ELEVATOR_FRONT_LEFT_2 = 0;
+	public static final int ELEVATOR_FRONT_RIGHT_1 = 18;
+	public static final int ELEVATOR_FRONT_RIGHT_2 = 0;
 	public static final int ELEVATOR_HALL_EFFECT_SENSOR = 0;
 	
 	public static final int DRIVER_CONTROLLER = 0;
-	public static final int MANIP_CONTROLLER = 1;
-	
+	public static final int MANIP_CONTROLLER = 1;	
 
 }
