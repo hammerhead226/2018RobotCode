@@ -3,6 +3,7 @@ package org.usfirst.frc.team226.robot.subsystems;
 import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.Robot;
 import org.usfirst.frc.team226.robot.RobotMap;
+import org.usfirst.frc.team226.robot.commands.ElevatorJoystickControl;
 import org.usfirst.frc.team226.robot.commands.ElevatorManualMovement;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -113,7 +114,7 @@ public class Elevator extends Subsystem {
 
 	public void hardZeroEncoder() {
 		left.setSelectedSensorPosition(0, Constants.ELEVATOR_PID_IDX, Constants.ELEVATOR_TIMEOUT_MS);
-		setElevator(0);
+		setElevator(getElevatorPosition());
 	}
 
 	public void fineMovement(double speed) {
@@ -153,5 +154,11 @@ public class Elevator extends Subsystem {
 			left.neutralOutput();
 			setElevator(getElevatorPosition());
 		}
+	}
+	
+	public void JoystickElevator() {
+		left.set(ControlMode.PercentOutput, Robot.oi.manip.getLeftJoystick_Y());
+		right.set(ControlMode.PercentOutput, Robot.oi.manip.getLeftJoystick_Y());
+		
 	}
 }

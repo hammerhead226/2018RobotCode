@@ -27,12 +27,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
-	public static OI oi;
 	public static DriveTrain driveTrain;
 	public static PneumaticsSystem pneumaticsSystem;
-	public VisionRun vision = new VisionRun();
 	public static Elevator elevator;
 	public static CarriageIntake carriageIntake;
+	public static OI oi;
 	
 	public static int elevatorHeight;
 	
@@ -42,15 +41,14 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void robotInit() {
-		oi = new OI();
 		driveTrain = new DriveTrain();
 		pneumaticsSystem = new PneumaticsSystem();
 		elevator = new Elevator();
 		carriageIntake = new CarriageIntake();
+		oi = new OI();
 		// chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-		vision.start();
 	}
 
 	@Override

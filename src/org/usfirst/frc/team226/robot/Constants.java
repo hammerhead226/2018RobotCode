@@ -39,7 +39,7 @@ public class Constants {
 	public static final double ELEVATOR_SCALE_HEIGHT = 30000;
 	public static final double ELEVATOR_VOLTAGE_LIMIT = 11;
 	public static final boolean ELEVATOR_INVERT_L = false;
-	public static final boolean ELEVATOR_INVERT_R = false;
+	public static final boolean ELEVATOR_INVERT_R = true;
 	public static final int ELEVATOR_PID_IDX = 0;
 	public static final int ELEVATOR_TIMEOUT_MS = 0;
 	public static final double ELEVATOR_FINE_TUNE = 0.5;
@@ -50,8 +50,8 @@ public class Constants {
 	public static final double ELEVATOR_INTAKE_TOLERANCE = 1000;
 	public static final double ELEVATOR_PHOTO_EYE_THRESHOLD = 0;
 	public static final double ELEVATOR_ON_TARGET_S = 5;
-	public static final boolean ELEVATOR_ENABLE_BOTTOM_THRESHOLD = true;
-	public static final boolean ELEVATOR_ENABLE_TOP_THRESHOLD = true;
+	public static final boolean ELEVATOR_ENABLE_BOTTOM_THRESHOLD = false;
+	public static final boolean ELEVATOR_ENABLE_TOP_THRESHOLD = false;
 	public static final int ELEVATOR_TOP_THRESHOLD = 50000;
 	public static final int ELEVATOR_BOTTOM_THRESHOLD = 0;
 	
