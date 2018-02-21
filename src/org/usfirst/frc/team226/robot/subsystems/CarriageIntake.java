@@ -30,7 +30,6 @@ public class CarriageIntake extends Subsystem {
 		rightCarriage.setInverted(Constants.CARRIAGE_INVERT_RIGHT);
 
 		rightCarriage.follow(leftCarriage);
-		rightIntake.follow(leftIntake);
 
 		leftIntake.setInverted(Constants.INTAKE_INVERT_LEFT);
 		rightIntake.setInverted(Constants.INTAKE_INVERT_RIGHT);
@@ -75,22 +74,27 @@ public class CarriageIntake extends Subsystem {
 
 	public void driveIntake() {
 		leftIntake.set(ControlMode.PercentOutput, Constants.INTAKE_INTAKE_SPEED);
+		rightIntake.set(ControlMode.PercentOutput, Constants.INTAKE_INTAKE_SPEED);
 	}
 
 	public void driveIntake(double speed) {
 		leftIntake.set(ControlMode.PercentOutput, speed);
+		rightIntake.set(ControlMode.PercentOutput, speed);
 	}
 
 	public void driveIntakeReverse() {
 		leftIntake.set(ControlMode.PercentOutput, Constants.INTAKE_OUTTAKE_SPEED);
+		rightIntake.set(ControlMode.PercentOutput , Constants.INTAKE_INTAKE_SPEED);
 	}
 	
 	public void driveIntakeReverse(double speed) {
 		leftIntake.set(ControlMode.PercentOutput, speed);
+		rightIntake.set(ControlMode.PercentOutput, speed);
 	}
 
 	public void intakeNeutral() {
 		leftIntake.neutralOutput();
+		rightIntake.neutralOutput();
 	}
 
 	public void carriageNeutral() {
@@ -98,18 +102,13 @@ public class CarriageIntake extends Subsystem {
 	}
 
 	public void unJamClockwise() {
-		rightIntake.setInverted(!Constants.INTAKE_INVERT_RIGHT);
 		leftIntake.set(ControlMode.PercentOutput, Constants.INTAKE_UN_JAM_SPEED);
+		rightIntake.set(ControlMode.PercentOutput, -Constants.INTAKE_UN_JAM_SPEED);
 	}
 
 	public void unJamCounterClockwise() {
-		rightIntake.setInverted(!Constants.INTAKE_INVERT_RIGHT);
 		leftIntake.set(ControlMode.PercentOutput, -Constants.INTAKE_UN_JAM_SPEED);
-	}
-
-	public void unInvert() {
-		rightIntake.setInverted(Constants.INTAKE_INVERT_RIGHT);
-		leftIntake.setInverted(Constants.INTAKE_INVERT_LEFT);
+		rightIntake.set(ControlMode.PercentOutput, Constants.INTAKE_UN_JAM_SPEED);
 	}
 
 	public void runCarriageAndIntake() {
