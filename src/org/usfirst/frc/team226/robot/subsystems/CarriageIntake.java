@@ -39,6 +39,22 @@ public class CarriageIntake extends Subsystem {
 		rightIntake.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_TIMEOUT_MS);
 		leftIntake.enableCurrentLimit(Constants.INTAKE_CURRENT_LIMIT_ENABLED);
 		rightIntake.enableCurrentLimit(Constants.INTAKE_CURRENT_LIMIT_ENABLED);
+		
+		leftCarriage.configContinuousCurrentLimit(Constants.CARRIAGE_CURRENT_LIMIT, Constants.CARRIAGE_TIMEOUT_MS);
+		rightCarriage.configContinuousCurrentLimit(Constants.CARRIAGE_CURRENT_LIMIT, Constants.CARRIAGE_TIMEOUT_MS);
+		leftCarriage.enableCurrentLimit(Constants.CARRIAGE_CURRENT_LIMIT_ENABLED);
+		rightCarriage.enableCurrentLimit(Constants.CARRIAGE_CURRENT_LIMIT_ENABLED);
+		
+		leftIntake.configVoltageCompSaturation(Constants.INTAKE_VOLTAGE_LIMIT, Constants.INTAKE_TIMEOUT_MS);
+		rightIntake.configVoltageCompSaturation(Constants.INTAKE_VOLTAGE_LIMIT, Constants.INTAKE_TIMEOUT_MS);
+		leftIntake.enableCurrentLimit(Constants.INTAKE_VOLTAGE_LIMIT_ENABLED);
+		rightIntake.enableCurrentLimit(Constants.INTAKE_VOLTAGE_LIMIT_ENABLED);
+		
+		leftCarriage.configVoltageCompSaturation(Constants.CARRIAGE_VOLTAGE_LIMIT, Constants.CARRIAGE_TIMEOUT_MS);
+		rightCarriage.configVoltageCompSaturation(Constants.CARRIAGE_VOLTAGE_LIMIT, Constants.CARRIAGE_TIMEOUT_MS);
+		leftCarriage.enableCurrentLimit(Constants.CARRIAGE_VOLTAGE_LIMIT_ENABLED);
+		rightCarriage.enableCurrentLimit(Constants.CARRIAGE_VOLTAGE_LIMIT_ENABLED);
+		
 	}
 
 	public void pushOutCarriage() {
