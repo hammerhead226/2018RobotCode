@@ -29,7 +29,7 @@ public class Robot extends TimedRobot {
 	public static DriveTrain driveTrain;
 	public static PneumaticsSystem pneumaticsSystem;
 	public VisionRun vision = new VisionRun();
-
+	public static double armHeight;
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
