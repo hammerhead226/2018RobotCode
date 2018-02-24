@@ -16,5 +16,10 @@ import util.Controller;
 public class OI {
 
 	public Controller driver = new Controller(0);
+	public Controller manip = new Controller(1);
 	
+	public OI() {
+		driver.getAButton().whileHeld(new);
+		driver.getBButton().whileHeld(new);
+	}
 }

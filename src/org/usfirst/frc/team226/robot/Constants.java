@@ -12,18 +12,26 @@ public class Constants {
 	public static final boolean DT_VOLTAGE_LIMIT_ENABLED = true;
 	public static final boolean DT_CURRENT_LIMIT_ENABLED = true;
 
-	public static final int ELEVATOR_CURRENT_LIMIT = 0;
+	public static final int CARRIAGE_CURRENT_LIMIT = 0;
 
-	public static final boolean ELEVATOR_CURRENT_LIMIT_ENABLED = false;
+	public static final boolean CARRIAGE_CURRENT_LIMIT_ENABLED = false;
 
-	public static final double ELEVATOR_VOLTAGE_LIMIT = 0;
+	public static final double CARRIAGE_VOLTAGE_LIMIT = 0;
 
-	public static final boolean ELEVATOR_VOLTAGE_LIMIT_ENABLED = false;
+	public static final boolean CARRIAGE_VOLTAGE_LIMIT_ENABLED = false;
 
-	public static final boolean ELEVATOR_INVERT_L = false;
+	public static final boolean CARRIAGE_INVERT_L = false;
 
-	public static final boolean ELEVATOR_INVERT_R = false;
+	public static final boolean CARRIAGE_INVERT_R = false;
 
 	public static final double CARRIAGE_OUTTAKE_SPEED = 0;
+
+	public static final double CARRIAGE_INTAKE_SPEED = 0;
+
+	public static final double CARRIAGE_GROUND_1 = 0;
+
+	public static final double CARRIAGE_GROUND_TOLERANCE = 0;
+
+	public static final double CARRIAGE_GROUND_2 = 0;
 	
 }
