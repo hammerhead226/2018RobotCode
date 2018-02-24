@@ -69,7 +69,7 @@ public class Elevator extends Subsystem {
 		right1.follow(left1);
 		right2.follow(left1);
 		
-		left1.setSensorPhase(true);
+		left1.setSensorPhase(Constants.ELEVATOR_ENCODER_PHASE);
 	}
 
 	public void moveElevatorToIntake() {

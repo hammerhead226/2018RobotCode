@@ -74,6 +74,9 @@ public class Constants {
 	public static final boolean ELEVATOR_ENABLE_BOTTOM_THRESHOLD = false;
 	public static final boolean ELEVATOR_ENABLE_TOP_THRESHOLD = false;
 	
+	//Encoder Inversions
+	public static final boolean ELEVATOR_ENCODER_PHASE = true;
+	
 	//Misc
 	public static final double CARRIAGE_PHOTOEYE_THRESHHOLD = 0;
 	public static final double ELEVATOR_FINE_TUNE = 0.5;
