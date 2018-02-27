@@ -34,6 +34,7 @@ public class Robot extends TimedRobot {
 	public static Carriage carriage;
 	public VisionRun vision = new VisionRun();
 	public static double armHeight;
+	public static boolean isArmGround;
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -92,6 +93,7 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		armHeight = Robot.arm.getArmPos();
+		isArmGround = (Math.abs(Robot.armHeight - Constants.GROUND_1) < Constants.CARRIAGE_GROUND_TOLERANCE || Math.abs(Robot.armHeight - Constants.GROUND_2) < Constants.CARRIAGE_GROUND_TOLERANCE);
 	}
 
 }
