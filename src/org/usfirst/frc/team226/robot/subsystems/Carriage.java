@@ -20,14 +20,14 @@ public class Carriage extends Subsystem {
     
     public Carriage() {
   		
-    	left.configContinuousCurrentLimit(Constants.CARRIAGE_CURRENT_LIMIT, 0);
-    	right.configContinuousCurrentLimit(Constants.CARRIAGE_CURRENT_LIMIT, 0);
+    	left.configContinuousCurrentLimit(Constants.CARRIAGE_CURRENT_LIMIT, Constants.CARRIAGE_SENSOR_TIMEOUT);
+    	right.configContinuousCurrentLimit(Constants.CARRIAGE_CURRENT_LIMIT, Constants.CARRIAGE_SENSOR_TIMEOUT);
     	 		
     	left.enableCurrentLimit(Constants.CARRIAGE_CURRENT_LIMIT_ENABLED);	
     	right.enableCurrentLimit(Constants.CARRIAGE_CURRENT_LIMIT_ENABLED);
     	
-    	left.configVoltageCompSaturation(Constants.CARRIAGE_VOLTAGE_LIMIT, 0);
-    	right.configVoltageCompSaturation(Constants.CARRIAGE_VOLTAGE_LIMIT, 0);
+    	left.configVoltageCompSaturation(Constants.CARRIAGE_VOLTAGE_LIMIT, Constants.CARRIAGE_SENSOR_TIMEOUT);
+    	right.configVoltageCompSaturation(Constants.CARRIAGE_VOLTAGE_LIMIT, Constants.CARRIAGE_SENSOR_TIMEOUT);
     	
     	left.enableVoltageCompensation(Constants.CARRIAGE_VOLTAGE_LIMIT_ENABLED);
     	right.enableVoltageCompensation(Constants.CARRIAGE_VOLTAGE_LIMIT_ENABLED);
@@ -62,7 +62,7 @@ public class Carriage extends Subsystem {
     }
     
     public boolean isCarriageGround() {
-    	return (Math.abs(Robot.armHeight - Constants.CARRIAGE_GROUND_1) < Constants.CARRIAGE_GROUND_TOLERANCE || Math.abs(Robot.armHeight - Constants.CARRIAGE_GROUND_2) < Constants.CARRIAGE_GROUND_TOLERANCE);
+    	return (Math.abs(Robot.armHeight - Constants.GROUND_1) < Constants.CARRIAGE_GROUND_TOLERANCE || Math.abs(Robot.armHeight - Constants.GROUND_2) < Constants.CARRIAGE_GROUND_TOLERANCE);
     }
     
     public void carriageNeutral() {

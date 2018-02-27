@@ -19,7 +19,7 @@ public class Arm extends Subsystem {
     TalonSRX right = new TalonSRX(RobotMap.ARM_RIGHT_ID);
     
     public Arm() {
-    	left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ARM_PID_IDX, Constants.ARM_SENSOR_TIMEOUT);
+    	left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ARM_PIDSLOT_IDX, Constants.ARM_SENSOR_TIMEOUT);
     	
     	left.configContinuousCurrentLimit(Constants.ARM_CURRENT_LIMIT, Constants.ARM_SENSOR_TIMEOUT);
     	right.configContinuousCurrentLimit(Constants.ARM_CURRENT_LIMIT, Constants.ARM_SENSOR_TIMEOUT);
@@ -69,7 +69,7 @@ public class Arm extends Subsystem {
     }
     
     public int getArmPos() {
-    	return left.getSelectedSensorPosition(Constants.ARM_PID_IDX);
+    	return left.getSelectedSensorPosition(Constants.ARM_PIDSLOT_IDX);
     }
     
     public void armHoldPos() {
