@@ -61,17 +61,13 @@ public class Carriage extends Subsystem {
     	right.set(ControlMode.PercentOutput, Constants.CARRIAGE_INTAKE_SPEED);
     }
     
-    public boolean isCarriageGround() {
-    	return (Math.abs(Robot.armHeight - Constants.GROUND_1) < Constants.CARRIAGE_GROUND_TOLERANCE || Math.abs(Robot.armHeight - Constants.GROUND_2) < Constants.CARRIAGE_GROUND_TOLERANCE);
-    }
-    
     public void carriageNeutral() {
     	left.neutralOutput();
     	right.neutralOutput();
     }
     
     public void teleopCarriage() {
-    	if(isCarriageGround()) {
+    	if(Robot.isArmGround) {
     		setCarriageSpeed(Robot.m_oi.driver.getLeftJoystick_Y());
     	} else {
     		carriageNeutral();
