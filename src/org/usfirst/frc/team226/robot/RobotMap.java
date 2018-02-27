@@ -37,6 +37,4 @@ public class RobotMap {
 	public static final int CARRIAGE_RIGHT_ID = 0;
 	public static final int ARM_LEFT_ID = 0;
 	public static final int ARM_RIGHT_ID = 0;
-
-
 }
