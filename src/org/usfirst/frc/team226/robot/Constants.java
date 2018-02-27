@@ -33,5 +33,33 @@ public class Constants {
 	public static final double CARRIAGE_GROUND_TOLERANCE = 0;
 
 	public static final double CARRIAGE_GROUND_2 = 0;
+
+	public static final int ARM_CURRENT_LIMIT = 0;
+
+	public static final boolean ARM_CURRENT_LIMIT_ENABLED = false;
+
+	public static final double ARM_VOLTAGE_LIMIT = 0;
+
+	public static final boolean ARM_VOLTAGE_LIMIT_ENABLED = false;
+
+	public static final boolean ARM_INVERT_L = false;
+
+	public static final boolean ARM_INVERT_R = false;
+
+	public static final int ARM_SENSOR_TIMEOUT = 0;
+
+	public static final int ARM_PID_IDX = 0;
+
+	public static final double SCALE_2 = 0;
+
+	public static final double SCALE_1 = 0;
+
+	public static final double SWITCH_2 = 0;
+
+	public static final double SWITCH_1 = 0;
+
+	public static final double GROUND_2 = 0;
+
+	public static final double GROUND_1 = 0;
 	
 }
