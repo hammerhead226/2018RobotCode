@@ -47,6 +47,7 @@ public class Constants {
 	public static final double CARRIAGE_GROUND_TOLERANCE = 0;
 	public static final int ARM_SENSOR_TIMEOUT = 0;
 	public static final int CARRIAGE_SENSOR_TIMEOUT = 0;
+	public static final long ARM_CLOSE_TIME = 0;
 
 
 

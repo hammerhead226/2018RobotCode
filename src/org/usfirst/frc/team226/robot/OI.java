@@ -9,6 +9,7 @@ package org.usfirst.frc.team226.robot;
 
 import org.usfirst.frc.team226.robot.commands.CarriageIntake;
 import org.usfirst.frc.team226.robot.commands.CarriageOuttake;
+import org.usfirst.frc.team226.robot.commands.Popper;
 
 import util.Controller;
 
@@ -24,5 +25,6 @@ public class OI {
 	public OI() {
 		driver.getAButton().whileHeld(new CarriageIntake());
 		driver.getBButton().whileHeld(new CarriageOuttake());
+		driver.getBButton().whileHeld(new Popper());
 	}
 }

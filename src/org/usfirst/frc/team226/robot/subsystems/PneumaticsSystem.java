@@ -1,5 +1,6 @@
 package org.usfirst.frc.team226.robot.subsystems;
 
+import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Compressor;
@@ -53,5 +54,31 @@ public class PneumaticsSystem extends Subsystem {
 	public void shiftDriveTrainNeutral() {
 		leftShifter.set(DoubleSolenoid.Value.kOff);
 		rightShifter.set(DoubleSolenoid.Value.kOff);
+	}
+	
+	private DoubleSolenoid carriagePopper = new DoubleSolenoid(RobotMap.CARRIAGE_POPPER_1, RobotMap.CARRIAGE_POPPER_2);
+	private DoubleSolenoid.Value popperVal = DoubleSolenoid.Value.kOff;
+	
+	public void popOut() {
+		popperVal = DoubleSolenoid.Value.kForward;
+		carriagePopper.set(popperVal);
+	}
+	
+	public void popIn() {
+		popperVal = DoubleSolenoid.Value.kReverse;
+		carriagePopper.set(popperVal);
+	}
+	
+	public void popNeutral() {
+		popperVal = DoubleSolenoid.Value.kOff;
+		carriagePopper.set(popperVal);
+	}
+	
+	public void closePopper() {
+		long t = System.currentTimeMillis();
+		while((System.currentTimeMillis() - t) < Constants.ARM_CLOSE_TIME) {
+			popIn();
+		}
+		popNeutral();
 	}
 }
