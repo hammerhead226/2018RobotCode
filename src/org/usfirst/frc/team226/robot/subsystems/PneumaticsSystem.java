@@ -1,6 +1,7 @@
 package org.usfirst.frc.team226.robot.subsystems;
 
 import org.usfirst.frc.team226.robot.Constants;
+import org.usfirst.frc.team226.robot.Robot;
 import org.usfirst.frc.team226.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Compressor;
@@ -60,8 +61,10 @@ public class PneumaticsSystem extends Subsystem {
 	private DoubleSolenoid.Value popperVal = DoubleSolenoid.Value.kOff;
 	
 	public void popOut() {
-		popperVal = DoubleSolenoid.Value.kForward;
-		carriagePopper.set(popperVal);
+		if(!Robot.isArmGround) {
+			popperVal = DoubleSolenoid.Value.kForward;
+			carriagePopper.set(popperVal);
+		}
 	}
 	
 	public void popIn() {
