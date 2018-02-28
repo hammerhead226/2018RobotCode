@@ -71,12 +71,5 @@ public class PneumaticsSystem extends Subsystem {
 	public void popNeutral() {
 		carriagePopper.set(DoubleSolenoid.Value.kOff);
 	}
-	
-	public void closePopper() {
-		long t = System.currentTimeMillis();
-		while((System.currentTimeMillis() - t) < Constants.ARM_CLOSE_TIME) {
-			popIn();
-		}
-		popNeutral();
-	}
+
 }
