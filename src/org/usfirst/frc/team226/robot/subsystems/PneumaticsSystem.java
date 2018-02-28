@@ -57,24 +57,19 @@ public class PneumaticsSystem extends Subsystem {
 		rightShifter.set(DoubleSolenoid.Value.kOff);
 	}
 	
-	private DoubleSolenoid carriagePopper = new DoubleSolenoid(RobotMap.CARRIAGE_POPPER_1, RobotMap.CARRIAGE_POPPER_2);
-	private DoubleSolenoid.Value popperVal = DoubleSolenoid.Value.kOff;
-	
+	private DoubleSolenoid carriagePopper = new DoubleSolenoid(RobotMap.CARRIAGE_POPPER_1, RobotMap.CARRIAGE_POPPER_2);	
 	public void popOut() {
 		if(!Robot.isArmGround) {
-			popperVal = DoubleSolenoid.Value.kForward;
-			carriagePopper.set(popperVal);
+			carriagePopper.set(DoubleSolenoid.Value.kForward);
 		}
 	}
 	
 	public void popIn() {
-		popperVal = DoubleSolenoid.Value.kReverse;
-		carriagePopper.set(popperVal);
+		carriagePopper.set(DoubleSolenoid.Value.kReverse);
 	}
 	
 	public void popNeutral() {
-		popperVal = DoubleSolenoid.Value.kOff;
-		carriagePopper.set(popperVal);
+		carriagePopper.set(DoubleSolenoid.Value.kOff);
 	}
 	
 	public void closePopper() {
