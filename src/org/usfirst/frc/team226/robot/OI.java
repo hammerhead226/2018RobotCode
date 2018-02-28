@@ -9,7 +9,7 @@ package org.usfirst.frc.team226.robot;
 
 import org.usfirst.frc.team226.robot.commands.RunCarriage;
 import org.usfirst.frc.team226.robot.commands.RunCarriageReverse;
-import org.usfirst.frc.team226.robot.commands.PopOutShooter;
+import org.usfirst.frc.team226.robot.commands.Shoot;
 
 import util.Controller;
 
@@ -24,7 +24,7 @@ public class OI {
 	
 	public OI() {
 		driver.getAButton().whileHeld(new RunCarriage());
-		driver.getBButton().whileHeld(new RunCarriageReverse());
-		driver.getBButton().whileHeld(new PopOutShooter());
+		driver.getXButton().whileHeld(new RunCarriageReverse());
+		driver.getBButton().whileHeld(new Shoot());
 	}
 }

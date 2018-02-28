@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class PopOutShooter extends Command {
+public class Shoot extends Command {
 
-    public PopOutShooter() {
+    public Shoot() {
     	requires(Robot.pneumaticsSystem);
     }
 
@@ -19,7 +19,7 @@ public class PopOutShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.pneumaticsSystem.popOut();
+    	Robot.pneumaticsSystem.actuatePopper();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -29,7 +29,6 @@ public class PopOutShooter extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.pneumaticsSystem.popIn();
     }
 
     // Called when another command which requires one or more of the same

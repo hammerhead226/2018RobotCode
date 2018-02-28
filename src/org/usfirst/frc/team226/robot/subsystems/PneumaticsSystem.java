@@ -1,7 +1,5 @@
 package org.usfirst.frc.team226.robot.subsystems;
 
-import org.usfirst.frc.team226.robot.Constants;
-import org.usfirst.frc.team226.robot.Robot;
 import org.usfirst.frc.team226.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Compressor;
@@ -24,6 +22,8 @@ public class PneumaticsSystem extends Subsystem {
 
 	private DoubleSolenoid leftShifter = new DoubleSolenoid(RobotMap.DT_LEFT_SHIFTER_PCM, RobotMap.DT_LEFT_SHIFTER_1, RobotMap.DT_LEFT_SHIFTER_2);
 	private DoubleSolenoid rightShifter = new DoubleSolenoid(RobotMap.DT_RIGHT_SHIFTER_PCM, RobotMap.DT_RIGHT_SHIFTER_1, RobotMap.DT_RIGHT_SHIFTER_2);
+	private DoubleSolenoid carriagePopper = new DoubleSolenoid(RobotMap.CARRIAGE_POPPER_1, RobotMap.CARRIAGE_POPPER_2);
+
 
 	private DoubleSolenoid.Value leftVal = DoubleSolenoid.Value.kOff;
 
@@ -57,15 +57,14 @@ public class PneumaticsSystem extends Subsystem {
 		rightShifter.set(DoubleSolenoid.Value.kOff);
 	}
 	
-	private DoubleSolenoid carriagePopper = new DoubleSolenoid(RobotMap.CARRIAGE_POPPER_1, RobotMap.CARRIAGE_POPPER_2);	
-	public void popOut() {
-		if(!Robot.isArmGround) {
-			carriagePopper.set(DoubleSolenoid.Value.kForward);
+	DoubleSolenoid.Value popperVal = DoubleSolenoid.Value.kOff;
+	public void actuatePopper() {
+		if(popperVal == DoubleSolenoid.Value.kForward) {
+			popperVal = DoubleSolenoid.Value.kReverse;
+		} else {
+			popperVal = DoubleSolenoid.Value.kForward;
 		}
-	}
-	
-	public void popIn() {
-		carriagePopper.set(DoubleSolenoid.Value.kReverse);
+		carriagePopper.set(popperVal);
 	}
 	
 	public void popNeutral() {
