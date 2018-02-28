@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CarriageOuttake extends Command {
+public class RunCarriage extends Command {
 
-    public CarriageOuttake() {
+    public RunCarriage() {
         requires(Robot.carriage);
     }
 
@@ -19,7 +19,7 @@ public class CarriageOuttake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.carriage.carriageOuttake();
+    	Robot.carriage.carriageIntake();
     }
 
     // Make this return true when this Command no longer needs to run execute()

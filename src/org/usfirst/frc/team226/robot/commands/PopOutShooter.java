@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Popper extends Command {
+public class PopOutShooter extends Command {
 
-    public Popper() {
+    public PopOutShooter() {
     	requires(Robot.pneumaticsSystem);
     }
 

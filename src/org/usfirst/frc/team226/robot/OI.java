@@ -7,9 +7,9 @@
 
 package org.usfirst.frc.team226.robot;
 
-import org.usfirst.frc.team226.robot.commands.CarriageIntake;
-import org.usfirst.frc.team226.robot.commands.CarriageOuttake;
-import org.usfirst.frc.team226.robot.commands.Popper;
+import org.usfirst.frc.team226.robot.commands.RunCarriage;
+import org.usfirst.frc.team226.robot.commands.RunCarriageReverse;
+import org.usfirst.frc.team226.robot.commands.PopOutShooter;
 
 import util.Controller;
 
@@ -23,8 +23,8 @@ public class OI {
 	public Controller manip = new Controller(1);
 	
 	public OI() {
-		driver.getAButton().whileHeld(new CarriageIntake());
-		driver.getBButton().whileHeld(new CarriageOuttake());
-		driver.getBButton().whileHeld(new Popper());
+		driver.getAButton().whileHeld(new RunCarriage());
+		driver.getBButton().whileHeld(new RunCarriageReverse());
+		driver.getBButton().whileHeld(new PopOutShooter());
 	}
 }
