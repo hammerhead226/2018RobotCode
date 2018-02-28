@@ -17,7 +17,7 @@ public class CheesyDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.arcadeDrive(Robot.m_oi.driver.getLeftJoystick_Y(), Robot.m_oi.driver.getRightJoystick_X());
+    	Robot.driveTrain.arcadeDrive(Robot.oi.driver.getLeftJoystick_Y(), Robot.oi.driver.getRightJoystick_X());
     }
 
     // Make this return true when this Command no longer needs to run execute()

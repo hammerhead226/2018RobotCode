@@ -77,31 +77,31 @@ public class Arm extends Subsystem {
     }
     
     public void manualArmMovement() {
-    	if(Math.abs(Robot.m_oi.manip.getLeftJoystick_Y()) > 0) {
-    		left.set(ControlMode.PercentOutput, Robot.m_oi.manip.getLeftJoystick_Y());
+    	if(Math.abs(Robot.oi.manip.getLeftJoystick_Y()) > 0) {
+    		left.set(ControlMode.PercentOutput, Robot.oi.manip.getLeftJoystick_Y());
     	} else {
     		armHoldPos();
     	}
     }
    
     public void setArmPID() {
-    	if(Robot.m_oi.manip.getAButtonPressed()) {
+    	if(Robot.oi.manip.getAButtonPressed()) {
     		armToGround1();
-    	} else if(Robot.m_oi.manip.getBButtonPressed()) {
+    	} else if(Robot.oi.manip.getBButtonPressed()) {
     		armToSwitch1();
-    	} else if(Robot.m_oi.manip.getYButtonPressed()) {
+    	} else if(Robot.oi.manip.getYButtonPressed()) {
     		armToScale1();
-    	} else if(Robot.m_oi.manip.getAButtonPressed() && Robot.m_oi.manip.getRBButtonPressed()) {
+    	} else if(Robot.oi.manip.getAButtonPressed() && Robot.oi.manip.getRBButtonPressed()) {
     		armToGround2();
-    	} else if(Robot.m_oi.manip.getBButtonPressed() && Robot.m_oi.manip.getRBButtonPressed()) {
+    	} else if(Robot.oi.manip.getBButtonPressed() && Robot.oi.manip.getRBButtonPressed()) {
     		armToSwitch2();
-    	} else if(Robot.m_oi.manip.getYButtonPressed() && Robot.m_oi.manip.getRBButtonPressed()) {
+    	} else if(Robot.oi.manip.getYButtonPressed() && Robot.oi.manip.getRBButtonPressed()) {
     		armToScale2();
     	} 
     }
     
     public boolean isPIDButtonPressed() {
-    	return Robot.m_oi.manip.getAButtonPressed() || Robot.m_oi.manip.getBButtonPressed() || Robot.m_oi.manip.getYButtonPressed();
+    	return Robot.oi.manip.getAButtonPressed() || Robot.oi.manip.getBButtonPressed() || Robot.oi.manip.getYButtonPressed();
     }
     
     public void teleopArm() {

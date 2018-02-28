@@ -68,7 +68,7 @@ public class Carriage extends Subsystem {
     
     public void teleopCarriage() {
     	if(Robot.isArmGround) {
-    		setCarriageSpeed(Robot.m_oi.driver.getLeftJoystick_Y());
+    		setCarriageSpeed(Robot.oi.driver.getLeftJoystick_Y());
     	} else {
     		carriageNeutral();
     	}
