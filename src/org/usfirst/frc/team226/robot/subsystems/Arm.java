@@ -3,7 +3,7 @@ package org.usfirst.frc.team226.robot.subsystems;
 import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.Robot;
 import org.usfirst.frc.team226.robot.RobotMap;
-import org.usfirst.frc.team226.robot.commands.TeleopArm;
+import org.usfirst.frc.team226.robot.commands.RunArm;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -41,7 +41,7 @@ public class Arm extends Subsystem {
     }
     
     public void initDefaultCommand() {
-        setDefaultCommand(new TeleopArm());
+        setDefaultCommand(new RunArm());
     }
     
     public void armToGround1() {
@@ -104,7 +104,7 @@ public class Arm extends Subsystem {
     	return Robot.oi.manip.getAButtonPressed() || Robot.oi.manip.getBButtonPressed() || Robot.oi.manip.getYButtonPressed();
     }
     
-    public void teleopArm() {
+    public void runArm() {
     	if(isPIDButtonPressed()) {
     		setArmPID();
     	} else {

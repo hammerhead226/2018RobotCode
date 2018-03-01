@@ -3,7 +3,7 @@ package org.usfirst.frc.team226.robot.subsystems;
 import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.Robot;
 import org.usfirst.frc.team226.robot.RobotMap;
-import org.usfirst.frc.team226.robot.commands.TeleopCarriage;
+import org.usfirst.frc.team226.robot.commands.RunIntake;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -40,7 +40,7 @@ public class Intake extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
-		setDefaultCommand(new TeleopCarriage());
+		setDefaultCommand(new RunIntake());
 	}
 
 	public void intakeNeutral() {

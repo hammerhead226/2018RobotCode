@@ -7,10 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TeleopArm extends Command {
+public class RunIntake extends Command {
 
-    public TeleopArm() {
-    	requires(Robot.arm);
+    public RunIntake() {
+        requires(Robot.intake);
     }
 
     // Called just before this Command runs the first time
@@ -19,7 +19,7 @@ public class TeleopArm extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.arm.teleopArm();
+    	Robot.intake.setIntakeSpeed();
     }
 
     // Make this return true when this Command no longer needs to run execute()

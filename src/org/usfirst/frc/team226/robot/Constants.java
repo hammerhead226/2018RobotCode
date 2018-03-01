@@ -42,9 +42,6 @@ public class Constants {
 	
 	//Misc
 	public static final int STARTUP_WAIT = 10;
-	public static final double CARRIAGE_OUTTAKE_SPEED = 0;
-	public static final double CARRIAGE_INTAKE_SPEED = 0;
-	public static final double CARRIAGE_GROUND_TOLERANCE = 0;
 	public static final int ARM_SENSOR_TIMEOUT = 0;
 	public static final int INTAKE_SENSOR_TIMEOUT = 0;
 	public static final long ARM_CLOSE_TIME = 0;
