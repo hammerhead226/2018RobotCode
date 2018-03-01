@@ -89,9 +89,19 @@ public class Arm extends Subsystem {
     
     public void manualArmMovement() {
     	if(Math.abs(Robot.oi.manip.getLeftJoystick_Y()) > 0) {
-    		left.set(ControlMode.PercentOutput, Robot.oi.manip.getLeftJoystick_Y());
+    		left.set(ControlMode.PercentOutput, limitingAngle(Robot.oi.manip.getLeftJoystick_Y()));
     	} else {
     		armHoldPos();
+    	}
+    }
+    
+    public double limitingAngle(double joysthiccc) {
+    	if(getArmPos() >= Constants.ARM_FORWARD_LIMIT && joysthiccc > 0) {
+    		return 0.0;
+    	} else if(getArmPos() <= Constants.ARM_REVERSE_LIMIT && joysthiccc < 0) {
+    		return 0.0;
+    	} else {
+    		return joysthiccc;
     	}
     }
    
