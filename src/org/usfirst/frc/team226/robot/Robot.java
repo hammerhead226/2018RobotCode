@@ -37,16 +37,17 @@ public class Robot extends TimedRobot {
 	public static OI oi;
 
 	@Override
-	public void robotInit() {
+	public void robotInit() {	
 		arm = new Arm();
 		driveTrain = new DriveTrain();
 		pneumaticsSystem = new PneumaticsSystem();
 		intake = new Intake();
+		oi = new OI();
 		// m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 		vision.start();
-		oi = new OI();
+		
 	}
 
 	@Override
