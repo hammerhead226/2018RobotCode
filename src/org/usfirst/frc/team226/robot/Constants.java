@@ -9,6 +9,14 @@ public class Constants {
 	public static final double GROUND_2 = 0;
 	public static final double GROUND_1 = 0;
 	
+	//Arm Soft Limits
+	public static final int ARM_FORWARD_LIMIT = 0;
+	public static final int ARM_REVERSE_LIMIT = 0;
+	
+	//Enable Arm Soft Limits
+	public static final boolean ARM_FORWARD_LIMIT_ENABLED = false;
+	public static final boolean ARM_REVERSE_LIMIT_ENABLED = false;
+	
 	//Subsystem Voltage Limits
 	public static final double DT_VOLTAGE_LIMIT = 11;
 	public static final double INTAKE_VOLTAGE_LIMIT = 0;
@@ -45,7 +53,5 @@ public class Constants {
 	public static final int ARM_SENSOR_TIMEOUT = 0;
 	public static final int INTAKE_SENSOR_TIMEOUT = 0;
 	public static final long ARM_CLOSE_TIME = 0;
-
-
 
 }

@@ -37,6 +37,17 @@ public class Arm extends Subsystem {
     	left.setInverted(Constants.ARM_INVERT_L);
     	right.setInverted(Constants.ARM_INVERT_R);
     	
+    	left.configForwardSoftLimitThreshold(Constants.ARM_FORWARD_LIMIT, Constants.ARM_SENSOR_TIMEOUT);
+    	left.configReverseSoftLimitThreshold(Constants.ARM_REVERSE_LIMIT, Constants.ARM_SENSOR_TIMEOUT);
+    	right.configForwardSoftLimitThreshold(Constants.ARM_FORWARD_LIMIT, Constants.ARM_SENSOR_TIMEOUT);
+    	right.configReverseSoftLimitThreshold(Constants.ARM_REVERSE_LIMIT, Constants.ARM_SENSOR_TIMEOUT);
+    	
+    	left.configForwardSoftLimitEnable(Constants.ARM_FORWARD_LIMIT_ENABLED, Constants.ARM_SENSOR_TIMEOUT);
+    	left.configReverseSoftLimitEnable(Constants.ARM_REVERSE_LIMIT_ENABLED, Constants.ARM_SENSOR_TIMEOUT);
+    	right.configForwardSoftLimitEnable(Constants.ARM_FORWARD_LIMIT_ENABLED, Constants.ARM_SENSOR_TIMEOUT);
+    	right.configReverseSoftLimitEnable(Constants.ARM_REVERSE_LIMIT_ENABLED, Constants.ARM_SENSOR_TIMEOUT);
+    	
+    	
     	right.follow(left);
     }
     
