@@ -7,8 +7,6 @@
 
 package org.usfirst.frc.team226.robot;
 
-import org.usfirst.frc.team226.robot.commands.RunCarriage;
-import org.usfirst.frc.team226.robot.commands.RunCarriageReverse;
 import org.usfirst.frc.team226.robot.commands.Shoot;
 
 import util.Controller;
@@ -23,8 +21,6 @@ public class OI {
 	public Controller manip = new Controller(1);
 	
 	public OI() {
-		driver.getAButton().whileHeld(new RunCarriage());
-		driver.getXButton().whileHeld(new RunCarriageReverse());
 		driver.getBButton().whileHeld(new Shoot());
 	}
 }

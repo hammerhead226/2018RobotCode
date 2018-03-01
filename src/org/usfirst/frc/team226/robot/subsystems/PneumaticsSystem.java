@@ -22,7 +22,7 @@ public class PneumaticsSystem extends Subsystem {
 
 	private DoubleSolenoid leftShifter = new DoubleSolenoid(RobotMap.DT_LEFT_SHIFTER_PCM, RobotMap.DT_LEFT_SHIFTER_1, RobotMap.DT_LEFT_SHIFTER_2);
 	private DoubleSolenoid rightShifter = new DoubleSolenoid(RobotMap.DT_RIGHT_SHIFTER_PCM, RobotMap.DT_RIGHT_SHIFTER_1, RobotMap.DT_RIGHT_SHIFTER_2);
-	private DoubleSolenoid carriagePopper = new DoubleSolenoid(RobotMap.CARRIAGE_POPPER_1, RobotMap.CARRIAGE_POPPER_2);
+	private DoubleSolenoid shooter = new DoubleSolenoid(RobotMap.SHOOTER_1, RobotMap.SHOOTER_2);
 
 
 	private DoubleSolenoid.Value leftVal = DoubleSolenoid.Value.kOff;
@@ -57,18 +57,18 @@ public class PneumaticsSystem extends Subsystem {
 		rightShifter.set(DoubleSolenoid.Value.kOff);
 	}
 	
-	DoubleSolenoid.Value popperVal = DoubleSolenoid.Value.kOff;
-	public void actuatePopper() {
-		if(popperVal == DoubleSolenoid.Value.kForward) {
-			popperVal = DoubleSolenoid.Value.kReverse;
+	DoubleSolenoid.Value shooterVal = DoubleSolenoid.Value.kOff;
+	public void actuateShooter() {
+		if(shooterVal == DoubleSolenoid.Value.kForward) {
+			shooterVal = DoubleSolenoid.Value.kReverse;
 		} else {
-			popperVal = DoubleSolenoid.Value.kForward;
+			shooterVal = DoubleSolenoid.Value.kForward;
 		}
-		carriagePopper.set(popperVal);
+		shooter.set(shooterVal);
 	}
 	
-	public void popNeutral() {
-		carriagePopper.set(DoubleSolenoid.Value.kOff);
+	public void actuateShooterNeutral() {
+		shooter.set(DoubleSolenoid.Value.kOff);
 	}
 
 }

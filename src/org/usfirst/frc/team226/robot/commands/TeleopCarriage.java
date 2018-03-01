@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class TeleopCarriage extends Command {
 
     public TeleopCarriage() {
-        requires(Robot.carriage);
+        requires(Robot.intake);
     }
 
     // Called just before this Command runs the first time
@@ -19,7 +19,7 @@ public class TeleopCarriage extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.carriage.teleopCarriage();
+    	Robot.intake.setIntakeSpeed();
     }
 
     // Make this return true when this Command no longer needs to run execute()

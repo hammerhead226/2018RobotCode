@@ -33,10 +33,10 @@ public class RobotMap {
 	public static final int DT_RIGHT_SHIFTER_PCM = PCM_B;
 	public static final int DT_RIGHT_SHIFTER_1 = 6;
 	public static final int DT_RIGHT_SHIFTER_2 = 7;
-	public static final int CARRIAGE_LEFT_ID = 0;
-	public static final int CARRIAGE_RIGHT_ID = 0;
+	public static final int INTAKE_LEFT_ID = 0;
+	public static final int INTAKE_RIGHT_ID = 0;
 	public static final int ARM_LEFT_ID = 0;
 	public static final int ARM_RIGHT_ID = 0;
-	public static final int CARRIAGE_POPPER_1 = 0;
-	public static final int CARRIAGE_POPPER_2 = 0;
+	public static final int SHOOTER_1 = 0;
+	public static final int SHOOTER_2 = 0;
 }

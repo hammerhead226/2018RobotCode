@@ -8,7 +8,7 @@
 package org.usfirst.frc.team226.robot;
 
 import org.usfirst.frc.team226.robot.subsystems.Arm;
-import org.usfirst.frc.team226.robot.subsystems.Carriage;
+import org.usfirst.frc.team226.robot.subsystems.Intake;
 import org.usfirst.frc.team226.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team226.robot.subsystems.PneumaticsSystem;
 import org.usfirst.frc.team226.robot.vision.VisionRun;
@@ -30,10 +30,8 @@ public class Robot extends TimedRobot {
 	public static Arm arm;
 	public static DriveTrain driveTrain;
 	public static PneumaticsSystem pneumaticsSystem;
-	public static Carriage carriage;
+	public static Intake intake;
 	public VisionRun vision = new VisionRun();
-	public static double armHeight;
-	public static boolean isArmGround;
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 	public static OI oi;
@@ -43,7 +41,7 @@ public class Robot extends TimedRobot {
 		arm = new Arm();
 		driveTrain = new DriveTrain();
 		pneumaticsSystem = new PneumaticsSystem();
-		carriage = new Carriage();
+		intake = new Intake();
 		// m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
@@ -92,8 +90,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		armHeight = Robot.arm.getArmPos();
-		isArmGround = (Math.abs(Robot.armHeight - Constants.GROUND_1) < Constants.CARRIAGE_GROUND_TOLERANCE || Math.abs(Robot.armHeight - Constants.GROUND_2) < Constants.CARRIAGE_GROUND_TOLERANCE);
 	}
 
 }
