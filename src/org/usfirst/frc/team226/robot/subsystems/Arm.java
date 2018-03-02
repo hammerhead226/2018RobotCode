@@ -21,6 +21,7 @@ public class Arm extends Subsystem {
     
     public Arm() {
     	left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ARM_PIDSLOT_IDX, Constants.ARM_SENSOR_TIMEOUT);
+    	left.setSelectedSensorPosition(0, 0, 0);
     	
     	left.configContinuousCurrentLimit(Constants.ARM_CURRENT_LIMIT, Constants.ARM_SENSOR_TIMEOUT);
     	right.configContinuousCurrentLimit(Constants.ARM_CURRENT_LIMIT, Constants.ARM_SENSOR_TIMEOUT);
@@ -123,6 +124,10 @@ public class Arm extends Subsystem {
     
     public boolean isPIDButtonPressed() {
     	return Robot.oi.manip.getAButtonPressed() || Robot.oi.manip.getBButtonPressed() || Robot.oi.manip.getYButtonPressed();
+    }
+    
+    public void hardZeroEncoder() {
+    	left.setSelectedSensorPosition(0, 0, 0);
     }
     
     public void runArm() {
