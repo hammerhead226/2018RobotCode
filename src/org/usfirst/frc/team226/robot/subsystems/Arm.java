@@ -18,6 +18,7 @@ public class Arm extends Subsystem {
 
     private TalonSRX left = new TalonSRX(RobotMap.ARM_LEFT_ID);
     private TalonSRX right = new TalonSRX(RobotMap.ARM_RIGHT_ID);
+    int heightHolder = 0;
     
     public Arm() {
     	left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ARM_PIDSLOT_IDX, Constants.ARM_SENSOR_TIMEOUT);
@@ -92,8 +93,9 @@ public class Arm extends Subsystem {
     public void manualArmMovement() {
     	if(Math.abs(Robot.oi.manip.getLeftJoystick_Y()) > 0) {
     		left.set(ControlMode.PercentOutput, limitingAngle(Robot.oi.manip.getLeftJoystick_Y()));
+    		heightHolder = getArmPos();
     	} else {
-    		armHoldPos();
+    		setArmPosition(heightHolder);
     	}
     }
     
@@ -129,6 +131,10 @@ public class Arm extends Subsystem {
     
     public void hardZeroEncoder() {
     	left.setSelectedSensorPosition(0, 0, 0);
+    }
+    
+    public void setArmPosition(int position) {
+    	left.set(ControlMode.MotionMagic, position);
     }
     
     public void runArm() {
