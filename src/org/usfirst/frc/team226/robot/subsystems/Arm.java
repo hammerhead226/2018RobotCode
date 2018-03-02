@@ -97,13 +97,13 @@ public class Arm extends Subsystem {
     	}
     }
     
-    public double limitingAngle(double joysthiccc) {
-    	if(getArmPos() >= Constants.ARM_FORWARD_LIMIT && joysthiccc > 0) {
+    public double limitingAngle(double joystick) {
+    	if(getArmPos() >= Constants.ARM_FORWARD_LIMIT && joystick > 0) {
     		return 0.0;
-    	} else if(getArmPos() <= Constants.ARM_REVERSE_LIMIT && joysthiccc < 0) {
+    	} else if(getArmPos() <= Constants.ARM_REVERSE_LIMIT && joystick < 0) {
     		return 0.0;
     	} else {
-    		return joysthiccc;
+    		return joystick;
     	}
     }
    
