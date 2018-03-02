@@ -42,12 +42,12 @@ public class DriveTrain extends Subsystem {
 		rearLeft.follow(frontLeft);
 		rearRight.follow(frontRight);
 
-		frontLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.STARTUP_WAIT);
-		centerLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.STARTUP_WAIT);
-		rearLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.STARTUP_WAIT);
-		frontRight.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.STARTUP_WAIT);
-		centerRight.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.STARTUP_WAIT);
-		rearRight.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.STARTUP_WAIT);
+		frontLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
+		centerLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
+		rearLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
+		frontRight.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
+		centerRight.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
+		rearRight.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
 
 		frontLeft.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
 		centerLeft.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
@@ -56,12 +56,12 @@ public class DriveTrain extends Subsystem {
 		centerRight.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
 		rearRight.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
 
-		frontLeft.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.STARTUP_WAIT);
-		centerLeft.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.STARTUP_WAIT);
-		rearLeft.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.STARTUP_WAIT);
-		frontRight.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.STARTUP_WAIT);
-		centerRight.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.STARTUP_WAIT);
-		rearRight.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.STARTUP_WAIT);
+		frontLeft.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
+		centerLeft.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
+		rearLeft.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
+		frontRight.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
+		centerRight.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
+		rearRight.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
 
 		frontLeft.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
 		centerLeft.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);

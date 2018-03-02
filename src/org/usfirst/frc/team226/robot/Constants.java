@@ -49,7 +49,7 @@ public class Constants {
 	public static final int ARM_PIDSLOT_IDX = 0;
 	
 	//Misc
-	public static final int STARTUP_WAIT = 10;
+	public static final int DT_TIMEOUT = 10;
 	public static final int ARM_SENSOR_TIMEOUT = 0;
 	public static final int INTAKE_SENSOR_TIMEOUT = 0;
 	public static final long ARM_CLOSE_TIME = 0;
