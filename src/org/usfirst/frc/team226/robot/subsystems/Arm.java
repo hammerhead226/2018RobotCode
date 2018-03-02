@@ -132,10 +132,10 @@ public class Arm extends Subsystem {
     }
     
     public void runArm() {
-    	if(isPIDButtonPressed()) {
-    		setArmPID();
-    	} else {
+    	if(!isPIDButtonPressed()) {
     		manualArmMovement();
+    	} else {
+    		setArmPID();
     	}
     }
 }
