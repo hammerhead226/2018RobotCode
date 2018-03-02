@@ -16,8 +16,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Arm extends Subsystem {
 
-    TalonSRX left = new TalonSRX(RobotMap.ARM_LEFT_ID);
-    TalonSRX right = new TalonSRX(RobotMap.ARM_RIGHT_ID);
+    private TalonSRX left = new TalonSRX(RobotMap.ARM_LEFT_ID);
+    private TalonSRX right = new TalonSRX(RobotMap.ARM_RIGHT_ID);
     
     public Arm() {
     	left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ARM_PIDSLOT_IDX, Constants.ARM_SENSOR_TIMEOUT);
