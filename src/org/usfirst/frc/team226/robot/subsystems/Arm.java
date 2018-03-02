@@ -108,19 +108,19 @@ public class Arm extends Subsystem {
     }
    
     public void setArmPID() {
-    	if(Robot.oi.manip.getAButtonPressed()) {
-    		armToGround1();
-    	} else if(Robot.oi.manip.getBButtonPressed()) {
-    		armToSwitch1();
-    	} else if(Robot.oi.manip.getYButtonPressed()) {
-    		armToScale1();
-    	} else if(Robot.oi.manip.getAButtonPressed() && Robot.oi.manip.getRBButtonPressed()) {
+    	if(Robot.oi.manip.getAButtonPressed() && Robot.oi.manip.getRBButtonPressed()) {
     		armToGround2();
     	} else if(Robot.oi.manip.getBButtonPressed() && Robot.oi.manip.getRBButtonPressed()) {
     		armToSwitch2();
     	} else if(Robot.oi.manip.getYButtonPressed() && Robot.oi.manip.getRBButtonPressed()) {
     		armToScale2();
-    	} 
+    	} else if(Robot.oi.manip.getAButtonPressed()) {
+    		armToGround1();
+    	} else if(Robot.oi.manip.getBButtonPressed()) {
+    		armToSwitch1();
+    	} else if(Robot.oi.manip.getYButtonPressed()) {
+    		armToScale1();
+    	}
     }
     
     public boolean isPIDButtonPressed() {
