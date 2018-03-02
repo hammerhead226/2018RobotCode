@@ -21,6 +21,7 @@ public class Arm extends Subsystem {
     
     public Arm() {
     	left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ARM_PIDSLOT_IDX, Constants.ARM_SENSOR_TIMEOUT);
+    	left.setSensorPhase(Constants.ARM_SENSOR_PHASE);
     	left.setSelectedSensorPosition(0, 0, 0);
     	
     	left.configContinuousCurrentLimit(Constants.ARM_CURRENT_LIMIT, Constants.ARM_SENSOR_TIMEOUT);
