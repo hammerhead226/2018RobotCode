@@ -57,28 +57,28 @@ public class Arm extends Subsystem {
         setDefaultCommand(new RunArm());
     }
     
-    public void armToGround1() {
-    	left.set(ControlMode.MotionMagic, Constants.GROUND_1);
+    public void armToGroundFront() {
+    	left.set(ControlMode.MotionMagic, Constants.GROUND_FRONT);
     }
     
-    public void armToGround2() {
-    	left.set(ControlMode.MotionMagic, Constants.GROUND_2);
+    public void armToGroundBack() {
+    	left.set(ControlMode.MotionMagic, Constants.GROUND_BACK);
     }
     
-    public void armToSwitch1() {
-    	left.set(ControlMode.MotionMagic, Constants.SWITCH_1);
+    public void armToSwitchFront() {
+    	left.set(ControlMode.MotionMagic, Constants.SWITCH_FRONT);
     }
     
-    public void armToSwitch2() {
-    	left.set(ControlMode.MotionMagic, Constants.SWITCH_2);
+    public void armToSwitchBack() {
+    	left.set(ControlMode.MotionMagic, Constants.SWITCH_BACK);
     }
     
-    public void armToScale1() {
-    	left.set(ControlMode.MotionMagic, Constants.SCALE_1);
+    public void armToScaleFront() {
+    	left.set(ControlMode.MotionMagic, Constants.SCALE_FRONT);
     }
     
-    public void armToScale2() {
-    	left.set(ControlMode.MotionMagic, Constants.SCALE_2);
+    public void armToScaleBack() {
+    	left.set(ControlMode.MotionMagic, Constants.SCALE_BACK);
     }
     
     public int getArmPos() {
@@ -109,17 +109,17 @@ public class Arm extends Subsystem {
    
     public void setArmPID() {
     	if(Robot.oi.manip.getAButtonPressed() && Robot.oi.manip.getRBButtonPressed()) {
-    		armToGround2();
+    		armToGroundBack();
     	} else if(Robot.oi.manip.getBButtonPressed() && Robot.oi.manip.getRBButtonPressed()) {
-    		armToSwitch2();
+    		armToSwitchBack();
     	} else if(Robot.oi.manip.getYButtonPressed() && Robot.oi.manip.getRBButtonPressed()) {
-    		armToScale2();
+    		armToScaleBack();
     	} else if(Robot.oi.manip.getAButtonPressed()) {
-    		armToGround1();
+    		armToGroundFront();
     	} else if(Robot.oi.manip.getBButtonPressed()) {
-    		armToSwitch1();
+    		armToSwitchFront();
     	} else if(Robot.oi.manip.getYButtonPressed()) {
-    		armToScale1();
+    		armToScaleFront();
     	}
     }
     
