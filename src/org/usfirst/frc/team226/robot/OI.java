@@ -8,6 +8,7 @@
 package org.usfirst.frc.team226.robot;
 
 import org.usfirst.frc.team226.robot.commands.HardZeroArmEncoder;
+import org.usfirst.frc.team226.robot.commands.IntakeOpenClose;
 import org.usfirst.frc.team226.robot.commands.Shoot;
 
 import util.Controller;
@@ -24,5 +25,6 @@ public class OI {
 	public OI() {
 		manip.getLBButton().whileHeld(new HardZeroArmEncoder());
 		driver.getBButton().whenPressed(new Shoot());
+		driver.getAButton().whenPressed(new IntakeOpenClose());
 	}
 }

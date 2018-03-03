@@ -37,6 +37,13 @@ public class RobotMap {
 	public static final int INTAKE_RIGHT_ID = 0;
 	public static final int ARM_LEFT_ID = 8;
 	public static final int ARM_RIGHT_ID = 9;
+	public static final int ARM_PCM = PCM_A;
 	public static final int SHOOTER_1 = 0;
 	public static final int SHOOTER_2 = 1;
+	public static final int INTAKE_LEFT_1 = 2;
+	public static final int INTAKE_LEFT_2 = 3;
+	public static final int INTAKE_RIGHT_1 = 0;
+	public static final int INTAKE_RIGHT_2 = 1;
+	public static final int INTAKE_PCM = PCM_B;
+			
 }
