@@ -23,6 +23,6 @@ public class OI {
 	
 	public OI() {
 		manip.getLBButton().whileHeld(new HardZeroArmEncoder());
-		driver.getBButton().whileHeld(new Shoot());
+		driver.getBButton().whenPressed(new Shoot());
 	}
 }
