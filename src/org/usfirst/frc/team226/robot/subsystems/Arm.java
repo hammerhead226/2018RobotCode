@@ -54,32 +54,39 @@ public class Arm extends Subsystem {
     	right.follow(left);
     }
     
+   
     public void initDefaultCommand() {
         setDefaultCommand(new RunArm());
     }
     
     public void armToGroundFront() {
-    	left.set(ControlMode.MotionMagic, Constants.GROUND_FRONT);
+    	//left.set(ControlMode.MotionMagic, Constants.GROUND_FRONT);
+    	heightHolder = Constants.GROUND_FRONT;    	
     }
     
     public void armToGroundBack() {
-    	left.set(ControlMode.MotionMagic, Constants.GROUND_BACK);
+    	//left.set(ControlMode.MotionMagic, Constants.GROUND_BACK);
+    	heightHolder = Constants.GROUND_BACK;
     }
     
     public void armToSwitchFront() {
-    	left.set(ControlMode.MotionMagic, Constants.SWITCH_FRONT);
+    	//left.set(ControlMode.MotionMagic, Constants.SWITCH_FRONT);
+    	heightHolder = Constants.SWITCH_FRONT;
     }
     
     public void armToSwitchBack() {
-    	left.set(ControlMode.MotionMagic, Constants.SWITCH_BACK);
+    	//left.set(ControlMode.MotionMagic, Constants.SWITCH_BACK);
+    	heightHolder = Constants.SWITCH_BACK;
     }
     
     public void armToScaleFront() {
-    	left.set(ControlMode.MotionMagic, Constants.SCALE_FRONT);
+    	//left.set(ControlMode.MotionMagic, Constants.SCALE_FRONT);
+    	heightHolder = Constants.SCALE_FRONT;
     }
     
     public void armToScaleBack() {
-    	left.set(ControlMode.MotionMagic, Constants.SCALE_BACK);
+    	//left.set(ControlMode.MotionMagic, Constants.SCALE_BACK);
+    	heightHolder = Constants.SCALE_BACK;
     }
     
     public int getArmPos() {
@@ -90,12 +97,19 @@ public class Arm extends Subsystem {
     	left.set(ControlMode.MotionMagic, getArmPos());
     }
     
+    
+    public void hardZeroEncoder() {
+    	left.setSelectedSensorPosition(0, Constants.ARM_PIDSLOT_IDX, Constants.ARM_SENSOR_TIMEOUT);
+    	heightHolder = 0;
+    }
+    
     public void manualArmMovement() {
     	if(Math.abs(Robot.oi.manip.getLeftJoystick_Y()) > 0) {
     		left.set(ControlMode.PercentOutput, limitingAngle(Robot.oi.manip.getLeftJoystick_Y()));
     		heightHolder = getArmPos();
     	} else {
-    		setArmPosition(heightHolder);
+    		setArmPos(heightHolder);
+    		//left.set(ControlMode.PercentOutput, 0.1 );
     	}
     }
     
@@ -108,20 +122,26 @@ public class Arm extends Subsystem {
     		return joystick;
     	}
     }
-   
+    
     public void setArmPID() {
-    	if(Robot.oi.manip.getAButtonPressed() && Robot.oi.manip.getRBButtonPressed()) {
+    	if(Robot.oi.manip.getAButtonPressed() && (Robot.oi.manip.getRBButtonPressed() )) {
     		armToGroundBack();
+    		System.out.println("groundback");
     	} else if(Robot.oi.manip.getBButtonPressed() && Robot.oi.manip.getRBButtonPressed()) {
     		armToSwitchBack();
+    		System.out.println("switchback");
     	} else if(Robot.oi.manip.getYButtonPressed() && Robot.oi.manip.getRBButtonPressed()) {
     		armToScaleBack();
+    		System.out.println("scaleback");
     	} else if(Robot.oi.manip.getAButtonPressed()) {
     		armToGroundFront();
+    		System.out.println("groundfront");
     	} else if(Robot.oi.manip.getBButtonPressed()) {
     		armToSwitchFront();
+    		System.out.println("switchfront");
     	} else if(Robot.oi.manip.getYButtonPressed()) {
     		armToScaleFront();
+    		System.out.println("scalefront");
     	}
     }
     
@@ -129,11 +149,7 @@ public class Arm extends Subsystem {
     	return Robot.oi.manip.getAButtonPressed() || Robot.oi.manip.getBButtonPressed() || Robot.oi.manip.getYButtonPressed();
     }
     
-    public void hardZeroEncoder() {
-    	left.setSelectedSensorPosition(0, 0, 0);
-    }
-    
-    public void setArmPosition(int position) {
+    public void setArmPos(int position) {
     	left.set(ControlMode.MotionMagic, position);
     }
     
@@ -142,7 +158,15 @@ public class Arm extends Subsystem {
     		manualArmMovement();
     	} else {
     		setArmPID();
+    		setArmPos(heightHolder);
+    		System.out.println(heightHolder);
     	}
+    	
+    	
     }
+
+	public int getArmError() {
+		return left.getClosedLoopError(Constants.ARM_PIDSLOT_IDX);
+	}
 }
 
