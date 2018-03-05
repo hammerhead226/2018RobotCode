@@ -1,5 +1,6 @@
 package org.usfirst.frc.team226.robot.commands;
 
+import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -7,24 +8,25 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RunArm extends Command {
+public class ArmToSwitchBack extends Command {
 
-    public RunArm() {
+    public ArmToSwitchBack() {
     	requires(Robot.arm);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	setTimeout(Constants.ARM_TIMEOUT);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.arm.manualArmMovement();
+    	Robot.arm.armToSwitchBack();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.arm.atTarget() || isTimedOut();
     }
 
     // Called once after isFinished returns true

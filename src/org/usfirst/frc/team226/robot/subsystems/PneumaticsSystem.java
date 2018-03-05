@@ -24,7 +24,7 @@ public class PneumaticsSystem extends Subsystem {
 	private DoubleSolenoid rightShifter = new DoubleSolenoid(RobotMap.DT_RIGHT_SHIFTER_PCM, RobotMap.DT_RIGHT_SHIFTER_1, RobotMap.DT_RIGHT_SHIFTER_2);
 	private DoubleSolenoid intakeLeft = new DoubleSolenoid(RobotMap.INTAKE_PCM, RobotMap.INTAKE_LEFT_1, RobotMap.INTAKE_LEFT_2);
 	private DoubleSolenoid intakeRight = new DoubleSolenoid(RobotMap.INTAKE_PCM, RobotMap.INTAKE_RIGHT_1, RobotMap.INTAKE_RIGHT_2);
-	private DoubleSolenoid shooter = new DoubleSolenoid(RobotMap.ARM_PCM, RobotMap.SHOOTER_1, RobotMap.SHOOTER_2);
+	private DoubleSolenoid shooter = new DoubleSolenoid(RobotMap.INTAKE_PCM, RobotMap.SHOOTER_1, RobotMap.SHOOTER_2);
 
 
 	private DoubleSolenoid.Value leftVal = DoubleSolenoid.Value.kOff;
@@ -73,15 +73,24 @@ public class PneumaticsSystem extends Subsystem {
 		shooter.set(DoubleSolenoid.Value.kOff);
 	}
 	
-	DoubleSolenoid.Value intakeVal = DoubleSolenoid.Value.kOff;
-	public void intake() {
-		if(intakeVal == DoubleSolenoid.Value.kForward) {
-			intakeVal = DoubleSolenoid.Value.kReverse;
+	DoubleSolenoid.Value intakeValRight = DoubleSolenoid.Value.kOff;
+	public void intakeRight() {
+		if(intakeValRight == DoubleSolenoid.Value.kForward) {
+			intakeValRight = DoubleSolenoid.Value.kReverse;
 		} else {
-			intakeVal = DoubleSolenoid.Value.kForward;
+			intakeValRight = DoubleSolenoid.Value.kForward;
 		}
-		intakeLeft.set(intakeVal);
-		intakeRight.set(intakeVal);
+		intakeRight.set(intakeValRight);
+	}
+	
+	DoubleSolenoid.Value intakeValLeft = DoubleSolenoid.Value.kOff;
+	public void intakeLeft() {
+		if(intakeValLeft == DoubleSolenoid.Value.kForward) {
+			intakeValLeft = DoubleSolenoid.Value.kReverse;
+		} else {
+			intakeValLeft = DoubleSolenoid.Value.kForward;
+		}
+		intakeLeft.set(intakeValLeft);
 	}
 	
 	public void intakeNeutral() {

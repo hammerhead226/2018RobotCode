@@ -4,9 +4,7 @@ import org.usfirst.frc.team226.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
-/**
- *
- */
+
 public class Shift extends InstantCommand {
 
     public Shift() {
