@@ -54,5 +54,6 @@ public class Constants {
 	public static final int INTAKE_SENSOR_TIMEOUT = 0;
 	public static final long ARM_CLOSE_TIME = 0;
 	public static final boolean ARM_SENSOR_PHASE = true;
+	public static final double ARM_JOYSTICK_COEFF = 0.2;
 
 }
