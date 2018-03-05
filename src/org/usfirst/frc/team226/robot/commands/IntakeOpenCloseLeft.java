@@ -13,7 +13,7 @@ public class IntakeOpenCloseLeft extends InstantCommand {
 
     // Called once when the command executes
     protected void initialize() {
-    	Robot.pneumaticsSystem.intakeLeft();
+    	Robot.pneumaticsSystem.shiftIntakeLeft();
     }
 
 }
