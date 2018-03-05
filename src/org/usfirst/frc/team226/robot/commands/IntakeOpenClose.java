@@ -4,9 +4,12 @@ import org.usfirst.frc.team226.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
-public class IntakeOpenCloseLeft extends InstantCommand {
+/**
+ *
+ */
+public class IntakeOpenClose extends InstantCommand {
 
-    public IntakeOpenCloseLeft() {
+    public IntakeOpenClose() {
         super();
         requires(Robot.pneumaticsSystem);
     }
@@ -14,6 +17,7 @@ public class IntakeOpenCloseLeft extends InstantCommand {
     // Called once when the command executes
     protected void initialize() {
     	Robot.pneumaticsSystem.shiftIntakeLeft();
+    	Robot.pneumaticsSystem.intake();
     }
 
 }
