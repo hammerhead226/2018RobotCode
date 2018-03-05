@@ -47,7 +47,7 @@ public class Intake extends Subsystem {
 		left.neutralOutput();
 	}
 	
-	public void runIntake() {
-		left.set(ControlMode.PercentOutput, Robot.oi.manip.getTriggers());
+	public void runIntake(double speed) {
+		left.set(ControlMode.PercentOutput, speed);
 	}
 }
