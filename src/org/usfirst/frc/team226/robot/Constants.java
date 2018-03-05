@@ -2,12 +2,12 @@ package org.usfirst.frc.team226.robot;
 
 public class Constants {
 	//Arm PID Setpoints
-	public static final int SCALE_BACK = 4096;
-	public static final int SCALE_FRONT = -4096;
-	public static final int SWITCH_BACK = 4096 * 2;
-	public static final int SWITCH_FRONT = -4096 * 2;
-	public static final int GROUND_BACK = 4096 * 3;
-	public static final int GROUND_FRONT = -4096 * 3;
+	public static final int SCALE_BACK = 0;
+	public static final int SCALE_FRONT = 0;
+	public static final int SWITCH_BACK = 0;
+	public static final int SWITCH_FRONT = 0;
+	public static final int GROUND_BACK = 0;
+	public static final int GROUND_FRONT = 0;
 	
 	//Arm Soft Limits
 	public static final int ARM_FORWARD_LIMIT = 100000;

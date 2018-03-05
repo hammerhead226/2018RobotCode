@@ -105,7 +105,7 @@ public class Arm extends Subsystem {
     
     public void manualArmMovement() {
     	if(Math.abs(Robot.oi.manip.getLeftJoystick_Y()) > 0) {
-    		left.set(ControlMode.PercentOutput, limitingAngle(Robot.oi.manip.getLeftJoystick_Y()));
+    		left.set(ControlMode.PercentOutput, (Robot.oi.manip.getLeftJoystick_Y()));
     		heightHolder = getArmPos();
     	} else {
     		setArmPos(heightHolder);

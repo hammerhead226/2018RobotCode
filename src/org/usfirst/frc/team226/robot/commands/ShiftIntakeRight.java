@@ -7,17 +7,16 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class IntakeOpenClose extends InstantCommand {
+public class ShiftIntakeRight extends InstantCommand {
 
-    public IntakeOpenClose() {
+    public ShiftIntakeRight() {
         super();
         requires(Robot.pneumaticsSystem);
     }
 
     // Called once when the command executes
     protected void initialize() {
-    	Robot.pneumaticsSystem.shiftIntakeLeft();
-    	Robot.pneumaticsSystem.intake();
+    	Robot.pneumaticsSystem.shiftIntakeRight();
     }
 
 }

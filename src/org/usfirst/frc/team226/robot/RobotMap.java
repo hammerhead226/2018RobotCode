@@ -23,7 +23,7 @@ public class RobotMap {
 	public static final int DT_REAR_RIGHT = 17;
 	
 	public static final int PCM_A = 11;
-	public static final int PCM_B = 0;
+	public static final int PCM_B = 12;
 	
 	public static final int COMPRESSOR_PORT = PCM_B;
 	
@@ -35,8 +35,8 @@ public class RobotMap {
 	public static final int DT_RIGHT_SHIFTER_2 = 7;
 	public static final int INTAKE_LEFT_ID = 0;
 	public static final int INTAKE_RIGHT_ID = 0;
-	public static final int ARM_LEFT_ID = 8;
-	public static final int ARM_RIGHT_ID = 9;
+	public static final int ARM_LEFT_ID = 21;
+	public static final int ARM_RIGHT_ID = 19;
 	public static final int ARM_PCM = PCM_A;
 	public static final int SHOOTER_1 = 0;
 	public static final int SHOOTER_2 = 1;

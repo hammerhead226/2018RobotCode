@@ -74,7 +74,7 @@ public class PneumaticsSystem extends Subsystem {
 	}
 	
 	DoubleSolenoid.Value intakeValRight = DoubleSolenoid.Value.kOff;
-	public void intake() {
+	public void shiftIntakeRight() {
 		if(intakeValRight == DoubleSolenoid.Value.kForward) {
 			intakeValRight = DoubleSolenoid.Value.kReverse;
 		} else {
