@@ -59,7 +59,7 @@ public class PneumaticsSystem extends Subsystem {
 		rightShifter.set(DoubleSolenoid.Value.kOff);
 	}
 	
-	DoubleSolenoid.Value shooterVal = DoubleSolenoid.Value.kOff;
+	private DoubleSolenoid.Value shooterVal = DoubleSolenoid.Value.kOff;
 	public void actuateShooter() {
 		if(shooterVal == DoubleSolenoid.Value.kForward) {
 			shooterVal = DoubleSolenoid.Value.kReverse;
@@ -73,7 +73,7 @@ public class PneumaticsSystem extends Subsystem {
 		shooter.set(DoubleSolenoid.Value.kOff);
 	}
 	
-	DoubleSolenoid.Value intakeValRight = DoubleSolenoid.Value.kOff;
+	private DoubleSolenoid.Value intakeValRight = DoubleSolenoid.Value.kOff;
 	public void shiftIntakeRight() {
 		if(intakeValRight == DoubleSolenoid.Value.kForward) {
 			intakeValRight = DoubleSolenoid.Value.kReverse;
@@ -83,7 +83,7 @@ public class PneumaticsSystem extends Subsystem {
 		intakeRight.set(intakeValRight);
 	}
 	
-	DoubleSolenoid.Value intakeValLeft = DoubleSolenoid.Value.kOff;
+	private DoubleSolenoid.Value intakeValLeft = DoubleSolenoid.Value.kOff;
 	public void shiftIntakeLeft() {
 		if(intakeValLeft == DoubleSolenoid.Value.kForward) {
 			intakeValLeft = DoubleSolenoid.Value.kReverse;
