@@ -21,7 +21,7 @@ public class Arm extends Subsystem {
     int heightHolder = 0;
     
     public Arm() {
-    	left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ARM_PIDSLOT_IDX, Constants.ARM_SENSOR_TIMEOUT);
+    	left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, Constants.ARM_PIDSLOT_IDX, Constants.ARM_SENSOR_TIMEOUT);
     	left.setSensorPhase(Constants.ARM_SENSOR_PHASE);
     	hardZeroEncoder();
     	
@@ -93,11 +93,6 @@ public class Arm extends Subsystem {
     	return left.getSelectedSensorPosition(Constants.ARM_PIDSLOT_IDX);
     }
     
-    public void armHoldPos() {
-    	left.set(ControlMode.MotionMagic, getArmPos());
-    }
-    
-    
     public void hardZeroEncoder() {
     	left.setSelectedSensorPosition(0, Constants.ARM_PIDSLOT_IDX, Constants.ARM_SENSOR_TIMEOUT);
     	heightHolder = 0;
@@ -108,7 +103,7 @@ public class Arm extends Subsystem {
     		left.set(ControlMode.PercentOutput, (Constants.ARM_JOYSTICK_COEFF * Robot.oi.manip.getLeftJoystick_Y()));
     		heightHolder = getArmPos();
     	} else {
-    		setArmPos(heightHolder);
+    		holdArmPos();
     		//left.set(ControlMode.PercentOutput, 0.1 );
     	}
     }
@@ -149,22 +144,22 @@ public class Arm extends Subsystem {
     	return Robot.oi.manip.getAButtonPressed() || Robot.oi.manip.getBButtonPressed() || Robot.oi.manip.getYButtonPressed();
     }
     
-    public void setArmPos(int position) {
-    	left.set(ControlMode.MotionMagic, position);
-    }
-    
     public void runArm() {
     	if(!isPIDButtonPressed()) {
     		manualArmMovement();
     	} else {
     		setArmPID();
-    		setArmPos(heightHolder);
+    		holdArmPos();
     		System.out.println(heightHolder);
     	}
     	
     	
     }
-
+    
+    
+    public void holdArmPos() {
+    	left.set(ControlMode.MotionMagic, heightHolder);
+    }
 	public int getArmError() {
 		return left.getClosedLoopError(Constants.ARM_PIDSLOT_IDX);
 	}
