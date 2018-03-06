@@ -17,6 +17,7 @@ public class ShiftIntakeLeft extends InstantCommand {
     // Called once when the command executes
     protected void initialize() {
     	Robot.pneumaticsSystem.shiftIntakeLeft();
+    	System.out.println("leftworks");
     }
 
 }

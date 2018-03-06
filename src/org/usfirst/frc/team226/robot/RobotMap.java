@@ -34,7 +34,7 @@ public class RobotMap {
 	public static final int DT_RIGHT_SHIFTER_1 = 6;
 	public static final int DT_RIGHT_SHIFTER_2 = 7;
 	public static final int INTAKE_LEFT_ID = 0;
-	public static final int INTAKE_RIGHT_ID = 0;
+	public static final int INTAKE_RIGHT_ID = 1;
 	public static final int ARM_LEFT_ID = 21;
 	public static final int ARM_RIGHT_ID = 19;
 	public static final int ARM_PCM = PCM_A;
