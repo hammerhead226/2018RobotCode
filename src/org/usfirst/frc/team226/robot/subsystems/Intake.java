@@ -3,7 +3,7 @@ package org.usfirst.frc.team226.robot.subsystems;
 import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.Robot;
 import org.usfirst.frc.team226.robot.RobotMap;
-import org.usfirst.frc.team226.robot.commands.RunIntake;
+import org.usfirst.frc.team226.robot.commands.DriveIntake;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -15,11 +15,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Intake extends Subsystem {
 
-	private TalonSRX left = new TalonSRX(RobotMap.INTAKE_LEFT_ID);
-	private TalonSRX right = new TalonSRX(RobotMap.INTAKE_RIGHT_ID);
+	private TalonSRX left = new TalonSRX(RobotMap.INTAKE_LEFT);
+	private TalonSRX right = new TalonSRX(RobotMap.INTAKE_RIGHT);
 
 	public Intake() {
-
 		left.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_SENSOR_TIMEOUT);
 		right.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_SENSOR_TIMEOUT);
 
@@ -40,14 +39,14 @@ public class Intake extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
-		setDefaultCommand(new RunIntake());
+		setDefaultCommand(new DriveIntake());
 	}
 
-	public void intakeNeutral() {
+	public void neutralOutput() {
 		left.neutralOutput();
 	}
 	
-	public void runIntake(double speed) {
+	public void driveIntake(double speed) {
 		left.set(ControlMode.PercentOutput, speed);
 	}
 }
