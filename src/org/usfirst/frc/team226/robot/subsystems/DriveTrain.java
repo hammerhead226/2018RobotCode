@@ -29,9 +29,9 @@ public class DriveTrain extends Subsystem {
 	private ProfileRecorder recorder = new ProfileRecorder(frontLeft, frontRight, RecordingType.VOLTAGE);
 
 	public DriveTrain() {
-		frontLeft.setInverted(true);
-		centerLeft.setInverted(false);
-		rearLeft.setInverted(true);
+		frontLeft.setInverted(!true);
+		centerLeft.setInverted(!false);
+		rearLeft.setInverted(!true);
 
 		frontRight.setInverted(true);
 		centerRight.setInverted(false);
@@ -41,6 +41,9 @@ public class DriveTrain extends Subsystem {
 		centerRight.follow(frontRight);
 		rearLeft.follow(frontLeft);
 		rearRight.follow(frontRight);
+		
+		frontLeft.setSensorPhase(Constants.DT_LEFT_SENSOR_PHASE);
+		frontRight.setSensorPhase(Constants.DT_RIGHT_SENSOR_PHASE);
 
 		frontLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
 		centerLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
@@ -124,7 +127,7 @@ public class DriveTrain extends Subsystem {
 				rightMotorSpeed = -Math.max(-rotateValue, -moveValue);
 			}
 		}
-		frontLeft.set(ControlMode.PercentOutput, leftMotorSpeed);
+		frontLeft.set(ControlMode.PercentOutput, -leftMotorSpeed);
 		frontRight.set(ControlMode.PercentOutput, rightMotorSpeed);
 	}
 
