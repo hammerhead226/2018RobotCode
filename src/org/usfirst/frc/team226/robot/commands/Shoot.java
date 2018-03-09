@@ -1,22 +1,36 @@
 package org.usfirst.frc.team226.robot.commands;
 
+import org.hammerhead226.sharkmacro.actions.RecordableCommand;
 import org.usfirst.frc.team226.robot.Robot;
-
-import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  *
  */
-public class Shoot extends InstantCommand {
+public class Shoot extends RecordableCommand {
 
     public Shoot() {
-        super();
         requires(Robot.pneumaticsSystem);
     }
 
     // Called once when the command executes
     protected void initialize() {
+    	super.initialize();
     	Robot.pneumaticsSystem.actuateShooter();
+    }
+    
+    protected void execute() {
+    }
+    
+    protected boolean isFinished() {
+    	return true;
+    }
+    
+    protected void end() {
+    	super.end();
+    }
+    
+    protected void interrupted() {
+    	super.interrupted();
     }
 
 }
