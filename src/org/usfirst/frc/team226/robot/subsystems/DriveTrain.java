@@ -6,12 +6,14 @@ import org.hammerhead226.sharkmacro.motionprofiles.ProfileParser;
 import org.hammerhead226.sharkmacro.motionprofiles.ProfileRecorder;
 import org.hammerhead226.sharkmacro.motionprofiles.ProfileRecorder.RecordingType;
 import org.usfirst.frc.team226.robot.Constants;
+import org.usfirst.frc.team226.robot.Robot;
 import org.usfirst.frc.team226.robot.RobotMap;
 import org.usfirst.frc.team226.robot.commands.CheesyDrive;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -27,6 +29,10 @@ public class DriveTrain extends Subsystem {
 	private TalonSRX rearRight = new TalonSRX(RobotMap.DT_REAR_RIGHT);
 	
 	private ProfileRecorder recorder = new ProfileRecorder(frontLeft, frontRight, RecordingType.VOLTAGE);
+	
+	public void initDefaultCommand() {
+		setDefaultCommand(new CheesyDrive());
+	}
 
 	public DriveTrain() {
 		frontLeft.setInverted(!true);
@@ -72,7 +78,6 @@ public class DriveTrain extends Subsystem {
 		frontRight.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
 		centerRight.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
 		rearRight.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
-
 	}
 	
 	public void toggleProfileRecording() {
@@ -82,6 +87,7 @@ public class DriveTrain extends Subsystem {
 			System.out.println("Profile saved.");
 		} else {
 			zeroEncoders();
+			Timer.delay(0.2);
 			System.out.println("Profile recording started.");
 			recorder.start();
 		}
@@ -93,13 +99,10 @@ public class DriveTrain extends Subsystem {
 			al.writeToFile(ActionRecorder.stop());
 			System.out.println("ActionList saved.");
 		} else {
+			Timer.delay(0.2);
 			ActionRecorder.start();
 			System.out.println("ActionList recording started.");
 		}
-	}
-
-	public void initDefaultCommand() {
-		setDefaultCommand(new CheesyDrive());
 	}
 
 	public void arcadeDrive(double moveValue, double rotateValue) {
