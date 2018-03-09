@@ -32,8 +32,10 @@ public class Robot extends TimedRobot {
 	public static PneumaticsSystem pneumaticsSystem;
 	public static Intake intake;
 	public VisionRun vision = new VisionRun();
+	
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	
 	public static OI oi;
 
 	@Override
@@ -46,7 +48,7 @@ public class Robot extends TimedRobot {
 		// m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
-		vision.start();
+//		vision.start();
 		
 	}
 
@@ -57,7 +59,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-		System.out.println(arm.getArmPos());
 	}
 
 	@Override
