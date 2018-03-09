@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class Shift extends InstantCommand {
+public class ShiftDriveTrain extends InstantCommand {
 
-    public Shift() {
+    public ShiftDriveTrain() {
         super();
-//        requires(Robot.pneumaticsSystem);
+        requires(Robot.pneumaticsSystem);
     }
 
     // Called once when the command executes
