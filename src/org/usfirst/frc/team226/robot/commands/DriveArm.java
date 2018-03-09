@@ -7,9 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RunArm extends Command {
+public class DriveArm extends Command {
 
-    public RunArm() {
+    public DriveArm() {
+        // Use requires() here to declare subsystem dependencies
     	requires(Robot.arm);
     }
 
@@ -19,7 +20,7 @@ public class RunArm extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.arm.runArm();
+    	Robot.arm.controlArm(-Robot.oi.manip.getLeftJoystick_Y());
     }
 
     // Make this return true when this Command no longer needs to run execute()

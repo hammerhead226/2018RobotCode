@@ -3,7 +3,7 @@ package org.usfirst.frc.team226.robot.subsystems;
 import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.Robot;
 import org.usfirst.frc.team226.robot.RobotMap;
-import org.usfirst.frc.team226.robot.commands.RunArm;
+import org.usfirst.frc.team226.robot.commands.DriveArm;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -16,152 +16,101 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Arm extends Subsystem {
 
-    private TalonSRX left = new TalonSRX(RobotMap.ARM_LEFT_ID);
-    private TalonSRX right = new TalonSRX(RobotMap.ARM_RIGHT_ID);
-    int heightHolder = 0;
-    
-    public Arm() {
-    	left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, Constants.ARM_PIDSLOT_IDX, Constants.ARM_SENSOR_TIMEOUT);
-    	left.setSensorPhase(Constants.ARM_SENSOR_PHASE);
-    	hardZeroEncoder();
-    	
-    	left.configContinuousCurrentLimit(Constants.ARM_CURRENT_LIMIT, Constants.ARM_SENSOR_TIMEOUT);
-    	right.configContinuousCurrentLimit(Constants.ARM_CURRENT_LIMIT, Constants.ARM_SENSOR_TIMEOUT);
-    	 		
-    	left.enableCurrentLimit(Constants.ARM_CURRENT_LIMIT_ENABLED);	
-    	right.enableCurrentLimit(Constants.ARM_CURRENT_LIMIT_ENABLED);
-    	
-    	left.configVoltageCompSaturation(Constants.ARM_VOLTAGE_LIMIT, Constants.ARM_SENSOR_TIMEOUT);
-    	right.configVoltageCompSaturation(Constants.ARM_VOLTAGE_LIMIT, Constants.ARM_SENSOR_TIMEOUT);
-    	
-    	left.enableVoltageCompensation(Constants.ARM_VOLTAGE_LIMIT_ENABLED);
-    	right.enableVoltageCompensation(Constants.ARM_VOLTAGE_LIMIT_ENABLED);
-    	
-    	left.setInverted(Constants.ARM_INVERT_L);
-    	right.setInverted(Constants.ARM_INVERT_R);
-    	
-    	left.configForwardSoftLimitThreshold(Constants.ARM_FORWARD_LIMIT, Constants.ARM_SENSOR_TIMEOUT);
-    	left.configReverseSoftLimitThreshold(Constants.ARM_REVERSE_LIMIT, Constants.ARM_SENSOR_TIMEOUT);
-    	right.configForwardSoftLimitThreshold(Constants.ARM_FORWARD_LIMIT, Constants.ARM_SENSOR_TIMEOUT);
-    	right.configReverseSoftLimitThreshold(Constants.ARM_REVERSE_LIMIT, Constants.ARM_SENSOR_TIMEOUT);
-    	
-    	left.configForwardSoftLimitEnable(Constants.ARM_FORWARD_LIMIT_ENABLED, Constants.ARM_SENSOR_TIMEOUT);
-    	left.configReverseSoftLimitEnable(Constants.ARM_REVERSE_LIMIT_ENABLED, Constants.ARM_SENSOR_TIMEOUT);
-    	right.configForwardSoftLimitEnable(Constants.ARM_FORWARD_LIMIT_ENABLED, Constants.ARM_SENSOR_TIMEOUT);
-    	right.configReverseSoftLimitEnable(Constants.ARM_REVERSE_LIMIT_ENABLED, Constants.ARM_SENSOR_TIMEOUT);
-    	
-    	
-    	right.follow(left);
-    }
-    
-   
-    public void initDefaultCommand() {
-        setDefaultCommand(new RunArm());
-    }
-    
-    public void armToGroundFront() {
-    	//left.set(ControlMode.MotionMagic, Constants.GROUND_FRONT);
-    	heightHolder = Constants.GROUND_FRONT;    	
-    }
-    
-    public void armToGroundBack() {
-    	//left.set(ControlMode.MotionMagic, Constants.GROUND_BACK);
-    	heightHolder = Constants.GROUND_BACK;
-    }
-    
-    public void armToSwitchFront() {
-    	//left.set(ControlMode.MotionMagic, Constants.SWITCH_FRONT);
-    	heightHolder = Constants.SWITCH_FRONT;
-    }
-    
-    public void armToSwitchBack() {
-    	//left.set(ControlMode.MotionMagic, Constants.SWITCH_BACK);
-    	heightHolder = Constants.SWITCH_BACK;
-    }
-    
-    public void armToScaleFront() {
-    	//left.set(ControlMode.MotionMagic, Constants.SCALE_FRONT);
-    	heightHolder = Constants.SCALE_FRONT;
-    }
-    
-    public void armToScaleBack() {
-    	//left.set(ControlMode.MotionMagic, Constants.SCALE_BACK);
-    	heightHolder = Constants.SCALE_BACK;
-    }
-    
-    public int getArmPos() {
-    	return left.getSelectedSensorPosition(Constants.ARM_PIDSLOT_IDX);
-    }
-    
-    public void hardZeroEncoder() {
-    	left.setSelectedSensorPosition(0, Constants.ARM_PIDSLOT_IDX, Constants.ARM_SENSOR_TIMEOUT);
-    	heightHolder = 0;
-    }
-    
-    public void manualArmMovement() {
-    	if(Math.abs(Robot.oi.manip.getLeftJoystick_Y()) > 0) {
-    		left.set(ControlMode.PercentOutput, (Constants.ARM_JOYSTICK_COEFF * Robot.oi.manip.getLeftJoystick_Y()));
-    		heightHolder = getArmPos();
-    	} else {
-    		holdArmPos();
-    		//left.set(ControlMode.PercentOutput, 0.1 );
-    	}
-    }
-    
-    public double limitingAngle(double joystick) {
-    	if(getArmPos() >= Constants.ARM_FORWARD_LIMIT && joystick > 0) {
-    		return 0.0;
-    	} else if(getArmPos() <= Constants.ARM_REVERSE_LIMIT && joystick < 0) {
-    		return 0.0;
-    	} else {
-    		return joystick;
-    	}
-    }
-    
-    public void setArmPID() {
-    	if(Robot.oi.manip.getAButtonPressed() && (Robot.oi.manip.getRBButtonPressed() )) {
-    		armToGroundBack();
-    		System.out.println("groundback");
-    	} else if(Robot.oi.manip.getBButtonPressed() && Robot.oi.manip.getRBButtonPressed()) {
-    		armToSwitchBack();
-    		System.out.println("switchback");
-    	} else if(Robot.oi.manip.getYButtonPressed() && Robot.oi.manip.getRBButtonPressed()) {
-    		armToScaleBack();
-    		System.out.println("scaleback");
-    	} else if(Robot.oi.manip.getAButtonPressed()) {
-    		armToGroundFront();
-    		System.out.println("groundfront");
-    	} else if(Robot.oi.manip.getBButtonPressed()) {
-    		armToSwitchFront();
-    		System.out.println("switchfront");
-    	} else if(Robot.oi.manip.getYButtonPressed()) {
-    		armToScaleFront();
-    		System.out.println("scalefront");
-    	}
-    }
-    
-    public boolean isPIDButtonPressed() {
-    	return Robot.oi.manip.getAButtonPressed() || Robot.oi.manip.getBButtonPressed() || Robot.oi.manip.getYButtonPressed();
-    }
-    
-    public void runArm() {
-    	if(!isPIDButtonPressed()) {
-    		manualArmMovement();
-    	} else {
-    		setArmPID();
-    		holdArmPos();
-    		System.out.println(heightHolder);
-    	}
-    	
-    	
-    }
-    
-    
-    public void holdArmPos() {
-    	left.set(ControlMode.MotionMagic, heightHolder);
-    }
-	public int getArmError() {
-		return left.getClosedLoopError(Constants.ARM_PIDSLOT_IDX);
-	}
-}
+	private TalonSRX right = new TalonSRX(RobotMap.ARM_RIGHT);
+	private TalonSRX left = new TalonSRX(RobotMap.ARM_LEFT);
 
+	private int setpointPosition = ArmSetpoint.STRAIGHT_UP.position;
+
+	public Arm() {
+		right.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, Constants.ARM_PIDSLOT_IDX,
+				Constants.ARM_STARTUP_TIMEOUT);
+		right.setSensorPhase(Constants.ARM_SENSOR_PHASE);
+
+		// hardZeroEncoder();
+
+		right.configContinuousCurrentLimit(Constants.ARM_CURRENT_LIMIT, Constants.ARM_STARTUP_TIMEOUT);
+		left.configContinuousCurrentLimit(Constants.ARM_CURRENT_LIMIT, Constants.ARM_STARTUP_TIMEOUT);
+
+		right.enableCurrentLimit(Constants.ARM_CURRENT_LIMIT_ENABLED);
+		left.enableCurrentLimit(Constants.ARM_CURRENT_LIMIT_ENABLED);
+
+		right.configVoltageCompSaturation(Constants.ARM_VOLTAGE_LIMIT, Constants.ARM_STARTUP_TIMEOUT);
+		left.configVoltageCompSaturation(Constants.ARM_VOLTAGE_LIMIT, Constants.ARM_STARTUP_TIMEOUT);
+
+		right.enableVoltageCompensation(Constants.ARM_VOLTAGE_LIMIT_ENABLED);
+		left.enableVoltageCompensation(Constants.ARM_VOLTAGE_LIMIT_ENABLED);
+
+		right.setInverted(Constants.ARM_INVERT_L);
+		left.setInverted(Constants.ARM_INVERT_R);
+
+		right.configForwardSoftLimitEnable(Constants.ARM_FORWARD_LIMIT_ENABLED, Constants.ARM_STARTUP_TIMEOUT);
+		right.configReverseSoftLimitEnable(Constants.ARM_REVERSE_LIMIT_ENABLED, Constants.ARM_STARTUP_TIMEOUT);
+		left.configForwardSoftLimitEnable(Constants.ARM_FORWARD_LIMIT_ENABLED, Constants.ARM_STARTUP_TIMEOUT);
+		left.configReverseSoftLimitEnable(Constants.ARM_REVERSE_LIMIT_ENABLED, Constants.ARM_STARTUP_TIMEOUT);
+
+		right.configPeakOutputForward(Constants.ARM_MAX_SPEED, Constants.ARM_STARTUP_TIMEOUT);
+		right.configPeakOutputReverse(-Constants.ARM_MAX_SPEED, Constants.ARM_STARTUP_TIMEOUT);
+
+		left.follow(right);
+	}
+
+	public void initDefaultCommand() {
+		setDefaultCommand(new DriveArm());
+	}
+
+	public enum ArmSetpoint {
+		FRONT_RESTING(0), FRONT_GROUND(245), FRONT_PORTAL_SWITCH(1844), FRONT_SCALE(3005), STRAIGHT_UP(
+				3440), BACK_SCALE(4623), BACK_PORTAL_SWITCH(5000), BACK_GROUND(6600), BACK_RESTING(6964);
+
+		public int position;
+
+		private ArmSetpoint(int position) {
+			this.position = position;
+		}
+
+	}
+
+	public void setArmSetpoint(ArmSetpoint sp) {
+		this.setpointPosition = sp.position;
+	}
+
+	public int getArmPos() {
+		return right.getSelectedSensorPosition(Constants.ARM_PIDSLOT_IDX);
+	}
+
+	public boolean getArmSetpointModifierButton() {
+		return Robot.oi.manip.getRBButtonPressed();
+	}
+
+	public void hardZeroEncoder() {
+		right.getSensorCollection().setPulseWidthPosition(0, 10);
+		right.setSelectedSensorPosition(0, 0, 10);
+	}
+
+	public int getArmError() {
+		return right.getClosedLoopError(Constants.ARM_PIDSLOT_IDX);
+	}
+
+	public void controlArm(double speed) {
+		if (speed != 0) {
+			right.set(ControlMode.PercentOutput, softLimit(speed));
+			setpointPosition = getArmPos();
+		} else {
+			right.set(ControlMode.Position, setpointPosition);
+		}
+	}
+
+	private double softLimit(double input) {
+		if (getArmPos() <= ArmSetpoint.FRONT_GROUND.position + Constants.ARM_ERROR_TOLERANCE) {
+			if (input < 0) {
+				input = 0;
+			}
+		} else if (getArmPos() >= ArmSetpoint.BACK_GROUND.position - Constants.ARM_ERROR_TOLERANCE) {
+			if (input > 0) {
+				input = 0;
+			}
+		}
+		return input;
+	}
+
+}
