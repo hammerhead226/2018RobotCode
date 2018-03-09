@@ -28,8 +28,10 @@ public class ExecuteSavedActionList extends Command {
 		ActionListParser alParser;
 		name = (name == null) ? ActionListParser.getNewestFilename() : name;
 		alParser = new ActionListParser(name);
+		System.out.println("Executing ActionList... " + name);
 		actionListToExecute = alParser.toObject();
 		actionListToExecute.execute();
+		name = null;
 	}
 
 	// Called repeatedly when this Command is scheduled to run
