@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RunIntake extends Command {
+public class DriveIntake extends Command {
 
-    public RunIntake() {
+    public DriveIntake() {
         requires(Robot.intake);
     }
 
@@ -19,7 +19,7 @@ public class RunIntake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.runIntake(Robot.oi.driver.getTriggers());
+    	Robot.intake.driveIntake(-Robot.oi.manip.getTriggers());
     }
 
     // Make this return true when this Command no longer needs to run execute()
