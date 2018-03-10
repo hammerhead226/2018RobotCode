@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class grp_ExecuteSavedMacro extends CommandGroup {
 
-    public grp_ExecuteSavedMacro(String profilename, String actionlistname) {
-    	addParallel(new ExecuteSavedProfile(profilename));
-    	addSequential(new ExecuteSavedActionList(actionlistname));
+    public grp_ExecuteSavedMacro(String name) {
+    	addParallel(new ExecuteSavedProfile(name));
+    	addSequential(new ExecuteSavedActionList(name));
     }
     
     public grp_ExecuteSavedMacro() {

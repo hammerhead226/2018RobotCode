@@ -7,12 +7,15 @@
 
 package org.usfirst.frc.team226.robot;
 
+import org.usfirst.frc.team226.robot.auton.grp_ExecuteDoubleMacro;
+import org.usfirst.frc.team226.robot.auton.grp_ExecuteSavedMacro;
 import org.usfirst.frc.team226.robot.subsystems.Arm;
 import org.usfirst.frc.team226.robot.subsystems.Intake;
 import org.usfirst.frc.team226.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team226.robot.subsystems.PneumaticsSystem;
 import org.usfirst.frc.team226.robot.vision.VisionRun;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -32,24 +35,25 @@ public class Robot extends TimedRobot {
 	public static PneumaticsSystem pneumaticsSystem;
 	public static Intake intake;
 	public VisionRun vision = new VisionRun();
-	
+
 	Command m_autonomousCommand;
-	SendableChooser<Command> m_chooser = new SendableChooser<>();
-	
+	SendableChooser<Command> chooser = new SendableChooser<>();
+
 	public static OI oi;
 
 	@Override
-	public void robotInit() {	
+	public void robotInit() {
 		arm = new Arm();
 		driveTrain = new DriveTrain();
 		pneumaticsSystem = new PneumaticsSystem();
 		intake = new Intake();
 		oi = new OI();
-		// m_chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", m_chooser);
-//		vision.start();
-		
+		chooser.addDefault("Baseline Cross", new grp_ExecuteSavedMacro("baselinecross"));
+		chooser.addObject("Left Switch", new grp_ExecuteDoubleMacro("leftswitch_left", "leftswitch_right"));
+		chooser.addObject("Center Switch", new grp_ExecuteDoubleMacro("centerswitch_left", "centerswitch_right"));
+		chooser.addObject("Right Switch", new grp_ExecuteDoubleMacro("rightswitch_left", "rightswitch_right"));
+		SmartDashboard.putData("Auto mode", chooser);
+		// vision.start();
 	}
 
 	@Override
@@ -63,7 +67,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
-		m_autonomousCommand = m_chooser.getSelected();
+		m_autonomousCommand = chooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
@@ -89,7 +93,7 @@ public class Robot extends TimedRobot {
 			m_autonomousCommand.cancel();
 		}
 	}
-	
+
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
