@@ -13,11 +13,13 @@ public class ExecuteSavedActionList extends Command {
 
 	private String name;
 	private ActionList actionListToExecute;
+	private boolean hasName = false;
 
 	public ExecuteSavedActionList(String name) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		this.name = name;
+		this.hasName = true;
 	}
 
 	public ExecuteSavedActionList() {
@@ -31,7 +33,7 @@ public class ExecuteSavedActionList extends Command {
 		System.out.println("Executing ActionList... " + name);
 		actionListToExecute = alParser.toObject();
 		actionListToExecute.execute();
-		name = null;
+		name = hasName ? name : null;
 	}
 
 	// Called repeatedly when this Command is scheduled to run

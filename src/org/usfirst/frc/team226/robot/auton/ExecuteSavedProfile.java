@@ -16,6 +16,7 @@ public class ExecuteSavedProfile extends Command {
 
 	private String name;
 	private Profile profileToExecute;
+	private boolean hasName = false;
 	
 	private TalonSRX[] talons = Robot.driveTrain.getMotionProfileTalons();
 
@@ -24,6 +25,7 @@ public class ExecuteSavedProfile extends Command {
 		// eg. requires(chassis);
 		requires(Robot.driveTrain);
 		this.name = name;
+		hasName = true;
 	}
 
 	public ExecuteSavedProfile() {
@@ -38,7 +40,7 @@ public class ExecuteSavedProfile extends Command {
 		System.out.println("Executing profile... " + name);
 		profileToExecute = pParser.toObject(talons[0], talons[1]);
 		profileToExecute.execute(Constants.DT_LEFT_PIDSLOT_IDX, Constants.DT_RIGHT_PIDSLOT_IDX);
-		name = null;
+		name = hasName ? name : null;
 	}
 
 	// Called repeatedly when this Command is scheduled to run
