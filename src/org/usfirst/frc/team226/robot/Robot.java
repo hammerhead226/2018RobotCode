@@ -11,8 +11,11 @@ import org.usfirst.frc.team226.robot.auton.grp_ExecuteDoubleMacro;
 import org.usfirst.frc.team226.robot.auton.grp_ExecuteSavedMacro;
 import org.usfirst.frc.team226.robot.subsystems.Arm;
 import org.usfirst.frc.team226.robot.subsystems.Intake;
+
 import org.usfirst.frc.team226.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team226.robot.subsystems.Elevator;
 import org.usfirst.frc.team226.robot.subsystems.PneumaticsSystem;
+import org.usfirst.frc.team226.robot.subsystems.Intake;
 import org.usfirst.frc.team226.robot.vision.VisionRun;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -30,11 +33,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
+
 	public static Arm arm;
 	public static DriveTrain driveTrain;
+	public static Carriage carriage;
 	public static PneumaticsSystem pneumaticsSystem;
 	public static Intake intake;
 	public VisionRun vision = new VisionRun();
+	public static Intake intake;
+	public static Elevator elevator;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -45,6 +52,7 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		arm = new Arm();
 		driveTrain = new DriveTrain();
+		carriage = new Carriage();
 		pneumaticsSystem = new PneumaticsSystem();
 		intake = new Intake();
 		oi = new OI();
@@ -77,8 +85,8 @@ public class Robot extends TimedRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.start();
+		if (autonomousCommand != null) {
+			autonomousCommand.start();
 		}
 	}
 
@@ -89,8 +97,8 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.cancel();
+		if (autonomousCommand != null) {
+			autonomousCommand.cancel();
 		}
 	}
 

@@ -48,5 +48,4 @@ public class RobotMap {
 	public static final int INTAKE_RIGHT_SHIFTER_1 = 0;
 	public static final int INTAKE_RIGHT_SHIFTER_2 = 1;
 	
-			
 }

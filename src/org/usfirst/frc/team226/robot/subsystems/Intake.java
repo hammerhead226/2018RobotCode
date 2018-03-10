@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Intake extends Subsystem {
-
+  
 	private TalonSRX left = new TalonSRX(RobotMap.INTAKE_LEFT);
 	private TalonSRX right = new TalonSRX(RobotMap.INTAKE_RIGHT);
 

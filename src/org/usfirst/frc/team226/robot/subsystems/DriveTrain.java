@@ -146,6 +146,7 @@ public class DriveTrain extends Subsystem {
 	private void zeroEncoders() {
 		frontLeft.setSelectedSensorPosition(0, 0, 0);
 		frontRight.setSelectedSensorPosition(0, 0, 0);
+		Timer.delay(0.2);
 		System.out.println("Drivetrain encoders zeroed.");
 	}
 
