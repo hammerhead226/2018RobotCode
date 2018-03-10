@@ -38,7 +38,7 @@ public class OI {
 
 		// Intake
 		manip.getRBButton().whenPressed(new ShiftIntake());
-		manip.getRSButton().whenPressed(new auto_Intake());
+		manip.getRSButton().whileHeld(new auto_Intake());
 		manip.getBButton().whenPressed(new grp_ShootOuttake());
 		manip.getSTARTButton().whenPressed(new Shoot());
 
