@@ -22,41 +22,31 @@ public class RobotMap {
 	public static final int DT_REAR_LEFT = 13;
 	public static final int DT_REAR_RIGHT = 17;
 	
-	public static final int CARRIAGE_RIGHT = 0;
-	public static final int CARRIAGE_LEFT = 0;
+	public static final int INTAKE_LEFT = 14;
+	public static final int INTAKE_RIGHT = 18;
+	public static final int ARM_RIGHT = 21;
+	public static final int ARM_LEFT = 19;
 	
 	public static final int PCM_A = 11;
 	public static final int PCM_B = 12;
 	
 	public static final int COMPRESSOR_PORT = PCM_B;
 	
-	public static final int DT_LEFT_SHIFTER_PCM = PCM_A;
-	public static final int DT_LEFT_SHIFTER_1 = 2;
-	public static final int DT_LEFT_SHIFTER_2 = 3;
-	public static final int DT_RIGHT_SHIFTER_PCM = PCM_A;
-	public static final int DT_RIGHT_SHIFTER_1 = 0;
-	public static final int DT_RIGHT_SHIFTER_2 = 1;
+	public static final int DT_LEFT_SHIFTER_PCM = PCM_B;
+	public static final int DT_LEFT_SHIFTER_1 = 0;
+	public static final int DT_LEFT_SHIFTER_2 = 1;
+	public static final int DT_RIGHT_SHIFTER_PCM = PCM_B;
+	public static final int DT_RIGHT_SHIFTER_1 = 2;
+	public static final int DT_RIGHT_SHIFTER_2 = 3;
 	
-	public static final int INTAKE_LEFT = 0;
-	public static final int INTAKE_RIGHT = 0;
+	public static final int ARM_PCM = PCM_A;
+	public static final int SHOOTER_PISTON_1 = 4;
+	public static final int SHOOTER_PISTON_2 = 5;
+	public static final int INTAKE_PCM = PCM_A;
+	public static final int INTAKE_LEFT_SHIFTER_1 = 2;
+	public static final int INTAKE_LEFT_SHIFTER_2 = 3;
+	public static final int INTAKE_RIGHT_SHIFTER_1 = 0;
+	public static final int INTAKE_RIGHT_SHIFTER_2 = 1;
 	
-	public static final int INTAKE_LEFT_PCM = PCM_B;
-	public static final int INTAKE_LEFT_FLIP_1 = 0;
-	public static final int INTAKE_LEFT_FLIP_2 = 0;
-	
-	public static final int INTAKE_RIGHT_PCM = PCM_B;
-	public static final int INTAKE_RIGHT_FLIP_1 = 0;
-	public static final int INTAKE_RIGHT_FLIP_2 = 0;
-
-	public static final int ELEVATOR_PHOTO_EYE = 0;
-
-	public static final int ELEVATOR_FRONT_LEFT = 0;
-	public static final int ELEVATOR_REAR_LEFT = 0;
-	public static final int ELEVATOR_FRONT_RIGHT = 0;
-	public static final int ELEVATOR_REAR_RIGHT = 0;
-	public static final int ELEVATOR_HALL_EFFECT_SENSOR = 0;
-	
-	public static final int MANIP_CONTROLLER = 0;
-	public static final int DRIVER_CONTROLLER = 1;
-
+			
 }

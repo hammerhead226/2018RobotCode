@@ -6,6 +6,7 @@ import org.hammerhead226.sharkmacro.motionprofiles.ProfileParser;
 import org.hammerhead226.sharkmacro.motionprofiles.ProfileRecorder;
 import org.hammerhead226.sharkmacro.motionprofiles.ProfileRecorder.RecordingType;
 import org.usfirst.frc.team226.robot.Constants;
+import org.usfirst.frc.team226.robot.Robot;
 import org.usfirst.frc.team226.robot.RobotMap;
 import org.usfirst.frc.team226.robot.commands.CheesyDrive;
 
@@ -28,6 +29,10 @@ public class DriveTrain extends Subsystem {
 	private TalonSRX rearRight = new TalonSRX(RobotMap.DT_REAR_RIGHT);
 	
 	private ProfileRecorder recorder = new ProfileRecorder(frontLeft, frontRight, RecordingType.VOLTAGE);
+	
+	public void initDefaultCommand() {
+		setDefaultCommand(new CheesyDrive());
+	}
 
 	public DriveTrain() {
 		frontLeft.setInverted(!true);
@@ -43,15 +48,15 @@ public class DriveTrain extends Subsystem {
 		rearLeft.follow(frontLeft);
 		rearRight.follow(frontRight);
 		
-		frontLeft.setSensorPhase(true);
-		frontRight.setSensorPhase(true);
+		frontLeft.setSensorPhase(Constants.DT_LEFT_SENSOR_PHASE);
+		frontRight.setSensorPhase(Constants.DT_RIGHT_SENSOR_PHASE);
 
-		frontLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.STARTUP_WAIT);
-		centerLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.STARTUP_WAIT);
-		rearLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.STARTUP_WAIT);
-		frontRight.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.STARTUP_WAIT);
-		centerRight.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.STARTUP_WAIT);
-		rearRight.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.STARTUP_WAIT);
+		frontLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
+		centerLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
+		rearLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
+		frontRight.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
+		centerRight.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
+		rearRight.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
 
 		frontLeft.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
 		centerLeft.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
@@ -60,12 +65,12 @@ public class DriveTrain extends Subsystem {
 		centerRight.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
 		rearRight.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
 
-		frontLeft.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.STARTUP_WAIT);
-		centerLeft.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.STARTUP_WAIT);
-		rearLeft.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.STARTUP_WAIT);
-		frontRight.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.STARTUP_WAIT);
-		centerRight.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.STARTUP_WAIT);
-		rearRight.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.STARTUP_WAIT);
+		frontLeft.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
+		centerLeft.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
+		rearLeft.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
+		frontRight.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
+		centerRight.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
+		rearRight.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
 
 		frontLeft.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
 		centerLeft.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
@@ -73,7 +78,6 @@ public class DriveTrain extends Subsystem {
 		frontRight.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
 		centerRight.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
 		rearRight.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
-
 	}
 	
 	public void toggleProfileRecording() {
@@ -83,6 +87,7 @@ public class DriveTrain extends Subsystem {
 			System.out.println("Profile saved.");
 		} else {
 			zeroEncoders();
+			Timer.delay(0.2);
 			System.out.println("Profile recording started.");
 			recorder.start();
 		}
@@ -94,13 +99,10 @@ public class DriveTrain extends Subsystem {
 			al.writeToFile(ActionRecorder.stop());
 			System.out.println("ActionList saved.");
 		} else {
+			Timer.delay(0.2);
 			ActionRecorder.start();
 			System.out.println("ActionList recording started.");
 		}
-	}
-
-	public void initDefaultCommand() {
-		setDefaultCommand(new CheesyDrive());
 	}
 
 	public void arcadeDrive(double moveValue, double rotateValue) {
@@ -128,6 +130,7 @@ public class DriveTrain extends Subsystem {
 				rightMotorSpeed = -Math.max(-rotateValue, -moveValue);
 			}
 		}
+		
 		frontLeft.set(ControlMode.PercentOutput, -leftMotorSpeed);
 		frontRight.set(ControlMode.PercentOutput, rightMotorSpeed);
 	}
@@ -144,7 +147,6 @@ public class DriveTrain extends Subsystem {
 	private void zeroEncoders() {
 		frontLeft.setSelectedSensorPosition(0, 0, 0);
 		frontRight.setSelectedSensorPosition(0, 0, 0);
-		Timer.delay(0.2);
 		System.out.println("Drivetrain encoders zeroed.");
 	}
 

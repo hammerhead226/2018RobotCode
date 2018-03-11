@@ -2,38 +2,39 @@ package org.usfirst.frc.team226.robot.auton;
 
 import org.hammerhead226.sharkmacro.actions.ActionList;
 import org.hammerhead226.sharkmacro.actions.ActionListParser;
-import org.hammerhead226.sharkmacro.motionprofiles.ProfileParser;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ExecuteSavedActionList extends Command {
+public class ExecuteDoubleActionList extends Command {
 
-	private String name;
+	private String leftName;
+	private String rightName;
 	private ActionList actionListToExecute;
-	private boolean hasName = false;
 
-	public ExecuteSavedActionList(String name) {
+	public ExecuteDoubleActionList(String leftName, String rightName) {
 		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
-		this.name = name;
-		this.hasName = true;
-	}
-
-	public ExecuteSavedActionList() {
+		this.leftName = leftName;
+		this.rightName = rightName;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		boolean left = DriverStation.getInstance().getGameSpecificMessage().charAt(0) == 'L';
 		ActionListParser alParser;
-		name = (name == null) ? ActionListParser.getNewestFilename() : name;
-		alParser = new ActionListParser(name);
-		System.out.println("Executing ActionList... " + name);
+		if (left) {
+			alParser = new ActionListParser(leftName);
+			System.out.println("Executing ActionList... " + leftName);
+		} else {
+			alParser = new ActionListParser(rightName);
+			System.out.println("Executing ActionList... " + rightName);
+		}
 		actionListToExecute = alParser.toObject();
 		actionListToExecute.execute();
-		name = hasName ? name : null;
+
 	}
 
 	// Called repeatedly when this Command is scheduled to run

@@ -7,12 +7,18 @@
 
 package org.usfirst.frc.team226.robot;
 
-import org.usfirst.frc.team226.robot.commands.ElevatorToIntake;
-import org.usfirst.frc.team226.robot.commands.ElevatorToPower;
-import org.usfirst.frc.team226.robot.commands.ElevatorToScale;
-import org.usfirst.frc.team226.robot.commands.ElevatorToSwitch;
-import org.usfirst.frc.team226.robot.commands.HardZeroElevator;
-import org.usfirst.frc.team226.robot.commands.RunIntakeReverse;
+import org.usfirst.frc.team226.robot.auton.grp_ExecuteSavedMacro;
+import org.usfirst.frc.team226.robot.auton.grp_ToggleAutonRecording;
+import org.usfirst.frc.team226.robot.commands.ArmSetpointGround;
+import org.usfirst.frc.team226.robot.commands.ArmSetpointHigh;
+import org.usfirst.frc.team226.robot.commands.ArmSetpointSwitch;
+import org.usfirst.frc.team226.robot.commands.HardZeroArmEncoder;
+import org.usfirst.frc.team226.robot.commands.ShiftDriveTrainHighGear;
+import org.usfirst.frc.team226.robot.commands.ShiftDriveTrainLowGear;
+import org.usfirst.frc.team226.robot.commands.ShiftIntake;
+import org.usfirst.frc.team226.robot.commands.Shoot;
+import org.usfirst.frc.team226.robot.commands.auto_Intake;
+import org.usfirst.frc.team226.robot.commands.grp_ShootOuttake;
 
 import util.Controller;
 
@@ -22,17 +28,29 @@ import util.Controller;
  */
 public class OI {
 
-	public Controller driver = new Controller(RobotMap.DRIVER_CONTROLLER, Constants.DRIVER_DEADBAND);
-	public Controller manip = new Controller(RobotMap.MANIP_CONTROLLER, Constants.MANIP_DEADBAND);
-	
-	public OI(){
-		driver.getXButton().whileHeld(new RunIntakeReverse());
-		
-		manip.getYButton().whenPressed(new ElevatorToSwitch());
-		manip.getXButton().whenPressed(new ElevatorToScale());
-		manip.getBButton().whenPressed(new ElevatorToPower());
-		manip.getAButton().whenPressed(new ElevatorToIntake());
-		manip.getRBButton().whenPressed(new HardZeroElevator());
+	public Controller driver = new Controller(0);
+	public Controller manip = new Controller(1);
+
+	public OI() {
+		// Drivetrain
+		driver.getLSButton().whenPressed(new ShiftDriveTrainHighGear());
+		driver.getRSButton().whenPressed(new ShiftDriveTrainLowGear());
+
+		// Intake
+		manip.getRBButton().whenPressed(new ShiftIntake());
+		manip.getRSButton().whileHeld(new auto_Intake());
+		manip.getBButton().whenPressed(new grp_ShootOuttake());
+		manip.getSTARTButton().whenPressed(new Shoot());
+
+		// Arm
+		manip.getSELECTButton().whenPressed(new HardZeroArmEncoder());
+		manip.getYButton().whenPressed(new ArmSetpointHigh());
+		manip.getXButton().whenPressed(new ArmSetpointSwitch());
+		manip.getAButton().whenPressed(new ArmSetpointGround());
+
+		// Auton recording controls
+		driver.getSTARTButton().whenPressed(new grp_ToggleAutonRecording());
+		driver.getSELECTButton().whenPressed(new grp_ExecuteSavedMacro());
 	}
-	
+
 }

@@ -7,17 +7,16 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class FlipIntakeNeutral extends InstantCommand {
+public class ShiftIntakeRight extends InstantCommand {
 
-    public FlipIntakeNeutral() {
+    public ShiftIntakeRight() {
         super();
-        // Use requires() here to declare subsystem dependencies
         requires(Robot.pneumaticsSystem);
     }
 
     // Called once when the command executes
     protected void initialize() {
-    	Robot.pneumaticsSystem.flipIntakeNeutral();
+    	Robot.pneumaticsSystem.shiftIntakeRight();
     }
 
 }

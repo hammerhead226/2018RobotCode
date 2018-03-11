@@ -7,40 +7,42 @@ import org.usfirst.frc.team226.robot.Robot;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ExecuteSavedProfile extends Command {
+public class ExecuteDoubleProfile extends Command {
 
-	private String name;
+	private String leftName;
+	private String rightName;
 	private Profile profileToExecute;
-	private boolean hasName = false;
-	
+
 	private TalonSRX[] talons = Robot.driveTrain.getMotionProfileTalons();
 
-	public ExecuteSavedProfile(String name) {
+	public ExecuteDoubleProfile(String leftName, String rightName) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.driveTrain);
-		this.name = name;
-		hasName = true;
-	}
-
-	public ExecuteSavedProfile() {
-		requires(Robot.driveTrain);
+		this.leftName = leftName;
+		this.rightName = rightName;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		boolean left = DriverStation.getInstance().getGameSpecificMessage().charAt(0) == 'L';
 		ProfileParser pParser;
-		name = (name == null) ? ProfileParser.getNewestFilename() : name;
-		pParser = new ProfileParser(name);
-		System.out.println("Executing profile... " + name);
+		if (left) {
+			pParser = new ProfileParser(leftName);
+			System.out.println("Executing profile... " + leftName);
+		} else {
+			pParser = new ProfileParser(rightName);
+			System.out.println("Executing profile... " + rightName);
+		}
 		profileToExecute = pParser.toObject(talons[0], talons[1]);
+		
 		profileToExecute.execute(Constants.DT_LEFT_PIDSLOT_IDX, Constants.DT_RIGHT_PIDSLOT_IDX);
-		name = hasName ? name : null;
 	}
 
 	// Called repeatedly when this Command is scheduled to run
