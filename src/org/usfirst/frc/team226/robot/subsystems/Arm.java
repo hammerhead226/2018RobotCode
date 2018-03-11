@@ -26,7 +26,7 @@ public class Arm extends Subsystem {
 				Constants.ARM_STARTUP_TIMEOUT);
 		right.setSensorPhase(Constants.ARM_SENSOR_PHASE);
 
-		// hardZeroEncoder();
+		hardZeroEncoder();
 
 		right.configContinuousCurrentLimit(Constants.ARM_CURRENT_LIMIT, Constants.ARM_STARTUP_TIMEOUT);
 		left.configContinuousCurrentLimit(Constants.ARM_CURRENT_LIMIT, Constants.ARM_STARTUP_TIMEOUT);
@@ -60,7 +60,7 @@ public class Arm extends Subsystem {
 
 	public enum ArmSetpoint {
 		FRONT_RESTING(0), FRONT_GROUND(245), FRONT_PORTAL_SWITCH(1844), FRONT_SCALE(3005), STRAIGHT_UP(
-				3440), BACK_SCALE(4623), BACK_PORTAL_SWITCH(5000), BACK_GROUND(6600), BACK_RESTING(6964);
+				3440), BACK_SCALE(4623), BACK_PORTAL_SWITCH(4550), BACK_GROUND(6600), BACK_RESTING(6964);
 
 		public int position;
 

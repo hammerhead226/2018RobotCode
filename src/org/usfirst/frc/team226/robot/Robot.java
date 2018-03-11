@@ -7,18 +7,14 @@
 
 package org.usfirst.frc.team226.robot;
 
-import org.usfirst.frc.team226.robot.auton.grp_ExecuteDoubleMacro;
+import org.usfirst.frc.team226.robot.auton.ExecuteDoubleMacro;
 import org.usfirst.frc.team226.robot.auton.grp_ExecuteSavedMacro;
 import org.usfirst.frc.team226.robot.subsystems.Arm;
-import org.usfirst.frc.team226.robot.subsystems.Intake;
-
 import org.usfirst.frc.team226.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team226.robot.subsystems.Elevator;
-import org.usfirst.frc.team226.robot.subsystems.PneumaticsSystem;
 import org.usfirst.frc.team226.robot.subsystems.Intake;
+import org.usfirst.frc.team226.robot.subsystems.PneumaticsSystem;
 import org.usfirst.frc.team226.robot.vision.VisionRun;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -33,33 +29,28 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
-
 	public static Arm arm;
 	public static DriveTrain driveTrain;
-	public static Carriage carriage;
 	public static PneumaticsSystem pneumaticsSystem;
 	public static Intake intake;
 	public VisionRun vision = new VisionRun();
-	public static Intake intake;
-	public static Elevator elevator;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
 	public static OI oi;
-
+	
 	@Override
 	public void robotInit() {
 		arm = new Arm();
 		driveTrain = new DriveTrain();
-		carriage = new Carriage();
 		pneumaticsSystem = new PneumaticsSystem();
 		intake = new Intake();
 		oi = new OI();
-		chooser.addDefault("Baseline Cross", new grp_ExecuteSavedMacro("baselinecross"));
-		chooser.addObject("Left Switch", new grp_ExecuteDoubleMacro("leftswitch_left", "leftswitch_right"));
-		chooser.addObject("Center Switch", new grp_ExecuteDoubleMacro("centerswitch_left", "centerswitch_right"));
-		chooser.addObject("Right Switch", new grp_ExecuteDoubleMacro("rightswitch_left", "rightswitch_right"));
+		chooser.addDefault("Baseline Cross", new grp_ExecuteSavedMacro("baseline_cross"));
+		chooser.addObject("Left Switch", new ExecuteDoubleMacro("leftswitch_left", "leftswitch_right"));
+		chooser.addObject("Center Switch", new ExecuteDoubleMacro("centerswitch_left", "centerswitch_right"));
+		chooser.addObject("Right Switch", new ExecuteDoubleMacro("rightswitch_left", "rightswitch_right"));
 		SmartDashboard.putData("Auto mode", chooser);
 		// vision.start();
 	}
@@ -85,8 +76,8 @@ public class Robot extends TimedRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null) {
-			autonomousCommand.start();
+		if (m_autonomousCommand != null) {
+			m_autonomousCommand.start();
 		}
 	}
 
@@ -97,8 +88,8 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
-		if (autonomousCommand != null) {
-			autonomousCommand.cancel();
+		if (m_autonomousCommand != null) {
+			m_autonomousCommand.cancel();
 		}
 	}
 

@@ -41,6 +41,7 @@ public class ExecuteDoubleProfile extends Command {
 			System.out.println("Executing profile... " + rightName);
 		}
 		profileToExecute = pParser.toObject(talons[0], talons[1]);
+		
 		profileToExecute.execute(Constants.DT_LEFT_PIDSLOT_IDX, Constants.DT_RIGHT_PIDSLOT_IDX);
 	}
 
