@@ -24,6 +24,7 @@ public class RobotMap {
 	
 	public static final int INTAKE_LEFT = 14;
 	public static final int INTAKE_RIGHT = 18;
+	public static final int INTAKE_ROLLERS = 0;
 	public static final int ARM_RIGHT = 21;
 	public static final int ARM_LEFT = 19;
 	
@@ -47,6 +48,10 @@ public class RobotMap {
 	public static final int INTAKE_LEFT_SHIFTER_2 = 3;
 	public static final int INTAKE_RIGHT_SHIFTER_1 = 0;
 	public static final int INTAKE_RIGHT_SHIFTER_2 = 1;
+	public static final int INTAKE_LEFT_ROLLER_SHIFTER_1 = 0;
+	public static final int INTAKE_LEFT_ROLLER_SHIFTER_2 = 0;
+	public static final int INTAKE_RIGHT_ROLLER_SHIFTER_1 = 0;
+	public static final int INTAKE_RIGHT_ROLLER_SHIFTER_2 = 0;
 	
 			
 }

@@ -17,6 +17,7 @@ public class Intake extends Subsystem {
 
 	private TalonSRX left = new TalonSRX(RobotMap.INTAKE_LEFT);
 	private TalonSRX right = new TalonSRX(RobotMap.INTAKE_RIGHT);
+	private TalonSRX roller = new TalonSRX(RobotMap.INTAKE_ROLLERS);
 
 	public Intake() {
 		left.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_SENSOR_TIMEOUT);
@@ -48,5 +49,9 @@ public class Intake extends Subsystem {
 	
 	public void driveIntake(double speed) {
 		left.set(ControlMode.PercentOutput, speed);
+	}
+	
+	public void rollersPullIn(double speed) {
+		roller.set(ControlMode.PercentOutput, speed);
 	}
 }

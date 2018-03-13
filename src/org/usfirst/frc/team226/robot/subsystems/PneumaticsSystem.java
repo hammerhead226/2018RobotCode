@@ -2,6 +2,8 @@ package org.usfirst.frc.team226.robot.subsystems;
 
 import org.usfirst.frc.team226.robot.RobotMap;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -30,7 +32,11 @@ public class PneumaticsSystem extends Subsystem {
 			RobotMap.INTAKE_RIGHT_SHIFTER_2);
 	private DoubleSolenoid shooter = new DoubleSolenoid(RobotMap.ARM_PCM, RobotMap.SHOOTER_PISTON_1,
 			RobotMap.SHOOTER_PISTON_2);
-
+	private DoubleSolenoid intakeRollerLeft = new DoubleSolenoid(RobotMap.ARM_PCM,
+			RobotMap.INTAKE_LEFT_ROLLER_SHIFTER_1, RobotMap.INTAKE_LEFT_ROLLER_SHIFTER_2);
+	private DoubleSolenoid intakeRollerRight = new DoubleSolenoid(RobotMap.ARM_PCM,
+			RobotMap.INTAKE_RIGHT_ROLLER_SHIFTER_1, RobotMap.INTAKE_RIGHT_ROLLER_SHIFTER_2);
+	
 	private DoubleSolenoid.Value leftShifterVal = DoubleSolenoid.Value.kOff;
 
 	public void shiftDriveTrainLeft() {
@@ -120,4 +126,21 @@ public class PneumaticsSystem extends Subsystem {
 		intakeRight.set(DoubleSolenoid.Value.kOff);
 	}
 
+	private DoubleSolenoid.Value intakeRollerVal = DoubleSolenoid.Value.kForward;
+
+	public void shiftIntakeRollers() {
+		if (intakeRollerVal == DoubleSolenoid.Value.kForward) {
+			intakeRollerVal = DoubleSolenoid.Value.kReverse;
+		} else {
+			intakeRollerVal = DoubleSolenoid.Value.kForward;
+		}
+		
+		intakeRollerLeft.set(intakeRollerVal);
+		intakeRollerRight.set(intakeRollerVal);
+	}
+	
+	public void shiftIntakeRollerNeutral() {
+		intakeRollerLeft.set(DoubleSolenoid.Value.kOff);
+		intakeRollerRight.set(DoubleSolenoid.Value.kOff);
+	}
 }
