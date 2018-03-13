@@ -49,4 +49,6 @@ public class Constants {
 	public static final boolean DT_RIGHT_SENSOR_PHASE = true;
 	public static final double ARM_MAX_SPEED = 0.4;
 
+	public static final double INTAKE_PULL_IN_SPEED = 0;
+
 }
