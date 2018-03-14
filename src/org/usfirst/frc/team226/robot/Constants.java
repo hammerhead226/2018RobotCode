@@ -58,5 +58,5 @@ public class Constants {
 	public static final int CLIMBER_SENSOR_TIMEOUT = 10;
 	public static final double CLIMBER_SPEED = 0;
 
-	public static final double INTAKE_PULL_IN_SPEED = 0;
+	public static final double INTAKE_PULL_IN_SPEED = 0.5;
 }

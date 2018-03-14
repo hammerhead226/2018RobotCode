@@ -28,8 +28,8 @@ public class RobotMap {
 	public static final int ARM_RIGHT = 21;
 	public static final int ARM_LEFT = 19;
 	
-	public static final int CLIMBER_LEFT = 0;
-	public static final int CLIMBER_RIGHT = 0;
+	public static final int CLIMBER_LEFT = 62;
+	public static final int CLIMBER_RIGHT = 61;
 	
 	public static final int PCM_A = 11;
 	public static final int PCM_B = 12;
@@ -51,7 +51,7 @@ public class RobotMap {
 	public static final int INTAKE_LEFT_SHIFTER_2 = 3;
 	public static final int INTAKE_RIGHT_SHIFTER_1 = 0;
 	public static final int INTAKE_RIGHT_SHIFTER_2 = 1;
-	public static final int INTAKE_ROLLER_SHIFTER_1 = 0;
-	public static final int INTAKE_ROLLER_SHIFTER_2 = 0;	
+	public static final int INTAKE_ROLLER_SHIFTER_1 = 6;
+	public static final int INTAKE_ROLLER_SHIFTER_2 = 7;	
 			
 }

@@ -132,7 +132,6 @@ public class PneumaticsSystem extends Subsystem {
 		} else {
 			intakeRollerVal = DoubleSolenoid.Value.kForward;
 		}
-		
 		intakeRoller.set(intakeRollerVal);
 	}
 	

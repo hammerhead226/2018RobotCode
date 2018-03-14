@@ -16,6 +16,7 @@ public class ShiftIntakeRollers extends InstantCommand {
 
     // Called once when the command executes
     protected void initialize() {
+    	System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     	Robot.pneumaticsSystem.shiftIntakeRollers();
     }
 
