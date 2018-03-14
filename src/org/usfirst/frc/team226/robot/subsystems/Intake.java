@@ -22,18 +22,23 @@ public class Intake extends Subsystem {
 	public Intake() {
 		left.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_SENSOR_TIMEOUT);
 		right.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_SENSOR_TIMEOUT);
+		roller.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_SENSOR_TIMEOUT);
 
 		left.enableCurrentLimit(Constants.INTAKE_CURRENT_LIMIT_ENABLED);
 		right.enableCurrentLimit(Constants.INTAKE_CURRENT_LIMIT_ENABLED);
+		roller.enableCurrentLimit(Constants.INTAKE_CURRENT_LIMIT_ENABLED);
 
 		left.configVoltageCompSaturation(Constants.INTAKE_VOLTAGE_LIMIT, Constants.INTAKE_SENSOR_TIMEOUT);
 		right.configVoltageCompSaturation(Constants.INTAKE_VOLTAGE_LIMIT, Constants.INTAKE_SENSOR_TIMEOUT);
+		roller.configVoltageCompSaturation(Constants.INTAKE_VOLTAGE_LIMIT, Constants.INTAKE_SENSOR_TIMEOUT);
 
 		left.enableVoltageCompensation(Constants.INTAKE_VOLTAGE_LIMIT_ENABLED);
 		right.enableVoltageCompensation(Constants.INTAKE_VOLTAGE_LIMIT_ENABLED);
+		roller.enableVoltageCompensation(Constants.INTAKE_VOLTAGE_LIMIT_ENABLED);
 
 		left.setInverted(Constants.INTAKE_INVERT_L);
-		right.setInverted(Constants.CARRIAGE_INVERT_R);
+		right.setInverted(Constants.INTAKE_INVERT_R);
+		roller.setInverted(Constants.ROLLER_INVERT);
 		
 		right.follow(left);
 

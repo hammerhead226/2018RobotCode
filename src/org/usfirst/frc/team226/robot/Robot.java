@@ -10,6 +10,7 @@ package org.usfirst.frc.team226.robot;
 import org.usfirst.frc.team226.robot.auton.ExecuteDoubleMacro;
 import org.usfirst.frc.team226.robot.auton.grp_ExecuteSavedMacro;
 import org.usfirst.frc.team226.robot.subsystems.Arm;
+import org.usfirst.frc.team226.robot.subsystems.Climber;
 import org.usfirst.frc.team226.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team226.robot.subsystems.Intake;
 import org.usfirst.frc.team226.robot.subsystems.PneumaticsSystem;
@@ -39,12 +40,14 @@ public class Robot extends TimedRobot {
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
 	public static OI oi;
+	public static Climber climber;
 	
 	@Override
 	public void robotInit() {
 		arm = new Arm();
 		driveTrain = new DriveTrain();
 		pneumaticsSystem = new PneumaticsSystem();
+		climber = new Climber();
 		intake = new Intake();
 		oi = new OI();
 		chooser.addDefault("Baseline Cross", new grp_ExecuteSavedMacro("baseline_cross"));
