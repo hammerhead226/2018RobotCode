@@ -56,7 +56,7 @@ public class Intake extends Subsystem {
 		left.set(ControlMode.PercentOutput, speed);
 	}
 	
-	public void rollersPullIn(double speed) {
+	public void driveRollers(double speed) {
 		roller.set(ControlMode.PercentOutput, speed);
 	}
 }

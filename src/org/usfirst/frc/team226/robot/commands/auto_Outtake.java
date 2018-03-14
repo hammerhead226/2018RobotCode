@@ -17,7 +17,9 @@ public class auto_Outtake extends RecordableCommand {
     protected void initialize() {
     	super.initialize();
     	setTimeout(0.5);
-    	Robot.intake.driveIntake(1);    }
+    	Robot.intake.driveIntake(1);
+    	Robot.intake.driveRollers(-1);
+    	}
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
