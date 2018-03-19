@@ -1,7 +1,6 @@
 package org.usfirst.frc.team226.robot.subsystems;
 
 import org.usfirst.frc.team226.robot.Constants;
-import org.usfirst.frc.team226.robot.Robot;
 import org.usfirst.frc.team226.robot.RobotMap;
 import org.usfirst.frc.team226.robot.commands.DriveIntake;
 
@@ -17,25 +16,31 @@ public class Intake extends Subsystem {
 
 	private TalonSRX left = new TalonSRX(RobotMap.INTAKE_LEFT);
 	private TalonSRX right = new TalonSRX(RobotMap.INTAKE_RIGHT);
+	private TalonSRX roller = new TalonSRX(RobotMap.INTAKE_ROLLERS);
 
 	public Intake() {
-		left.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_SENSOR_TIMEOUT);
-		right.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_SENSOR_TIMEOUT);
+		left.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_TIMEOUT);
+		right.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_TIMEOUT);
+		roller.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_TIMEOUT);
 
 		left.enableCurrentLimit(Constants.INTAKE_CURRENT_LIMIT_ENABLED);
 		right.enableCurrentLimit(Constants.INTAKE_CURRENT_LIMIT_ENABLED);
+		roller.enableCurrentLimit(Constants.INTAKE_CURRENT_LIMIT_ENABLED);
 
-		left.configVoltageCompSaturation(Constants.INTAKE_VOLTAGE_LIMIT, Constants.INTAKE_SENSOR_TIMEOUT);
-		right.configVoltageCompSaturation(Constants.INTAKE_VOLTAGE_LIMIT, Constants.INTAKE_SENSOR_TIMEOUT);
+		left.configVoltageCompSaturation(Constants.INTAKE_VOLTAGE_LIMIT, Constants.INTAKE_TIMEOUT);
+		right.configVoltageCompSaturation(Constants.INTAKE_VOLTAGE_LIMIT, Constants.INTAKE_TIMEOUT);
+		roller.configVoltageCompSaturation(Constants.INTAKE_VOLTAGE_LIMIT, Constants.INTAKE_TIMEOUT);
 
 		left.enableVoltageCompensation(Constants.INTAKE_VOLTAGE_LIMIT_ENABLED);
 		right.enableVoltageCompensation(Constants.INTAKE_VOLTAGE_LIMIT_ENABLED);
+		roller.enableVoltageCompensation(Constants.INTAKE_VOLTAGE_LIMIT_ENABLED);
 
 		left.setInverted(Constants.INTAKE_INVERT_L);
-		right.setInverted(Constants.CARRIAGE_INVERT_R);
+		right.setInverted(Constants.INTAKE_INVERT_R);
+		roller.setInverted(Constants.ROLLER_INVERT);
 		
 		right.follow(left);
-
+		roller.follow(right);
 	}
 
 	public void initDefaultCommand() {
@@ -49,4 +54,5 @@ public class Intake extends Subsystem {
 	public void driveIntake(double speed) {
 		left.set(ControlMode.PercentOutput, speed);
 	}
+	
 }

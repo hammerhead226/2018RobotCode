@@ -16,21 +16,18 @@ public class auto_Intake extends RecordableCommand {
     protected void initialize() {
     	super.initialize();
     	Robot.intake.driveIntake(-1);
+    	Robot.intake.driveRollers(-1);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     }
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return false;
-    }
-
     // Called once after isFinished returns true
     protected void end() {
     	super.end();
     	Robot.intake.neutralOutput();
+    	Robot.intake.rollersNeutral();
     }
 
     // Called when another command which requires one or more of the same
@@ -38,5 +35,6 @@ public class auto_Intake extends RecordableCommand {
     protected void interrupted() {
     	super.interrupted();
     	Robot.intake.neutralOutput();
+    	Robot.intake.rollersNeutral();
     }
 }

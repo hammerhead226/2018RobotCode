@@ -2,6 +2,8 @@ package org.usfirst.frc.team226.robot.subsystems;
 
 import org.usfirst.frc.team226.robot.RobotMap;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -12,6 +14,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class PneumaticsSystem extends Subsystem {
 
 	public Compressor compressor = new Compressor(RobotMap.COMPRESSOR_PORT);
+	
+	public void compressorOn() {
+		compressor.setClosedLoopControl(true);
+		compressor.start();
+	}
+	
+	public void compressorOff() {
+		compressor.setClosedLoopControl(false);
+		compressor.stop();
+	}
 
 	public PneumaticsSystem() {
 		compressor.start();
@@ -30,7 +42,9 @@ public class PneumaticsSystem extends Subsystem {
 			RobotMap.INTAKE_RIGHT_SHIFTER_2);
 	private DoubleSolenoid shooter = new DoubleSolenoid(RobotMap.ARM_PCM, RobotMap.SHOOTER_PISTON_1,
 			RobotMap.SHOOTER_PISTON_2);
-
+	private DoubleSolenoid intakeRoller = new DoubleSolenoid(RobotMap.ARM_PCM,
+			RobotMap.INTAKE_ROLLER_SHIFTER_1, RobotMap.INTAKE_ROLLER_SHIFTER_2);
+	
 	private DoubleSolenoid.Value leftShifterVal = DoubleSolenoid.Value.kOff;
 
 	public void shiftDriveTrainLeft() {
@@ -120,4 +134,18 @@ public class PneumaticsSystem extends Subsystem {
 		intakeRight.set(DoubleSolenoid.Value.kOff);
 	}
 
+	private DoubleSolenoid.Value intakeRollerVal = DoubleSolenoid.Value.kForward;
+
+	public void shiftIntakeRollers() {
+		if (intakeRollerVal == DoubleSolenoid.Value.kForward) {
+			intakeRollerVal = DoubleSolenoid.Value.kReverse;
+		} else {
+			intakeRollerVal = DoubleSolenoid.Value.kForward;
+		}
+		intakeRoller.set(intakeRollerVal);
+	}
+	
+	public void shiftIntakeRollerNeutral() {
+		intakeRoller.set(DoubleSolenoid.Value.kOff);
+	}
 }

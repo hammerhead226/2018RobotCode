@@ -12,6 +12,8 @@ import org.usfirst.frc.team226.robot.auton.grp_ToggleAutonRecording;
 import org.usfirst.frc.team226.robot.commands.ArmSetpointGround;
 import org.usfirst.frc.team226.robot.commands.ArmSetpointHigh;
 import org.usfirst.frc.team226.robot.commands.ArmSetpointSwitch;
+import org.usfirst.frc.team226.robot.commands.CompressorOff;
+import org.usfirst.frc.team226.robot.commands.CompressorOn;
 import org.usfirst.frc.team226.robot.commands.HardZeroArmEncoder;
 import org.usfirst.frc.team226.robot.commands.ShiftDriveTrainHighGear;
 import org.usfirst.frc.team226.robot.commands.ShiftDriveTrainLowGear;
@@ -35,6 +37,8 @@ public class OI {
 		// Drivetrain
 		driver.getLSButton().whenPressed(new ShiftDriveTrainHighGear());
 		driver.getRSButton().whenPressed(new ShiftDriveTrainLowGear());
+		driver.getYButton().whenPressed(new CompressorOn());
+		driver.getBButton().whenPressed(new CompressorOff());
 
 		// Intake
 		manip.getRBButton().whenPressed(new ShiftIntake());

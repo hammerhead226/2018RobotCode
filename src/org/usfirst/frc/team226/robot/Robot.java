@@ -10,6 +10,7 @@ package org.usfirst.frc.team226.robot;
 import org.usfirst.frc.team226.robot.auton.ExecuteDoubleMacro;
 import org.usfirst.frc.team226.robot.auton.grp_ExecuteSavedMacro;
 import org.usfirst.frc.team226.robot.subsystems.Arm;
+import org.usfirst.frc.team226.robot.subsystems.Climber;
 import org.usfirst.frc.team226.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team226.robot.subsystems.Intake;
 import org.usfirst.frc.team226.robot.subsystems.PneumaticsSystem;
@@ -34,25 +35,31 @@ public class Robot extends TimedRobot {
 	public static PneumaticsSystem pneumaticsSystem;
 	public static Intake intake;
 	public VisionRun vision = new VisionRun();
+	public static Climber climber;
+	public static OI oi;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
-	public static OI oi;
-	
 	@Override
 	public void robotInit() {
 		arm = new Arm();
 		driveTrain = new DriveTrain();
 		pneumaticsSystem = new PneumaticsSystem();
+		climber = new Climber();
 		intake = new Intake();
 		oi = new OI();
-		chooser.addDefault("Baseline Cross", new grp_ExecuteSavedMacro("baseline_cross"));
-		chooser.addObject("Left Switch", new ExecuteDoubleMacro("leftswitch_left", "leftswitch_right"));
+		chooser.addDefault("Baseline Cross", new grp_ExecuteSavedMacro("baseline"));
+		chooser.addObject("Left Switch", new ExecuteDoubleMacro("leftswitch_left", "baseline"));
 		chooser.addObject("Center Switch", new ExecuteDoubleMacro("centerswitch_left", "centerswitch_right"));
-		chooser.addObject("Right Switch", new ExecuteDoubleMacro("rightswitch_left", "rightswitch_right"));
+		chooser.addObject("Right Switch", new ExecuteDoubleMacro("baseline", "rightswitch_right"));
 		SmartDashboard.putData("Auto mode", chooser);
 		// vision.start();
+	}
+	
+	@Override
+	public void robotPeriodic() {
+		SmartDashboard.putNumber("Arm Encoder", arm.getArmPos());
 	}
 
 	@Override

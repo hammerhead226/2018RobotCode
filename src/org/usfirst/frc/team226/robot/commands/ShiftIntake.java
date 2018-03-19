@@ -17,6 +17,7 @@ public class ShiftIntake extends RecordableCommand {
     protected void initialize() {
     	super.initialize();
     	Robot.pneumaticsSystem.shiftIntake();
+    	Robot.pneumaticsSystem.shiftIntakeRollers();
     }
     
     protected void execute() {
