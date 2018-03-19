@@ -49,8 +49,8 @@ public class Constants {
 
 	// Misc
 	public static final int DT_TIMEOUT = 10;
-	public static final int ARM_STARTUP_TIMEOUT = 10;
-	public static final int INTAKE_SENSOR_TIMEOUT = 0;
+	public static final int ARM_TIMEOUT = 10;
+	public static final int INTAKE_TIMEOUT = 0;
 	public static final boolean ARM_SENSOR_PHASE = false;
 	public static final boolean DT_LEFT_SENSOR_PHASE = true;
 	public static final boolean DT_RIGHT_SENSOR_PHASE = true;

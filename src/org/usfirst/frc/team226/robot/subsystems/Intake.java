@@ -19,17 +19,17 @@ public class Intake extends Subsystem {
 	private TalonSRX roller = new TalonSRX(RobotMap.INTAKE_ROLLERS);
 
 	public Intake() {
-		left.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_SENSOR_TIMEOUT);
-		right.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_SENSOR_TIMEOUT);
-		roller.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_SENSOR_TIMEOUT);
+		left.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_TIMEOUT);
+		right.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_TIMEOUT);
+		roller.configContinuousCurrentLimit(Constants.INTAKE_CURRENT_LIMIT, Constants.INTAKE_TIMEOUT);
 
 		left.enableCurrentLimit(Constants.INTAKE_CURRENT_LIMIT_ENABLED);
 		right.enableCurrentLimit(Constants.INTAKE_CURRENT_LIMIT_ENABLED);
 		roller.enableCurrentLimit(Constants.INTAKE_CURRENT_LIMIT_ENABLED);
 
-		left.configVoltageCompSaturation(Constants.INTAKE_VOLTAGE_LIMIT, Constants.INTAKE_SENSOR_TIMEOUT);
-		right.configVoltageCompSaturation(Constants.INTAKE_VOLTAGE_LIMIT, Constants.INTAKE_SENSOR_TIMEOUT);
-		roller.configVoltageCompSaturation(Constants.INTAKE_VOLTAGE_LIMIT, Constants.INTAKE_SENSOR_TIMEOUT);
+		left.configVoltageCompSaturation(Constants.INTAKE_VOLTAGE_LIMIT, Constants.INTAKE_TIMEOUT);
+		right.configVoltageCompSaturation(Constants.INTAKE_VOLTAGE_LIMIT, Constants.INTAKE_TIMEOUT);
+		roller.configVoltageCompSaturation(Constants.INTAKE_VOLTAGE_LIMIT, Constants.INTAKE_TIMEOUT);
 
 		left.enableVoltageCompensation(Constants.INTAKE_VOLTAGE_LIMIT_ENABLED);
 		right.enableVoltageCompensation(Constants.INTAKE_VOLTAGE_LIMIT_ENABLED);
@@ -55,7 +55,11 @@ public class Intake extends Subsystem {
 		left.set(ControlMode.PercentOutput, speed);
 	}
 	
-	public void rollersPullIn(double speed) {
+	public void driveRollers(double speed) {
 		roller.set(ControlMode.PercentOutput, speed);
+	}
+	
+	public void rollersNeutral() {
+		roller.neutralOutput();
 	}
 }

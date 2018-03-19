@@ -22,11 +22,11 @@ public class RobotMap {
 	public static final int DT_REAR_LEFT = 13;
 	public static final int DT_REAR_RIGHT = 17;
 	
-	public static final int INTAKE_LEFT = 14;
-	public static final int INTAKE_RIGHT = 18;
-	public static final int INTAKE_ROLLERS = 20;
-	public static final int ARM_RIGHT = 21;
-	public static final int ARM_LEFT = 19;
+	public static final int INTAKE_LEFT = 19;
+	public static final int INTAKE_RIGHT = 20;
+	public static final int INTAKE_ROLLERS = 22;
+	public static final int ARM_RIGHT = 60;
+	public static final int ARM_LEFT = 59;
 	
 	public static final int CLIMBER_LEFT = 62;
 	public static final int CLIMBER_RIGHT = 61;

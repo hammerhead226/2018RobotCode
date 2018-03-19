@@ -29,19 +29,19 @@ public class Arm extends Subsystem {
 
 	public Arm() {
 		right.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, Constants.ARM_PIDSLOT_IDX,
-				Constants.ARM_STARTUP_TIMEOUT);
+				Constants.ARM_TIMEOUT);
 		right.setSensorPhase(Constants.ARM_SENSOR_PHASE);
 
 		hardZeroEncoder();
 
-		right.configContinuousCurrentLimit(Constants.ARM_CURRENT_LIMIT, Constants.ARM_STARTUP_TIMEOUT);
-		left.configContinuousCurrentLimit(Constants.ARM_CURRENT_LIMIT, Constants.ARM_STARTUP_TIMEOUT);
+		right.configContinuousCurrentLimit(Constants.ARM_CURRENT_LIMIT, Constants.ARM_TIMEOUT);
+		left.configContinuousCurrentLimit(Constants.ARM_CURRENT_LIMIT, Constants.ARM_TIMEOUT);
 
 		right.enableCurrentLimit(Constants.ARM_CURRENT_LIMIT_ENABLED);
 		left.enableCurrentLimit(Constants.ARM_CURRENT_LIMIT_ENABLED);
 
-		right.configVoltageCompSaturation(Constants.ARM_VOLTAGE_LIMIT, Constants.ARM_STARTUP_TIMEOUT);
-		left.configVoltageCompSaturation(Constants.ARM_VOLTAGE_LIMIT, Constants.ARM_STARTUP_TIMEOUT);
+		right.configVoltageCompSaturation(Constants.ARM_VOLTAGE_LIMIT, Constants.ARM_TIMEOUT);
+		left.configVoltageCompSaturation(Constants.ARM_VOLTAGE_LIMIT, Constants.ARM_TIMEOUT);
 
 		right.enableVoltageCompensation(Constants.ARM_VOLTAGE_LIMIT_ENABLED);
 		left.enableVoltageCompensation(Constants.ARM_VOLTAGE_LIMIT_ENABLED);
@@ -49,13 +49,13 @@ public class Arm extends Subsystem {
 		right.setInverted(Constants.ARM_INVERT_L);
 		left.setInverted(Constants.ARM_INVERT_R);
 
-		right.configForwardSoftLimitEnable(Constants.ARM_FORWARD_LIMIT_ENABLED, Constants.ARM_STARTUP_TIMEOUT);
-		right.configReverseSoftLimitEnable(Constants.ARM_REVERSE_LIMIT_ENABLED, Constants.ARM_STARTUP_TIMEOUT);
-		left.configForwardSoftLimitEnable(Constants.ARM_FORWARD_LIMIT_ENABLED, Constants.ARM_STARTUP_TIMEOUT);
-		left.configReverseSoftLimitEnable(Constants.ARM_REVERSE_LIMIT_ENABLED, Constants.ARM_STARTUP_TIMEOUT);
+		right.configForwardSoftLimitEnable(Constants.ARM_FORWARD_LIMIT_ENABLED, Constants.ARM_TIMEOUT);
+		right.configReverseSoftLimitEnable(Constants.ARM_REVERSE_LIMIT_ENABLED, Constants.ARM_TIMEOUT);
+		left.configForwardSoftLimitEnable(Constants.ARM_FORWARD_LIMIT_ENABLED, Constants.ARM_TIMEOUT);
+		left.configReverseSoftLimitEnable(Constants.ARM_REVERSE_LIMIT_ENABLED, Constants.ARM_TIMEOUT);
 
-		right.configPeakOutputForward(Constants.ARM_MAX_SPEED, Constants.ARM_STARTUP_TIMEOUT);
-		right.configPeakOutputReverse(-Constants.ARM_MAX_SPEED, Constants.ARM_STARTUP_TIMEOUT);
+		right.configPeakOutputForward(Constants.ARM_MAX_SPEED, Constants.ARM_TIMEOUT);
+		right.configPeakOutputReverse(-Constants.ARM_MAX_SPEED, Constants.ARM_TIMEOUT);
 
 		left.follow(right);
 	}
@@ -89,8 +89,8 @@ public class Arm extends Subsystem {
 	}
 
 	public void hardZeroEncoder() {
-		right.getSensorCollection().setPulseWidthPosition(0, 10);
-		right.setSelectedSensorPosition(0, 0, 10);
+		right.getSensorCollection().setPulseWidthPosition(0, Constants.ARM_TIMEOUT);
+		right.setSelectedSensorPosition(0, 0, Constants.ARM_TIMEOUT);
 	}
 
 	public int getArmError() {

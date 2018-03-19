@@ -35,13 +35,12 @@ public class Robot extends TimedRobot {
 	public static PneumaticsSystem pneumaticsSystem;
 	public static Intake intake;
 	public VisionRun vision = new VisionRun();
+	public static Climber climber;
+	public static OI oi;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
-	public static OI oi;
-	public static Climber climber;
-	
 	@Override
 	public void robotInit() {
 		arm = new Arm();
