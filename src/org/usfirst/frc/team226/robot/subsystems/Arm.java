@@ -10,6 +10,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -18,6 +19,11 @@ public class Arm extends Subsystem {
 
 	private TalonSRX right = new TalonSRX(RobotMap.ARM_RIGHT);
 	private TalonSRX left = new TalonSRX(RobotMap.ARM_LEFT);
+	
+	public void log() {
+		SmartDashboard.putNumber("Arm Left", left.getOutputCurrent());
+		SmartDashboard.putNumber("Arm Right", right.getOutputCurrent());
+	}
 
 	private int setpointPosition = ArmSetpoint.STRAIGHT_UP.position;
 
