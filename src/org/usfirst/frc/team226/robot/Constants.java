@@ -38,7 +38,7 @@ public class Constants {
 	public static final boolean INTAKE_INVERT_R = false;
 	public static final boolean ARM_INVERT_L = false;
 	public static final boolean ARM_INVERT_R = false;
-	public static final boolean ROLLER_INVERT = false;
+	public static final boolean ROLLER_INVERT = true;
 	public static final boolean CLIMBER_INVERT_R = false;
 	public static final boolean CLIMBER_INVERT_L = false;
 

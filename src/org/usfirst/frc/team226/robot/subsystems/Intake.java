@@ -40,7 +40,7 @@ public class Intake extends Subsystem {
 		roller.setInverted(Constants.ROLLER_INVERT);
 		
 		right.follow(left);
-
+		roller.follow(right);
 	}
 
 	public void initDefaultCommand() {
@@ -55,11 +55,4 @@ public class Intake extends Subsystem {
 		left.set(ControlMode.PercentOutput, speed);
 	}
 	
-	public void driveRollers(double speed) {
-		roller.set(ControlMode.PercentOutput, speed);
-	}
-	
-	public void rollersNeutral() {
-		roller.neutralOutput();
-	}
 }

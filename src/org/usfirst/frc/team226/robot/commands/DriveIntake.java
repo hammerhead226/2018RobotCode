@@ -20,7 +20,6 @@ public class DriveIntake extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.intake.driveIntake(-Robot.oi.manip.getTriggers());
-    	Robot.intake.driveRollers(Robot.oi.manip.getTriggers());
     }
 
     // Make this return true when this Command no longer needs to run execute()

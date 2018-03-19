@@ -18,7 +18,6 @@ public class auto_Outtake extends RecordableCommand {
     	super.initialize();
     	setTimeout(0.5);
     	Robot.intake.driveIntake(1);
-    	Robot.intake.driveRollers(-1);
     	}
 
     // Called repeatedly when this Command is scheduled to run
@@ -33,7 +32,6 @@ public class auto_Outtake extends RecordableCommand {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.intake.neutralOutput();
-    	Robot.intake.rollersNeutral();
 		super.end();
     }
 
