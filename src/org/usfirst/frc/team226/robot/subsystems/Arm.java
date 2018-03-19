@@ -79,7 +79,7 @@ public class Arm extends Subsystem {
 	}
 
 	public boolean getArmSetpointModifierButton() {
-		return Robot.oi.manip.getRBButtonPressed();
+		return Robot.oi.manip.getLBButtonPressed();
 	}
 
 	public void hardZeroEncoder() {
