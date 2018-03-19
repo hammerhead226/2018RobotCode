@@ -14,6 +14,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class PneumaticsSystem extends Subsystem {
 
 	public Compressor compressor = new Compressor(RobotMap.COMPRESSOR_PORT);
+	
+	public void compressorOn() {
+		compressor.setClosedLoopControl(true);
+		compressor.start();
+	}
+	
+	public void compressorOff() {
+		compressor.setClosedLoopControl(false);
+		compressor.stop();
+	}
 
 	public PneumaticsSystem() {
 		compressor.start();
