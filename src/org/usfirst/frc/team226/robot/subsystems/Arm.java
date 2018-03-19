@@ -90,8 +90,12 @@ public class Arm extends Subsystem {
 	public int getArmError() {
 		return right.getClosedLoopError(Constants.ARM_PIDSLOT_IDX);
 	}
-
+	
 	public void controlArm(double speed) {
+		if (Robot.oi.driver.getRBButtonPressed()) {
+			right.set(ControlMode.PercentOutput, Robot.oi.manip.getLeftJoystick_Y());
+			return;
+		}
 		if (speed != 0) {
 			right.set(ControlMode.PercentOutput, softLimit(speed));
 			setpointPosition = getArmPos();
