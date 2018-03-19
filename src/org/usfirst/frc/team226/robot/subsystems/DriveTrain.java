@@ -15,6 +15,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -23,8 +24,6 @@ public class DriveTrain extends Subsystem {
 
 	private TalonSRX frontLeft = new TalonSRX(RobotMap.DT_FRONT_LEFT);
 	private TalonSRX frontRight = new TalonSRX(RobotMap.DT_FRONT_RIGHT);
-	private TalonSRX centerLeft = new TalonSRX(RobotMap.DT_CENTER_LEFT);
-	private TalonSRX centerRight = new TalonSRX(RobotMap.DT_CENTER_RIGHT);
 	private TalonSRX rearLeft = new TalonSRX(RobotMap.DT_REAR_LEFT);
 	private TalonSRX rearRight = new TalonSRX(RobotMap.DT_REAR_RIGHT);
 	
@@ -36,15 +35,15 @@ public class DriveTrain extends Subsystem {
 
 	public DriveTrain() {
 		frontLeft.setInverted(!true);
-		centerLeft.setInverted(!false);
+//		centerLeft.setInverted(!false);
 		rearLeft.setInverted(!true);
 
 		frontRight.setInverted(true);
-		centerRight.setInverted(false);
+//		centerRight.setInverted(false);
 		rearRight.setInverted(true);
 
-		centerLeft.follow(frontLeft);
-		centerRight.follow(frontRight);
+//		centerLeft.follow(frontLeft);
+//		centerRight.follow(frontRight);
 		rearLeft.follow(frontLeft);
 		rearRight.follow(frontRight);
 		
@@ -52,31 +51,31 @@ public class DriveTrain extends Subsystem {
 		frontRight.setSensorPhase(Constants.DT_RIGHT_SENSOR_PHASE);
 
 		frontLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
-		centerLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
+//		centerLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
 		rearLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
 		frontRight.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
-		centerRight.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
+//		centerRight.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
 		rearRight.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
 
 		frontLeft.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
-		centerLeft.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
+//		centerLeft.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
 		rearLeft.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
 		frontRight.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
-		centerRight.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
+//		centerRight.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
 		rearRight.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
 
 		frontLeft.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
-		centerLeft.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
+//		centerLeft.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
 		rearLeft.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
 		frontRight.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
-		centerRight.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
+//		centerRight.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
 		rearRight.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
 
 		frontLeft.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
-		centerLeft.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
+//		centerLeft.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
 		rearLeft.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
 		frontRight.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
-		centerRight.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
+//		centerRight.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
 		rearRight.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
 	}
 	
