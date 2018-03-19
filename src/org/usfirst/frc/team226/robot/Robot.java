@@ -50,12 +50,17 @@ public class Robot extends TimedRobot {
 		climber = new Climber();
 		intake = new Intake();
 		oi = new OI();
-		chooser.addDefault("Baseline Cross", new grp_ExecuteSavedMacro("baseline_cross"));
-		chooser.addObject("Left Switch", new ExecuteDoubleMacro("leftswitch_left", "leftswitch_right"));
+		chooser.addDefault("Baseline Cross", new grp_ExecuteSavedMacro("baseline"));
+		chooser.addObject("Left Switch", new ExecuteDoubleMacro("leftswitch_left", "baseline"));
 		chooser.addObject("Center Switch", new ExecuteDoubleMacro("centerswitch_left", "centerswitch_right"));
-		chooser.addObject("Right Switch", new ExecuteDoubleMacro("rightswitch_left", "rightswitch_right"));
+		chooser.addObject("Right Switch", new ExecuteDoubleMacro("baseline", "rightswitch_right"));
 		SmartDashboard.putData("Auto mode", chooser);
 		// vision.start();
+	}
+	
+	@Override
+	public void robotPeriodic() {
+		SmartDashboard.putNumber("Arm Encoder", arm.getArmPos());
 	}
 
 	@Override
