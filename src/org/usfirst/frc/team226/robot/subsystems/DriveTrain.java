@@ -27,6 +27,13 @@ public class DriveTrain extends Subsystem {
 	private TalonSRX rearLeft = new TalonSRX(RobotMap.DT_REAR_LEFT);
 	private TalonSRX rearRight = new TalonSRX(RobotMap.DT_REAR_RIGHT);
 	
+	public void log() {
+		SmartDashboard.putNumber("Front Left", frontLeft.getOutputCurrent());
+		SmartDashboard.putNumber("Rear Left", rearLeft.getOutputCurrent());
+		SmartDashboard.putNumber("Front Right", frontRight.getOutputCurrent());
+		SmartDashboard.putNumber("Rear Right", rearRight.getOutputCurrent());
+	}
+	
 	private ProfileRecorder recorder = new ProfileRecorder(frontLeft, frontRight, RecordingType.VOLTAGE);
 	
 	public void initDefaultCommand() {
