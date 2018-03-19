@@ -23,11 +23,6 @@ public class auto_Intake extends RecordableCommand {
     protected void execute() {
     }
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return false;
-    }
-
     // Called once after isFinished returns true
     protected void end() {
     	super.end();
