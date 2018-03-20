@@ -39,7 +39,6 @@ public class auto_Outtake extends RecordableCommand {
     // subsystems is scheduled to run
     protected void interrupted() {
     	Robot.intake.neutralOutput();
-    	Robot.intake.rollersNeutral();
     	super.interrupted();
     }
 }
