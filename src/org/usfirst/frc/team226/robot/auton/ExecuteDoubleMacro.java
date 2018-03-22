@@ -31,7 +31,7 @@ public class ExecuteDoubleMacro extends Command {
     	this.leftName = leftName;
 		this.rightName = rightName;
     }
-
+    
     // Called just before this Command runs the first time
     protected void initialize() {
     	boolean left = DriverStation.getInstance().getGameSpecificMessage().charAt(0) == 'L';
@@ -49,9 +49,9 @@ public class ExecuteDoubleMacro extends Command {
 			System.out.println("Executing ActionList... " + rightName);
 		}
 		
-		profileToExecute = pParser.toObject(talons[0], talons[1]);
+		profileToExecute = pParser.toObject(talons[0], talons[1], Constants.DT_LEFT_PIDSLOT_IDX, Constants.DT_RIGHT_PIDSLOT_IDX);
 		actionListToExecute = alParser.toObject();
-		profileToExecute.execute(Constants.DT_LEFT_PIDSLOT_IDX, Constants.DT_RIGHT_PIDSLOT_IDX);
+		profileToExecute.execute();
 		actionListToExecute.execute();
     }
 
@@ -71,5 +71,7 @@ public class ExecuteDoubleMacro extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	profileToExecute.onInterrupt();
+    	actionListToExecute.onInterrupt();
     }
 }
