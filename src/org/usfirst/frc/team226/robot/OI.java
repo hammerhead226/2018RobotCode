@@ -7,7 +7,7 @@
 
 package org.usfirst.frc.team226.robot;
 
-import org.usfirst.frc.team226.robot.auton.grp_ExecuteSavedMacro;
+import org.usfirst.frc.team226.robot.auton.ExecuteMacro;
 import org.usfirst.frc.team226.robot.auton.grp_ToggleAutonRecording;
 import org.usfirst.frc.team226.robot.commands.ArmSetpointGround;
 import org.usfirst.frc.team226.robot.commands.ArmSetpointHigh;
@@ -54,7 +54,7 @@ public class OI {
 
 		// Auton recording controls
 		driver.getSTARTButton().whenPressed(new grp_ToggleAutonRecording());
-		driver.getSELECTButton().whenPressed(new grp_ExecuteSavedMacro());
+		driver.getSELECTButton().whenPressed(new ExecuteMacro());
 	}
 
 }
