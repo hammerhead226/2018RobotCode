@@ -84,10 +84,6 @@ public class Arm extends Subsystem {
 		return right.getSelectedSensorPosition(Constants.ARM_PIDSLOT_IDX);
 	}
 
-	/*public boolean getArmSetpointModifierButton() {
-		return Robot.oi.manip.getLBButtonPressed();
-	}*/
-
 	public void hardZeroEncoder() {
 		right.getSensorCollection().setPulseWidthPosition(0, Constants.ARM_TIMEOUT);
 		right.setSelectedSensorPosition(0, 0, Constants.ARM_TIMEOUT);
