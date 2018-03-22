@@ -19,6 +19,7 @@ import org.usfirst.frc.team226.robot.commands.ShiftDriveTrainHighGear;
 import org.usfirst.frc.team226.robot.commands.ShiftDriveTrainLowGear;
 import org.usfirst.frc.team226.robot.commands.ShiftIntake;
 import org.usfirst.frc.team226.robot.commands.Shoot;
+import org.usfirst.frc.team226.robot.commands.auto_DriveArm;
 import org.usfirst.frc.team226.robot.commands.auto_Intake;
 import org.usfirst.frc.team226.robot.commands.grp_ShootOuttake;
 
@@ -39,6 +40,7 @@ public class OI {
 		driver.getRSButton().whenPressed(new ShiftDriveTrainLowGear());
 		driver.getYButton().whenPressed(new CompressorOn());
 		driver.getBButton().whenPressed(new CompressorOff());
+		driver.getRBButton().whileHeld(new auto_DriveArm());
 
 		// Intake
 		manip.getRBButton().whenPressed(new ShiftIntake());
