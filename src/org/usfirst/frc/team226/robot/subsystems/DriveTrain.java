@@ -42,15 +42,11 @@ public class DriveTrain extends Subsystem {
 
 	public DriveTrain() {
 		frontLeft.setInverted(!true);
-//		centerLeft.setInverted(!false);
 		rearLeft.setInverted(!true);
 
 		frontRight.setInverted(true);
-//		centerRight.setInverted(false);
 		rearRight.setInverted(true);
 
-//		centerLeft.follow(frontLeft);
-//		centerRight.follow(frontRight);
 		rearLeft.follow(frontLeft);
 		rearRight.follow(frontRight);
 		
@@ -58,31 +54,23 @@ public class DriveTrain extends Subsystem {
 		frontRight.setSensorPhase(Constants.DT_RIGHT_SENSOR_PHASE);
 
 		frontLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
-//		centerLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
 		rearLeft.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
 		frontRight.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
-//		centerRight.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
 		rearRight.configVoltageCompSaturation(Constants.DT_VOLTAGE_LIMIT, Constants.DT_TIMEOUT);
 
 		frontLeft.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
-//		centerLeft.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
 		rearLeft.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
 		frontRight.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
-//		centerRight.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
 		rearRight.enableVoltageCompensation(Constants.DT_VOLTAGE_LIMIT_ENABLED);
 
 		frontLeft.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
-//		centerLeft.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
 		rearLeft.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
 		frontRight.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
-//		centerRight.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
 		rearRight.configContinuousCurrentLimit(Constants.DT_CURRENT_LIMIT, Constants.DT_TIMEOUT);
 
 		frontLeft.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
-//		centerLeft.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
 		rearLeft.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
 		frontRight.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
-//		centerRight.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
 		rearRight.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
 	}
 	
