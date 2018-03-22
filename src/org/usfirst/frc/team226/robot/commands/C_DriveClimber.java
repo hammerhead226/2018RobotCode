@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RunClimber extends Command {
+public class C_DriveClimber extends Command {
 
-    public RunClimber() {
+    public C_DriveClimber() {
         requires(Robot.climber);
     }
 

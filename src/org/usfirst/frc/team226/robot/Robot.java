@@ -56,7 +56,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 		// vision.start();
 	}
-	
+
 	@Override
 	public void robotPeriodic() {
 		SmartDashboard.putNumber("Arm Encoder", arm.getArmPos());

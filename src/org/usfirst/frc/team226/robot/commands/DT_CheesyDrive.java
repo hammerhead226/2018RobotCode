@@ -4,9 +4,9 @@ import org.usfirst.frc.team226.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class CheesyDrive extends Command {
+public class DT_CheesyDrive extends Command {
 
-    public CheesyDrive() {
+    public DT_CheesyDrive() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveTrain);
     }

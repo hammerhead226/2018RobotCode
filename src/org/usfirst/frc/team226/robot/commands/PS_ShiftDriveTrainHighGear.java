@@ -7,16 +7,17 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class CompressorOff extends InstantCommand {
+public class PS_ShiftDriveTrainHighGear extends InstantCommand {
 
-    public CompressorOff() {
+    public PS_ShiftDriveTrainHighGear() {
         super();
         // Use requires() here to declare subsystem dependencies
+        requires(Robot.pneumaticsSystem);
     }
 
     // Called once when the command executes
     protected void initialize() {
-    	Robot.pneumaticsSystem.compressorOff();
+    	Robot.pneumaticsSystem.shiftDriveTrainReverse();
     }
 
 }

@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveArm extends Command {
+public class A_ControlArm extends Command {
 
-    public DriveArm() {
+    public A_ControlArm() {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.arm);
     }

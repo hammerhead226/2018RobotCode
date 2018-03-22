@@ -3,7 +3,7 @@ package org.usfirst.frc.team226.robot.subsystems;
 import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.Robot;
 import org.usfirst.frc.team226.robot.RobotMap;
-import org.usfirst.frc.team226.robot.commands.DriveArm;
+import org.usfirst.frc.team226.robot.commands.A_ControlArm;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -61,12 +61,12 @@ public class Arm extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
-		setDefaultCommand(new DriveArm());
+		setDefaultCommand(new A_ControlArm());
 	}
 
 	public enum ArmSetpoint {
 		FRONT_RESTING(0), FRONT_GROUND(245), FRONT_PORTAL_SWITCH(1844), FRONT_SCALE(3005), STRAIGHT_UP(
-				3440), BACK_SCALE(4623), BACK_PORTAL_SWITCH(4550), BACK_GROUND(6720), BACK_RESTING(6964);
+				3440), BACK_SCALE(4623), BACK_PORTAL_SWITCH(4550), BACK_GROUND(6300), BACK_RESTING(6964);
 
 		public int position;
 
@@ -97,11 +97,11 @@ public class Arm extends Subsystem {
 		return right.getClosedLoopError(Constants.ARM_PIDSLOT_IDX);
 	}
 	
+	public void driveArm(double speed) {
+		right.set(ControlMode.PercentOutput, speed);
+	}
+	
 	public void controlArm(double speed) {
-		if (Robot.oi.driver.getRBButtonPressed()) {
-			right.set(ControlMode.PercentOutput, Robot.oi.manip.getLeftJoystick_Y());
-			return;
-		}
 		if (speed != 0) {
 			right.set(ControlMode.PercentOutput, softLimit(speed));
 			setpointPosition = getArmPos();

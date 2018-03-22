@@ -6,39 +6,37 @@ import org.usfirst.frc.team226.robot.Robot;
 /**
  *
  */
-public class auto_Outtake extends RecordableCommand {
+public class A_DriveArm extends RecordableCommand {
 
-    public auto_Outtake() {
+    public A_DriveArm() {
         // Use requires() here to declare subsystem dependencies
-    	requires(Robot.intake);
+        // eg. requires(chassis);
+    	requires(Robot.arm);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	super.initialize();
-    	setTimeout(0.5);
-    	Robot.intake.driveIntake(1);
-    	}
+    }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.arm.driveArm(Robot.oi.manip.getLeftJoystick_Y());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut();
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.intake.neutralOutput();
-		super.end();
+    	super.end();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.intake.neutralOutput();
     	super.interrupted();
     }
 }
