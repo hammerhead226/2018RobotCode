@@ -95,7 +95,6 @@ public class PneumaticsSystem extends Subsystem {
 		} else {
 			shooterVal = DoubleSolenoid.Value.kForward;
 		}
-		shooter.set(shooterVal);
 	}
 
 	public void actuateShooterNeutral() {
