@@ -2,22 +2,27 @@ package org.usfirst.frc.team226.robot.commands;
 
 import org.hammerhead226.sharkmacro.actions.RecordableCommand;
 import org.usfirst.frc.team226.robot.Robot;
+import org.usfirst.frc.team226.robot.subsystems.Arm;
 
 /**
  *
  */
-public class ShiftIntake extends RecordableCommand {
+public class A_SetpointSwitch extends RecordableCommand {
 
-    public ShiftIntake() {
+    public A_SetpointSwitch() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.pneumaticsSystem);
+        // eg. requires(chassis);
+        requires(Robot.arm);
     }
 
     // Called once when the command executes
     protected void initialize() {
     	super.initialize();
-    	Robot.pneumaticsSystem.shiftIntake();
-    	Robot.pneumaticsSystem.shiftIntakeRollers();
+    	if (Robot.arm.getArmSetpointModifierButton()) {
+    		Robot.arm.setArmSetpoint(Arm.ArmSetpoint.FRONT_PORTAL_SWITCH);
+    	} else {
+    		Robot.arm.setArmSetpoint(Arm.ArmSetpoint.BACK_PORTAL_SWITCH);
+    	}
     }
     
     protected void execute() {
@@ -34,6 +39,5 @@ public class ShiftIntake extends RecordableCommand {
     protected void interrupted() {
     	super.interrupted();
     }
-
 
 }

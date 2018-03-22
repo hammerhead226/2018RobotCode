@@ -7,16 +7,16 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class ShiftIntakeNeutral extends InstantCommand {
+public class PS_CompressorOff extends InstantCommand {
 
-    public ShiftIntakeNeutral() {
+    public PS_CompressorOff() {
         super();
-        requires(Robot.pneumaticsSystem);
+        // Use requires() here to declare subsystem dependencies
     }
 
     // Called once when the command executes
     protected void initialize() {
-    	Robot.pneumaticsSystem.shiftIntakeNeutral();
+    	Robot.pneumaticsSystem.compressorOff();
     }
 
 }

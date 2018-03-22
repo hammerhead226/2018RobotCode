@@ -7,16 +7,16 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class ShiftDriveTrain extends InstantCommand {
+public class PS_ShiftIntakeNeutral extends InstantCommand {
 
-    public ShiftDriveTrain() {
+    public PS_ShiftIntakeNeutral() {
         super();
         requires(Robot.pneumaticsSystem);
     }
 
     // Called once when the command executes
     protected void initialize() {
-    	Robot.pneumaticsSystem.shiftDriveTrain();
+    	Robot.pneumaticsSystem.shiftIntakeNeutral();
     }
 
 }

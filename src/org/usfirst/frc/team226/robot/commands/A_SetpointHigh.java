@@ -7,9 +7,9 @@ import org.usfirst.frc.team226.robot.subsystems.Arm;
 /**
  *
  */
-public class ArmSetpointSwitch extends RecordableCommand {
+public class A_SetpointHigh extends RecordableCommand {
 
-    public ArmSetpointSwitch() {
+    public A_SetpointHigh() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(Robot.arm);
@@ -18,11 +18,7 @@ public class ArmSetpointSwitch extends RecordableCommand {
     // Called once when the command executes
     protected void initialize() {
     	super.initialize();
-    	if (Robot.arm.getArmSetpointModifierButton()) {
-    		Robot.arm.setArmSetpoint(Arm.ArmSetpoint.FRONT_PORTAL_SWITCH);
-    	} else {
-    		Robot.arm.setArmSetpoint(Arm.ArmSetpoint.BACK_PORTAL_SWITCH);
-    	}
+    	Robot.arm.setArmSetpoint(Arm.ArmSetpoint.STRAIGHT_UP);
     }
     
     protected void execute() {

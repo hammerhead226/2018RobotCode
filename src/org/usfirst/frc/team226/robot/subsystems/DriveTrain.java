@@ -8,7 +8,7 @@ import org.hammerhead226.sharkmacro.motionprofiles.ProfileRecorder.RecordingType
 import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.Robot;
 import org.usfirst.frc.team226.robot.RobotMap;
-import org.usfirst.frc.team226.robot.commands.CheesyDrive;
+import org.usfirst.frc.team226.robot.commands.DT_CheesyDrive;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -37,7 +37,7 @@ public class DriveTrain extends Subsystem {
 	private ProfileRecorder recorder = new ProfileRecorder(frontLeft, frontRight, RecordingType.VOLTAGE);
 	
 	public void initDefaultCommand() {
-		setDefaultCommand(new CheesyDrive());
+		setDefaultCommand(new DT_CheesyDrive());
 	}
 
 	public DriveTrain() {

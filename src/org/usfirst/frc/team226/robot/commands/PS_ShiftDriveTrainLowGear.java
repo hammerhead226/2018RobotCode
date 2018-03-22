@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class ShiftDriveTrainHighGear extends InstantCommand {
+public class PS_ShiftDriveTrainLowGear extends InstantCommand {
 
-    public ShiftDriveTrainHighGear() {
+    public PS_ShiftDriveTrainLowGear() {
         super();
         // Use requires() here to declare subsystem dependencies
         requires(Robot.pneumaticsSystem);
@@ -17,7 +17,7 @@ public class ShiftDriveTrainHighGear extends InstantCommand {
 
     // Called once when the command executes
     protected void initialize() {
-    	Robot.pneumaticsSystem.shiftDriveTrainReverse();
+    	Robot.pneumaticsSystem.shiftDriveTrainForward();
     }
 
 }

@@ -1,6 +1,5 @@
 package org.usfirst.frc.team226.robot.commands;
 
-import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,10 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RunClimber extends Command {
+public class I_DriveIntake extends Command {
 
-    public RunClimber() {
-        requires(Robot.climber);
+    public I_DriveIntake() {
+        requires(Robot.intake);
     }
 
     // Called just before this Command runs the first time
@@ -20,7 +19,7 @@ public class RunClimber extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.climber.runClimber(Constants.CLIMBER_SPEED);
+    	Robot.intake.driveIntake(-Robot.oi.manip.getTriggers());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -30,7 +29,6 @@ public class RunClimber extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.climber.runClimber(0);
     }
 
     // Called when another command which requires one or more of the same

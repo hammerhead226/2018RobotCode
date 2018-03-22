@@ -6,16 +6,18 @@ import org.usfirst.frc.team226.robot.Robot;
 /**
  *
  */
-public class Shoot extends RecordableCommand {
+public class PS_ShiftIntake extends RecordableCommand {
 
-    public Shoot() {
+    public PS_ShiftIntake() {
+        // Use requires() here to declare subsystem dependencies
         requires(Robot.pneumaticsSystem);
     }
 
     // Called once when the command executes
     protected void initialize() {
     	super.initialize();
-    	Robot.pneumaticsSystem.actuateShooter();
+    	Robot.pneumaticsSystem.shiftIntake();
+    	Robot.pneumaticsSystem.shiftIntakeRollers();
     }
     
     protected void execute() {
@@ -32,5 +34,6 @@ public class Shoot extends RecordableCommand {
     protected void interrupted() {
     	super.interrupted();
     }
+
 
 }

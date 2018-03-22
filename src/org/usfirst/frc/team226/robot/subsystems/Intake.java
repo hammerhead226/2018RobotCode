@@ -2,7 +2,7 @@ package org.usfirst.frc.team226.robot.subsystems;
 
 import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.RobotMap;
-import org.usfirst.frc.team226.robot.commands.DriveIntake;
+import org.usfirst.frc.team226.robot.commands.I_DriveIntake;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -44,7 +44,7 @@ public class Intake extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
-		setDefaultCommand(new DriveIntake());
+		setDefaultCommand(new I_DriveIntake());
 	}
 
 	public void neutralOutput() {

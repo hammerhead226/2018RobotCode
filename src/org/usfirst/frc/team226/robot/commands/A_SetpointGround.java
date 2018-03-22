@@ -7,9 +7,9 @@ import org.usfirst.frc.team226.robot.subsystems.Arm;
 /**
  *
  */
-public class ArmSetpointGround extends RecordableCommand {
+public class A_SetpointGround extends RecordableCommand {
 
-    public ArmSetpointGround() {
+    public A_SetpointGround() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(Robot.arm);

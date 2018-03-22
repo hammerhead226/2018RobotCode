@@ -6,9 +6,9 @@ import org.usfirst.frc.team226.robot.Robot;
 /**
  *
  */
-public class auto_DriveArm extends RecordableCommand {
+public class A_DriveArm extends RecordableCommand {
 
-    public auto_DriveArm() {
+    public A_DriveArm() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.arm);
