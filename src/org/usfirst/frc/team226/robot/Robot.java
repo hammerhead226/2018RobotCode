@@ -8,7 +8,7 @@
 package org.usfirst.frc.team226.robot;
 
 import org.usfirst.frc.team226.robot.auton.ExecuteDoubleMacro;
-import org.usfirst.frc.team226.robot.auton.grp_ExecuteSavedMacro;
+import org.usfirst.frc.team226.robot.auton.ExecuteMacro;
 import org.usfirst.frc.team226.robot.subsystems.Arm;
 import org.usfirst.frc.team226.robot.subsystems.Climber;
 import org.usfirst.frc.team226.robot.subsystems.DriveTrain;
@@ -49,14 +49,14 @@ public class Robot extends TimedRobot {
 		climber = new Climber();
 		intake = new Intake();
 		oi = new OI();
-		chooser.addDefault("Baseline Cross", new grp_ExecuteSavedMacro("baseline"));
+		chooser.addDefault("Baseline Cross", new ExecuteMacro("baseline"));
 		chooser.addObject("Left Switch", new ExecuteDoubleMacro("leftswitch_left", "baseline"));
 		chooser.addObject("Center Switch", new ExecuteDoubleMacro("centerswitch_left", "centerswitch_right"));
 		chooser.addObject("Right Switch", new ExecuteDoubleMacro("baseline", "rightswitch_right"));
 		SmartDashboard.putData("Auto mode", chooser);
 		// vision.start();
 	}
-	
+
 	@Override
 	public void robotPeriodic() {
 		SmartDashboard.putNumber("Arm Encoder", arm.getArmPos());

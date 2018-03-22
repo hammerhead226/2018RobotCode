@@ -7,19 +7,20 @@
 
 package org.usfirst.frc.team226.robot;
 
-import org.usfirst.frc.team226.robot.auton.grp_ExecuteSavedMacro;
+import org.usfirst.frc.team226.robot.auton.ExecuteMacro;
 import org.usfirst.frc.team226.robot.auton.grp_ToggleAutonRecording;
-import org.usfirst.frc.team226.robot.commands.ArmSetpointGround;
-import org.usfirst.frc.team226.robot.commands.ArmSetpointHigh;
-import org.usfirst.frc.team226.robot.commands.ArmSetpointSwitch;
-import org.usfirst.frc.team226.robot.commands.CompressorOff;
-import org.usfirst.frc.team226.robot.commands.CompressorOn;
-import org.usfirst.frc.team226.robot.commands.HardZeroArmEncoder;
-import org.usfirst.frc.team226.robot.commands.ShiftDriveTrainHighGear;
-import org.usfirst.frc.team226.robot.commands.ShiftDriveTrainLowGear;
-import org.usfirst.frc.team226.robot.commands.ShiftIntake;
-import org.usfirst.frc.team226.robot.commands.Shoot;
-import org.usfirst.frc.team226.robot.commands.auto_Intake;
+import org.usfirst.frc.team226.robot.commands.A_SetpointGround;
+import org.usfirst.frc.team226.robot.commands.A_SetpointHigh;
+import org.usfirst.frc.team226.robot.commands.A_SetpointSwitch;
+import org.usfirst.frc.team226.robot.commands.PS_CompressorOff;
+import org.usfirst.frc.team226.robot.commands.PS_CompressorOn;
+import org.usfirst.frc.team226.robot.commands.A_HardZeroArmEncoder;
+import org.usfirst.frc.team226.robot.commands.PS_ShiftDriveTrainHighGear;
+import org.usfirst.frc.team226.robot.commands.PS_ShiftDriveTrainLowGear;
+import org.usfirst.frc.team226.robot.commands.PS_ShiftIntake;
+import org.usfirst.frc.team226.robot.commands.PS_Shoot;
+import org.usfirst.frc.team226.robot.commands.A_DriveArm;
+import org.usfirst.frc.team226.robot.commands.I_Intake;
 import org.usfirst.frc.team226.robot.commands.grp_ShootOuttake;
 
 import util.Controller;
@@ -35,26 +36,27 @@ public class OI {
 
 	public OI() {
 		// Drivetrain
-		driver.getLSButton().whenPressed(new ShiftDriveTrainHighGear());
-		driver.getRSButton().whenPressed(new ShiftDriveTrainLowGear());
-		driver.getYButton().whenPressed(new CompressorOn());
-		driver.getBButton().whenPressed(new CompressorOff());
+		driver.getLSButton().whenPressed(new PS_ShiftDriveTrainHighGear());
+		driver.getRSButton().whenPressed(new PS_ShiftDriveTrainLowGear());
+		driver.getYButton().whenPressed(new PS_CompressorOn());
+		driver.getBButton().whenPressed(new PS_CompressorOff());
+		driver.getRBButton().whileHeld(new A_DriveArm());
 
 		// Intake
-		manip.getRBButton().whenPressed(new ShiftIntake());
-		manip.getRSButton().whileHeld(new auto_Intake());
+		manip.getRBButton().whenPressed(new PS_ShiftIntake());
+		manip.getRSButton().whileHeld(new I_Intake());
 		manip.getBButton().whenPressed(new grp_ShootOuttake());
-		manip.getSTARTButton().whenPressed(new Shoot());
+		manip.getSTARTButton().whenPressed(new PS_Shoot());
 
 		// Arm
-		manip.getSELECTButton().whenPressed(new HardZeroArmEncoder());
-		manip.getYButton().whenPressed(new ArmSetpointHigh());
-		manip.getXButton().whenPressed(new ArmSetpointSwitch());
-		manip.getAButton().whenPressed(new ArmSetpointGround());
+		manip.getSELECTButton().whenPressed(new A_HardZeroArmEncoder());
+		manip.getYButton().whenPressed(new A_SetpointHigh());
+		manip.getXButton().whenPressed(new A_SetpointSwitch());
+		manip.getAButton().whenPressed(new A_SetpointGround());
 
 		// Auton recording controls
 		driver.getSTARTButton().whenPressed(new grp_ToggleAutonRecording());
-		driver.getSELECTButton().whenPressed(new grp_ExecuteSavedMacro());
+		driver.getSELECTButton().whenPressed(new ExecuteMacro());
 	}
 
 }

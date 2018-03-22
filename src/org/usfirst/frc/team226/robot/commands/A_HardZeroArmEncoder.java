@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class HardZeroArmEncoder extends InstantCommand {
+public class A_HardZeroArmEncoder extends InstantCommand {
 
-    public HardZeroArmEncoder() {
+    public A_HardZeroArmEncoder() {
         super();
         // Use requires() here to declare subsystem dependencies
          requires(Robot.arm);

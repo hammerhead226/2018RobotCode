@@ -9,50 +9,55 @@ import org.usfirst.frc.team226.robot.Robot;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ExecuteDoubleMacro extends Command {
+public class ExecuteMacro extends Command {
 	
-	private String leftName;
-	private String rightName;
 	private Profile profileToExecute;
 	private ActionList actionListToExecute;
+	private boolean hasName = false;
+	private String name;
+	private String alName;
 
 	private TalonSRX[] talons = Robot.driveTrain.getMotionProfileTalons();
 
-    public ExecuteDoubleMacro(String leftName, String rightName) {
+    public ExecuteMacro() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
-    	this.leftName = leftName;
-		this.rightName = rightName;
     }
     
+    public ExecuteMacro(String name) {
+    	requires(Robot.driveTrain);
+    	this.name = name;
+    	this.alName = name;
+    	this.hasName = true;
+    }
+
     // Called just before this Command runs the first time
     protected void initialize() {
-    	boolean left = DriverStation.getInstance().getGameSpecificMessage().charAt(0) == 'L';
-		ProfileParser pParser;
+    	ProfileParser pParser;
 		ActionListParser alParser;
-		if (left) {
-			pParser = new ProfileParser(leftName);
-			alParser = new ActionListParser(leftName);
-			System.out.println("Executing profile... " + leftName);
-			System.out.println("Executing ActionList... " + leftName);
-		} else {
-			pParser = new ProfileParser(rightName);
-			alParser = new ActionListParser(rightName);
-			System.out.println("Executing profile... " + rightName);
-			System.out.println("Executing ActionList... " + rightName);
-		}
+		
+		name = (name == null) ? ProfileParser.getNewestFilename() : name;
+		alName = (alName == null) ? ActionListParser.getNewestFilename() : alName;
+
+		
+    	pParser = new ProfileParser(name);
+		alParser = new ActionListParser(alName);
+		System.out.println("Executing profile... " + name);
+		System.out.println("Executing ActionList... " + alName);
 		
 		profileToExecute = pParser.toObject(talons[0], talons[1], Constants.DT_LEFT_PIDSLOT_IDX, Constants.DT_RIGHT_PIDSLOT_IDX);
 		actionListToExecute = alParser.toObject();
 		profileToExecute.execute();
 		actionListToExecute.execute();
+		
+		name = hasName ? name : null;
+		alName = hasName ? alName : null;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -61,7 +66,7 @@ public class ExecuteDoubleMacro extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return profileToExecute.isFinished() && actionListToExecute.isFinished();
     }
 
     // Called once after isFinished returns true

@@ -6,9 +6,9 @@ import org.usfirst.frc.team226.robot.Robot;
 /**
  *
  */
-public class auto_Intake extends RecordableCommand {
+public class I_Intake extends RecordableCommand {
 
-    public auto_Intake() {
+    public I_Intake() {
     	requires(Robot.intake);
     }
 

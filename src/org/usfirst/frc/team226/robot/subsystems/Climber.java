@@ -15,8 +15,8 @@ public class Climber extends Subsystem {
 
     private TalonSRX left = new TalonSRX(RobotMap.CLIMBER_LEFT);
     private TalonSRX right = new TalonSRX(RobotMap.CLIMBER_RIGHT);
-
-    public void initDefaultCommand() {
+    
+    public Climber() {
     	left.configContinuousCurrentLimit(Constants.CLIMBER_CURRENT_LIMIT, Constants.CLIMBER_SENSOR_TIMEOUT);
     	right.configContinuousCurrentLimit(Constants.CLIMBER_CURRENT_LIMIT, Constants.CLIMBER_SENSOR_TIMEOUT);
     	
@@ -28,6 +28,10 @@ public class Climber extends Subsystem {
     	
     	left.enableVoltageCompensation(Constants.CLIMBER_VOLTAGE_LIMIT_ENABLED);
     	right.enableVoltageCompensation(Constants.CLIMBER_VOLTAGE_LIMIT_ENABLED);
+    }
+
+    public void initDefaultCommand() {
+    	
     }
     
     public void runClimber(double speed) {
