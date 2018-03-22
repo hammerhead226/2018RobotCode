@@ -18,11 +18,7 @@ public class A_SetpointGround extends RecordableCommand {
     // Called once when the command executes
     protected void initialize() {
     	super.initialize();
-    	if (Robot.arm.getArmSetpointModifierButton()) {
-    		Robot.arm.setArmSetpoint(Arm.ArmSetpoint.FRONT_GROUND);
-    	} else {
-    		Robot.arm.setArmSetpoint(Arm.ArmSetpoint.BACK_GROUND);
-    	}
+    	Robot.arm.setArmSetpoint(Arm.ArmSetpoint.BACK_GROUND);
     }
     
     protected void execute() {
