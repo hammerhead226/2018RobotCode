@@ -7,7 +7,12 @@
 
 package org.usfirst.frc.team226.robot;
 
+import org.usfirst.frc.team226.robot.auton.ExecuteDoubleMacro;
+import org.usfirst.frc.team226.robot.auton.ExecuteMacro;
+import org.usfirst.frc.team226.robot.subsystems.Arm;
+import org.usfirst.frc.team226.robot.subsystems.Climber;
 import org.usfirst.frc.team226.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team226.robot.subsystems.Intake;
 import org.usfirst.frc.team226.robot.subsystems.PneumaticsSystem;
 import org.usfirst.frc.team226.robot.vision.VisionRun;
 
@@ -25,23 +30,36 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
-	public static OI m_oi;
+	public static Arm arm;
 	public static DriveTrain driveTrain;
 	public static PneumaticsSystem pneumaticsSystem;
+	public static Intake intake;
 	public VisionRun vision = new VisionRun();
+	public static Climber climber;
+	public static OI oi;
 
 	Command m_autonomousCommand;
-	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	SendableChooser<Command> chooser = new SendableChooser<>();
 
 	@Override
 	public void robotInit() {
-		m_oi = new OI();
+		arm = new Arm();
 		driveTrain = new DriveTrain();
 		pneumaticsSystem = new PneumaticsSystem();
-		// m_chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", m_chooser);
-		vision.start();
+		climber = new Climber();
+		intake = new Intake();
+		oi = new OI();
+		chooser.addDefault("Baseline Cross", new ExecuteMacro("baseline"));
+		chooser.addObject("Left Switch", new ExecuteDoubleMacro("leftswitch_left", "baseline"));
+		chooser.addObject("Center Switch", new ExecuteDoubleMacro("centerswitch_left", "centerswitch_right"));
+		chooser.addObject("Right Switch", new ExecuteDoubleMacro("baseline", "rightswitch_right"));
+		SmartDashboard.putData("Auto mode", chooser);
+		// vision.start();
+	}
+
+	@Override
+	public void robotPeriodic() {
+		SmartDashboard.putNumber("Arm Encoder", arm.getArmPos());
 	}
 
 	@Override
@@ -55,7 +73,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
-		m_autonomousCommand = m_chooser.getSelected();
+		m_autonomousCommand = chooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
@@ -81,7 +99,7 @@ public class Robot extends TimedRobot {
 			m_autonomousCommand.cancel();
 		}
 	}
-	
+
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();

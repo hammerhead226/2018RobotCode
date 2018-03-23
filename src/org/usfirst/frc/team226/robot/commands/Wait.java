@@ -1,28 +1,31 @@
 package org.usfirst.frc.team226.robot.commands;
 
-import org.usfirst.frc.team226.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
-public class CheesyDrive extends Command {
+/**
+ *
+ */
+public class Wait extends Command {
 
-    public CheesyDrive() {
+	private double seconds;
+	
+    public Wait(double seconds) {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.driveTrain);
+    	this.seconds = seconds;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	setTimeout(seconds);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.arcadeDrive(Robot.m_oi.driver.getLeftJoystick_Y(), Robot.m_oi.driver.getRightJoystick_X());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true
