@@ -3,30 +3,30 @@ Code for team 226's Power Up robot.
 
 ## Controls
 #### Drivetrain
-ArcadeDrive: Left joystick Y on driver for throttle, right joystick X for turn
-ShiftDriveTrainHigh: LS button on driver controller
-ShiftDriveTrainLow: RS button on driver controller
-CompressorOn: Y button on driver controller
-CompressorOff: B button on driver controller
-DriveArm: RB button on driver controller
+* ArcadeDrive: Left joystick Y on driver for throttle, right joystick X for turn
+* ShiftDriveTrainHigh: LS button on driver controller
+* ShiftDriveTrainLow: RS button on driver controller
+* CompressorOn: Y button on driver controller
+* CompressorOff: B button on driver controller
+* DriveArm: RB button on driver controller
 
 #### Intake
-DriveIntake: Triggers on manip controller
-ShiftIntake: RB button on manip controller
-Intake: RS button on manip controller
-ShootOuttake: B button on manip controller
-Shoot: START button on manip controller
+* DriveIntake: Triggers on manip controller
+* ShiftIntake: RB button on manip controller
+* Intake: RS button on manip controller
+* ShootOuttake: B button on manip controller
+* Shoot: START button on manip controller
 
 #### Arm
-ControlArm: Left joystick Y on manip
-HardZeroArmEncoder: SELECT button on manip controller
-SetpointHigh: Y button on manip controller
-SetpointSwitch: X button on manip controller
-SetpointGround: A button on manip controller
+* ControlArm: Left joystick Y on manip
+* HardZeroArmEncoder: SELECT button on manip controller
+* SetpointHigh: Y button on manip controller
+* SetpointSwitch: X button on manip controller
+* SetpointGround: A button on manip controller
 
 #### Auton recording controls
-ToggleAutonRecoding: START button on driver controller
-ExecuteMacro: SELECT button on driver controller
+* ToggleAutonRecoding: START button on driver controller
+* ExecuteMacro: SELECT button on driver controller
 
 ## Dependencies
 #### SharkMacro
