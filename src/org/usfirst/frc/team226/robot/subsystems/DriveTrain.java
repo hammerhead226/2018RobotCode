@@ -77,7 +77,7 @@ public class DriveTrain extends Subsystem {
 	public void toggleProfileRecording() {
 		if (recorder.isRecording()) {
 			ProfileParser p = new ProfileParser(ProfileParser.getNewFilename());
-			p.writeToFile(recorder.stop().toProfile(Constants.DT_LEFT_PIDSLOT_IDX, Constants.DT_RIGHT_PIDSLOT_IDX));
+			p.writeToFile(recorder.stop().toProfile());
 			System.out.println("Profile saved.");
 		} else {
 			zeroEncoders();
