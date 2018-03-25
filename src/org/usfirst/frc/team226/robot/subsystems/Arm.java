@@ -28,7 +28,7 @@ public class Arm extends Subsystem {
 	private int setpointPosition = ArmSetpoint.STRAIGHT_UP.position;
 
 	public Arm() {
-		right.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, Constants.ARM_PIDSLOT_IDX,
+		right.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ARM_PIDSLOT_IDX,
 				Constants.ARM_TIMEOUT);
 		right.setSensorPhase(Constants.ARM_SENSOR_PHASE);
 
