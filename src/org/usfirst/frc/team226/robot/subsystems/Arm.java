@@ -46,8 +46,8 @@ public class Arm extends Subsystem {
 		right.enableVoltageCompensation(Constants.ARM_VOLTAGE_LIMIT_ENABLED);
 		left.enableVoltageCompensation(Constants.ARM_VOLTAGE_LIMIT_ENABLED);
 
-		right.setInverted(Constants.ARM_INVERT_L);
-		left.setInverted(Constants.ARM_INVERT_R);
+		right.setInverted(Constants.ARM_INVERT_R);
+		left.setInverted(Constants.ARM_INVERT_L);
 
 		right.configForwardSoftLimitEnable(Constants.ARM_FORWARD_LIMIT_ENABLED, Constants.ARM_TIMEOUT);
 		right.configReverseSoftLimitEnable(Constants.ARM_REVERSE_LIMIT_ENABLED, Constants.ARM_TIMEOUT);
