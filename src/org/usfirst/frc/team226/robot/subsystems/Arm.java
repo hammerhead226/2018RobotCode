@@ -65,8 +65,7 @@ public class Arm extends Subsystem {
 	}
 
 	public enum ArmSetpoint {
-		FRONT_RESTING(0), FRONT_GROUND(245), FRONT_PORTAL_SWITCH(1844), FRONT_SCALE(3005), STRAIGHT_UP(
-				3440), BACK_SCALE(4623), BACK_PORTAL_SWITCH(4550), BACK_GROUND(6300), BACK_RESTING(6964);
+		FRONT_SCALE(3300), STRAIGHT_UP(3115), BACK_SCALE(2850), BACK_SWITCH(1850), BACK_GROUND(0);
 
 		public int position;
 
@@ -107,12 +106,12 @@ public class Arm extends Subsystem {
 	}
 
 	private double softLimit(double input) {
-		if (getArmPos() <= ArmSetpoint.FRONT_GROUND.position + Constants.ARM_ERROR_TOLERANCE) {
-			if (input < 0) {
+		if (getArmPos() >= ArmSetpoint.STRAIGHT_UP.position + Constants.ARM_ERROR_TOLERANCE) {
+			if (input > 0) {
 				input = 0;
 			}
-		} else if (getArmPos() >= ArmSetpoint.BACK_GROUND.position - Constants.ARM_ERROR_TOLERANCE) {
-			if (input > 0) {
+		} else if (getArmPos() <= ArmSetpoint.BACK_GROUND.position - Constants.ARM_ERROR_TOLERANCE) {
+			if (input < 0) {
 				input = 0;
 			}
 		}
