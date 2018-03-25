@@ -19,7 +19,7 @@ public class Arm extends Subsystem {
 
 	private TalonSRX right = new TalonSRX(RobotMap.ARM_RIGHT);
 	private TalonSRX left = new TalonSRX(RobotMap.ARM_LEFT);
-	
+
 	public void log() {
 		SmartDashboard.putNumber("Arm Left", left.getOutputCurrent());
 		SmartDashboard.putNumber("Arm Right", right.getOutputCurrent());
@@ -91,11 +91,11 @@ public class Arm extends Subsystem {
 	public int getArmError() {
 		return right.getClosedLoopError(Constants.ARM_PIDSLOT_IDX);
 	}
-	
+
 	public void driveArm(double speed) {
 		right.set(ControlMode.PercentOutput, speed);
 	}
-	
+
 	public void controlArm(double speed) {
 		if (speed != 0) {
 			right.set(ControlMode.PercentOutput, softLimit(speed));
