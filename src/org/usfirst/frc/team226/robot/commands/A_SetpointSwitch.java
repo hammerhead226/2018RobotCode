@@ -18,7 +18,7 @@ public class A_SetpointSwitch extends RecordableCommand {
     // Called once when the command executes
     protected void initialize() {
     	super.initialize();
-    	Robot.arm.setArmSetpoint(Arm.ArmSetpoint.BACK_PORTAL_SWITCH);
+    	Robot.arm.setArmSetpoint(Arm.ArmSetpoint.BACK_SWITCH);
     }
     
     protected void execute() {

@@ -19,7 +19,7 @@ public class Arm extends Subsystem {
 
 	private TalonSRX right = new TalonSRX(RobotMap.ARM_RIGHT);
 	private TalonSRX left = new TalonSRX(RobotMap.ARM_LEFT);
-	
+
 	public void log() {
 		SmartDashboard.putNumber("Arm Left", left.getOutputCurrent());
 		SmartDashboard.putNumber("Arm Right", right.getOutputCurrent());
@@ -28,7 +28,7 @@ public class Arm extends Subsystem {
 	private int setpointPosition = ArmSetpoint.STRAIGHT_UP.position;
 
 	public Arm() {
-		right.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, Constants.ARM_PIDSLOT_IDX,
+		right.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ARM_PIDSLOT_IDX,
 				Constants.ARM_TIMEOUT);
 		right.setSensorPhase(Constants.ARM_SENSOR_PHASE);
 
@@ -46,8 +46,8 @@ public class Arm extends Subsystem {
 		right.enableVoltageCompensation(Constants.ARM_VOLTAGE_LIMIT_ENABLED);
 		left.enableVoltageCompensation(Constants.ARM_VOLTAGE_LIMIT_ENABLED);
 
-		right.setInverted(Constants.ARM_INVERT_L);
-		left.setInverted(Constants.ARM_INVERT_R);
+		right.setInverted(Constants.ARM_INVERT_R);
+		left.setInverted(Constants.ARM_INVERT_L);
 
 		right.configForwardSoftLimitEnable(Constants.ARM_FORWARD_LIMIT_ENABLED, Constants.ARM_TIMEOUT);
 		right.configReverseSoftLimitEnable(Constants.ARM_REVERSE_LIMIT_ENABLED, Constants.ARM_TIMEOUT);
@@ -65,8 +65,7 @@ public class Arm extends Subsystem {
 	}
 
 	public enum ArmSetpoint {
-		FRONT_RESTING(0), FRONT_GROUND(245), FRONT_PORTAL_SWITCH(1844), FRONT_SCALE(3005), STRAIGHT_UP(
-				3440), BACK_SCALE(4623), BACK_PORTAL_SWITCH(4550), BACK_GROUND(6300), BACK_RESTING(6964);
+		FRONT_SCALE(3300), STRAIGHT_UP(3115), BACK_SCALE(2850), BACK_SWITCH(1850), BACK_GROUND(0);
 
 		public int position;
 
@@ -92,11 +91,11 @@ public class Arm extends Subsystem {
 	public int getArmError() {
 		return right.getClosedLoopError(Constants.ARM_PIDSLOT_IDX);
 	}
-	
+
 	public void driveArm(double speed) {
 		right.set(ControlMode.PercentOutput, speed);
 	}
-	
+
 	public void controlArm(double speed) {
 		if (speed != 0) {
 			right.set(ControlMode.PercentOutput, softLimit(speed));
@@ -107,12 +106,12 @@ public class Arm extends Subsystem {
 	}
 
 	private double softLimit(double input) {
-		if (getArmPos() <= ArmSetpoint.FRONT_GROUND.position + Constants.ARM_ERROR_TOLERANCE) {
-			if (input < 0) {
+		if (getArmPos() >= ArmSetpoint.STRAIGHT_UP.position + Constants.ARM_ERROR_TOLERANCE) {
+			if (input > 0) {
 				input = 0;
 			}
-		} else if (getArmPos() >= ArmSetpoint.BACK_GROUND.position - Constants.ARM_ERROR_TOLERANCE) {
-			if (input > 0) {
+		} else if (getArmPos() <= ArmSetpoint.BACK_GROUND.position - Constants.ARM_ERROR_TOLERANCE) {
+			if (input < 0) {
 				input = 0;
 			}
 		}
