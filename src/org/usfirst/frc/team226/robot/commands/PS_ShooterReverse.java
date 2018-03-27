@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class PS_CompressorOn extends InstantCommand {
+public class PS_ShooterReverse extends InstantCommand {
 
-	public PS_CompressorOn() {
+	public PS_ShooterReverse() {
 		super();
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.pneumaticsSystem);
@@ -17,7 +17,7 @@ public class PS_CompressorOn extends InstantCommand {
 
 	// Called once when the command executes
 	protected void initialize() {
-		Robot.pneumaticsSystem.compressorOn();
+		Robot.pneumaticsSystem.shooterReverse();
 	}
 
 }

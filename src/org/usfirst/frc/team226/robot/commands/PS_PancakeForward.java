@@ -7,16 +7,17 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class PS_ShiftIntakeRight extends InstantCommand {
+public class PS_PancakeForward extends InstantCommand {
 
-    public PS_ShiftIntakeRight() {
+    public PS_PancakeForward() {
         super();
+        // Use requires() here to declare subsystem dependencies
         requires(Robot.pneumaticsSystem);
     }
 
     // Called once when the command executes
     protected void initialize() {
-    	Robot.pneumaticsSystem.shiftIntakeRight();
+    	Robot.pneumaticsSystem.shooterPancakeForward();
     }
 
 }

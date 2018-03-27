@@ -11,7 +11,7 @@ public class PS_ShiftDriveTrainNeutral extends InstantCommand {
 
 	public PS_ShiftDriveTrainNeutral() {
 		super();
-		// requires(Robot.pneumaticsSystem);
+		requires(Robot.pneumaticsSystem);
 	}
 
 	// Called once when the command executes

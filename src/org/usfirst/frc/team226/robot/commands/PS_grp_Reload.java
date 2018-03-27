@@ -1,14 +1,13 @@
 package org.usfirst.frc.team226.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
  */
-public class grp_ShootOuttake extends CommandGroup {
+public class PS_grp_Reload extends CommandGroup {
 
-    public grp_ShootOuttake() {
+    public PS_grp_Reload() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -25,9 +24,10 @@ public class grp_ShootOuttake extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addParallel(new I_Outtake());
-    	addSequential(new PS_Shoot());
-    	addSequential(new Wait(0.3));
-    	addSequential(new PS_Shoot());
+    	addSequential(new PS_ShooterForward());
+    	addSequential(new Wait(1.2));
+    	addSequential(new PS_PancakeForward());
+    	addSequential(new Wait(0.5));
+    	addSequential(new PS_ShooterReverse());
     }
 }

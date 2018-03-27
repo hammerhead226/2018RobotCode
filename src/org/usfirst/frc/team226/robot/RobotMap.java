@@ -46,11 +46,11 @@ public class RobotMap {
 	public static final int ARM_PCM = PCM_A;
 	public static final int SHOOTER_PISTON_1 = 4;
 	public static final int SHOOTER_PISTON_2 = 5;
+	public static final int SHOOTER_PANCAKE_1 = 0;
+	public static final int SHOOTER_PANCAKE_2 = 1;
 	public static final int INTAKE_PCM = PCM_A;
-	public static final int INTAKE_LEFT_SHIFTER_1 = 2;
-	public static final int INTAKE_LEFT_SHIFTER_2 = 3;
-	public static final int INTAKE_RIGHT_SHIFTER_1 = 0;
-	public static final int INTAKE_RIGHT_SHIFTER_2 = 1;
+	public static final int INTAKE_SHIFTER_1 = 2;
+	public static final int INTAKE_SHIFTER_2 = 3;
 	public static final int INTAKE_ROLLER_SHIFTER_1 = 6;
 	public static final int INTAKE_ROLLER_SHIFTER_2 = 7;
 
