@@ -12,7 +12,7 @@ public class PS_ShooterForward extends InstantCommand {
     public PS_ShooterForward() {
         super();
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        requires(Robot.pneumaticsSystem);
     }
 
     // Called once when the command executes

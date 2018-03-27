@@ -12,7 +12,7 @@ public class PS_PancakeForward extends InstantCommand {
     public PS_PancakeForward() {
         super();
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        requires(Robot.pneumaticsSystem);
     }
 
     // Called once when the command executes

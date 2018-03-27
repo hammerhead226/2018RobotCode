@@ -9,14 +9,15 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
  */
 public class PS_CompressorOff extends InstantCommand {
 
-    public PS_CompressorOff() {
-        super();
-        // Use requires() here to declare subsystem dependencies
-    }
+	public PS_CompressorOff() {
+		super();
+		// Use requires() here to declare subsystem dependencies
+		requires(Robot.pneumaticsSystem);
+	}
 
-    // Called once when the command executes
-    protected void initialize() {
-    	Robot.pneumaticsSystem.compressorOff();
-    }
+	// Called once when the command executes
+	protected void initialize() {
+		Robot.pneumaticsSystem.compressorOff();
+	}
 
 }
