@@ -21,7 +21,7 @@ public class A_DriveArm extends RecordableCommand {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.arm.driveArm(Robot.oi.manip.getLeftJoystick_Y());
+    	Robot.arm.driveArm(-Robot.oi.manip.getLeftJoystick_Y());
     }
 
     // Make this return true when this Command no longer needs to run execute()
