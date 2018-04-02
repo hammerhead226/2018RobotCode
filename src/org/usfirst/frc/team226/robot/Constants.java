@@ -54,7 +54,7 @@ public class Constants {
 	public static final boolean ARM_SENSOR_PHASE = false;
 	public static final boolean DT_LEFT_SENSOR_PHASE = true;
 	public static final boolean DT_RIGHT_SENSOR_PHASE = true;
-	public static final double ARM_MAX_SPEED = 0.5;
+	public static final double ARM_MAX_SPEED = 0.75;
 	public static final int CLIMBER_SENSOR_TIMEOUT = 10;
 	public static final double CLIMBER_SPEED = 0;
 

@@ -17,7 +17,11 @@ public class I_Outtake extends RecordableCommand {
 	protected void initialize() {
 		super.initialize();
 		setTimeout(0.5);
-		Robot.intake.driveIntake(1);
+		if (Robot.oi.manip.getLBButtonPressed()) {
+			Robot.intake.driveIntake(0.5);
+		} else {
+			Robot.intake.driveIntake(0.7);
+		}
 	}
 
 	// Called repeatedly when this Command is scheduled to run
