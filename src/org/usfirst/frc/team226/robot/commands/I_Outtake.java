@@ -1,6 +1,7 @@
 package org.usfirst.frc.team226.robot.commands;
 
 import org.hammerhead226.sharkmacro.actions.RecordableCommand;
+import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.Robot;
 
 /**
@@ -20,7 +21,11 @@ public class I_Outtake extends RecordableCommand {
 		if (Robot.oi.manip.getLBButtonPressed()) {
 			Robot.intake.driveIntake(0.5);
 		} else {
-			Robot.intake.driveIntake(0.7);
+			if (Constants.IS_AUTON) {
+				Robot.intake.driveIntake(0.6);
+			} else {
+				Robot.intake.driveIntake(0.7);
+			}
 		}
 	}
 

@@ -64,4 +64,6 @@ public class Constants {
 	//Climber
 	public static final double UNLOCKED_POSITION = 1;
 	public static final double LOCKED_POSITION = 0.45;
+	
+	public static boolean IS_AUTON = false;
 }
