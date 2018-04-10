@@ -26,16 +26,18 @@ public class DriveTrain extends Subsystem {
 	private TalonSRX frontRight = new TalonSRX(RobotMap.DT_FRONT_RIGHT);
 	private TalonSRX rearLeft = new TalonSRX(RobotMap.DT_REAR_LEFT);
 	private TalonSRX rearRight = new TalonSRX(RobotMap.DT_REAR_RIGHT);
-	
+
 	public void log() {
 		SmartDashboard.putNumber("Front Left", frontLeft.getOutputCurrent());
 		SmartDashboard.putNumber("Rear Left", rearLeft.getOutputCurrent());
 		SmartDashboard.putNumber("Front Right", frontRight.getOutputCurrent());
 		SmartDashboard.putNumber("Rear Right", rearRight.getOutputCurrent());
+		SmartDashboard.putNumber("Total current", frontLeft.getOutputCurrent() + frontRight.getOutputCurrent()
+				+ rearLeft.getOutputCurrent() + rearRight.getOutputCurrent());
 	}
-	
+
 	private ProfileRecorder recorder = new ProfileRecorder(frontLeft, frontRight, RecordingType.VOLTAGE);
-	
+
 	public void initDefaultCommand() {
 		setDefaultCommand(new DT_CheesyDrive());
 	}
@@ -49,7 +51,7 @@ public class DriveTrain extends Subsystem {
 
 		rearLeft.follow(frontLeft);
 		rearRight.follow(frontRight);
-		
+
 		frontLeft.setSensorPhase(Constants.DT_LEFT_SENSOR_PHASE);
 		frontRight.setSensorPhase(Constants.DT_RIGHT_SENSOR_PHASE);
 
@@ -72,8 +74,14 @@ public class DriveTrain extends Subsystem {
 		rearLeft.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
 		frontRight.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
 		rearRight.enableCurrentLimit(Constants.DT_CURRENT_LIMIT_ENABLED);
+
+		frontLeft.configOpenloopRamp(Constants.DT_VOLTAGE_RAMP_RATE, Constants.DT_TIMEOUT);
+		frontRight.configOpenloopRamp(Constants.DT_VOLTAGE_RAMP_RATE, Constants.DT_TIMEOUT);
+		rearLeft.configOpenloopRamp(Constants.DT_VOLTAGE_RAMP_RATE, Constants.DT_TIMEOUT);
+		rearRight.configOpenloopRamp(Constants.DT_VOLTAGE_RAMP_RATE, Constants.DT_TIMEOUT);
+
 	}
-	
+
 	public void toggleProfileRecording() {
 		if (recorder.isRecording()) {
 			ProfileParser p = new ProfileParser(ProfileParser.getNewFilename());
@@ -86,7 +94,7 @@ public class DriveTrain extends Subsystem {
 			recorder.start();
 		}
 	}
-	
+
 	public void toggleActionListRecording() {
 		if (ActionRecorder.isRecording()) {
 			ActionListParser al = new ActionListParser(ActionListParser.getNewFilename());
@@ -124,7 +132,7 @@ public class DriveTrain extends Subsystem {
 				rightMotorSpeed = -Math.max(-rotateValue, -moveValue);
 			}
 		}
-		
+
 		frontLeft.set(ControlMode.PercentOutput, -leftMotorSpeed);
 		frontRight.set(ControlMode.PercentOutput, rightMotorSpeed);
 	}
@@ -137,7 +145,7 @@ public class DriveTrain extends Subsystem {
 	public TalonSRX[] getMotionProfileTalons() {
 		return new TalonSRX[] { frontLeft, frontRight };
 	}
-	
+
 	private void zeroEncoders() {
 		frontLeft.setSelectedSensorPosition(0, 0, 0);
 		frontRight.setSelectedSensorPosition(0, 0, 0);

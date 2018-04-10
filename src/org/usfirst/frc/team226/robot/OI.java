@@ -14,8 +14,10 @@ import org.usfirst.frc.team226.robot.commands.A_HardZeroArmEncoder;
 import org.usfirst.frc.team226.robot.commands.A_SetpointGround;
 import org.usfirst.frc.team226.robot.commands.A_SetpointHigh;
 import org.usfirst.frc.team226.robot.commands.A_SetpointSwitch;
+import org.usfirst.frc.team226.robot.commands.C_UnlockClimber;
 import org.usfirst.frc.team226.robot.commands.I_Intake;
 import org.usfirst.frc.team226.robot.commands.I_Outtake;
+import org.usfirst.frc.team226.robot.commands.I_grp_OuttakeShoot;
 import org.usfirst.frc.team226.robot.commands.PS_CompressorOff;
 import org.usfirst.frc.team226.robot.commands.PS_CompressorOn;
 import org.usfirst.frc.team226.robot.commands.PS_ShiftDriveTrainHighGear;
@@ -56,12 +58,15 @@ public class OI {
 		manip.getAButton().whenPressed(new A_SetpointGround());
 		
 		//Shooter
-		driver.getAButton().whenPressed(new PS_Shoot());
+		driver.getAButton().whenPressed(new I_grp_OuttakeShoot());
 		driver.getXButton().whenPressed(new PS_grp_Reload());
 		
 		// Auton recording controls
 		driver.getSTARTButton().whenPressed(new grp_ToggleAutonRecording());
 		driver.getSELECTButton().whenPressed(new ExecuteMacro());
+		
+		//Climber
+		driver.getLBButton().whenPressed(new C_UnlockClimber());
 	}
 
 }

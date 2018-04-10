@@ -15,7 +15,7 @@ public class PS_Shoot extends RecordableCommand {
     // Called once when the command executes
     protected void initialize() {
     	super.initialize();
-    	Robot.pneumaticsSystem.shooterPancakeReverse();;
+    	Robot.pneumaticsSystem.shooterPancakeReverse();
     }
     
     protected void execute() {

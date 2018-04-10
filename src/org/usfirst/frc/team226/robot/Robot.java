@@ -9,12 +9,12 @@ package org.usfirst.frc.team226.robot;
 
 import org.usfirst.frc.team226.robot.auton.ExecuteDoubleMacro;
 import org.usfirst.frc.team226.robot.auton.ExecuteMacro;
+import org.usfirst.frc.team226.robot.commands.PS_ShiftDriveTrainHighGear;
 import org.usfirst.frc.team226.robot.subsystems.Arm;
 import org.usfirst.frc.team226.robot.subsystems.Climber;
 import org.usfirst.frc.team226.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team226.robot.subsystems.Intake;
 import org.usfirst.frc.team226.robot.subsystems.PneumaticsSystem;
-import org.usfirst.frc.team226.robot.vision.VisionRun;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -50,10 +50,11 @@ public class Robot extends TimedRobot {
 		intake = new Intake();
 		oi = new OI();
 		chooser.addDefault("Baseline Cross", new ExecuteMacro("baseline"));
-		chooser.addObject("Left Switch", new ExecuteDoubleMacro("leftswitch_left", "baseline"));
+		chooser.addObject("Left Switch", new ExecuteDoubleMacro("left", "baseline"));
 		chooser.addObject("Center Switch", new ExecuteDoubleMacro("centerswitch_left", "centerswitch_right"));
 		chooser.addObject("Right Switch", new ExecuteDoubleMacro("baseline", "rightswitch_right"));
 		SmartDashboard.putData("Auto mode", chooser);
+		SmartDashboard.putData(new PS_ShiftDriveTrainHighGear());
 	}
 
 	@Override
@@ -63,6 +64,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void disabledInit() {
+		Constants.IS_AUTON = false;
 	}
 
 	@Override
@@ -72,6 +74,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void autonomousInit() {
+		Constants.IS_AUTON = true;
 		SmartDashboard.putString("Field State", DriverStation.getInstance().getGameSpecificMessage());
 		m_autonomousCommand = chooser.getSelected();
 
@@ -95,6 +98,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
+		Constants.IS_AUTON = false;
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
