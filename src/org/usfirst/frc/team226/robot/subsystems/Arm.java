@@ -112,10 +112,6 @@ public class Arm extends Subsystem {
 			if (input > 0) {
 				input = 0;
 			}
-		} else if (getArmPos() <= ArmSetpoint.BACK_GROUND.position - Constants.ARM_ERROR_TOLERANCE) {
-			if (input < 0) {
-				input = 0;
-			}
 		}
 		return input;
 	}
