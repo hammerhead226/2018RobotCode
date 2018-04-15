@@ -11,9 +11,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.hammerhead226.sharkmacro.Parser;
 import org.hammerhead226.sharkmacro.motionprofiles.ProfileParser;
 import org.usfirst.frc.team226.robot.auton.ExecuteChoiceMacro;
 import org.usfirst.frc.team226.robot.auton.ExecuteMacro;
+import org.usfirst.frc.team226.robot.auton.grp_ExecuteMacroList;
 import org.usfirst.frc.team226.robot.commands.PS_ShiftDriveTrainHighGear;
 import org.usfirst.frc.team226.robot.subsystems.Arm;
 import org.usfirst.frc.team226.robot.subsystems.Climber;
@@ -58,6 +60,17 @@ public class Robot extends TimedRobot {
 		chooser.addObject("Left Switch", new ExecuteChoiceMacro("leftswitch_left", "baseline"));
 		chooser.addObject("Center Switch", new ExecuteChoiceMacro("centerswitch_left", "centerswitch_right"));
 		chooser.addObject("Right Switch", new ExecuteChoiceMacro("baseline", "rightswitch_right"));
+		
+		ArrayList<String> left = new ArrayList<String>();
+		left.add("centerswitch_left");
+		left.add("centerswitch_left_pickup_fast");
+		left.add("centerswitch_left_twocube");
+		ArrayList<String> right = new ArrayList<String>();
+		right.add("centerswitch_right");
+		right.add("nothing");
+		right.add("nothing");
+		chooser.addObject("Center switch 2 cube?", new grp_ExecuteMacroList(left, right));
+		
 		SmartDashboard.putData("Auto mode", chooser);
 
 		SmartDashboard.putData(new PS_ShiftDriveTrainHighGear());
