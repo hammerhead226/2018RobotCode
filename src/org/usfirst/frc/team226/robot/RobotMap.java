@@ -30,7 +30,7 @@ public class RobotMap {
 
 	public static final int CLIMBER_LEFT = 11;
 	public static final int CLIMBER_RIGHT = 15;
-	public static final int CLIMBER_SERVO = 1;
+	public static final int CLIMBER_SERVO = 0;
 
 	public static final int PCM_A = 11;
 	public static final int PCM_B = 12;
