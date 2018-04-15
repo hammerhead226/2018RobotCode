@@ -57,7 +57,7 @@ public class Constants {
 	public static final double ARM_MAX_SPEED = 0.75;
 	public static final int CLIMBER_SENSOR_TIMEOUT = 10;
 	public static final double CLIMBER_SPEED = 0;
-	public static final double DT_VOLTAGE_RAMP_RATE = 0.3;
+	public static final double DT_VOLTAGE_RAMP_RATE = 0.1;
 
 	public static final double INTAKE_PULL_IN_SPEED = 0.5;
 
