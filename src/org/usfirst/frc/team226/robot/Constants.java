@@ -3,7 +3,7 @@ package org.usfirst.frc.team226.robot;
 public class Constants {
 
 	// Arm PID Tolerance
-	public static final int ARM_ERROR_TOLERANCE = 50;
+	public static final int ARM_ERROR_TOLERANCE = 10;
 
 	// Arm Soft Limits
 	public static final boolean ARM_FORWARD_LIMIT_ENABLED = false;
