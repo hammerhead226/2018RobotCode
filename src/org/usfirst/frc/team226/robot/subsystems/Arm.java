@@ -100,7 +100,7 @@ public class Arm extends Subsystem {
 
 	public void controlArm(double speed) {
 		if (speed != 0) {
-			right.set(ControlMode.PercentOutput, /*softLimit(speed)*/speed);
+			right.set(ControlMode.PercentOutput, softLimit(speed));
 			setpointPosition = getArmPos();
 		} else {
 			right.set(ControlMode.Position, setpointPosition);
