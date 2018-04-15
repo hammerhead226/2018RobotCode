@@ -87,15 +87,8 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 		Constants.IS_AUTON = true;
-		driveTrain.disableVoltageRamping();
 		SmartDashboard.putString("Field State", DriverStation.getInstance().getGameSpecificMessage());
 		m_autonomousCommand = chooser.getSelected();
-
-		 * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		 * switch(autoSelected) { case "My Auto": autonomousCommand = new
-		 * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
-		 * ExampleCommand(); break; }
-		 */
 
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
@@ -110,12 +103,10 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
-		driveTrain.enableVoltageRamping();
 		Constants.IS_AUTON = false;
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
-
 	}
 
 	@Override
