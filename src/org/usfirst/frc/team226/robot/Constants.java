@@ -34,7 +34,7 @@ public class Constants {
 	public static final boolean CLIMBER_CURRENT_LIMIT_ENABLED = false;
 
 	// Invert Motors
-	public static final boolean INTAKE_INVERT_L = true;
+	public static final boolean INTAKE_INVERT_L = false;
 	public static final boolean INTAKE_INVERT_R = false;
 	public static final boolean ARM_INVERT_R = true;
 	public static final boolean ARM_INVERT_L = true;
