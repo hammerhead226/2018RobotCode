@@ -31,7 +31,7 @@ public class Arm extends Subsystem {
 		right.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ARM_PIDSLOT_IDX,
 				Constants.ARM_TIMEOUT);
 		right.setSensorPhase(Constants.ARM_SENSOR_PHASE);
-		
+
 		right.configContinuousCurrentLimit(Constants.ARM_CURRENT_LIMIT, Constants.ARM_TIMEOUT);
 		left.configContinuousCurrentLimit(Constants.ARM_CURRENT_LIMIT, Constants.ARM_TIMEOUT);
 
@@ -56,7 +56,7 @@ public class Arm extends Subsystem {
 		right.configPeakOutputReverse(-Constants.ARM_MAX_SPEED, Constants.ARM_TIMEOUT);
 
 		left.follow(right);
-		
+
 		hardZeroEncoder();
 
 	}
@@ -85,7 +85,6 @@ public class Arm extends Subsystem {
 	}
 
 	public void hardZeroEncoder() {
-//		right.getSensorCollection().setPulseWidthPosition(0, Constants.ARM_TIMEOUT);
 		right.setSelectedSensorPosition(ArmSetpoint.STRAIGHT_UP.position, 0, Constants.ARM_TIMEOUT);
 		setArmSetpoint(ArmSetpoint.STRAIGHT_UP);
 	}
