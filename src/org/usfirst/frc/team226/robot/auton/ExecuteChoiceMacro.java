@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ExecuteDoubleMacro extends Command {
+public class ExecuteChoiceMacro extends Command {
 	
 	private String leftName;
 	private String rightName;
@@ -24,7 +24,7 @@ public class ExecuteDoubleMacro extends Command {
 
 	private TalonSRX[] talons = Robot.driveTrain.getMotionProfileTalons();
 
-    public ExecuteDoubleMacro(String leftName, String rightName) {
+    public ExecuteChoiceMacro(String leftName, String rightName) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain);
@@ -61,7 +61,7 @@ public class ExecuteDoubleMacro extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return profileToExecute.isFinished() && actionListToExecute.isFinished();
     }
 
     // Called once after isFinished returns true

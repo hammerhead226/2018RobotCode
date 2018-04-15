@@ -55,9 +55,9 @@ public class Robot extends TimedRobot {
 		intake = new Intake();
 		oi = new OI();
 		chooser.addDefault("Baseline Cross", new ExecuteMacro("baseline"));
-		chooser.addObject("Left Switch", new ExecuteDoubleMacro("left", "baseline"));
-		chooser.addObject("Center Switch", new ExecuteDoubleMacro("centerswitch_left", "centerswitch_right"));
-		chooser.addObject("Right Switch", new ExecuteDoubleMacro("baseline", "rightswitch_right"));
+		chooser.addObject("Left Switch", new ExecuteChoiceMacro("leftswitch_left", "baseline"));
+		chooser.addObject("Center Switch", new ExecuteChoiceMacro("centerswitch_left", "centerswitch_right"));
+		chooser.addObject("Right Switch", new ExecuteChoiceMacro("baseline", "rightswitch_right"));
 		SmartDashboard.putData("Auto mode", chooser);
 
 		SmartDashboard.putData(new PS_ShiftDriveTrainHighGear());
