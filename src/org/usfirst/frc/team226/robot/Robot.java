@@ -7,7 +7,12 @@
 
 package org.usfirst.frc.team226.robot;
 
-import org.usfirst.frc.team226.robot.auton.ExecuteDoubleMacro;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.hammerhead226.sharkmacro.motionprofiles.ProfileParser;
+import org.usfirst.frc.team226.robot.auton.ExecuteChoiceMacro;
 import org.usfirst.frc.team226.robot.auton.ExecuteMacro;
 import org.usfirst.frc.team226.robot.commands.PS_ShiftDriveTrainHighGear;
 import org.usfirst.frc.team226.robot.subsystems.Arm;
@@ -54,7 +59,14 @@ public class Robot extends TimedRobot {
 		chooser.addObject("Center Switch", new ExecuteDoubleMacro("centerswitch_left", "centerswitch_right"));
 		chooser.addObject("Right Switch", new ExecuteDoubleMacro("baseline", "rightswitch_right"));
 		SmartDashboard.putData("Auto mode", chooser);
+
 		SmartDashboard.putData(new PS_ShiftDriveTrainHighGear());
+
+		ProfileParser.cache("centerswitch_left");
+		ProfileParser.cache("centerswitch_left_pickup_fast");
+		ProfileParser.cache("centerswitch_left_twocube");
+		ProfileParser.cache("centerswitch_right");
+		ProfileParser.cache("baseline");
 	}
 
 	@Override
@@ -75,10 +87,10 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 		Constants.IS_AUTON = true;
+		driveTrain.disableVoltageRamping();
 		SmartDashboard.putString("Field State", DriverStation.getInstance().getGameSpecificMessage());
 		m_autonomousCommand = chooser.getSelected();
 
-		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
 		 * switch(autoSelected) { case "My Auto": autonomousCommand = new
 		 * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
@@ -98,10 +110,12 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
+		driveTrain.enableVoltageRamping();
 		Constants.IS_AUTON = false;
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
+
 	}
 
 	@Override
