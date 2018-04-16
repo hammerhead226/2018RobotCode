@@ -31,7 +31,7 @@ public class Arm extends Subsystem {
 		right.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ARM_PIDSLOT_IDX,
 				Constants.ARM_TIMEOUT);
 		right.setSensorPhase(Constants.ARM_SENSOR_PHASE);
-		
+
 		right.configContinuousCurrentLimit(Constants.ARM_CURRENT_LIMIT, Constants.ARM_TIMEOUT);
 		left.configContinuousCurrentLimit(Constants.ARM_CURRENT_LIMIT, Constants.ARM_TIMEOUT);
 
@@ -56,7 +56,7 @@ public class Arm extends Subsystem {
 		right.configPeakOutputReverse(-Constants.ARM_MAX_SPEED, Constants.ARM_TIMEOUT);
 
 		left.follow(right);
-		
+
 		hardZeroEncoder();
 
 	}
@@ -85,7 +85,6 @@ public class Arm extends Subsystem {
 	}
 
 	public void hardZeroEncoder() {
-//		right.getSensorCollection().setPulseWidthPosition(0, Constants.ARM_TIMEOUT);
 		right.setSelectedSensorPosition(ArmSetpoint.STRAIGHT_UP.position, 0, Constants.ARM_TIMEOUT);
 		setArmSetpoint(ArmSetpoint.STRAIGHT_UP);
 	}
@@ -100,7 +99,7 @@ public class Arm extends Subsystem {
 
 	public void controlArm(double speed) {
 		if (speed != 0) {
-			right.set(ControlMode.PercentOutput, /*softLimit(speed)*/speed);
+			right.set(ControlMode.PercentOutput, softLimit(speed));
 			setpointPosition = getArmPos();
 		} else {
 			right.set(ControlMode.Position, setpointPosition);
@@ -110,10 +109,6 @@ public class Arm extends Subsystem {
 	private double softLimit(double input) {
 		if (getArmPos() >= ArmSetpoint.STRAIGHT_UP.position + Constants.ARM_ERROR_TOLERANCE) {
 			if (input > 0) {
-				input = 0;
-			}
-		} else if (getArmPos() <= ArmSetpoint.BACK_GROUND.position - Constants.ARM_ERROR_TOLERANCE) {
-			if (input < 0) {
 				input = 0;
 			}
 		}

@@ -3,7 +3,7 @@ package org.usfirst.frc.team226.robot;
 public class Constants {
 
 	// Arm PID Tolerance
-	public static final int ARM_ERROR_TOLERANCE = 50;
+	public static final int ARM_ERROR_TOLERANCE = 10;
 
 	// Arm Soft Limits
 	public static final boolean ARM_FORWARD_LIMIT_ENABLED = false;
@@ -34,7 +34,7 @@ public class Constants {
 	public static final boolean CLIMBER_CURRENT_LIMIT_ENABLED = false;
 
 	// Invert Motors
-	public static final boolean INTAKE_INVERT_L = true;
+	public static final boolean INTAKE_INVERT_L = false;
 	public static final boolean INTAKE_INVERT_R = false;
 	public static final boolean ARM_INVERT_R = true;
 	public static final boolean ARM_INVERT_L = true;
@@ -57,7 +57,7 @@ public class Constants {
 	public static final double ARM_MAX_SPEED = 0.75;
 	public static final int CLIMBER_SENSOR_TIMEOUT = 10;
 	public static final double CLIMBER_SPEED = 0;
-	public static final double DT_VOLTAGE_RAMP_RATE = 0.3;
+	public static final double DT_VOLTAGE_RAMP_RATE = 0.1;
 
 	public static final double INTAKE_PULL_IN_SPEED = 0.5;
 

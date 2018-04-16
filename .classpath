@@ -13,6 +13,6 @@
 	<classpathentry kind="var" path="USERLIBS_DIR/navx_frc.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/opencsv-4.1.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/HammerheadLib-v1.0.jar"/>
-	<classpathentry kind="var" path="USERLIBS_DIR/SharkMacro-v1.1.2.jar"/>
+	<classpathentry kind="var" path="USERLIBS_DIR/SharkMacro-v1.1.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
