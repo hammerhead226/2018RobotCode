@@ -62,8 +62,8 @@ public class OI {
 		driver.getXButton().whenPressed(new PS_grp_Reload());
 		
 		// Auton recording controls
-		driver.getSTARTButton().whenPressed(new grp_ToggleAutonRecording());
-		driver.getSELECTButton().whenPressed(new ExecuteMacro());
+		//driver.getSTARTButton().whenPressed(new grp_ToggleAutonRecording());
+		//driver.getSELECTButton().whenPressed(new ExecuteMacro());
 		
 		//Climber
 		driver.getLBButton().whenPressed(new C_UnlockClimber());
