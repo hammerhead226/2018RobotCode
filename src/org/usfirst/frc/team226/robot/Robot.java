@@ -53,9 +53,10 @@ public class Robot extends TimedRobot {
 		arm = new Arm();
 		driveTrain = new DriveTrain();
 		pneumaticsSystem = new PneumaticsSystem();
-		climber = new Climber();
+		//climber = new Climber();
 		intake = new Intake();
 		oi = new OI();
+		
 		chooser.addDefault("Baseline Cross", new ExecuteMacro("baseline"));
 		chooser.addObject("Left Switch", new ExecuteChoiceMacro("leftswitch_left", "baseline"));
 		chooser.addObject("Center Switch", new ExecuteChoiceMacro("centerswitch_left", "centerswitch_right"));
