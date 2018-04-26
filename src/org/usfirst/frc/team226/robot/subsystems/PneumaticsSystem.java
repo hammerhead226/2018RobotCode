@@ -27,6 +27,7 @@ public class PneumaticsSystem extends Subsystem {
 
 	public PneumaticsSystem() {
 		compressor.start();
+		shiftDriveTrainForward();
 	}
 
 	public void initDefaultCommand() {

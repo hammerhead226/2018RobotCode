@@ -39,7 +39,7 @@ public class OI {
 
 	public OI() {
 		// Drivetrain
-		driver.getLSButton().whenPressed(new PS_ShiftDriveTrainHighGear());
+		//driver.getLSButton().whenPressed(new PS_ShiftDriveTrainHighGear());
 		driver.getRSButton().whenPressed(new PS_ShiftDriveTrainLowGear());
 		driver.getYButton().whenPressed(new PS_CompressorOn());
 		driver.getBButton().whenPressed(new PS_CompressorOff());
