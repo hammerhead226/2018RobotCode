@@ -14,7 +14,6 @@ import org.usfirst.frc.team226.robot.commands.A_HardZeroArmEncoder;
 import org.usfirst.frc.team226.robot.commands.A_SetpointGround;
 import org.usfirst.frc.team226.robot.commands.A_SetpointHigh;
 import org.usfirst.frc.team226.robot.commands.A_SetpointSwitch;
-import org.usfirst.frc.team226.robot.commands.C_UnlockClimber;
 import org.usfirst.frc.team226.robot.commands.I_Intake;
 import org.usfirst.frc.team226.robot.commands.I_Outtake;
 import org.usfirst.frc.team226.robot.commands.I_grp_OuttakeShoot;
@@ -66,7 +65,7 @@ public class OI {
 		//driver.getSELECTButton().whenPressed(new ExecuteMacro());
 		
 		//Climber
-		driver.getLBButton().whenPressed(new C_UnlockClimber());
+		//driver.getLBButton().whenPressed(new C_UnlockClimber());
 	}
 
 }

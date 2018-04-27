@@ -53,7 +53,7 @@ public class Robot extends TimedRobot {
 		arm = new Arm();
 		driveTrain = new DriveTrain();
 		pneumaticsSystem = new PneumaticsSystem();
-		//climber = new Climber();
+		climber = new Climber();
 		intake = new Intake();
 		oi = new OI();
 		
@@ -76,11 +76,11 @@ public class Robot extends TimedRobot {
 
 		SmartDashboard.putData(new PS_ShiftDriveTrainHighGear());
 
-		ProfileParser.cache("centerswitch_left");
-		ProfileParser.cache("centerswitch_left_pickup_fast");
-		ProfileParser.cache("centerswitch_left_twocube");
-		ProfileParser.cache("centerswitch_right");
-		ProfileParser.cache("baseline");
+//		ProfileParser.cache("centerswitch_left");
+//		ProfileParser.cache("centerswitch_left_pickup_fast");
+//		ProfileParser.cache("centerswitch_left_twocube");
+//		ProfileParser.cache("centerswitch_right");
+//		ProfileParser.cache("baseline");
 	}
 
 	@Override
