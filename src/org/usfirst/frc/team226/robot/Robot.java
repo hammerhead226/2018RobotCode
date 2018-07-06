@@ -38,11 +38,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
-	public static Arm arm;
 	public static DriveTrain driveTrain;
 	public static PneumaticsSystem pneumaticsSystem;
 	public static Intake intake;
-	public static Climber climber;
 	public static OI oi;
 
 	Command m_autonomousCommand;
@@ -50,10 +48,8 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void robotInit() {
-		arm = new Arm();
 		driveTrain = new DriveTrain();
 		pneumaticsSystem = new PneumaticsSystem();
-		climber = new Climber();
 		intake = new Intake();
 		oi = new OI();
 		chooser.addDefault("Baseline Cross", new ExecuteMacro("baseline"));
@@ -84,7 +80,6 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void robotPeriodic() {
-		SmartDashboard.putNumber("Arm Encoder", arm.getArmPos());
 	}
 
 	@Override

@@ -43,30 +43,15 @@ public class OI {
 		driver.getRSButton().whenPressed(new PS_ShiftDriveTrainLowGear());
 		driver.getYButton().whenPressed(new PS_CompressorOn());
 		driver.getBButton().whenPressed(new PS_CompressorOff());
-		driver.getRBButton().whileHeld(new A_DriveArm());
 
 		// Intake
-		manip.getRBButton().whenPressed(new PS_ShiftIntake());
 		manip.getRSButton().whileHeld(new I_Intake());
 		manip.getBButton().whenPressed(new I_Outtake());
-		manip.getSTARTButton().whenPressed(new PS_Shoot());
 
-		// Arm
-		manip.getSELECTButton().whenPressed(new A_HardZeroArmEncoder());
-		manip.getYButton().whenPressed(new A_SetpointHigh());
-		manip.getXButton().whenPressed(new A_SetpointSwitch());
-		manip.getAButton().whenPressed(new A_SetpointGround());
-		
-		//Shooter
-		driver.getAButton().whenPressed(new I_grp_OuttakeShoot());
-		driver.getXButton().whenPressed(new PS_grp_Reload());
-		
 		// Auton recording controls
 		driver.getSTARTButton().whenPressed(new grp_ToggleAutonRecording());
 		driver.getSELECTButton().whenPressed(new ExecuteMacro());
 		
-		//Climber
-		driver.getLBButton().whenPressed(new C_UnlockClimber());
 	}
 
 }
