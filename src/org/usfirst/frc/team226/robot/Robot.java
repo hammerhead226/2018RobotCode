@@ -8,17 +8,12 @@
 package org.usfirst.frc.team226.robot;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-import org.hammerhead226.sharkmacro.Parser;
 import org.hammerhead226.sharkmacro.motionprofiles.ProfileParser;
 import org.usfirst.frc.team226.robot.auton.ExecuteChoiceMacro;
 import org.usfirst.frc.team226.robot.auton.ExecuteMacro;
 import org.usfirst.frc.team226.robot.auton.grp_ExecuteMacroList;
 import org.usfirst.frc.team226.robot.commands.PS_ShiftDriveTrainHighGear;
-import org.usfirst.frc.team226.robot.subsystems.Arm;
-import org.usfirst.frc.team226.robot.subsystems.Climber;
 import org.usfirst.frc.team226.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team226.robot.subsystems.Intake;
 import org.usfirst.frc.team226.robot.subsystems.PneumaticsSystem;

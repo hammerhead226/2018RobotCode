@@ -37,7 +37,6 @@ public class Intake extends Subsystem {
 
 		left.setInverted(Constants.INTAKE_INVERT_L);
 		right.setInverted(Constants.INTAKE_INVERT_R);
-		roller.setInverted(Constants.ROLLER_INVERT);
 		
 		right.follow(left);
 		roller.follow(right);

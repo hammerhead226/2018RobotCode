@@ -9,22 +9,12 @@ package org.usfirst.frc.team226.robot;
 
 import org.usfirst.frc.team226.robot.auton.ExecuteMacro;
 import org.usfirst.frc.team226.robot.auton.grp_ToggleAutonRecording;
-import org.usfirst.frc.team226.robot.commands.A_DriveArm;
-import org.usfirst.frc.team226.robot.commands.A_HardZeroArmEncoder;
-import org.usfirst.frc.team226.robot.commands.A_SetpointGround;
-import org.usfirst.frc.team226.robot.commands.A_SetpointHigh;
-import org.usfirst.frc.team226.robot.commands.A_SetpointSwitch;
-import org.usfirst.frc.team226.robot.commands.C_UnlockClimber;
 import org.usfirst.frc.team226.robot.commands.I_Intake;
 import org.usfirst.frc.team226.robot.commands.I_Outtake;
-import org.usfirst.frc.team226.robot.commands.I_grp_OuttakeShoot;
 import org.usfirst.frc.team226.robot.commands.PS_CompressorOff;
 import org.usfirst.frc.team226.robot.commands.PS_CompressorOn;
 import org.usfirst.frc.team226.robot.commands.PS_ShiftDriveTrainHighGear;
 import org.usfirst.frc.team226.robot.commands.PS_ShiftDriveTrainLowGear;
-import org.usfirst.frc.team226.robot.commands.PS_ShiftIntake;
-import org.usfirst.frc.team226.robot.commands.PS_Shoot;
-import org.usfirst.frc.team226.robot.commands.PS_grp_Reload;
 
 import util.Controller;
 
