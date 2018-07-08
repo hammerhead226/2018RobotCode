@@ -22,7 +22,7 @@ public class Elevator extends Subsystem {
 	private TalonSRX right1 = new TalonSRX(RobotMap.ELEVATOR_RIGHT_1);
 	private TalonSRX right2 = new TalonSRX(RobotMap.ELEVATOR_RIGHT_2);
 
-	private int setpointPosition = ElevatorPosition.GROUND.position;
+	private int setpointPosition = ElevatorSetpoint.GROUND.position;
 
 	public Elevator() {
 		left2.follow(left1);
@@ -61,6 +61,33 @@ public class Elevator extends Subsystem {
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
+	}
+
+	public enum ElevatorSetpoint {
+		// setpoints to be set next week
+		GROUND(0), POWER(0), SWITCH(0), SCALE(0);
+		public int position;
+
+		private ElevatorSetpoint(int position) {
+			this.position = position;
+		}
+	}
+
+	public void setElevatorSetpoint(ElevatorSetpoint s) {
+		setpointPosition = s.position;
+	}
+	
+	public int getElevatorPos() {
+		return left1.getSelectedSensorPosition(Constants.ELEVATOR_PIDSLOT_IDX);
+	}
+	
+	public void controlElevator(double speed) {
+		if (speed != 0) {
+			left1.set(ControlMode.PercentOutput, speed);
+			setpointPosition = getElevatorPos();
+		} else {
+			left1.set(ControlMode.Position, setpointPosition);
+		}
 	}
 
 }
