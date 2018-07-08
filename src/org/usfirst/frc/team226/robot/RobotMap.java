@@ -24,7 +24,6 @@ public class RobotMap {
 
 	public static final int INTAKE_LEFT = 14;
 	public static final int INTAKE_RIGHT = 18;
-	public static final int INTAKE_ROLLERS = 20;
 
 	public static final int PCM_A = 11;
 	public static final int PCM_B = 12;
