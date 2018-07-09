@@ -65,7 +65,7 @@ public class Elevator extends Subsystem {
 
 	public enum ElevatorSetpoint {
 		// setpoints to be set next week
-		GROUND(0), POWER(0), SWITCH(0), SCALE(0);
+		GROUND(0), EXCHANGE(0), SWITCH(0), SCALE(0);
 		public int position;
 
 		private ElevatorSetpoint(int position) {
@@ -81,6 +81,10 @@ public class Elevator extends Subsystem {
 		return left1.getSelectedSensorPosition(Constants.ELEVATOR_PIDSLOT_IDX);
 	}
 	
+	public void hardZeroEncoder() {
+		left1.setSelectedSensorPosition(0, Constants.ELEVATOR_PIDSLOT_IDX, Constants.ELEVATOR_TIMEOUT);
+	}
+
 	public void controlElevator(double speed) {
 		if (speed != 0) {
 			left1.set(ControlMode.PercentOutput, speed);
