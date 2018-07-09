@@ -10,6 +10,7 @@ public class Constants {
 	// Enable Subsystem Voltage Limits
 	public static final boolean DT_VOLTAGE_LIMIT_ENABLED = true;
 	public static final boolean INTAKE_VOLTAGE_LIMIT_ENABLED = false;
+	public static final boolean WRIST_VOLTAGE_LIMIT_ENABLED = false;
 
 	// Subsystem Current Limits
 	public static final int INTAKE_CURRENT_LIMIT = 0;
