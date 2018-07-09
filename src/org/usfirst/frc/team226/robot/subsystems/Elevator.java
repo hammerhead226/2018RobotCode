@@ -2,6 +2,7 @@ package org.usfirst.frc.team226.robot.subsystems;
 
 import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.RobotMap;
+import org.usfirst.frc.team226.robot.commands.E_ControlElevator;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -25,12 +26,11 @@ public class Elevator extends Subsystem {
 	private int setpointPosition = ElevatorSetpoint.GROUND.position;
 
 	public Elevator() {
-		left2.follow(left1);
-		right1.follow(left1);
-		right2.follow(left1);
 
 		left1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ELEVATOR_PIDSLOT_IDX,
 				Constants.ELEVATOR_TIMEOUT);
+		
+		left1.setSensorPhase(Constants.ELEVATOR_SENSOR_PHASE);
 
 		left1.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, 0);
 		left2.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, 0);
@@ -42,10 +42,10 @@ public class Elevator extends Subsystem {
 		right1.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
 		right2.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
 
-		left1.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
-		left2.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
-		right1.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
-		right2.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, 0);
+		left1.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT);
+		left2.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT);
+		right1.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT);
+		right2.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT);
 
 		left1.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
 		left2.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
@@ -56,11 +56,20 @@ public class Elevator extends Subsystem {
 		left2.setInverted(Constants.ELEVATOR_INVERT_L);
 		right1.setInverted(Constants.ELEVATOR_INVERT_R);
 		right2.setInverted(Constants.ELEVATOR_INVERT_R);
+		
+		left1.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
+		left2.configReverseSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
+		right1.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
+		right2.configReverseSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
+		
+		left2.follow(left1);
+		right1.follow(left1);
+		right2.follow(left1);
 	}
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+		setDefaultCommand(new E_ControlElevator());
 	}
 
 	public enum ElevatorSetpoint {
@@ -76,13 +85,17 @@ public class Elevator extends Subsystem {
 	public void setElevatorSetpoint(ElevatorSetpoint s) {
 		setpointPosition = s.position;
 	}
-	
+
 	public int getElevatorPos() {
 		return left1.getSelectedSensorPosition(Constants.ELEVATOR_PIDSLOT_IDX);
 	}
-	
+
 	public void hardZeroEncoder() {
 		left1.setSelectedSensorPosition(0, Constants.ELEVATOR_PIDSLOT_IDX, Constants.ELEVATOR_TIMEOUT);
+	}
+	
+	public void driveElevator(double speed) {
+		left1.set(ControlMode.PercentOutput, speed);
 	}
 
 	public void controlElevator(double speed) {
