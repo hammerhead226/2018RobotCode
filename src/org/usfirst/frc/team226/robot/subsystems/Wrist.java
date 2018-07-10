@@ -5,6 +5,7 @@ import org.usfirst.frc.team226.robot.RobotMap;
 import org.usfirst.frc.team226.robot.commands.W_DriveWrist;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -16,13 +17,13 @@ public class Wrist extends Subsystem {
 
 	private TalonSRX left = new TalonSRX(RobotMap.WRIST_LEFT);
 	private TalonSRX right = new TalonSRX(RobotMap.WRIST_RIGHT);
-	
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+
+	// Put methods for controlling this subsystem
+	// here. Call these from Commands.
 	public Wrist() {
 		left.configContinuousCurrentLimit(Constants.WRIST_CURRENT_LIMIT, Constants.WRIST_TIMEOUT);
 		right.configContinuousCurrentLimit(Constants.WRIST_CURRENT_LIMIT, Constants.WRIST_TIMEOUT);
-		
+
 		left.enableCurrentLimit(Constants.WRIST_CURRENT_LIMIT_ENABLED);
 		right.enableCurrentLimit(Constants.WRIST_CURRENT_LIMIT_ENABLED);
 
@@ -34,23 +35,23 @@ public class Wrist extends Subsystem {
 
 		left.setInverted(Constants.WRIST_INVERT_L);
 		right.setInverted(Constants.WRIST_INVERT_R);
-		
+
 		right.follow(left);
 	}
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-       setDefaultCommand(new W_DriveWrist());
-    }
-    
-    public void driveWrist(double speed) {
-    	if (speed == 0) {
-			speed = 0.05;
-		} 
-			left.set(ControlMode.PercentOutput, speed);
-    }
-    
-    public void neutralOutput() {
-    	left.neutralOutput();
-    }
-}
 
+	public void initDefaultCommand() {
+		// Set the default command for a subsystem here.
+		setDefaultCommand(new W_DriveWrist());
+	}
+
+	public void driveWrist(double speed) {
+		if (speed == 0) {
+			speed = 0.05;
+		}
+		left.set(ControlMode.PercentOutput, speed);
+	}
+
+	public void neutralOutput() {
+		left.neutralOutput();
+	}
+}
