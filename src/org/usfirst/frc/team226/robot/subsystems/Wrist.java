@@ -43,11 +43,10 @@ public class Wrist extends Subsystem {
     }
     
     public void driveWrist(double speed) {
-    	if (speed != 0) {
+    	if (speed == 0) {
+			speed = 0.05;
+		} 
 			left.set(ControlMode.PercentOutput, speed);
-		} else {
-			left.set(ControlMode.PercentOutput, 0.04);
-		}
     }
     
     public void neutralOutput() {
