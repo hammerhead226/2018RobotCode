@@ -104,6 +104,17 @@ public class PneumaticsSystem extends Subsystem {
 		leftIntake.set(intakeVal);
 		rightIntake.set(intakeVal);
 	}
+	
+	public void toggleIntakeOpen() {
+		leftIntake.set(DoubleSolenoid.Value.kReverse);
+		rightIntake.set(DoubleSolenoid.Value.kReverse);
+	}
+	
+	public void toggleIntakeClose() {
+		leftIntake.set(DoubleSolenoid.Value.kForward);
+		rightIntake.set(DoubleSolenoid.Value.kForward);
+	}
+
 
 	public void shiftIntakeNeutral() {
 		rightIntake.set(DoubleSolenoid.Value.kOff);
