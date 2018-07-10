@@ -19,7 +19,6 @@ public class Elevator extends Subsystem {
 	// here. Call these from Commands.
 
 	private TalonSRX left1 = new TalonSRX(RobotMap.ELEVATOR_LEFT_1);
-	private TalonSRX left2 = new TalonSRX(RobotMap.ELEVATOR_LEFT_2);
 	private TalonSRX right1 = new TalonSRX(RobotMap.ELEVATOR_RIGHT_1);
 	private TalonSRX right2 = new TalonSRX(RobotMap.ELEVATOR_RIGHT_2);
 
@@ -33,36 +32,29 @@ public class Elevator extends Subsystem {
 		left1.setSensorPhase(Constants.ELEVATOR_SENSOR_PHASE);
 
 		left1.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, 0);
-		left2.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, 0);
 		right1.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, 0);
 		right2.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, 0);
 
 		left1.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
-		left2.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
 		right1.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
 		right2.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
 
 		left1.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT);
-		left2.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT);
 		right1.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT);
 		right2.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT);
 
 		left1.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
-		left2.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
 		right1.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
 		right2.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
 
 		left1.setInverted(Constants.ELEVATOR_INVERT_L);
-		left2.setInverted(Constants.ELEVATOR_INVERT_L);
 		right1.setInverted(Constants.ELEVATOR_INVERT_R);
 		right2.setInverted(Constants.ELEVATOR_INVERT_R);
 		
 		left1.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
-		left2.configReverseSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
 		right1.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
 		right2.configReverseSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
 		
-		left2.follow(left1);
 		right1.follow(left1);
 		right2.follow(left1);
 	}
