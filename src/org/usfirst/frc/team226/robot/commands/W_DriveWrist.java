@@ -1,40 +1,39 @@
 package org.usfirst.frc.team226.robot.commands;
 
-import org.hammerhead226.sharkmacro.actions.RecordableCommand;
 import org.usfirst.frc.team226.robot.Robot;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class PS_ShitftIntakeNeutral extends RecordableCommand {
+public class W_DriveWrist extends Command {
 
-    public PS_ShitftIntakeNeutral() {
-        requires(Robot.pneumaticsSystem);
+    public W_DriveWrist() {
+        // Use requires() here to declare subsystem dependencies
+        requires(Robot.wrist);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	super.initialize();
-    	Robot.pneumaticsSystem.shiftIntakeNeutral();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.wrist.driveWrist(Robot.oi.manip.getRightJoystick_Y());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	super.end();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	super.interrupted();
     }
 }
