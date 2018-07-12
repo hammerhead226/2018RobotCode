@@ -15,6 +15,7 @@ import org.usfirst.frc.team226.robot.auton.ExecuteMacro;
 import org.usfirst.frc.team226.robot.auton.grp_ExecuteMacroList;
 import org.usfirst.frc.team226.robot.commands.PS_ShiftDriveTrainHighGear;
 import org.usfirst.frc.team226.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team226.robot.subsystems.Elevator;
 import org.usfirst.frc.team226.robot.subsystems.Intake;
 import org.usfirst.frc.team226.robot.subsystems.PneumaticsSystem;
 import org.usfirst.frc.team226.robot.subsystems.Wrist;
@@ -37,7 +38,11 @@ public class Robot extends TimedRobot {
 	public static DriveTrain driveTrain;
 	public static PneumaticsSystem pneumaticsSystem;
 	public static Intake intake;
+
 	public static Wrist wrist;
+
+	public static Elevator elevator;
+
 	public static OI oi;
 
 	Command m_autonomousCommand;
@@ -48,8 +53,13 @@ public class Robot extends TimedRobot {
 		driveTrain = new DriveTrain();
 		pneumaticsSystem = new PneumaticsSystem();
 		intake = new Intake();
+
 		wrist = new Wrist();
+
+		elevator = new Elevator();
+
 		oi = new OI();
+		
 		chooser.addDefault("Baseline Cross", new ExecuteMacro("baseline"));
 		chooser.addObject("Left Switch", new ExecuteChoiceMacro("leftswitch_left", "baseline"));
 		chooser.addObject("Center Switch", new ExecuteChoiceMacro("centerswitch_left", "centerswitch_right"));
