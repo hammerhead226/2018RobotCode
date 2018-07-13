@@ -9,6 +9,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -29,7 +30,7 @@ public class Elevator extends Subsystem {
 
 		left1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ELEVATOR_PIDSLOT_IDX,
 				Constants.ELEVATOR_TIMEOUT);
-		
+
 		left1.setSensorPhase(Constants.ELEVATOR_SENSOR_PHASE);
 
 		left1.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, Constants.ELEVATOR_TIMEOUT);
@@ -56,12 +57,12 @@ public class Elevator extends Subsystem {
 		left2.setInverted(Constants.ELEVATOR_INVERT_L);
 		right1.setInverted(Constants.ELEVATOR_INVERT_R);
 		right2.setInverted(Constants.ELEVATOR_INVERT_R);
-		
+
 		left1.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
 		left2.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
 		right1.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
 		right2.configReverseSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
-		
+
 		left2.follow(left1);
 		right1.follow(left1);
 		right2.follow(left1);
@@ -93,7 +94,7 @@ public class Elevator extends Subsystem {
 	public void hardZeroEncoder() {
 		left1.setSelectedSensorPosition(0, Constants.ELEVATOR_PIDSLOT_IDX, Constants.ELEVATOR_TIMEOUT);
 	}
-	
+
 	public void driveElevator(double speed) {
 		left1.set(ControlMode.PercentOutput, speed);
 	}
@@ -105,6 +106,12 @@ public class Elevator extends Subsystem {
 		} else {
 			left1.set(ControlMode.Position, setpointPosition);
 		}
+		
+		SmartDashboard.putNumber("11", left1.getOutputCurrent());
+		SmartDashboard.putNumber("14", left1.getOutputCurrent());
+		SmartDashboard.putNumber("15", left1.getOutputCurrent());
+		SmartDashboard.putNumber("21", left1.getOutputCurrent());
+
 	}
 
 }
