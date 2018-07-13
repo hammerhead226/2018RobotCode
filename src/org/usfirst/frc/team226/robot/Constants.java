@@ -23,21 +23,15 @@ public class Constants {
 	// Subsystem Current Limits
 	public static final int INTAKE_CURRENT_LIMIT = 0;
 	public static final int DT_CURRENT_LIMIT = 30;
-
 	public static final int WRIST_CURRENT_LIMIT = 0;
+	public static final int ELEVATOR_CURRENT_LIMIT = 40;
+
 	
 	// Enable Subsystem Current Limits
 	public static final boolean DT_CURRENT_LIMIT_ENABLED = false;
 	public static final boolean INTAKE_CURRENT_LIMIT_ENABLED = false;
 	public static final boolean WRIST_CURRENT_LIMIT_ENABLED = false;
-
-	public static final int ELEVATOR_CURRENT_LIMIT = 0;
-
-	// Enable Subsystem Current Limits
-	public static final boolean DT_CURRENT_LIMIT_ENABLED = false;
-	public static final boolean INTAKE_CURRENT_LIMIT_ENABLED = false;
 	public static final boolean ELEVATOR_CURRENT_LIMIT_ENABLED = false;
-
 
 	// Invert Motors
 	public static final boolean INTAKE_INVERT_L = false;
