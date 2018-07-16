@@ -44,9 +44,6 @@ public class RobotMap {
 	public static final int INTAKE_SHIFTER_RIGHT_1 = 2;
 	public static final int INTAKE_SHIFTER_RIGHT_2 = 3;
 
-	public static final int WRIST_LEFT = 0;
-	public static final int WRIST_RIGHT = 0;
-
 	public static final int ELEVATOR_LEFT_1 = 0;
 	public static final int ELEVATOR_LEFT_2 = 0;
 	public static final int ELEVATOR_RIGHT_1 = 0;
