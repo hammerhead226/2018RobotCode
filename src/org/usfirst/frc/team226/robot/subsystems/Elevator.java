@@ -9,6 +9,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -18,50 +19,65 @@ public class Elevator extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
-	private TalonSRX left1 = new TalonSRX(RobotMap.ELEVATOR_LEFT_1);
-	private TalonSRX right1 = new TalonSRX(RobotMap.ELEVATOR_RIGHT_1);
-	private TalonSRX right2 = new TalonSRX(RobotMap.ELEVATOR_RIGHT_2);
+	private TalonSRX elevator1 = new TalonSRX(RobotMap.ELEVATOR_1);
+	private TalonSRX elevator2 = new TalonSRX(RobotMap.ELEVATOR_2);
+	private TalonSRX elevator3 = new TalonSRX(RobotMap.ELEVATOR_3);
+	private TalonSRX elevator4 = new TalonSRX(RobotMap.ELEVATOR_4);
 
 	private int setpointPosition = ElevatorSetpoint.GROUND.position;
 
 	public Elevator() {
 
-		left1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ELEVATOR_PIDSLOT_IDX,
+		elevator1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ELEVATOR_PIDSLOT_IDX,
 				Constants.ELEVATOR_TIMEOUT);
-		
-		left1.setSensorPhase(Constants.ELEVATOR_SENSOR_PHASE);
 
-		left1.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, 0);
-		right1.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, 0);
-		right2.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, 0);
+		elevator1.setSensorPhase(Constants.ELEVATOR_SENSOR_PHASE);
 
-		left1.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
-		right1.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
-		right2.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
+		elevator1.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, Constants.ELEVATOR_TIMEOUT);
+		elevator2.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, Constants.ELEVATOR_TIMEOUT);
+		elevator3.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, Constants.ELEVATOR_TIMEOUT);
+		elevator4.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, Constants.ELEVATOR_TIMEOUT);
 
-		left1.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT);
-		right1.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT);
-		right2.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT);
+		elevator1.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
+		elevator2.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
+		elevator3.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
+		elevator4.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
 
-		left1.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
-		right1.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
-		right2.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
+		elevator1.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT);
+		elevator2.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT);
+		elevator3.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT);
+		elevator4.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT);
 
-		left1.setInverted(Constants.ELEVATOR_INVERT_L);
-		right1.setInverted(Constants.ELEVATOR_INVERT_R);
-		right2.setInverted(Constants.ELEVATOR_INVERT_R);
-		
-		left1.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
-		right1.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
-		right2.configReverseSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
-		
-		right1.follow(left1);
-		right2.follow(left1);
+		elevator1.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
+		elevator2.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
+		elevator3.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
+		elevator4.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
+
+		elevator1.setInverted(Constants.ELEVATOR_INVERT);
+		elevator2.setInverted(Constants.ELEVATOR_INVERT);
+		elevator3.setInverted(Constants.ELEVATOR_INVERT);
+		elevator4.setInverted(Constants.ELEVATOR_INVERT);
+
+		elevator1.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
+		elevator2.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
+		elevator3.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
+		elevator4.configReverseSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
+
+		elevator2.follow(elevator1);
+		elevator3.follow(elevator1);
+		elevator4.follow(elevator1);
 	}
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		setDefaultCommand(new E_ControlElevator());
+	}
+	
+	public void log() {
+		SmartDashboard.putNumber("11", elevator1.getOutputCurrent());
+		SmartDashboard.putNumber("14", elevator2.getOutputCurrent());
+		SmartDashboard.putNumber("15", elevator3.getOutputCurrent());
+		SmartDashboard.putNumber("18", elevator4.getOutputCurrent());
 	}
 
 	public enum ElevatorSetpoint {
@@ -79,24 +95,25 @@ public class Elevator extends Subsystem {
 	}
 
 	public int getElevatorPos() {
-		return left1.getSelectedSensorPosition(Constants.ELEVATOR_PIDSLOT_IDX);
+		return elevator1.getSelectedSensorPosition(Constants.ELEVATOR_PIDSLOT_IDX);
 	}
 
 	public void hardZeroEncoder() {
-		left1.setSelectedSensorPosition(0, Constants.ELEVATOR_PIDSLOT_IDX, Constants.ELEVATOR_TIMEOUT);
+		elevator1.setSelectedSensorPosition(0, Constants.ELEVATOR_PIDSLOT_IDX, Constants.ELEVATOR_TIMEOUT);
 	}
-	
+
 	public void driveElevator(double speed) {
-		left1.set(ControlMode.PercentOutput, speed);
+		elevator1.set(ControlMode.PercentOutput, speed);
 	}
 
 	public void controlElevator(double speed) {
 		if (speed != 0) {
-			left1.set(ControlMode.PercentOutput, speed);
+			elevator1.set(ControlMode.PercentOutput, speed);
 			setpointPosition = getElevatorPos();
 		} else {
-			left1.set(ControlMode.Position, setpointPosition);
+			elevator1.set(ControlMode.Position, setpointPosition);
 		}
+		
 	}
 
 }
