@@ -37,7 +37,8 @@ public class Constants {
 	public static final int DT_LEFT_PIDSLOT_IDX = 0;
 	public static final int DT_RIGHT_PIDSLOT_IDX = 0;
 	public static final int ELEVATOR_PIDSLOT_IDX = 0;
-
+	public static final int WRIST_PIDSLOT_IDX = 0;
+  
 	// Timeouts
 	public static final int DT_TIMEOUT = 10;
 	public static final int INTAKE_TIMEOUT = 10;
