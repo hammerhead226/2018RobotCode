@@ -72,6 +72,13 @@ public class Elevator extends Subsystem {
 		// Set the default command for a subsystem here.
 		setDefaultCommand(new E_ControlElevator());
 	}
+	
+	public void log() {
+		SmartDashboard.putNumber("11", elevator1.getOutputCurrent());
+		SmartDashboard.putNumber("14", elevator2.getOutputCurrent());
+		SmartDashboard.putNumber("15", elevator3.getOutputCurrent());
+		SmartDashboard.putNumber("18", elevator4.getOutputCurrent());
+	}
 
 	public enum ElevatorSetpoint {
 		// setpoints to be set next week
