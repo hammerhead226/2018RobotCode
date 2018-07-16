@@ -33,8 +33,8 @@ public class RobotMap {
 	public static final int INTAKE_PCM = PCM_A;
 
 
-	public static final int INTAKE_SHIFTER_LEFT_1 = 2;
-	public static final int INTAKE_SHIFTER_LEFT_2 = 3;
+	public static final int INTAKE_SHIFTER_LEFT_1 = 0;
+	public static final int INTAKE_SHIFTER_LEFT_2 = 1;
 	public static final int INTAKE_SHIFTER_RIGHT_1 = 2;
 	public static final int INTAKE_SHIFTER_RIGHT_2 = 3;
 
@@ -50,6 +50,11 @@ public class RobotMap {
 	public static final int ELEVATOR_LEFT_2 = 0;
 	public static final int ELEVATOR_RIGHT_1 = 0;
 	public static final int ELEVATOR_RIGHT_2 = 0;
+	
+	public static final int DT_LEFT_SHIFTER_1 = 4;
+	public static final int DT_LEFT_SHIFTER_2 = 5;
+	public static final int DT_RIGHT_SHIFTER_1 = 6;
+	public static final int DT_RIGHT_SHIFTER_2 = 7;
 
 
 }

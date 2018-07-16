@@ -27,8 +27,8 @@ public class Constants {
 	public static final int WRIST_CURRENT_LIMIT = 0;
 	
 	// Enable Subsystem Current Limits
-	public static final boolean DT_CURRENT_LIMIT_ENABLED = false;
-	public static final boolean INTAKE_CURRENT_LIMIT_ENABLED = false;
+	//public static final boolean DT_CURRENT_LIMIT_ENABLED = false;
+	//public static final boolean INTAKE_CURRENT_LIMIT_ENABLED = false;
 	public static final boolean WRIST_CURRENT_LIMIT_ENABLED = false;
 
 	public static final int ELEVATOR_CURRENT_LIMIT = 0;
@@ -54,7 +54,7 @@ public class Constants {
 	public static final int DT_LEFT_PIDSLOT_IDX = 0;
 	public static final int DT_RIGHT_PIDSLOT_IDX = 0;
 	public static final int ELEVATOR_PIDSLOT_IDX = 0;
-
+	public static final int WRIST_PIDSLOT_IDX = 0;
 
 	// Misc
 	public static final int DT_TIMEOUT = 10;
