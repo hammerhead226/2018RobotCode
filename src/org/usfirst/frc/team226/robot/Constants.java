@@ -31,8 +31,7 @@ public class Constants {
 	public static final boolean INTAKE_INVERT_R = false;
 	public static final boolean WRIST_INVERT_L = false;
 	public static final boolean WRIST_INVERT_R = false;
-	public static final boolean ELEVATOR_INVERT_L = false;
-	public static final boolean ELEVATOR_INVERT_R = false;
+	public static final boolean ELEVATOR_INVERT = false;
 
 	// PID Slots
 	public static final int DT_LEFT_PIDSLOT_IDX = 0;
