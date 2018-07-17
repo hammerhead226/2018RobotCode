@@ -21,8 +21,8 @@ public class Elevator extends Subsystem {
 
 	private TalonSRX elevator1 = new TalonSRX(RobotMap.ELEVATOR_1);
 	private TalonSRX elevator2 = new TalonSRX(RobotMap.ELEVATOR_2);
-	//private TalonSRX elevator3 = new TalonSRX(RobotMap.ELEVATOR_3);
-	//private TalonSRX elevator4 = new TalonSRX(RobotMap.ELEVATOR_4);
+	private TalonSRX elevator3 = new TalonSRX(RobotMap.ELEVATOR_3);
+	private TalonSRX elevator4 = new TalonSRX(RobotMap.ELEVATOR_4);
 
 	private int setpointPosition = ElevatorSetpoint.GROUND.position;
 
@@ -35,37 +35,37 @@ public class Elevator extends Subsystem {
 
 		elevator1.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, Constants.ELEVATOR_TIMEOUT);
 		elevator2.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, Constants.ELEVATOR_TIMEOUT);
-		//elevator3.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, Constants.ELEVATOR_TIMEOUT);
-		//elevator4.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, Constants.ELEVATOR_TIMEOUT);
+		elevator3.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, Constants.ELEVATOR_TIMEOUT);
+		elevator4.configContinuousCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT, Constants.ELEVATOR_TIMEOUT);
 
 		elevator1.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
 		elevator2.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
-		//elevator3.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
-		//elevator4.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
+		elevator3.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
+		elevator4.enableCurrentLimit(Constants.ELEVATOR_CURRENT_LIMIT_ENABLED);
 
 		elevator1.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT);
 		elevator2.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT);
-		//elevator3.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT);
-		//elevator4.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT);
+		elevator3.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT);
+		elevator4.configVoltageCompSaturation(Constants.ELEVATOR_VOLTAGE_LIMIT, Constants.ELEVATOR_TIMEOUT);
 
 		elevator1.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
 		elevator2.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
-		//elevator3.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
-		//elevator4.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
+		elevator3.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
+		elevator4.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
 
 		elevator1.setInverted(Constants.ELEVATOR_INVERT);
 		elevator2.setInverted(Constants.ELEVATOR_INVERT);
-		//elevator3.setInverted(Constants.ELEVATOR_INVERT);
-		//elevator4.setInverted(Constants.ELEVATOR_INVERT);
+		elevator3.setInverted(Constants.ELEVATOR_INVERT);
+		elevator4.setInverted(Constants.ELEVATOR_INVERT);
 
 		elevator1.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
 		elevator2.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
-		//elevator3.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
-		//elevator4.configReverseSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
+		elevator3.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
+		elevator4.configReverseSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
 
 		elevator2.follow(elevator1);
-		//elevator3.follow(elevator1);
-		//elevator4.follow(elevator1);
+		elevator3.follow(elevator1);
+		elevator4.follow(elevator1);
 	}
 
 	public void initDefaultCommand() {
@@ -76,8 +76,8 @@ public class Elevator extends Subsystem {
 	public void log() {
 		SmartDashboard.putNumber("11", elevator1.getOutputCurrent());
 		SmartDashboard.putNumber("14", elevator2.getOutputCurrent());
-		//SmartDashboard.putNumber("15", elevator3.getOutputCurrent());
-		//SmartDashboard.putNumber("18", elevator4.getOutputCurrent());
+		SmartDashboard.putNumber("15", elevator3.getOutputCurrent());
+		SmartDashboard.putNumber("18", elevator4.getOutputCurrent());
 	}
 
 	public enum ElevatorSetpoint {

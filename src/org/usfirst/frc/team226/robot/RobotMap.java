@@ -28,8 +28,8 @@ public class RobotMap {
 
 	public static final int ELEVATOR_1 = 11;
 	public static final int ELEVATOR_2 = 14;
-	//public static final int ELEVATOR_3 = 15;
-	//public static final int ELEVATOR_4 = 18;
+	public static final int ELEVATOR_3 = 15;
+	public static final int ELEVATOR_4 = 18;
 
 	public static final int PCM_A = 11;
 
