@@ -75,7 +75,7 @@ public class Elevator extends Subsystem {
 	
 	public void log() {
 		SmartDashboard.putNumber("11", elevator1.getOutputCurrent());
-		SmartDashboard.putNumber("14", elevator2.getOutputCurrent());
+		SmartDashboard.putNumber("19", elevator2.getOutputCurrent());
 		SmartDashboard.putNumber("15", elevator3.getOutputCurrent());
 		SmartDashboard.putNumber("18", elevator4.getOutputCurrent());
 	}

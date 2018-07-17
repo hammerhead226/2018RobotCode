@@ -18,7 +18,7 @@ public class Constants {
 	public static final int INTAKE_CURRENT_LIMIT = 0;
 	public static final int DT_CURRENT_LIMIT = 30;
 	public static final int WRIST_CURRENT_LIMIT = 0;
-	public static final int ELEVATOR_CURRENT_LIMIT = 40;
+	public static final int ELEVATOR_CURRENT_LIMIT = 30;
 
 	// Enable Subsystem Current Limits
 	public static final boolean DT_CURRENT_LIMIT_ENABLED = false;
@@ -31,7 +31,7 @@ public class Constants {
 	public static final boolean INTAKE_INVERT_R = false;
 	public static final boolean WRIST_INVERT_L = false;
 	public static final boolean WRIST_INVERT_R = false;
-	public static final boolean ELEVATOR_INVERT = true;
+	public static final boolean ELEVATOR_INVERT = false;
 
 	// PID Slots
 	public static final int DT_LEFT_PIDSLOT_IDX = 0;
