@@ -11,6 +11,7 @@ import org.usfirst.frc.team226.robot.auton.ExecuteMacro;
 import org.usfirst.frc.team226.robot.auton.grp_ToggleAutonRecording;
 import org.usfirst.frc.team226.robot.commands.A_DriveArm;
 import org.usfirst.frc.team226.robot.commands.A_HardZeroArmEncoder;
+import org.usfirst.frc.team226.robot.commands.A_SetEncoderToArmUp;
 import org.usfirst.frc.team226.robot.commands.A_SetpointGround;
 import org.usfirst.frc.team226.robot.commands.A_SetpointHigh;
 import org.usfirst.frc.team226.robot.commands.A_SetpointSwitch;
@@ -23,7 +24,6 @@ import org.usfirst.frc.team226.robot.commands.PS_CompressorOn;
 import org.usfirst.frc.team226.robot.commands.PS_ShiftDriveTrainHighGear;
 import org.usfirst.frc.team226.robot.commands.PS_ShiftDriveTrainLowGear;
 import org.usfirst.frc.team226.robot.commands.PS_ShiftIntake;
-import org.usfirst.frc.team226.robot.commands.PS_Shoot;
 import org.usfirst.frc.team226.robot.commands.PS_grp_Reload;
 
 import util.Controller;
@@ -49,13 +49,13 @@ public class OI {
 		manip.getRBButton().whenPressed(new PS_ShiftIntake());
 		manip.getRSButton().whileHeld(new I_Intake());
 		manip.getBButton().whenPressed(new I_Outtake());
-		manip.getSTARTButton().whenPressed(new PS_Shoot());
 
 		// Arm
-		manip.getSELECTButton().whenPressed(new A_HardZeroArmEncoder());
 		manip.getYButton().whenPressed(new A_SetpointHigh());
 		manip.getXButton().whenPressed(new A_SetpointSwitch());
 		manip.getAButton().whenPressed(new A_SetpointGround());
+		manip.getSTARTButton().whenPressed(new A_SetEncoderToArmUp());
+		manip.getSELECTButton().whenPressed(new A_HardZeroArmEncoder());
 		
 		//Shooter
 		driver.getAButton().whenPressed(new I_grp_OuttakeShoot());
