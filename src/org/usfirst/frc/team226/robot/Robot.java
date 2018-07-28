@@ -8,10 +8,7 @@
 package org.usfirst.frc.team226.robot;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-import org.hammerhead226.sharkmacro.Parser;
 import org.hammerhead226.sharkmacro.motionprofiles.ProfileParser;
 import org.usfirst.frc.team226.robot.auton.ExecuteChoiceMacro;
 import org.usfirst.frc.team226.robot.auton.ExecuteMacro;
