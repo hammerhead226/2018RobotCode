@@ -1,7 +1,6 @@
 package org.usfirst.frc.team226.robot.subsystems;
 
 import org.usfirst.frc.team226.robot.Constants;
-import org.usfirst.frc.team226.robot.Robot;
 import org.usfirst.frc.team226.robot.RobotMap;
 import org.usfirst.frc.team226.robot.commands.A_ControlArm;
 
@@ -23,6 +22,7 @@ public class Arm extends Subsystem {
 	public void log() {
 		SmartDashboard.putNumber("Arm Left", left.getOutputCurrent());
 		SmartDashboard.putNumber("Arm Right", right.getOutputCurrent());
+		SmartDashboard.putNumber("Arm encoder", right.getSelectedSensorPosition(Constants.ARM_PIDSLOT_IDX));
 	}
 
 	private int setpointPosition = ArmSetpoint.STRAIGHT_UP.position;
@@ -57,7 +57,7 @@ public class Arm extends Subsystem {
 
 		left.follow(right);
 
-		hardZeroEncoder();
+		setEncoderToArmPos();
 
 	}
 
@@ -85,9 +85,14 @@ public class Arm extends Subsystem {
 	}
 
 	public void hardZeroEncoder() {
+		right.setSelectedSensorPosition(0, 0, Constants.ARM_TIMEOUT);
+	}
+	
+	public void setEncoderToArmPos() {
 		right.setSelectedSensorPosition(ArmSetpoint.STRAIGHT_UP.position, 0, Constants.ARM_TIMEOUT);
 		setArmSetpoint(ArmSetpoint.STRAIGHT_UP);
 	}
+	
 
 	public int getArmError() {
 		return right.getClosedLoopError(Constants.ARM_PIDSLOT_IDX);

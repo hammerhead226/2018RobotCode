@@ -22,14 +22,14 @@ public class Constants {
 	public static final boolean CLIMBER_VOLTAGE_LIMIT_ENABLED = false;
 
 	// Subsystem Current Limits
-	public static final int INTAKE_CURRENT_LIMIT = 0;
+	public static final int INTAKE_CURRENT_LIMIT = 30;
 	public static final int ARM_CURRENT_LIMIT = 0;
 	public static final int DT_CURRENT_LIMIT = 30;
 	public static final int CLIMBER_CURRENT_LIMIT = 0;
 
 	// Enable Subsystem Current Limits
 	public static final boolean DT_CURRENT_LIMIT_ENABLED = false;
-	public static final boolean INTAKE_CURRENT_LIMIT_ENABLED = false;
+	public static final boolean INTAKE_CURRENT_LIMIT_ENABLED = true;
 	public static final boolean ARM_CURRENT_LIMIT_ENABLED = false;
 	public static final boolean CLIMBER_CURRENT_LIMIT_ENABLED = false;
 

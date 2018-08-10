@@ -2,8 +2,6 @@ package org.usfirst.frc.team226.robot.subsystems;
 
 import org.usfirst.frc.team226.robot.RobotMap;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;

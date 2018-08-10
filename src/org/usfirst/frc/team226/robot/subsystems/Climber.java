@@ -43,6 +43,9 @@ public class Climber extends Subsystem {
 	}
 
 	public void driveClimber(double speed) {
+		if(speed == 0) {
+			speed = -0.05;
+		}
 		left.set(ControlMode.PercentOutput, speed);
 		right.set(ControlMode.PercentOutput, speed);
 	}
