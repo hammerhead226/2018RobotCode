@@ -38,11 +38,8 @@ public class Robot extends TimedRobot {
 	public static DriveTrain driveTrain;
 	public static PneumaticsSystem pneumaticsSystem;
 	public static Intake intake;
-
 	public static Wrist wrist;
-
 	public static Elevator elevator;
-
 	public static OI oi;
 
 	Command m_autonomousCommand;
@@ -53,18 +50,15 @@ public class Robot extends TimedRobot {
 		driveTrain = new DriveTrain();
 		pneumaticsSystem = new PneumaticsSystem();
 		intake = new Intake();
-
 		wrist = new Wrist();
-
 		elevator = new Elevator();
-
 		oi = new OI();
-		
+
 		chooser.addDefault("Baseline Cross", new ExecuteMacro("baseline"));
 		chooser.addObject("Left Switch", new ExecuteChoiceMacro("leftswitch_left", "baseline"));
 		chooser.addObject("Center Switch", new ExecuteChoiceMacro("centerswitch_left", "centerswitch_right"));
 		chooser.addObject("Right Switch", new ExecuteChoiceMacro("baseline", "rightswitch_right"));
-		
+
 		ArrayList<String> left = new ArrayList<String>();
 		left.add("centerswitch_left");
 		left.add("centerswitch_left_pickup_fast");
@@ -74,7 +68,7 @@ public class Robot extends TimedRobot {
 		right.add("nothing");
 		right.add("nothing");
 		chooser.addObject("Center switch 2 cube?", new grp_ExecuteMacroList(left, right));
-		
+
 		SmartDashboard.putData("Auto mode", chooser);
 
 		SmartDashboard.putData(new PS_ShiftDriveTrainHighGear());
