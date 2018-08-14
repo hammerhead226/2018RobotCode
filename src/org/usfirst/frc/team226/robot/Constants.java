@@ -30,7 +30,7 @@ public class Constants {
 	public static final boolean INTAKE_INVERT_L = false;
 	public static final boolean INTAKE_INVERT_R = false;
 	public static final boolean WRIST_INVERT_L = false;
-	public static final boolean WRIST_INVERT_R = false;
+	public static final boolean WRIST_INVERT_R = true;
 	public static final boolean ELEVATOR_INVERT = false;
 
 	// PID Slots
@@ -48,7 +48,7 @@ public class Constants {
 	// Sensor Phase
 	public static final boolean DT_LEFT_SENSOR_PHASE = true;
 	public static final boolean DT_RIGHT_SENSOR_PHASE = true;
-	public static final boolean ELEVATOR_SENSOR_PHASE = false;
+	public static final boolean ELEVATOR_SENSOR_PHASE = true;
 
 	// Misc
 	public static final double DT_VOLTAGE_RAMP_RATE = 0.1;

@@ -2,7 +2,7 @@ package org.usfirst.frc.team226.robot.subsystems;
 
 import org.usfirst.frc.team226.robot.Constants;
 import org.usfirst.frc.team226.robot.RobotMap;
-import org.usfirst.frc.team226.robot.commands.E_ControlElevator;
+import org.usfirst.frc.team226.robot.commands.E_DriveElevator;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -30,6 +30,8 @@ public class Elevator extends Subsystem {
 
 		elevator1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ELEVATOR_PIDSLOT_IDX,
 				Constants.ELEVATOR_TIMEOUT);
+
+		hardZeroEncoder();
 
 		elevator1.setSensorPhase(Constants.ELEVATOR_SENSOR_PHASE);
 
@@ -63,21 +65,24 @@ public class Elevator extends Subsystem {
 		elevator3.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
 		elevator4.configReverseSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
 
-		elevator2.follow(elevator1);
-		elevator3.follow(elevator1);
-		elevator4.follow(elevator1);
+//		elevator2.follow(elevator1);
+//		elevator3.follow(elevator1);
+//		elevator4.follow(elevator1);
 	}
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		setDefaultCommand(new E_ControlElevator());
+		setDefaultCommand(new E_DriveElevator());
 	}
-	
+
 	public void log() {
-		SmartDashboard.putNumber("11", elevator1.getOutputCurrent());
-		SmartDashboard.putNumber("19", elevator2.getOutputCurrent());
-		SmartDashboard.putNumber("15", elevator3.getOutputCurrent());
-		SmartDashboard.putNumber("18", elevator4.getOutputCurrent());
+		SmartDashboard.putNumber("11", elevator1.getMotorOutputPercent());
+		SmartDashboard.putNumber("19", elevator2.getMotorOutputPercent());
+		SmartDashboard.putNumber("15", elevator3.getMotorOutputPercent());
+		SmartDashboard.putNumber("18", elevator4.getMotorOutputPercent());
+		SmartDashboard.putNumber("elevator pos", setpointPosition);
+		SmartDashboard.putNumber("legit elevator pos", getElevatorPos());
+		SmartDashboard.putNumber("elevator 1", elevator1.getMotorOutputPercent());
 	}
 
 	public enum ElevatorSetpoint {
@@ -104,16 +109,19 @@ public class Elevator extends Subsystem {
 
 	public void driveElevator(double speed) {
 		elevator1.set(ControlMode.PercentOutput, speed);
+		elevator2.set(ControlMode.PercentOutput, speed);
+		elevator3.set(ControlMode.PercentOutput, speed);
+		elevator4.set(ControlMode.PercentOutput, speed);
+		
+		System.out.println(elevator1.getMotorOutputPercent() + "|" + elevator2.getMotorOutputPercent() + "|"
+				+ elevator3.getMotorOutputPercent() + "|" + elevator4.getMotorOutputPercent());
 	}
 
 	public void controlElevator(double speed) {
-		if (speed != 0) {
-			elevator1.set(ControlMode.PercentOutput, speed);
-			setpointPosition = getElevatorPos();
-		} else {
-			elevator1.set(ControlMode.Position, setpointPosition);
-		}
-		
+		elevator1.set(ControlMode.PercentOutput, speed);
+		System.out.println(elevator1.getMotorOutputPercent() + "|" + elevator2.getMotorOutputPercent() + "|"
+				+ elevator3.getMotorOutputPercent() + "|" + elevator4.getMotorOutputPercent());
+		setpointPosition = getElevatorPos();
 	}
 
 }

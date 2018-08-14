@@ -72,17 +72,18 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 
 		SmartDashboard.putData(new PS_ShiftDriveTrainHighGear());
-
-		ProfileParser.cache("centerswitch_left");
-		ProfileParser.cache("centerswitch_left_pickup_fast");
-		ProfileParser.cache("centerswitch_left_twocube");
-		ProfileParser.cache("centerswitch_right");
-		ProfileParser.cache("baseline");
+//
+//		ProfileParser.cache("centerswitch_left");
+//		ProfileParser.cache("centerswitch_left_pickup_fast");
+//		ProfileParser.cache("centerswitch_left_twocube");
+//		ProfileParser.cache("centerswitch_right");
+//		ProfileParser.cache("baseline");
 	}
 
 	@Override
 	public void robotPeriodic() {
 		elevator.log();
+		SmartDashboard.putNumber("joy val", oi.manip.getLeftJoystick_Y());
 	}
 
 	@Override
