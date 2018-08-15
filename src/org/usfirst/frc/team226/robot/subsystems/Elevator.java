@@ -111,12 +111,15 @@ public class Elevator extends Subsystem {
 		if(speed == 0) {
 			speed = 0.04;
 		}
-		
 		elevator1.set(ControlMode.PercentOutput, speed);
 	}
 
 	public void controlElevator(double speed) {
+		if(speed == 0) {
+			speed = 0.04;
+		}
 		elevator1.set(ControlMode.PercentOutput, speed);
+		setpointPosition = getElevatorPos();
 	}
 
 }
