@@ -6,16 +6,16 @@ import org.usfirst.frc.team226.robot.Robot;
 /**
  *
  */
-public class PS_ToggleIntakeClose extends RecordableCommand {
+public class PS_ToggleIntake extends RecordableCommand {
 
-    public PS_ToggleIntakeClose() {
+    public PS_ToggleIntake() {
         requires(Robot.pneumaticsSystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	super.initialize();
-    	Robot.pneumaticsSystem.toggleIntakeClose();
+    	Robot.pneumaticsSystem.shiftIntake();
     }
 
     // Called repeatedly when this Command is scheduled to run

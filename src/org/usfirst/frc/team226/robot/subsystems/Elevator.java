@@ -56,8 +56,8 @@ public class Elevator extends Subsystem {
 		elevator4.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
 
 		elevator1.setInverted(!Constants.ELEVATOR_INVERT);
-		elevator2.setInverted(!Constants.ELEVATOR_INVERT);
-		elevator3.setInverted(Constants.ELEVATOR_INVERT);
+		elevator2.setInverted(Constants.ELEVATOR_INVERT);
+		elevator3.setInverted(!Constants.ELEVATOR_INVERT);
 		elevator4.setInverted(Constants.ELEVATOR_INVERT);
 
 		elevator1.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
@@ -108,10 +108,10 @@ public class Elevator extends Subsystem {
 	}
 
 	public void driveElevator(double speed) {
-		elevator1.set(ControlMode.PercentOutput, speed);
-		elevator2.set(ControlMode.PercentOutput, speed);
-		elevator3.set(ControlMode.PercentOutput, speed);
-		elevator4.set(ControlMode.PercentOutput, speed);
+		elevator1.set(ControlMode.PercentOutput, -speed);
+		elevator2.set(ControlMode.PercentOutput, -speed);
+		elevator3.set(ControlMode.PercentOutput, -speed);
+		elevator4.set(ControlMode.PercentOutput, -speed);
 		
 		System.out.println(elevator1.getMotorOutputPercent() + "|" + elevator2.getMotorOutputPercent() + "|"
 				+ elevator3.getMotorOutputPercent() + "|" + elevator4.getMotorOutputPercent());

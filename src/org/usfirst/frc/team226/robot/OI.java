@@ -15,6 +15,7 @@ import org.usfirst.frc.team226.robot.commands.PS_CompressorOff;
 import org.usfirst.frc.team226.robot.commands.PS_CompressorOn;
 import org.usfirst.frc.team226.robot.commands.PS_ShiftDriveTrainHighGear;
 import org.usfirst.frc.team226.robot.commands.PS_ShiftDriveTrainLowGear;
+import org.usfirst.frc.team226.robot.commands.PS_ToggleIntake;
 
 import util.Controller;
 
@@ -41,6 +42,8 @@ public class OI {
 		// Auton recording controls
 		driver.getSTARTButton().whenPressed(new grp_ToggleAutonRecording());
 		driver.getSELECTButton().whenPressed(new ExecuteMacro());
+		
+		manip.getRBButton().whenPressed(new PS_ToggleIntake());
 		
 	}
 
