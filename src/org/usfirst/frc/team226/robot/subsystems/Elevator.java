@@ -80,8 +80,8 @@ public class Elevator extends Subsystem {
 		SmartDashboard.putNumber("19", elevator2.getMotorOutputPercent());
 		SmartDashboard.putNumber("15", elevator3.getMotorOutputPercent());
 		SmartDashboard.putNumber("18", elevator4.getMotorOutputPercent());
-		SmartDashboard.putNumber("elevator pos", setpointPosition);
-		SmartDashboard.putNumber("legit elevator pos", getElevatorPos());
+		SmartDashboard.putNumber("setpointPosition", setpointPosition);
+		SmartDashboard.putNumber("elevator pos", getElevatorPos());
 		SmartDashboard.putNumber("elevator 1", elevator1.getMotorOutputPercent());
 	}
 
