@@ -20,18 +20,7 @@ public class E_DriveElevator extends RecordableCommand {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		
-		double speed;
-		
-		if(Robot.oi.manip.getLeftJoystick_Y() == 0) {
-			System.out.println(0.04);
-			speed = 0.04;
-		} else {
-			System.out.println(Robot.oi.manip.getLeftJoystick_Y());
-			speed = Robot.oi.manip.getLeftJoystick_Y();
-		}
-		
-		Robot.elevator.driveElevator(speed);
+		Robot.elevator.driveElevator(Robot.oi.manip.getLeftJoystick_Y());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team226.robot.subsystems;
 
 import org.usfirst.frc.team226.robot.Constants;
+import org.usfirst.frc.team226.robot.Robot;
 import org.usfirst.frc.team226.robot.RobotMap;
 import org.usfirst.frc.team226.robot.commands.E_DriveElevator;
 
@@ -108,8 +109,12 @@ public class Elevator extends Subsystem {
 	}
 
 	public void driveElevator(double speed) {
-		elevator1.set(ControlMode.PercentOutput, -speed);
+		if(speed == 0) {
+			speed = 0.04;
+		}
 		
+		elevator1.set(ControlMode.PercentOutput, speed);
+
 		System.out.println(elevator1.getMotorOutputPercent() + "|" + elevator2.getMotorOutputPercent() + "|"
 				+ elevator3.getMotorOutputPercent() + "|" + elevator4.getMotorOutputPercent());
 	}
