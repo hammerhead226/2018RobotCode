@@ -113,16 +113,10 @@ public class Elevator extends Subsystem {
 		}
 		
 		elevator1.set(ControlMode.PercentOutput, speed);
-
-		System.out.println(elevator1.getMotorOutputPercent() + "|" + elevator2.getMotorOutputPercent() + "|"
-				+ elevator3.getMotorOutputPercent() + "|" + elevator4.getMotorOutputPercent());
 	}
 
 	public void controlElevator(double speed) {
 		elevator1.set(ControlMode.PercentOutput, speed);
-		System.out.println(elevator1.getMotorOutputPercent() + "|" + elevator2.getMotorOutputPercent() + "|"
-				+ elevator3.getMotorOutputPercent() + "|" + elevator4.getMotorOutputPercent());
-		setpointPosition = getElevatorPos();
 	}
 
 }
