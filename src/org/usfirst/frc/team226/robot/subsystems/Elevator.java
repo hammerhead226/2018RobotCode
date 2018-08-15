@@ -1,9 +1,8 @@
 package org.usfirst.frc.team226.robot.subsystems;
 
 import org.usfirst.frc.team226.robot.Constants;
-import org.usfirst.frc.team226.robot.Robot;
 import org.usfirst.frc.team226.robot.RobotMap;
-import org.usfirst.frc.team226.robot.commands.E_DriveElevator;
+import org.usfirst.frc.team226.robot.commands.E_ControlElevator;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -73,7 +72,7 @@ public class Elevator extends Subsystem {
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		setDefaultCommand(new E_DriveElevator());
+		setDefaultCommand(new E_ControlElevator());
 	}
 
 	public void log() {
