@@ -109,9 +109,6 @@ public class Elevator extends Subsystem {
 
 	public void driveElevator(double speed) {
 		elevator1.set(ControlMode.PercentOutput, -speed);
-		elevator2.set(ControlMode.PercentOutput, -speed);
-		elevator3.set(ControlMode.PercentOutput, -speed);
-		elevator4.set(ControlMode.PercentOutput, -speed);
 		
 		System.out.println(elevator1.getMotorOutputPercent() + "|" + elevator2.getMotorOutputPercent() + "|"
 				+ elevator3.getMotorOutputPercent() + "|" + elevator4.getMotorOutputPercent());
