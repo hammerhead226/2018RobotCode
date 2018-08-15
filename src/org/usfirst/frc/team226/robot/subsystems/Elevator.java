@@ -109,14 +109,14 @@ public class Elevator extends Subsystem {
 
 	public void driveElevator(double speed) {
 		if(speed == 0) {
-			speed = 0.04;
+			speed = Constants.ELEVATOR_CONTINOUS_CURRENT;
 		}
 		elevator1.set(ControlMode.PercentOutput, speed);
 	}
 
 	public void controlElevator(double speed) {
 		if(speed == 0) {
-			speed = 0.04;
+			speed = Constants.ELEVATOR_CONTINOUS_CURRENT;
 		}
 		elevator1.set(ControlMode.PercentOutput, speed);
 		setpointPosition = getElevatorPos();

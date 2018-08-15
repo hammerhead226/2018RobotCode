@@ -54,6 +54,7 @@ public class Constants {
 	public static final double DT_VOLTAGE_RAMP_RATE = 0.1;
 	public static final boolean ELEVATOR_FORWARD_LIMIT_ENABLED = false;
 	public static final boolean ELEVATOR_REVERSE_LIMIT_ENABLED = false;
+	public static final double ELEVATOR_CONTINOUS_CURRENT = 0.045;
 
 	public static boolean IS_AUTON = false;
 }
