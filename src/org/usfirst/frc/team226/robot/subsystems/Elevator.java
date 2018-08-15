@@ -65,9 +65,9 @@ public class Elevator extends Subsystem {
 		elevator3.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
 		elevator4.configReverseSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
 
-//		elevator2.follow(elevator1);
-//		elevator3.follow(elevator1);
-//		elevator4.follow(elevator1);
+		elevator2.follow(elevator1);
+		elevator3.follow(elevator1);
+		elevator4.follow(elevator1);
 	}
 
 	public void initDefaultCommand() {
@@ -108,14 +108,14 @@ public class Elevator extends Subsystem {
 	}
 
 	public void driveElevator(double speed) {
-		if(speed == 0) {
+		if (speed == 0) {
 			speed = Constants.ELEVATOR_CONTINOUS_CURRENT;
 		}
 		elevator1.set(ControlMode.PercentOutput, speed);
 	}
 
 	public void controlElevator(double speed) {
-		if(speed == 0) {
+		if (speed == 0) {
 			speed = Constants.ELEVATOR_CONTINOUS_CURRENT;
 		}
 		elevator1.set(ControlMode.PercentOutput, speed);
