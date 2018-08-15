@@ -63,7 +63,22 @@ public class Elevator extends Subsystem {
 		elevator1.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
 		elevator2.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
 		elevator3.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
+		elevator4.configForwardSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
+		
+		elevator1.configReverseSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
+		elevator2.configReverseSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
+		elevator3.configReverseSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
 		elevator4.configReverseSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
+		
+		elevator1.configForwardSoftLimitThreshold(Constants.ELEVATOR_FORWARD_LIMIT, Constants.ELEVATOR_TIMEOUT);
+		elevator2.configForwardSoftLimitThreshold(Constants.ELEVATOR_FORWARD_LIMIT, Constants.ELEVATOR_TIMEOUT);
+		elevator3.configForwardSoftLimitThreshold(Constants.ELEVATOR_FORWARD_LIMIT, Constants.ELEVATOR_TIMEOUT);
+		elevator4.configForwardSoftLimitThreshold(Constants.ELEVATOR_FORWARD_LIMIT, Constants.ELEVATOR_TIMEOUT);
+
+		elevator1.configReverseSoftLimitThreshold(Constants.ELEVATOR_REVERSE_LIMIT, Constants.ELEVATOR_TIMEOUT);
+		elevator2.configReverseSoftLimitThreshold(Constants.ELEVATOR_REVERSE_LIMIT, Constants.ELEVATOR_TIMEOUT);
+		elevator3.configReverseSoftLimitThreshold(Constants.ELEVATOR_REVERSE_LIMIT, Constants.ELEVATOR_TIMEOUT);
+		elevator4.configReverseSoftLimitThreshold(Constants.ELEVATOR_REVERSE_LIMIT, Constants.ELEVATOR_TIMEOUT);
 
 		elevator2.follow(elevator1);
 		elevator3.follow(elevator1);
