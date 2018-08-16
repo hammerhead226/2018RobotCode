@@ -101,7 +101,7 @@ public class Elevator extends Subsystem {
 
 	public enum ElevatorSetpoint {
 		// setpoints to be set next week
-		GROUND(0), EXCHANGE(0), SWITCH(0), SCALE(0);
+		GROUND(0), EXCHANGE(0), SWITCH(0), SCALE(0), FIRST_STAGE_TOP(17090);
 		public int position;
 
 		private ElevatorSetpoint(int position) {
@@ -130,7 +130,11 @@ public class Elevator extends Subsystem {
 
 	public void controlElevator(double speed) {
 		if (speed == 0) {
-			speed = Constants.ELEVATOR_CONTINOUS_CURRENT;
+			if (getElevatorPos() > ElevatorSetpoint.FIRST_STAGE_TOP.position) {
+				speed = 0.05;
+			} else {
+				speed = 0.03;
+			}
 		}
 		elevator1.set(ControlMode.PercentOutput, speed);
 		setpointPosition = getElevatorPos();
