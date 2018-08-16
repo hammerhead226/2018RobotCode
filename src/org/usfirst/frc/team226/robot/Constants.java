@@ -31,7 +31,7 @@ public class Constants {
 	public static final boolean INTAKE_INVERT_R = false;
 	public static final boolean WRIST_INVERT_L = false;
 	public static final boolean WRIST_INVERT_R = true;
-	public static final boolean ELEVATOR_INVERT = false;
+	public static final boolean ELEVATOR_INVERT = true;
 
 	// PID Slots
 	public static final int DT_LEFT_PIDSLOT_IDX = 0;
@@ -48,12 +48,12 @@ public class Constants {
 	// Sensor Phase
 	public static final boolean DT_LEFT_SENSOR_PHASE = true;
 	public static final boolean DT_RIGHT_SENSOR_PHASE = true;
-	public static final boolean ELEVATOR_SENSOR_PHASE = true;
+	public static final boolean ELEVATOR_SENSOR_PHASE = false;
 	
 	//Soft limits
-	public static final boolean ELEVATOR_FORWARD_LIMIT_ENABLED = false;
+	public static final boolean ELEVATOR_FORWARD_LIMIT_ENABLED = true;
 	public static final boolean ELEVATOR_REVERSE_LIMIT_ENABLED = false;
-	public static final int ELEVATOR_FORWARD_LIMIT = 0;
+	public static final int ELEVATOR_FORWARD_LIMIT = 35000;
 	public static final int ELEVATOR_REVERSE_LIMIT = 0;
 
 	// Misc

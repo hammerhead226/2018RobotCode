@@ -9,6 +9,7 @@ package org.usfirst.frc.team226.robot;
 
 import org.usfirst.frc.team226.robot.auton.ExecuteMacro;
 import org.usfirst.frc.team226.robot.auton.grp_ToggleAutonRecording;
+import org.usfirst.frc.team226.robot.commands.E_HardZeroEncoder;
 import org.usfirst.frc.team226.robot.commands.I_Intake;
 import org.usfirst.frc.team226.robot.commands.I_Outtake;
 import org.usfirst.frc.team226.robot.commands.PS_CompressorOff;
@@ -38,6 +39,8 @@ public class OI {
 		// Intake
 		manip.getRSButton().whileHeld(new I_Intake());
 		manip.getBButton().whenPressed(new I_Outtake());
+		
+		manip.getSTARTButton().whenPressed(new E_HardZeroEncoder());
 
 		// Auton recording controls
 		driver.getSTARTButton().whenPressed(new grp_ToggleAutonRecording());
