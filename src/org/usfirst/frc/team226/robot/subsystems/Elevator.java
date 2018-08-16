@@ -1,6 +1,7 @@
 package org.usfirst.frc.team226.robot.subsystems;
 
 import org.usfirst.frc.team226.robot.Constants;
+import org.usfirst.frc.team226.robot.Robot;
 import org.usfirst.frc.team226.robot.RobotMap;
 import org.usfirst.frc.team226.robot.commands.E_ControlElevator;
 
@@ -27,7 +28,7 @@ public class Elevator extends Subsystem {
 	private int setpointPosition = ElevatorSetpoint.GROUND.position;
 
 	public Elevator() {
-
+   
 		elevator1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ELEVATOR_PIDSLOT_IDX,
 				Constants.ELEVATOR_TIMEOUT);
 
@@ -61,24 +62,12 @@ public class Elevator extends Subsystem {
 		elevator4.setInverted(Constants.ELEVATOR_INVERT);
 
 		elevator1.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
-		elevator2.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
-		elevator3.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
-		elevator4.configForwardSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
 		
 		elevator1.configReverseSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
-		elevator2.configReverseSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
-		elevator3.configReverseSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
-		elevator4.configReverseSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
 		
 		elevator1.configForwardSoftLimitThreshold(Constants.ELEVATOR_FORWARD_LIMIT, Constants.ELEVATOR_TIMEOUT);
-		elevator2.configForwardSoftLimitThreshold(Constants.ELEVATOR_FORWARD_LIMIT, Constants.ELEVATOR_TIMEOUT);
-		elevator3.configForwardSoftLimitThreshold(Constants.ELEVATOR_FORWARD_LIMIT, Constants.ELEVATOR_TIMEOUT);
-		elevator4.configForwardSoftLimitThreshold(Constants.ELEVATOR_FORWARD_LIMIT, Constants.ELEVATOR_TIMEOUT);
 
 		elevator1.configReverseSoftLimitThreshold(Constants.ELEVATOR_REVERSE_LIMIT, Constants.ELEVATOR_TIMEOUT);
-		elevator2.configReverseSoftLimitThreshold(Constants.ELEVATOR_REVERSE_LIMIT, Constants.ELEVATOR_TIMEOUT);
-		elevator3.configReverseSoftLimitThreshold(Constants.ELEVATOR_REVERSE_LIMIT, Constants.ELEVATOR_TIMEOUT);
-		elevator4.configReverseSoftLimitThreshold(Constants.ELEVATOR_REVERSE_LIMIT, Constants.ELEVATOR_TIMEOUT);
 
 		elevator2.follow(elevator1);
 		elevator3.follow(elevator1);
@@ -95,8 +84,10 @@ public class Elevator extends Subsystem {
 		SmartDashboard.putNumber(Integer.toString(elevator2.getDeviceID()), elevator2.getOutputCurrent());
 		SmartDashboard.putNumber(Integer.toString(elevator3.getDeviceID()), elevator3.getOutputCurrent());
 		SmartDashboard.putNumber(Integer.toString(elevator4.getDeviceID()), elevator4.getOutputCurrent());
-		SmartDashboard.putNumber("setpointPosition", setpointPosition);
-		SmartDashboard.putNumber("elevator pos", getElevatorPos());
+//		SmartDashboard.putNumber("setpointPosition", setpointPosition);
+//		SmartDashboard.putNumber("elevator pos", getElevatorPos());
+		System.out.println(elevator1.getMotorOutputPercent()+ "||" + Robot.oi.manip.getLeftJoystick_Y());
+		
 	}
 
 	public enum ElevatorSetpoint {
