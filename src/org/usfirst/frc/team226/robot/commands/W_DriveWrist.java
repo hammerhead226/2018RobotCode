@@ -27,7 +27,7 @@ public class W_DriveWrist extends Command {
 			speed = 0.04;
 		} else {
 			System.out.println(Robot.oi.manip.getLeftJoystick_Y());
-			speed = Robot.oi.manip.getRightJoystick_Y();
+			speed = -Robot.oi.manip.getRightJoystick_Y();
 		}
 
 		Robot.wrist.driveWrist(speed);

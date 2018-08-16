@@ -9,6 +9,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -40,6 +41,10 @@ public class Wrist extends Subsystem {
 		right.setInverted(Constants.WRIST_INVERT_R);
 
 		right.follow(left);
+	}
+	
+	public void log() {
+		SmartDashboard.putNumber("wrist pos", left.getSelectedSensorPosition(Constants.WRIST_PIDSLOT_IDX));
 	}
 
 	public void initDefaultCommand() {
