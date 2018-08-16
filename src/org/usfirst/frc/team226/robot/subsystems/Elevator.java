@@ -91,13 +91,12 @@ public class Elevator extends Subsystem {
 	}
 
 	public void log() {
-		SmartDashboard.putNumber("11", elevator1.getMotorOutputPercent());
-		SmartDashboard.putNumber("19", elevator2.getMotorOutputPercent());
-		SmartDashboard.putNumber("15", elevator3.getMotorOutputPercent());
-		SmartDashboard.putNumber("18", elevator4.getMotorOutputPercent());
+		SmartDashboard.putNumber(Integer.toString(elevator1.getDeviceID()), elevator1.getOutputCurrent());
+		SmartDashboard.putNumber(Integer.toString(elevator2.getDeviceID()), elevator2.getOutputCurrent());
+		SmartDashboard.putNumber(Integer.toString(elevator3.getDeviceID()), elevator3.getOutputCurrent());
+		SmartDashboard.putNumber(Integer.toString(elevator4.getDeviceID()), elevator4.getOutputCurrent());
 		SmartDashboard.putNumber("setpointPosition", setpointPosition);
 		SmartDashboard.putNumber("elevator pos", getElevatorPos());
-		SmartDashboard.putNumber("elevator 1", elevator1.getMotorOutputPercent());
 	}
 
 	public enum ElevatorSetpoint {
