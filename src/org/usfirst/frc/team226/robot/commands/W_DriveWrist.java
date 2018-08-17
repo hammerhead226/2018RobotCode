@@ -20,17 +20,7 @@ public class W_DriveWrist extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		double speed;
-
-		if (Robot.oi.manip.getRightJoystick_Y() == 0) {
-			System.out.println(0.04);
-			speed = 0.04;
-		} else {
-			System.out.println(Robot.oi.manip.getLeftJoystick_Y());
-			speed = -Robot.oi.manip.getRightJoystick_Y();
-		}
-
-		Robot.wrist.driveWrist(speed);
+		Robot.wrist.driveWrist(-Robot.oi.manip.getRightJoystick_Y());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
