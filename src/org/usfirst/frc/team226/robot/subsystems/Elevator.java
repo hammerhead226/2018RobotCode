@@ -25,7 +25,7 @@ public class Elevator extends Subsystem {
 	private TalonSRX elevator3 = new TalonSRX(RobotMap.ELEVATOR_3);
 	private TalonSRX elevator4 = new TalonSRX(RobotMap.ELEVATOR_4);
 
-	private int setpointPosition = ElevatorSetpoint.GROUND.position;
+	private int setpointPosition = ElevatorSetpoint.EXCHANGE.position;
 
 	public Elevator() {
    
@@ -84,15 +84,15 @@ public class Elevator extends Subsystem {
 		SmartDashboard.putNumber(Integer.toString(elevator2.getDeviceID()), elevator2.getOutputCurrent());
 		SmartDashboard.putNumber(Integer.toString(elevator3.getDeviceID()), elevator3.getOutputCurrent());
 		SmartDashboard.putNumber(Integer.toString(elevator4.getDeviceID()), elevator4.getOutputCurrent());
-//		SmartDashboard.putNumber("setpointPosition", setpointPosition);
-//		SmartDashboard.putNumber("elevator pos", getElevatorPos());
+		SmartDashboard.putNumber("setpointPosition", setpointPosition);
+		SmartDashboard.putNumber("elevator pos", getElevatorPos());
 		System.out.println(elevator1.getMotorOutputPercent()+ "||" + Robot.oi.manip.getLeftJoystick_Y());
 		
 	}
 
 	public enum ElevatorSetpoint {
 		// setpoints to be set next week
-		GROUND(0), EXCHANGE(0), SWITCH(0), SCALE(0), FIRST_STAGE_TOP(17090);
+		EXCHANGE(0), SWITCH(18500), SCALE(36500);
 		public int position;
 
 		private ElevatorSetpoint(int position) {
@@ -110,6 +110,7 @@ public class Elevator extends Subsystem {
 
 	public void hardZeroEncoder() {
 		elevator1.setSelectedSensorPosition(0, Constants.ELEVATOR_PIDSLOT_IDX, Constants.ELEVATOR_TIMEOUT);
+		setpointPosition = 0;
 	}
 
 	public void driveElevator(double speed) {
@@ -121,14 +122,12 @@ public class Elevator extends Subsystem {
 
 	public void controlElevator(double speed) {
 		if (speed == 0) {
-			if (getElevatorPos() > ElevatorSetpoint.FIRST_STAGE_TOP.position) {
-				speed = 0.05;
-			} else {
-				speed = 0.03;
-			}
-		}
+			elevator1.set(ControlMode.Position, setpointPosition);
+		}else {
 		elevator1.set(ControlMode.PercentOutput, speed);
 		setpointPosition = getElevatorPos();
+
+		}
 	}
 
 }
