@@ -28,7 +28,7 @@ public class Constants {
 
 	// Invert Motors
 	public static final boolean INTAKE_INVERT_L = true;
-	public static final boolean INTAKE_INVERT_R = false;
+	public static final boolean INTAKE_INVERT_R = true;
 	public static final boolean WRIST_INVERT_L = false;
 	public static final boolean WRIST_INVERT_R = true;
 	public static final boolean ELEVATOR_INVERT = false;
