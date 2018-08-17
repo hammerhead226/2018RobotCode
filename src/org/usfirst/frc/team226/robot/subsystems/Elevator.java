@@ -56,10 +56,10 @@ public class Elevator extends Subsystem {
 		elevator3.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
 		elevator4.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
 
-		elevator1.setInverted(!Constants.ELEVATOR_INVERT);
-		elevator2.setInverted(Constants.ELEVATOR_INVERT);
-		elevator3.setInverted(!Constants.ELEVATOR_INVERT);
-		elevator4.setInverted(Constants.ELEVATOR_INVERT);
+		elevator1.setInverted(Constants.ELEVATOR_INVERT);
+		elevator2.setInverted(!Constants.ELEVATOR_INVERT);
+		elevator3.setInverted(Constants.ELEVATOR_INVERT);
+		elevator4.setInverted(!Constants.ELEVATOR_INVERT);
 
 		elevator1.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
 		
@@ -126,7 +126,6 @@ public class Elevator extends Subsystem {
 		}else {
 		elevator1.set(ControlMode.PercentOutput, speed);
 		setpointPosition = getElevatorPos();
-
 		}
 	}
 
