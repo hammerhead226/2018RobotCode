@@ -55,19 +55,19 @@ public class Elevator extends Subsystem {
 		elevator3.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
 		elevator4.enableVoltageCompensation(Constants.ELEVATOR_VOLTAGE_LIMIT_ENABLED);
 
-		elevator1.setInverted(!Constants.ELEVATOR_INVERT);
-		elevator2.setInverted(Constants.ELEVATOR_INVERT);
-		elevator3.setInverted(!Constants.ELEVATOR_INVERT);
-		elevator4.setInverted(Constants.ELEVATOR_INVERT);
+		elevator1.setInverted(Constants.ELEVATOR_INVERT);
+		elevator2.setInverted(!Constants.ELEVATOR_INVERT);
+		elevator3.setInverted(Constants.ELEVATOR_INVERT);
+		elevator4.setInverted(!Constants.ELEVATOR_INVERT);
 
 		elevator1.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
 		elevator2.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
 		elevator3.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
 		elevator4.configReverseSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
 
-//		elevator2.follow(elevator1);
-//		elevator3.follow(elevator1);
-//		elevator4.follow(elevator1);
+		elevator2.follow(elevator1);
+		elevator3.follow(elevator1);
+		elevator4.follow(elevator1);
 	}
 
 	public void initDefaultCommand() {
@@ -108,20 +108,11 @@ public class Elevator extends Subsystem {
 	}
 
 	public void driveElevator(double speed) {
-		elevator1.set(ControlMode.PercentOutput, -speed);
-		elevator2.set(ControlMode.PercentOutput, -speed);
-		elevator3.set(ControlMode.PercentOutput, -speed);
-		elevator4.set(ControlMode.PercentOutput, -speed);
-		
-		System.out.println(elevator1.getMotorOutputPercent() + "|" + elevator2.getMotorOutputPercent() + "|"
-				+ elevator3.getMotorOutputPercent() + "|" + elevator4.getMotorOutputPercent());
+		elevator1.set(ControlMode.PercentOutput, speed);
 	}
 
 	public void controlElevator(double speed) {
 		elevator1.set(ControlMode.PercentOutput, speed);
-		System.out.println(elevator1.getMotorOutputPercent() + "|" + elevator2.getMotorOutputPercent() + "|"
-				+ elevator3.getMotorOutputPercent() + "|" + elevator4.getMotorOutputPercent());
-		setpointPosition = getElevatorPos();
 	}
 
 }
