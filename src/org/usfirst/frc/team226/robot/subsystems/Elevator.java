@@ -113,13 +113,6 @@ public class Elevator extends Subsystem {
 		setpointPosition = 0;
 	}
 
-	public void driveElevator(double speed) {
-		if (speed == 0) {
-			speed = Constants.ELEVATOR_CONTINOUS_CURRENT;
-		}
-		elevator1.set(ControlMode.PercentOutput, speed);
-	}
-
 	public void controlElevator(double speed) {
 		if (speed == 0) {
 			elevator1.set(ControlMode.Position, setpointPosition);
