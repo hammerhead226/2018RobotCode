@@ -1,8 +1,9 @@
 package org.usfirst.frc.team226.robot.subsystems;
 
 import org.usfirst.frc.team226.robot.Constants;
+import org.usfirst.frc.team226.robot.Robot;
 import org.usfirst.frc.team226.robot.RobotMap;
-import org.usfirst.frc.team226.robot.commands.E_DriveElevator;
+import org.usfirst.frc.team226.robot.commands.E_ControlElevator;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -24,10 +25,10 @@ public class Elevator extends Subsystem {
 	private TalonSRX elevator3 = new TalonSRX(RobotMap.ELEVATOR_3);
 	private TalonSRX elevator4 = new TalonSRX(RobotMap.ELEVATOR_4);
 
-	private int setpointPosition = ElevatorSetpoint.GROUND.position;
+	private int setpointPosition = ElevatorSetpoint.EXCHANGE.position;
 
 	public Elevator() {
-
+   
 		elevator1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.ELEVATOR_PIDSLOT_IDX,
 				Constants.ELEVATOR_TIMEOUT);
 
@@ -61,9 +62,12 @@ public class Elevator extends Subsystem {
 		elevator4.setInverted(!Constants.ELEVATOR_INVERT);
 
 		elevator1.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
-		elevator2.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
-		elevator3.configForwardSoftLimitEnable(Constants.ELEVATOR_FORWARD_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
-		elevator4.configReverseSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
+		
+		elevator1.configReverseSoftLimitEnable(Constants.ELEVATOR_REVERSE_LIMIT_ENABLED, Constants.ELEVATOR_TIMEOUT);
+		
+		elevator1.configForwardSoftLimitThreshold(Constants.ELEVATOR_FORWARD_LIMIT, Constants.ELEVATOR_TIMEOUT);
+
+		elevator1.configReverseSoftLimitThreshold(Constants.ELEVATOR_REVERSE_LIMIT, Constants.ELEVATOR_TIMEOUT);
 
 		elevator2.follow(elevator1);
 		elevator3.follow(elevator1);
@@ -72,22 +76,23 @@ public class Elevator extends Subsystem {
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		setDefaultCommand(new E_DriveElevator());
+		setDefaultCommand(new E_ControlElevator());
 	}
 
 	public void log() {
-		SmartDashboard.putNumber("11", elevator1.getMotorOutputPercent());
-		SmartDashboard.putNumber("19", elevator2.getMotorOutputPercent());
-		SmartDashboard.putNumber("15", elevator3.getMotorOutputPercent());
-		SmartDashboard.putNumber("18", elevator4.getMotorOutputPercent());
-		SmartDashboard.putNumber("elevator pos", setpointPosition);
-		SmartDashboard.putNumber("legit elevator pos", getElevatorPos());
-		SmartDashboard.putNumber("elevator 1", elevator1.getMotorOutputPercent());
+		SmartDashboard.putNumber(Integer.toString(elevator1.getDeviceID()), elevator1.getOutputCurrent());
+		SmartDashboard.putNumber(Integer.toString(elevator2.getDeviceID()), elevator2.getOutputCurrent());
+		SmartDashboard.putNumber(Integer.toString(elevator3.getDeviceID()), elevator3.getOutputCurrent());
+		SmartDashboard.putNumber(Integer.toString(elevator4.getDeviceID()), elevator4.getOutputCurrent());
+		SmartDashboard.putNumber("setpointPosition", setpointPosition);
+		SmartDashboard.putNumber("elevator pos", getElevatorPos());
+		System.out.println(elevator1.getMotorOutputPercent()+ "||" + Robot.oi.manip.getLeftJoystick_Y());
+		
 	}
 
 	public enum ElevatorSetpoint {
 		// setpoints to be set next week
-		GROUND(0), EXCHANGE(0), SWITCH(0), SCALE(0);
+		EXCHANGE(0), SWITCH(18500), SCALE(36500);
 		public int position;
 
 		private ElevatorSetpoint(int position) {
@@ -105,14 +110,16 @@ public class Elevator extends Subsystem {
 
 	public void hardZeroEncoder() {
 		elevator1.setSelectedSensorPosition(0, Constants.ELEVATOR_PIDSLOT_IDX, Constants.ELEVATOR_TIMEOUT);
-	}
-
-	public void driveElevator(double speed) {
-		elevator1.set(ControlMode.PercentOutput, speed);
+		setpointPosition = 0;
 	}
 
 	public void controlElevator(double speed) {
+		if (speed == 0) {
+			elevator1.set(ControlMode.Position, setpointPosition);
+		}else {
 		elevator1.set(ControlMode.PercentOutput, speed);
+		setpointPosition = getElevatorPos();
+		}
 	}
 
 }
