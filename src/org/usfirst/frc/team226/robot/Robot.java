@@ -126,6 +126,7 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		wrist.log();
+		elevator.log();
 	}
 
 }

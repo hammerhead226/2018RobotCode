@@ -10,6 +10,9 @@ package org.usfirst.frc.team226.robot;
 import org.usfirst.frc.team226.robot.auton.ExecuteMacro;
 import org.usfirst.frc.team226.robot.auton.grp_ToggleAutonRecording;
 import org.usfirst.frc.team226.robot.commands.E_HardZeroEncoder;
+import org.usfirst.frc.team226.robot.commands.E_SetpointExchange;
+import org.usfirst.frc.team226.robot.commands.E_SetpointScale;
+import org.usfirst.frc.team226.robot.commands.E_SetpointSwitch;
 import org.usfirst.frc.team226.robot.commands.I_Intake;
 import org.usfirst.frc.team226.robot.commands.I_Outtake;
 import org.usfirst.frc.team226.robot.commands.PS_CompressorOff;
@@ -43,6 +46,12 @@ public class OI {
 		
 		manip.getSTARTButton().whenPressed(new E_HardZeroEncoder());
 		manip.getSELECTButton().whenPressed(new W_HardZeroEncoder());
+		
+		//Elevator
+		manip.getAButton().whenPressed(new E_SetpointExchange());
+		manip.getXButton().whenPressed(new E_SetpointSwitch());
+		manip.getYButton().whenPressed(new E_SetpointScale());
+		manip.getSTARTButton().whenPressed(new E_HardZeroEncoder());
 
 		// Auton recording controls
 		driver.getSTARTButton().whenPressed(new grp_ToggleAutonRecording());
