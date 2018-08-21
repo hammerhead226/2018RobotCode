@@ -7,6 +7,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -27,6 +28,10 @@ public class PneumaticsSystem extends Subsystem {
 
 	public PneumaticsSystem() {
 		compressor.start();
+	}
+	
+	public void log() {
+		SmartDashboard.putBoolean("compressor state", compressor.enabled());
 	}
 
 	public void initDefaultCommand() {

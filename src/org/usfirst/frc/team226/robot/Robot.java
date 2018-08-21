@@ -127,6 +127,7 @@ public class Robot extends TimedRobot {
 		Scheduler.getInstance().run();
 		wrist.log();
 		elevator.log();
+		pneumaticsSystem.log();
 	}
 
 }
