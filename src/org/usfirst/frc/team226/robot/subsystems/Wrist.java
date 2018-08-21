@@ -63,7 +63,7 @@ public class Wrist extends Subsystem {
 	}
 
 	public void driveWrist(double speed) {
-		if(position <= -530 && speed <= 0) {
+		if(position <= -240 && speed <= 0) {
 			speed = 0;
 		}
 		if (speed == 0) {
