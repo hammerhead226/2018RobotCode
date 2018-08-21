@@ -21,6 +21,8 @@ import org.usfirst.frc.team226.robot.commands.PS_ShiftDriveTrainHighGear;
 import org.usfirst.frc.team226.robot.commands.PS_ShiftDriveTrainLowGear;
 import org.usfirst.frc.team226.robot.commands.PS_ToggleIntake;
 import org.usfirst.frc.team226.robot.commands.W_HardZeroEncoder;
+import org.usfirst.frc.team226.robot.commands.W_WristDown;
+import org.usfirst.frc.team226.robot.commands.W_WristUp;
 
 import util.Controller;
 
@@ -42,7 +44,7 @@ public class OI {
 
 		// Intake
 		manip.getRSButton().whileHeld(new I_Intake());
-		manip.getBButton().whenPressed(new I_Outtake());
+		manip.getLSButton().whenPressed(new I_Outtake());
 		
 		manip.getSTARTButton().whenPressed(new E_HardZeroEncoder());
 		manip.getSELECTButton().whenPressed(new W_HardZeroEncoder());
@@ -52,6 +54,9 @@ public class OI {
 		manip.getXButton().whenPressed(new E_SetpointSwitch());
 		manip.getYButton().whenPressed(new E_SetpointScale());
 		manip.getSTARTButton().whenPressed(new E_HardZeroEncoder());
+		
+		manip.getLBButton().whileHeld(new W_WristUp());
+		manip.getBButton().whileHeld(new W_WristDown());
 
 		// Auton recording controls
 		driver.getSTARTButton().whenPressed(new grp_ToggleAutonRecording());

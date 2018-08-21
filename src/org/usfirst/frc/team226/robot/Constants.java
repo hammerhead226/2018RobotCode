@@ -49,6 +49,7 @@ public class Constants {
 	public static final boolean DT_LEFT_SENSOR_PHASE = true;
 	public static final boolean DT_RIGHT_SENSOR_PHASE = true;
 	public static final boolean ELEVATOR_SENSOR_PHASE = false;
+	public static final boolean WRIST_SENSOR_PHASE = true;
 	
 	//Soft limits
 	public static final boolean ELEVATOR_FORWARD_LIMIT_ENABLED = true;

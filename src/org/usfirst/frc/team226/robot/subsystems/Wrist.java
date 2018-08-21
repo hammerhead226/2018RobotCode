@@ -18,7 +18,7 @@ public class Wrist extends Subsystem {
 
 	private TalonSRX left = new TalonSRX(RobotMap.WRIST_LEFT);
 	private TalonSRX right = new TalonSRX(RobotMap.WRIST_RIGHT);
-	private int position;
+	private int position = -920;
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -40,12 +40,15 @@ public class Wrist extends Subsystem {
 
 		left.setInverted(Constants.WRIST_INVERT_L);
 		right.setInverted(Constants.WRIST_INVERT_R);
+		
+		hardZeroEncoder();
 
 		right.follow(left);
 	}
 
 	public void log() {
-		SmartDashboard.putNumber("wrist pos", left.getSelectedSensorPosition(Constants.WRIST_PIDSLOT_IDX));
+		SmartDashboard.putNumber("wrist relative pos", left.getSelectedSensorPosition(Constants.WRIST_PIDSLOT_IDX));
+		SmartDashboard.putNumber("wrist absolute pos", left.getSensorCollection().getPulseWidthPosition());
 		SmartDashboard.putNumber("wrist position", position);
 	}
 
@@ -60,7 +63,7 @@ public class Wrist extends Subsystem {
 	}
 
 	public void driveWrist(double speed) {
-		if(position <= 0 && speed <= 0) {
+		if(position <= -530 && speed <= 0) {
 			speed = 0;
 		}
 		if (speed == 0) {
