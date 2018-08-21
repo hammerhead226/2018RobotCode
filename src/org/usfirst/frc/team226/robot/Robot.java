@@ -41,7 +41,9 @@ public class Robot extends TimedRobot {
 	public static Wrist wrist;
 	public static Elevator elevator;
 	public static OI oi;
-
+	private static double startTime;
+	private static double currentTime;
+	
 	Command m_autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -72,12 +74,12 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 
 		SmartDashboard.putData(new PS_ShiftDriveTrainHighGear());
-//
-//		ProfileParser.cache("centerswitch_left");
-//		ProfileParser.cache("centerswitch_left_pickup_fast");
-//		ProfileParser.cache("centerswitch_left_twocube");
-//		ProfileParser.cache("centerswitch_right");
-//		ProfileParser.cache("baseline");
+
+		ProfileParser.cache("centerswitch_left");
+		ProfileParser.cache("centerswitch_left_pickup_fast");
+		ProfileParser.cache("centerswitch_left_twocube");
+		ProfileParser.cache("centerswitch_right");
+		ProfileParser.cache("baseline");
 	}
 
 	@Override
@@ -100,17 +102,26 @@ public class Robot extends TimedRobot {
 	public void autonomousInit() {
 		Constants.IS_AUTON = true;
 		SmartDashboard.putString("Field State", DriverStation.getInstance().getGameSpecificMessage());
-		m_autonomousCommand = chooser.getSelected();
+		//m_autonomousCommand = chooser.getSelected();
 
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
 		}
+		
+		startTime = System.currentTimeMillis();
 	}
 
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		currentTime = System.currentTimeMillis();
+		
+		while(currentTime - startTime < Constants.AUTONOMOUS_BASELINE_CROSS_TIME) {
+			driveTrain.tankDrive(0.5, 0.5);
+		}
+		
+		driveTrain.tankDrive(0, 0);
 	}
 
 	@Override
