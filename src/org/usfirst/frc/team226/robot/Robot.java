@@ -10,8 +10,8 @@ package org.usfirst.frc.team226.robot;
 import java.util.ArrayList;
 
 import org.hammerhead226.sharkmacro.motionprofiles.ProfileParser;
+import org.usfirst.frc.team226.robot.auton.BaselineCross;
 import org.usfirst.frc.team226.robot.auton.ExecuteChoiceMacro;
-import org.usfirst.frc.team226.robot.auton.ExecuteMacro;
 import org.usfirst.frc.team226.robot.auton.grp_ExecuteMacroList;
 import org.usfirst.frc.team226.robot.commands.PS_ShiftDriveTrainHighGear;
 import org.usfirst.frc.team226.robot.subsystems.DriveTrain;
@@ -56,7 +56,7 @@ public class Robot extends TimedRobot {
 		elevator = new Elevator();
 		oi = new OI();
 
-		chooser.addDefault("Baseline Cross", new ExecuteMacro("baseline"));
+		chooser.addDefault("Baseline Cross", new BaselineCross());
 		chooser.addObject("Left Switch", new ExecuteChoiceMacro("leftswitch_left", "baseline"));
 		chooser.addObject("Center Switch", new ExecuteChoiceMacro("centerswitch_left", "centerswitch_right"));
 		chooser.addObject("Right Switch", new ExecuteChoiceMacro("baseline", "rightswitch_right"));
@@ -79,7 +79,6 @@ public class Robot extends TimedRobot {
 		ProfileParser.cache("centerswitch_left_pickup_fast");
 		ProfileParser.cache("centerswitch_left_twocube");
 		ProfileParser.cache("centerswitch_right");
-		ProfileParser.cache("baseline");
 	}
 
 	@Override
@@ -102,26 +101,18 @@ public class Robot extends TimedRobot {
 	public void autonomousInit() {
 		Constants.IS_AUTON = true;
 		SmartDashboard.putString("Field State", DriverStation.getInstance().getGameSpecificMessage());
-		//m_autonomousCommand = chooser.getSelected();
+		m_autonomousCommand = chooser.getSelected();
 
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
 		}
 		
-		startTime = System.currentTimeMillis();
 	}
 
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		currentTime = System.currentTimeMillis();
-		
-		while(currentTime - startTime < Constants.AUTONOMOUS_BASELINE_CROSS_TIME) {
-			driveTrain.tankDrive(0.5, 0.5);
-		}
-		
-		driveTrain.tankDrive(0, 0);
 	}
 
 	@Override
