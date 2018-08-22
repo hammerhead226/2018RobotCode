@@ -58,6 +58,7 @@ public class Constants {
 
 	// Misc
 	public static final double DT_VOLTAGE_RAMP_RATE = 0.1;
+	public static final double AUTONOMOUS_BASELINE_CROSS_TIME = 0;
 
 	public static boolean IS_AUTON = false;
 }

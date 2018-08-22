@@ -10,8 +10,8 @@ package org.usfirst.frc.team226.robot;
 import java.util.ArrayList;
 
 import org.hammerhead226.sharkmacro.motionprofiles.ProfileParser;
+import org.usfirst.frc.team226.robot.auton.BaselineCross;
 import org.usfirst.frc.team226.robot.auton.ExecuteChoiceMacro;
-import org.usfirst.frc.team226.robot.auton.ExecuteMacro;
 import org.usfirst.frc.team226.robot.auton.grp_ExecuteMacroList;
 import org.usfirst.frc.team226.robot.commands.PS_ShiftDriveTrainHighGear;
 import org.usfirst.frc.team226.robot.subsystems.DriveTrain;
@@ -41,7 +41,9 @@ public class Robot extends TimedRobot {
 	public static Wrist wrist;
 	public static Elevator elevator;
 	public static OI oi;
-
+	private static double startTime;
+	private static double currentTime;
+	
 	Command m_autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -54,7 +56,7 @@ public class Robot extends TimedRobot {
 		elevator = new Elevator();
 		oi = new OI();
 
-		chooser.addDefault("Baseline Cross", new ExecuteMacro("baseline"));
+		chooser.addDefault("Baseline Cross", new BaselineCross());
 		chooser.addObject("Left Switch", new ExecuteChoiceMacro("leftswitch_left", "baseline"));
 		chooser.addObject("Center Switch", new ExecuteChoiceMacro("centerswitch_left", "centerswitch_right"));
 		chooser.addObject("Right Switch", new ExecuteChoiceMacro("baseline", "rightswitch_right"));
@@ -72,12 +74,11 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 
 		SmartDashboard.putData(new PS_ShiftDriveTrainHighGear());
-//
-//		ProfileParser.cache("centerswitch_left");
-//		ProfileParser.cache("centerswitch_left_pickup_fast");
-//		ProfileParser.cache("centerswitch_left_twocube");
-//		ProfileParser.cache("centerswitch_right");
-//		ProfileParser.cache("baseline");
+
+		ProfileParser.cache("centerswitch_left");
+		ProfileParser.cache("centerswitch_left_pickup_fast");
+		ProfileParser.cache("centerswitch_left_twocube");
+		ProfileParser.cache("centerswitch_right");
 	}
 
 	@Override
@@ -106,6 +107,7 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
 		}
+		
 	}
 
 	@Override
