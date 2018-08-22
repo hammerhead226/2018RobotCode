@@ -18,13 +18,19 @@ public class Wrist extends Subsystem {
 
 	private TalonSRX left = new TalonSRX(RobotMap.WRIST_LEFT);
 	private TalonSRX right = new TalonSRX(RobotMap.WRIST_RIGHT);
-	private int position = -920;
+	private int position = 0;
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	public Wrist() {
 		left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.WRIST_PIDSLOT_IDX,
 				Constants.WRIST_TIMEOUT);
+		
+		left.configForwardSoftLimitEnable(Constants.WRIST_FORWARD_LIMIT_ENABLED, Constants.WRIST_TIMEOUT);
+		left.configForwardSoftLimitThreshold(Constants.WRIST_FORWARD_LIMIT, Constants.WRIST_TIMEOUT);
+		
+		left.configReverseSoftLimitEnable(Constants.WRIST_REVERSE_LIMIT_ENABLED, Constants.WRIST_TIMEOUT);
+		left.configReverseSoftLimitThreshold(Constants.WRIST_REVERSE_LIMIT, Constants.WRIST_TIMEOUT);
 
 		left.configContinuousCurrentLimit(Constants.WRIST_CURRENT_LIMIT, Constants.WRIST_TIMEOUT);
 		right.configContinuousCurrentLimit(Constants.WRIST_CURRENT_LIMIT, Constants.WRIST_TIMEOUT);
@@ -63,7 +69,7 @@ public class Wrist extends Subsystem {
 	}
 
 	public void driveWrist(double speed) {
-		if(position <= -240 && speed <= 0) {
+		if(position <= Constants.WRIST_REVERSE_LIMIT && speed <= 0) {
 			speed = 0;
 		}
 		if (speed == 0) {
