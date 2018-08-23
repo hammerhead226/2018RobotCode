@@ -86,7 +86,6 @@ public class Elevator extends Subsystem {
 		SmartDashboard.putNumber(Integer.toString(elevator4.getDeviceID()), elevator4.getOutputCurrent());
 		SmartDashboard.putNumber("setpointPosition", setpointPosition);
 		SmartDashboard.putNumber("elevator pos", getElevatorPos());
-		System.out.println(elevator1.getMotorOutputPercent()+ "||" + Robot.oi.manip.getLeftJoystick_Y());
 		
 	}
 
