@@ -23,8 +23,8 @@ public class RobotMap {
 	public static final int INTAKE_LEFT = 14;
 	public static final int INTAKE_RIGHT = 18;
 
-	public static final int WRIST_LEFT = 13;
-	public static final int WRIST_RIGHT = 23;
+	public static final int WRIST_LEFT = 23;
+	public static final int WRIST_RIGHT = 13;
 
 	public static final int ELEVATOR_1 = 19;
 	public static final int ELEVATOR_2 = 20;
