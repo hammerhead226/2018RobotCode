@@ -85,7 +85,8 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotPeriodic() {
 		elevator.log();
-		SmartDashboard.putNumber("joy val", oi.manip.getLeftJoystick_Y());
+		wrist.log();
+		pneumaticsSystem.log();
 	}
 
 	@Override
@@ -126,7 +127,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		elevator.log();
 	}
 
 }

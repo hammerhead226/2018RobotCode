@@ -9,6 +9,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -22,8 +23,15 @@ public class Wrist extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	public Wrist() {
-		left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.WRIST_PIDSLOT_IDX, Constants.WRIST_TIMEOUT);
+		left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.WRIST_PIDSLOT_IDX,
+				Constants.WRIST_TIMEOUT);
 		
+		left.configForwardSoftLimitEnable(Constants.WRIST_FORWARD_LIMIT_ENABLED, Constants.WRIST_TIMEOUT);
+		left.configForwardSoftLimitThreshold(Constants.WRIST_FORWARD_LIMIT, Constants.WRIST_TIMEOUT);
+		
+		left.configReverseSoftLimitEnable(Constants.WRIST_REVERSE_LIMIT_ENABLED, Constants.WRIST_TIMEOUT);
+		left.configReverseSoftLimitThreshold(Constants.WRIST_REVERSE_LIMIT, Constants.WRIST_TIMEOUT);
+
 		left.configContinuousCurrentLimit(Constants.WRIST_CURRENT_LIMIT, Constants.WRIST_TIMEOUT);
 		right.configContinuousCurrentLimit(Constants.WRIST_CURRENT_LIMIT, Constants.WRIST_TIMEOUT);
 
@@ -38,31 +46,44 @@ public class Wrist extends Subsystem {
 
 		left.setInverted(Constants.WRIST_INVERT_L);
 		right.setInverted(Constants.WRIST_INVERT_R);
+		
+		hardZeroEncoder();
 
 		right.follow(left);
+	}
+
+	public void log() {
+		SmartDashboard.putNumber("wrist relative pos", left.getSelectedSensorPosition(Constants.WRIST_PIDSLOT_IDX));
+		SmartDashboard.putNumber("wrist absolute pos", left.getSensorCollection().getPulseWidthPosition());
+		SmartDashboard.putNumber("wrist position", position);
 	}
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		setDefaultCommand(new W_DriveWrist());
 	}
-	
+
 	public void hardZeroEncoder() {
 		left.setSelectedSensorPosition(0, Constants.WRIST_PIDSLOT_IDX, Constants.WRIST_TIMEOUT);
+		position = 0;
 	}
 
 	public void driveWrist(double speed) {
+		if(position <= Constants.WRIST_REVERSE_LIMIT && speed <= 0) {
+			speed = 0;
+		}
 		if (speed == 0) {
 			left.set(ControlMode.Position, position);
+		} else {
+			left.set(ControlMode.PercentOutput, speed * 0.5);
+			updatePos();
 		}
-		left.set(ControlMode.PercentOutput, speed);
-		updatePos();
 	}
-	
+
 	public void updatePos() {
 		position = left.getSelectedSensorPosition(Constants.WRIST_PIDSLOT_IDX);
 	}
-	
+
 	public void neutralOutput() {
 		left.neutralOutput();
 	}

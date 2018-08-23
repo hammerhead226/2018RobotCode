@@ -49,15 +49,21 @@ public class Constants {
 	public static final boolean DT_LEFT_SENSOR_PHASE = true;
 	public static final boolean DT_RIGHT_SENSOR_PHASE = true;
 	public static final boolean ELEVATOR_SENSOR_PHASE = false;
+	public static final boolean WRIST_SENSOR_PHASE = true;
 	
 	//Soft limits
 	public static final boolean ELEVATOR_FORWARD_LIMIT_ENABLED = true;
 	public static final boolean ELEVATOR_REVERSE_LIMIT_ENABLED = false;
 	public static final int ELEVATOR_FORWARD_LIMIT = 35000;
 	public static final int ELEVATOR_REVERSE_LIMIT = 0;
+	public static final boolean WRIST_FORWARD_LIMIT_ENABLED = true;
+	public static final boolean WRIST_REVERSE_LIMIT_ENABLED = true;
+	public static final int WRIST_FORWARD_LIMIT = 750;
+	public static final int WRIST_REVERSE_LIMIT = -240;
 
 	// Misc
 	public static final double DT_VOLTAGE_RAMP_RATE = 0.1;
+
 
 	public static boolean IS_AUTON = false;
 }
