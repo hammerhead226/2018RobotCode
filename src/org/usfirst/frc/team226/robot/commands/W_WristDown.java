@@ -15,6 +15,7 @@ public class W_WristDown extends RecordableCommand {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	super.initialize();
     	Robot.wrist.driveWrist(-1);
     }
 
