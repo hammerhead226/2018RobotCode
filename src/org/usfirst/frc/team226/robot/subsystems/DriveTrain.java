@@ -86,11 +86,11 @@ public class DriveTrain extends Subsystem {
 		if (recorder.isRecording()) {
 			ProfileParser p = new ProfileParser(ProfileParser.getNewFilename());
 			p.writeToFile(recorder.stop().toProfile());
-			System.out.println("Profile saved.");
+			System.out.println("Profile " + ProfileParser.getNewestFilename() +" saved.");
 		} else {
 			zeroEncoders();
 			Timer.delay(0.2);
-			System.out.println("Profile recording started.");
+			System.out.println("Profile " +  ProfileParser.getNewFilename() + " recording started.");
 			recorder.start();
 		}
 	}
@@ -99,11 +99,11 @@ public class DriveTrain extends Subsystem {
 		if (ActionRecorder.isRecording()) {
 			ActionListParser al = new ActionListParser(ActionListParser.getNewFilename());
 			al.writeToFile(ActionRecorder.stop());
-			System.out.println("ActionList saved.");
+			System.out.println("ActionList " + ActionListParser.getNewestFilename() + " saved.");
 		} else {
 			Timer.delay(0.2);
 			ActionRecorder.start();
-			System.out.println("ActionList recording started.");
+			System.out.println("ActionList " + ActionListParser.getNewFilename() + " recording started.");
 		}
 	}
 
