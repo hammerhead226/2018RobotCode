@@ -90,8 +90,7 @@ public class Elevator extends Subsystem {
 	}
 
 	public enum ElevatorSetpoint {
-		// setpoints to be set next week
-		EXCHANGE(0), SWITCH(11900), SCALE(33500);
+		EXCHANGE(0), SWITCH(11900), SCALE(36000);
 		public int position;
 
 		private ElevatorSetpoint(int position) {
