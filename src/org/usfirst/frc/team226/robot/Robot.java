@@ -13,6 +13,7 @@ import org.usfirst.frc.team226.robot.auton.ExecuteChoiceMacro;
 import org.usfirst.frc.team226.robot.auton.ExecuteMacro;
 import org.usfirst.frc.team226.robot.auton.grp_ExecuteMacroList;
 import org.usfirst.frc.team226.robot.commands.PS_ShiftDriveTrainHighGear;
+import org.usfirst.frc.team226.robot.subsystems.Climber;
 import org.usfirst.frc.team226.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team226.robot.subsystems.Elevator;
 import org.usfirst.frc.team226.robot.subsystems.Intake;
@@ -39,6 +40,7 @@ public class Robot extends TimedRobot {
 	public static Intake intake;
 	public static Wrist wrist;
 	public static Elevator elevator;
+	public static Climber climber;
 	public static OI oi;
 
 	Command m_autonomousCommand;
@@ -51,6 +53,7 @@ public class Robot extends TimedRobot {
 		intake = new Intake();
 		wrist = new Wrist();
 		elevator = new Elevator();
+		climber = new Climber();
 		oi = new OI();
 
 		chooser.addDefault("Baseline Cross", new ExecuteMacro("baseline"));

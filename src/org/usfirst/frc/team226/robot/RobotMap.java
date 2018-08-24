@@ -48,4 +48,5 @@ public class RobotMap {
 	public static final int DT_LEFT_SHIFTER_2 = 1;
 	public static final int DT_RIGHT_SHIFTER_1 = 2;
 	public static final int DT_RIGHT_SHIFTER_2 = 3;
+	public static final int CLIMBER = 24;
 }
